@@ -1,3 +1,6 @@
+/* ===================================
+   RESET Y BASE
+   =================================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,35 +8,58 @@
 }
 
 body {
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   background: #fef9e8;
   color: #2d3e2b;
   padding-bottom: 2rem;
+  line-height: 1.5;
 }
 
+/* ===================================
+   HEADER Y NAVEGACIÓN
+   =================================== */
 header {
   background: #4CAF50;
   color: white;
   text-align: center;
   padding: 1.5rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1rem;
+  opacity: 0.9;
 }
 
 nav {
   display: flex;
   flex-wrap: wrap;
   background: #fff;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 2px solid #e0e0e0;
   justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
 }
 
 .tab-btn {
   background: none;
   border: none;
-  padding: 0.8rem 1.2rem;
-  font-size: 1rem;
-  font-weight: bold;
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.2s ease;
+  border-radius: 2rem;
+  color: #4CAF50;
 }
 
 .tab-btn.active {
@@ -41,33 +67,89 @@ nav {
   color: white;
 }
 
+.tab-btn:hover:not(.active) {
+  background: #e8f5e9;
+}
+
+/* ===================================
+   MAIN Y CONTENEDOR
+   =================================== */
 main {
   max-width: 1200px;
-  margin: 2rem auto;
-  padding: 1rem;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
 }
 
+/* ===================================
+   TARJETAS (CARDS)
+   =================================== */
 .card {
   background: white;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.1s ease;
 }
 
-.interactivo-frase {
-  background: #e8f0fe;
-  padding: 1rem;
-  border-left: 5px solid #4CAF50;
+.card h2 {
+  color: #2e7d32;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
-button.juego {
-  background: #ff9800;
-  border: none;
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
-  border-radius: 2rem;
-  cursor: pointer;
+.card h3 {
+  color: #388e3c;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.card h4 {
+  color: #2d3e2b;
+  margin-bottom: 0.5rem;
+}
+
+.card ul, .card ol {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.card li {
+  margin: 0.5rem 0;
+}
+
+/* ===================================
+   TABLA DE ESTILOS DE CRIANZA
+   =================================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background: #4CAF50;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* ===================================
+   GRID RESPONSIVE (para tablet/laptop)
+   =================================== */
+.grid-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 @media (min-width: 768px) {
@@ -76,4 +158,178 @@ button.juego {
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
   }
+}
+
+/* ===================================
+   COMPONENTES INTERACTIVOS
+   =================================== */
+.interactivo-frase {
+  background: #e8f0fe;
+  padding: 1rem;
+  border-left: 5px solid #4CAF50;
+  border-radius: 1rem;
+}
+
+.juego {
+  background: #ff9800;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  margin-top: 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  transition: background 0.2s;
+  font-size: 0.9rem;
+}
+
+.juego:hover {
+  background: #f57c00;
+}
+
+input, select {
+  padding: 0.6rem;
+  border-radius: 1rem;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+/* ===================================
+   BOTONES DE QUIZ (para estilos)
+   =================================== */
+.respuesta-quiz, .respuesta-quiz2 {
+  background: #2196F3;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+  display: inline-block;
+}
+
+.respuesta-quiz:hover, .respuesta-quiz2:hover {
+  background: #0b7dda;
+}
+
+#feedbackQuiz, #feedbackQuiz2 {
+  margin-top: 0.8rem;
+  font-style: italic;
+  color: #2e7d32;
+}
+
+/* ===================================
+   PANEL DE PUNTOS (Reto diario)
+   =================================== */
+#puntosPanel {
+  background: #ffeb3b;
+  padding: 0.8rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  margin: 1rem 0;
+  font-weight: bold;
+  color: #3e2723;
+}
+
+#contadorPuntos {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: #ff9800;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2rem;
+  color: white;
+}
+
+#historialRetos {
+  list-style: none;
+  padding-left: 0;
+}
+
+#historialRetos li {
+  background: #e8f5e9;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+/* ===================================
+   FOOTER
+   =================================== */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.8rem;
+  color: #6d4c41;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 2rem;
+}
+
+/* ===================================
+   MEJORAS PARA DISPOSITIVOS MÓVILES
+   =================================== */
+@media (max-width: 480px) {
+  .tab-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  
+  .card {
+    padding: 1rem;
+  }
+  
+  .card h2 {
+    font-size: 1.3rem;
+  }
+  
+  .card h3 {
+    font-size: 1.1rem;
+  }
+  
+  .juego, .respuesta-quiz, .respuesta-quiz2 {
+    width: 100%;
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+  
+  table {
+    font-size: 0.7rem;
+  }
+  
+  th, td {
+    padding: 6px;
+  }
+}
+
+/* ===================================
+   UTILIDADES GENERALES
+   =================================== */
+.texto-centrado {
+  text-align: center;
+}
+
+.mt-2 {
+  margin-top: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 1rem;
+}
+
+/* ===================================
+   ANIMACIONES SUTILES
+   =================================== */
+.card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:active {
+  transform: scale(0.99);
+}
+
+button {
+  touch-action: manipulation;
 }
