@@ -82,7 +82,71 @@ const contenido = {
     <div class="card"><h3>🧘 Claves finales</h3>
       <p>La crianza no es perfección, es reparación. Si hoy te equivocaste, pide disculpas y vuelve a conectar.</p>
     </div>
-  `
+  `,
+  estilos: `
+  <div class="card">
+    <h2>📊 Los 4 estilos de crianza</h2>
+    <p>Se definen por dos ejes: <strong>Afecto (calidez)</strong> y <strong>Control (exigencia/disciplina)</strong>.</p>
+    <table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+      <tr style="background:#4CAF50; color:white;"><th>Estilo</th><th>Afecto</th><th>Control</th><th>Resultado</th></tr>
+      <tr><td>🔹 Autoritario</td><td>Bajo</td><td>Alto</td><td>Miedo, baja autoestima</td></tr>
+      <tr style="background:#f0f0f0;"><td>✅ Democrático / Asertivo</td><td>Alto</td><td>Alto (pero flexible)</td><td>Seguro, autónomo, feliz</td></tr>
+      <tr><td>🔸 Permisivo</td><td>Alto</td><td>Bajo</td><td>Sin límites, baja frustración</td></tr>
+      <tr style="background:#f0f0f0;"><td>⚫ Negligente</td><td>Bajo</td><td>Bajo</td><td>Abandono, inseguridad grave</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>🛠️ Habilidades por estilo de crianza</h3>
+    <div class="grid-2">
+      <div class="card"><h4>📌 Autoritario</h4><ul><li>Imponer reglas sin explicación</li><li>Castigo como herramienta principal</li><li>Poca validación emocional</li><li>"Porque lo digo yo"</li></ul><p><em>⚠️ No recomendado: genera rebeldía o sumisión.</em></p></div>
+      <div class="card"><h4>🌟 Democrático / Asertivo (ideal)</h4><ul><li>Escucha activa</li><li>Poner límites con empatía</li><li>Negociar opciones dentro de lo no negociable</li><li>Enseñar consecuencias lógicas</li><li>Validar emociones + mantener la norma</li><li>Modelar regulación emocional</li></ul></div>
+      <div class="card"><h4>🍃 Permisivo</h4><ul><li>Evitar el conflicto</li><li>Ceder ante la rabieta</li><li>Pocas rutinas o límites</li><li>"Está bien, lo que quieras"</li></ul><p><em>⚠️ Genera niños con baja tolerancia a la frustración.</em></p></div>
+      <div class="card"><h4>🌪️ Negligente</h4><ul><li>Ausencia de respuesta</li><li>Indiferencia ante necesidades</li><li>Sin supervisión ni afecto</li></ul><p><em>🚨 El más dañino. Buscar ayuda profesional.</em></p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🎯 Técnicas específicas para el estilo DEMOCRÁTICO (las que sí funcionan)</h3>
+    <ul>
+      <li><strong>1. "Opción limitada"</strong> → "¿Te bañas antes o después de recoger los juguetes?" (das control dentro del límite).</li>
+      <li><strong>2. Consecuencia lógica</strong> → Si no guarda la comida, se termina la hora de juego (relacionado, no arbitrario).</li>
+      <li><strong>3. Reunión familiar semanal</strong> → niños opinan sobre 1 regla (de 6 a 12 años).</li>
+      <li><strong>4. Rueda de opciones emocionales</strong> → dibujar 4 soluciones a un conflicto y elegir 1.</li>
+      <li><strong>5. Ignorar planificadamente</strong> → conductas leves de llamada de atención (sin castigo, solo no reforzar).</li>
+      <li><strong>6. Tiempo fuera positivo</strong> → "Ve a tu rincón de calma con un peluche, luego hablamos".</li>
+      <li><strong>7. Elogio descriptivo</strong> → "Me encanta cómo guardaste los libros sin que te lo pidiera" (no solo "bien").</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🧪 Ejercicio interactivo: identifica el estilo</h3>
+    <div id="quizEstilos">
+      <p><strong>Frase 1:</strong> "Si no terminas la tarea, te quedas sin cena y sin celular por una semana". ¿Qué estilo es?</p>
+      <button class="respuesta-quiz" data-estilo="autoritario">Autoritario</button>
+      <button class="respuesta-quiz" data-estilo="democratico">Democrático</button>
+      <button class="respuesta-quiz" data-estilo="permisivo">Permisivo</button>
+      <p id="feedbackQuiz"></p>
+    </div>
+    <div id="quizEstilos2">
+      <p><strong>Frase 2:</strong> "Sé que estás enojado porque quieres seguir jugando. Podemos jugar 10 minutos más y luego tú apagas la tablet. ¿Te parece?"</p>
+      <button class="respuesta-quiz2" data-estilo="autoritario">Autoritario</button>
+      <button class="respuesta-quiz2" data-estilo="democratico">Democrático</button>
+      <button class="respuesta-quiz2" data-estilo="permisivo">Permisivo</button>
+      <p id="feedbackQuiz2"></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📌 ¿Cómo pasar de otro estilo al democrático?</h3>
+    <ul>
+      <li>🔁 Si eras autoritario: empieza por validar emociones 1 vez al día ("entiendo que estés triste").</li>
+      <li>🔁 Si eras permisivo: elige 1 límite no negociable por semana y cúmplelo con calma.</li>
+      <li>🔁 Si eras negligente: establece una rutina simple de 10 min diarios de atención plena al niño.</li>
+    </ul>
+  </div>
+`
+  
 };
 
 // Mostrar sección activa
