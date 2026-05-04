@@ -319,7 +319,146 @@ const contenido = {
       <ul id="historialRetos"></ul>
       <button id="siguienteReto" class="juego">🔄 Siguiente reto (cambia el ejercicio)</button>
     </div>
-  `
+  `,
+  test: `
+  <div class="card">
+    <h2>📋 Test de estilo de crianza</h2>
+    <p>Responde con honestidad. No hay respuestas "malas", solo oportunidades para crecer.</p>
+    <p><strong>Instrucción:</strong> Elige la opción que más se acerque a lo que harías habitualmente.</p>
+  </div>
+
+  <form id="testCrianza">
+    <!-- 10 preguntas -->
+    <div class="card"><p><strong>1.</strong> Tu hijo/a tiene una rabieta en público porque quiere un juguete. Tú...</p>
+      <label><input type="radio" name="p1" value="0"> Le compro el juguete para que se calme</label><br>
+      <label><input type="radio" name="p1" value="1"> Le grito que pare o lo amenazo con castigo</label><br>
+      <label><input type="radio" name="p1" value="2"> Lo tomo, me retiro del lugar y luego hablamos de su emoción</label><br>
+      <label><input type="radio" name="p1" value="3"> Lo ignoro o le digo "no me importa"</label>
+    </div>
+
+    <div class="card"><p><strong>2.</strong> Antes de poner una norma nueva, tú...</p>
+      <label><input type="radio" name="p2" value="0"> Se la impongo sin explicación</label><br>
+      <label><input type="radio" name="p2" value="1"> Se la explico y negocio los límites dentro de lo seguro</label><br>
+      <label><input type="radio" name="p2" value="2"> No pongo normas, para no generar conflicto</label><br>
+      <label><input type="radio" name="p2" value="3"> Simplemente no hay normas consistentes</label>
+    </div>
+
+    <div class="card"><p><strong>3.</strong> Cuando tu hijo/a logra algo importante (aunque sea pequeño), tú...</p>
+      <label><input type="radio" name="p3" value="0"> Le digo "bien, pero puedes hacerlo mejor"</label><br>
+      <label><input type="radio" name="p3" value="1"> Celebro su esfuerzo específico ("me encanta cómo lo intentaste")</label><br>
+      <label><input type="radio" name="p3" value="2"> Le doy regalos o comida por todo</label><br>
+      <label><input type="radio" name="p3" value="3"> No le presto atención</label>
+    </div>
+
+    <div class="card"><p><strong>4.</strong> Tu hijo/a rompe una regla importante. ¿Qué haces?</p>
+      <label><input type="radio" name="p4" value="0"> Castigo severo sin explicación</label><br>
+      <label><input type="radio" name="p4" value="1"> Aplico una consecuencia lógica (relacionada con el acto)</label><br>
+      <label><input type="radio" name="p4" value="2"> No hago nada "para no hacerle sentir mal"</label><br>
+      <label><input type="radio" name="p4" value="3"> Me da igual, no me involucro</label>
+    </div>
+
+    <div class="card"><p><strong>5.</strong> Sobre las emociones de tu hijo/a...</p>
+      <label><input type="radio" name="p5" value="0"> Las minimizo ("no es para tanto")</label><br>
+      <label><input type="radio" name="p5" value="1"> Las valido y le ayudo a nombrarlas</label><br>
+      <label><input type="radio" name="p5" value="2"> Hago todo para que no sienta emociones "negativas"</label><br>
+      <label><input type="radio" name="p5" value="3"> Ignoro sus emociones</label>
+    </div>
+
+    <div class="card"><p><strong>6.</strong> ¿Cómo manejas los límites con pantallas/tv?</p>
+      <label><input type="radio" name="p6" value="0"> Horario fijo pero negocio flexible si está tranquilo</label><br>
+      <label><input type="radio" name="p6" value="1"> Prohibo totalmente o grito cuando excede</label><br>
+      <label><input type="radio" name="p6" value="2"> No hay límites, ve lo que quiera</label><br>
+      <label><input type="radio" name="p6" value="3"> No superviso</label>
+    </div>
+
+    <div class="card"><p><strong>7.</strong> Ante una pelea entre hermanos o amigos...</p>
+      <label><input type="radio" name="p7" value="0"> Castigo a ambos sin escuchar</label><br>
+      <label><input type="radio" name="p7" value="1"> Escucho a cada uno y les ayudo a resolver juntos</label><br>
+      <label><input type="radio" name="p7" value="2"> Dejo que se arreglen solos, aunque uno domine</label><br>
+      <label><input type="radio" name="p7" value="3"> Me desentiendo</label>
+    </div>
+
+    <div class="card"><p><strong>8.</strong> Cuando tu hijo/a se equivoca, tú...</p>
+      <label><input type="radio" name="p8" value="0"> Lo humillo o comparo ("mira a tu prima")</label><br>
+      <label><input type="radio" name="p8" value="1"> Le ayudo a reflexionar sobre el error y cómo mejorar</label><br>
+      <label><input type="radio" name="p8" value="2"> Le digo que no importa, que no se preocupe (sin aprendizaje)</label><br>
+      <label><input type="radio" name="p8" value="3"> No le presto atención</label>
+    </div>
+
+    <div class="card"><p><strong>9.</strong> ¿Cómo tomas decisiones importantes en casa?</p>
+      <label><input type="radio" name="p9" value="0"> Solo decido yo, sin preguntarles</label><br>
+      <label><input type="radio" name="p9" value="1"> Involucro a los hijos según su edad y capacidad</label><br>
+      <label><input type="radio" name="p9" value="2"> Dejo que ellos decidan casi todo</label><br>
+      <label><input type="radio" name="p9" value="3"> No tomo decisiones, cada quien hace lo que quiere</label>
+    </div>
+
+    <div class="card"><p><strong>10.</strong> Tu hijo/a tiene miedo o está triste. Tú...</p>
+      <label><input type="radio" name="p10" value="0"> Le digo que no sea débil o que deje de llorar</label><br>
+      <label><input type="radio" name="p10" value="1"> Le acompaño, le nombro la emoción y le ofrezco seguridad</label><br>
+      <label><input type="radio" name="p10" value="2"> Lo distraigo rápido con algo material</label><br>
+      <label><input type="radio" name="p10" value="3"> Lo dejo solo/a para que aprenda</label>
+    </div>
+
+    <div class="card">
+      <button type="button" id="btnCalcularTest" class="juego">📊 Ver mi estilo de crianza</button>
+      <div id="resultadoTest" style="margin-top:1.5rem; padding:1rem; border-radius:1rem; background:#f0f0f0;"></div>
+    </div>
+  </form>
+`,
+  desarrollo: `
+  <div class="card">
+    <h2>🌟 Explorando su autoestima</h2>
+    <p><strong>¿Qué es?</strong> La seguridad interna de "valgo por ser, no por hacer".</p>
+    <div class="grid-2">
+      <div class="card"><h3>👶 0-5 años</h3><p>✔️ Refleja sus logros: "¡lo hiciste solo!"<br>✔️ Evita etiquetas ("eres malo") → describe la acción.<br>🎲 Actividad: espejo de emociones.</p></div>
+      <div class="card"><h3>🧒 6-12 años</h3><p>✔️ Dale tareas reales donde aporte a la familia.<br>✔️ Valora el esfuerzo, no solo el resultado.<br>🎲 Ejercicio: "Mi superpoder especial".</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🧘 Practicando el autocontrol</h3>
+    <p>El autocontrol se entrena, no se nace con él.</p>
+    <div class="grid-2">
+      <div class="card"><h3>⚡ Técnica: semáforo de emociones</h3><p>Rojo: para, Amarillo: piensa, Verde: actúa. Practica en juegos de espera.</p></div>
+      <div class="card"><h3>🎲 Juego: "estatuas musicales"</h3><p>Detenerse al azar. Útil para impulsividad.</p></div>
+    </div>
+    <p><strong>Frases para ayudar:</strong> "Puedes estar enojado, pero no pegas. Respira conmigo".</p>
+  </div>
+
+  <div class="card">
+    <h3>🚀 Desarrollando su liderazgo</h3>
+    <p>Liderazgo = iniciativa + responsabilidad + empatía.</p>
+    <ul>
+      <li><strong>En casa:</strong> Que sea el "jefe de una tarea" (ej. poner la mesa, cuidar una planta).</li>
+      <li><strong>Ejercicio:</strong> "Si fueras líder por un día, ¿qué cambiarías?" (para +6 años).</li>
+      <li><strong>Rol-playing:</strong> Simular resolver un conflicto entre amigos.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📋 Plan de 7 días para fortalecer autoestima + autocontrol + liderazgo</h3>
+    <ul>
+      <li>📅 Día 1: Elogia el esfuerzo, no el resultado.</li>
+      <li>📅 Día 2: Juego de "semáforo" antes de una transición.</li>
+      <li>📅 Día 3: Dale una responsabilidad real.</li>
+      <li>📅 Día 4: Pregúntale "¿cómo te sentiste cuando...?"</li>
+      <li>📅 Día 5: Practica esperar 5 min para algo que quiere.</li>
+      <li>📅 Día 6: Que lidere una actividad familiar (elegir juego).</li>
+      <li>📅 Día 7: Reflexión en familia: "¿qué aprendimos esta semana?"</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>✏️ Ejercicio interactivo: ¿Qué fortaleces hoy?</h3>
+    <div id="fortalezas">
+      <p>Selecciona lo que quieres trabajar hoy con tu hijo/a:</p>
+      <button class="btn-fortaleza" data-area="autoestima">💖 Autoestima</button>
+      <button class="btn-fortaleza" data-area="autocontrol">🧘 Autocontrol</button>
+      <button class="btn-fortaleza" data-area="liderazgo">🌟 Liderazgo</button>
+      <p id="fortalezaFeedback" style="margin-top:1rem;"></p>
+    </div>
+  </div>
+`
 };
 
 // ==============================
@@ -334,7 +473,9 @@ function renderizar(seccion) {
   
   if (seccion === "interactivo") activarJuegos();
   if (seccion === "reto") activarReto();
-  if (seccion === "estilos") activarQuizEstilos(); // NUEVO
+  if (seccion === "estilos") activarQuizEstilos();
+  if (seccion === "test") activarTest();        // NUEVO
+  if (seccion === "desarrollo") activarDesarrollo(); // NUEVO
 }
 
 // ==============================
@@ -386,7 +527,60 @@ function activarQuizEstilos() {
     };
   });
 }
+function activarTest() {
+  const btn = document.getElementById("btnCalcularTest");
+  if (!btn) return;
+  btn.onclick = () => {
+    let puntajeTotal = 0;
+    for (let i = 1; i <= 10; i++) {
+      const seleccion = document.querySelector(`input[name="p${i}"]:checked`);
+      if (seleccion) {
+        puntajeTotal += parseInt(seleccion.value);
+      }
+    }
+    // Interpretación según puntaje (0-30)
+    let estilo = "";
+    let descripcion = "";
+    if (puntajeTotal <= 8) {
+      estilo = "🟡 Permisivo";
+      descripcion = "Priorizas el afecto sobre los límites. Aumenta rutinas y consecuencias lógicas.";
+    } else if (puntajeTotal <= 16) {
+      estilo = "🔴 Autoritario";
+      descripcion = "Usas mucho control pero poca calidez. Practica validar emociones y reducir castigos.";
+    } else if (puntajeTotal <= 24) {
+      estilo = "🟢 Democrático / Asertivo";
+      descripcion = "¡Excelente! Equilibras afecto y control. Sigue así y enseña a otros padres.";
+    } else {
+      estilo = "⚫ Negligente";
+      descripcion = "Hay poca implicación. Busca apoyo, rutinas diarias y al menos 15 min de atención plena al día.";
+    }
+    document.getElementById("resultadoTest").innerHTML = `
+      <h3>Tu estilo principal: ${estilo}</h3>
+      <p>${descripcion}</p>
+      <p><strong>Consejo personalizado:</strong> ${obtenerConsejoPorPuntaje(puntajeTotal)}</p>
+      <p>📌 Puedes mejorar entrenando: <strong>autoestima, autocontrol y liderazgo</strong> en tu hijo (ver pestaña Desarrollo).</p>
+    `;
+  };
+}
 
+function obtenerConsejoPorPuntaje(puntaje) {
+  if (puntaje <= 8) return "Empieza con 1 límite no negociable por semana (ej. horario de comida) y respira antes de ceder.";
+  if (puntaje <= 16) return "Antes de gritar, di 'entiendo tu emoción, pero esto no se hace'. Practica 1 vez al día.";
+  if (puntaje <= 24) return "Enseña a otros padres. Tu experiencia vale. Sigue con los retos diarios de la app.";
+  return "Dedica 10 min diarios a jugar sin distracciones. Pide ayuda profesional si puedes.";
+}
+function activarDesarrollo() {
+  document.querySelectorAll(".btn-fortaleza").forEach(btn => {
+    btn.onclick = () => {
+      const area = btn.getAttribute("data-area");
+      let mensaje = "";
+      if (area === "autoestima") mensaje = "💪 Hoy: dile 'te quiero' sin condición. Valora un intento aunque falle.";
+      if (area === "autocontrol") mensaje = "⏳ Practica esperar: cuenta hasta 10 juntos antes de abrir un regalo o iniciar un juego.";
+      if (area === "liderazgo") mensaje = "👑 Dale una decisión real hoy: '¿qué cenamos, pasta o arroz?' y respeta su elección.";
+      document.getElementById("fortalezaFeedback").innerHTML = `✨ Reto activado: ${mensaje}<br>✅ Vuelve mañana por otro.`;
+    };
+  });
+}
 // ==============================
 // NAVEGACIÓN ENTRE PESTAÑAS
 // ==============================
