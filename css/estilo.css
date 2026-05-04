@@ -197,3 +197,49 @@ footer {
   .card { padding: 1rem; }
   .btn-dia, .juego { width: 100%; text-align: center; margin: 0.5rem 0; }
 }
+/* ===== MODO OSCURO ===== */
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .card,
+body.dark-mode .dia-card,
+body.dark-mode .ejemplo,
+body.dark-mode .actividad,
+body.dark-mode .frase-destacada {
+  background: #1e1e1e;
+  color: #e0e0e0;
+  border-color: #333;
+}
+
+body.dark-mode .tab-btn {
+  color: #81c784;
+}
+
+body.dark-mode .tab-btn.active {
+  background: #2e7d32;
+  color: white;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background: #2d2d2d;
+  color: white;
+  border-color: #555;
+}
+
+body.dark-mode .progreso-bar {
+  background: #333;
+}
+
+body.dark-mode button.juego {
+  background: #ff9800;
+  color: #1e1e1e;
+}
+
+body.dark-mode .badge-tecnica { background: #1a237e; color: white; }
+body.dark-mode .badge-habilidad { background: #1b5e20; color: white; }
+body.dark-mode .badge-error { background: #b71c1c; color: white; }
+body.dark-mode .badge-herramienta { background: #e65100; color: white; }
