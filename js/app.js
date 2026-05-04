@@ -534,13 +534,562 @@ lecciones[10] = {
   frases: ["'Hoy tú decides. Yo confío en ti.'"],
   herramientas: ["Corona de líder", "Planificador semanal de tareas"]
 };
+
 // =====================================================
-// MÓDULO PREESCOLARES (3-5 AÑOS) - DÍAS 11 al 15
+// DÍAS 11 AL 20 - CRIANZA EN DIFERENTES CONTEXTOS
 // =====================================================
 
-// DÍA 11 - Manejo de rabietas en preescolares
+// DÍA 11 - Crianza y pantallas
 lecciones[11] = {
-  titulo: "😤 Día 11: Manejo de rabietas en niños de 3-5 años",
+  titulo: "📱 Día 11: Crianza y pantallas - acuerdos digitales sin lucha",
+  objetivo: "Establecer límites saludables con la tecnología sin generar conflictos diarios.",
+  teoria: `
+    <p>Las <strong>pantallas</strong> son parte de la vida moderna, pero su uso sin límites afecta el sueño, la atención y la regulación emocional.</p>
+    
+    <p><strong>📌 RECOMENDACIONES POR EDAD (AAP):</strong></p>
+    <ul>
+      <li><strong>0-2 años:</strong> Cero pantallas (excepto videollamadas familiares)</li>
+      <li><strong>2-5 años:</strong> Máximo 1 hora al día, siempre acompañado de un adulto</li>
+      <li><strong>6-12 años:</strong> Límites consistentes, priorizar actividades al aire libre y juego físico</li>
+      <li><strong>Adolescentes:</strong> Negociar horarios, zonas libres de pantallas (dormitorio, cena)</li>
+    </ul>
+    
+    <p><strong>🔑 CLAVES PARA ACUERDOS SIN LUCHA:</strong></p>
+    <ul>
+      <li><strong>Zonas libres:</strong> Sin pantallas en la mesa, en el dormitorio, 1 hora antes de dormir</li>
+      <li><strong>Temporizador visible:</strong> Usa un reloj o timer para que el niño vea cuánto tiempo queda</li>
+      <li><strong>Modelo parental:</strong> Si tú estás siempre con el teléfono, él también querrá</li>
+      <li><strong>Alternativas atractivas:</strong> Prepara actividades divertidas para el tiempo sin pantallas</li>
+      <li><strong>Acordar antes:</strong> "Vamos a ver 20 minutos. Cuando suene el timer, apagas tú."</li>
+    </ul>
+    
+    <p><strong>🚨 SEÑALES DE ALARMA:</strong></p>
+    <ul>
+      <li>Rabieta extrema al apagar la pantalla</li>
+      <li>Pérdida de interés en otras actividades</li>
+      <li>Problemas de sueño o irritabilidad constante</li>
+      <li>Conflictos diarios por el uso</li>
+    </ul>
+    
+    <p>💡 <em>"La mejor regla: nada de pantallas 1 hora antes de dormir. El cerebro necesita desconectar."</em></p>
+  `,
+  ejemplos: [
+    "📖 Antes de encender la tele: 'Hoy puedes ver 20 minutos. Te pongo el timer. Cuando suene, apagas tú y luego jugamos a lo que tú elijas. ¿Trato?'",
+    "📖 Niño de 5 años no quiere apagar la tablet: Respiras, te agachas y dices: 'El tiempo se acabó. Sé que te gusta mucho. Apagamos juntos. Mañana habrá otro momento. ¿Quieres guardarla tú o la guardo yo?'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Crea un 'acuerdo de pantallas' escrito con tu hijo (y dibujos si es pequeño). Pónganlo en la nevera.",
+    "🎲 ACTIVIDAD 2: Durante una semana, tú también respeta las zonas sin pantallas (nada de teléfono en la mesa o en la habitación del niño).",
+    "🎲 ACTIVIDAD 3: Prepara una 'cesta de alternativas' con juegos, cuentos, plastilina, puzzles para ofrecer cuando se acabe el tiempo de pantalla."
+  ],
+  tecnicas: ["Temporizador visual", "Acuerdo por escrito", "Zonas libres de pantallas", "Modelado parental"],
+  habilidades: ["Consistencia", "Creatividad para alternativas", "Autorregulación del adulto"],
+  errores: [
+    "❌ Usar la pantalla como premio o castigo ('si te portas bien, te dejo ver tele')",
+    "❌ Gritar cuando no quiere apagar",
+    "❌ Decir 'apaga ya' sin aviso previo",
+    "❌ Tener la tele encendida de fondo todo el día"
+  ],
+  frases: [
+    "'Las pantallas se apagan con cariño, no con gritos. ¿Apagamos juntos?'",
+    "'Tú decides cómo usas tu tiempo de pantalla: ¿juego o dibujo? Después de la pantalla, hacemos algo divertido.'"
+  ],
+  herramientas: ["Temporizador", "Acuerdo de pantallas impreso", "Cesta de alternativas", "App de control parental (Family Link)"]
+};
+
+// DÍA 12 - Rivalidad entre hermanos
+lecciones[12] = {
+  titulo: "👥 Día 12: Rivalidad entre hermanos - mediar sin tomar partido",
+  objetivo: "Ayudar a los hermanos a resolver sus conflictos de manera pacífica y autónoma.",
+  teoria: `
+    <p>La <strong>rivalidad entre hermanos</strong> es normal y esperable. Competencia por la atención, los recursos, la territorialidad. No hay que eliminarla, sino <strong>gestionarla</strong>.</p>
+    
+    <p><strong>🔑 PRINCIPIOS PARA MEDIAR:</strong></p>
+    <ul>
+      <li><strong>No hay un culpable</strong> - Escucha a cada uno sin juzgar de entrada</li>
+      <li><strong>No compares</strong> - "Por qué no eres como tu hermano" es veneno</li>
+      <li><strong>Tiempo individual con cada hijo</strong> - La mayoría de peleas buscan atención</li>
+      <li><strong>Enseña a resolver</strong> - No des la solución, ayúdalos a encontrarla</li>
+      <li><strong>Interviene solo si hay peligro físico</strong> - Si no, dales espacio para negociar</li>
+    </ul>
+    
+    <p><strong>📝 PASOS PARA MEDIAR (método de los 4 pasos):</strong></p>
+    <ol>
+      <li><strong>Calma la situación</strong> - Respira, separa suavemente si es necesario</li>
+      <li><strong>Escucha a cada uno SIN INTERRUMPIR</strong> - "Tú cuentas, luego tú"</li>
+      <li><strong>Refleja lo que escuchaste</strong> - "Entonces, tú te sentiste frustrado porque tu hermano te quitó el juguete sin pedir"</li>
+      <li><strong>Pregunta: "¿Cómo pueden solucionarlo?"</strong> - No des la respuesta, ellos pueden</li>
+    </ol>
+    
+    <p><strong>⚠️ ERROR GRAVE:</strong> No hagas de juez. El que "gana" y el que "pierde" se resentirán. Todos ganan cuando encuentran juntos la solución.</p>
+    
+    <p>💡 <em>"No hay un culpable, hay una oportunidad de aprender a resolver conflictos."</em></p>
+  `,
+  ejemplos: [
+    "📖 Dos hermanos pelean por un juguete. En lugar de 'suelta eso ahora', dices: 'Veo que los dos quieren la misma pelota. ¿Qué podemos hacer? ¿Jugar juntos? ¿Turnos de 5 minutos? ¿Buscar otra pelota? Ustedes deciden.'",
+    "📖 Un hijo le pega al otro. Separar, respirar y decir: 'No se pega en esta casa. Estoy aquí para ayudarles a resolver. Dime, ¿qué pasó? Tú cuentas primero, luego tú.'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Crea el 'rincón de la paz' con cojines, papel y colores. Cuando haya conflicto, pueden ir allí a dibujar su versión.",
+    "🎲 ACTIVIDAD 2: Dedica 15 minutos diarios a cada hijo por separado (sin el otro). Verás cómo disminuyen las peleas.",
+    "🎲 ACTIVIDAD 3: Ensaya con ellos la frase: 'Cuando tú haces X, yo me siento Y. ¿Podemos hablar?' Enséñales a expresar sin pegar."
+  ],
+  tecnicas: ["Escucha activa sin interrumpir", "Reflejo de emociones", "Pregunta para resolver", "Tiempo individual con cada hijo"],
+  habilidades: ["Mediación", "Empatía", "Paciencia", "No comparación"],
+  errores: [
+    "❌ Decir 'tú empieza siempre' o 'tú eres el más conflictivo' (etiquetas)",
+    "❌ Castigar a ambos sin escuchar",
+    "❌ Intervenir siempre (no aprenden a resolver solos)",
+    "❌ Comparar: 'mira cómo se porta tu hermana, tú no'"
+  ],
+  frases: [
+    "'Aquí no hay un bueno y un malo. Hay una situación que podemos resolver juntos.'",
+    "'¿Cómo crees que se sintió tu hermano cuando hiciste eso?'",
+    "'Ustedes pueden encontrar una solución. Yo confío en ustedes.'"
+  ],
+  herramientas: ["Rincón de la paz", "Temporizador para turnos", "Cuentos sobre hermanos", "Calendario de tiempo individual"]
+};
+
+// DÍA 13 - Sueño respetuoso
+lecciones[13] = {
+  titulo: "😴 Día 13: Sueño respetuoso - rutinas sin castigo",
+  objetivo: "Establecer hábitos de sueño saludables basados en la conexión, no en la imposición.",
+  teoria: `
+    <p>El <strong>sueño</strong> es una necesidad fisiológica, no un comportamiento a castigar o premiar. Las dificultades para dormir tienen causas (hambre, miedo, falta de rutina, estimulación excesiva).</p>
+    
+    <p><strong>🌙 RUTINA IDEAL PARA DORMIR (30-45 minutos):</strong></p>
+    <ol>
+      <li><strong>Desconexión digital</strong> - Nada de pantallas 1 hora antes</li>
+      <li><strong>Baño o lavado de dientes</strong> - Transición suave</li>
+      <li><strong>Masaje o pijama</strong> - Contacto físico relajante</li>
+      <li><strong>Cuento o canción</strong> - Voz suave, ambiente tranquilo</li>
+      <li><strong>Abrazo y 'buenas noches'</strong> - Cierre predecible</li>
+    </ol>
+    
+    <p><strong>🔑 CLAVES PARA SUEÑO RESPETUOSO:</strong></p>
+    <ul>
+      <li><strong>Consistencia</strong> - Mismo horario y rutina todos los días (incluyendo fines de semana)</li>
+      <li><strong>Ambiente</strong> - Habitación oscura, fresca, sin ruidos</li>
+      <li><strong>No castigar con 'te quedas sin cuento'</strong> - El cuento es conexión, no premio</li>
+      <li><strong>Si se despierta de noche</strong> - Acompaña, no ignores. El miedo es real para ellos</li>
+      <li><strong>Modelo</strong> - Si tú trasnochas, él también querrá</li>
+    </ul>
+    
+    <p><strong>🚫 QUÉ NO HACER:</strong> Método 'déjalo llorar' (CIO - Cry It Out) daña la confianza y el vínculo. Los niños no lloran para manipular, lloran porque necesitan.</p>
+    
+    <p>💡 <em>"El sueño no se negocia, se acompaña. La cama no es un castigo, es un lugar seguro."</em></p>
+  `,
+  ejemplos: [
+    "📖 Niño de 3 años se despierta llorando a medianoche. En lugar de 'duérmete solo', dices: 'Estoy aquí. Tuviste una pesadilla. Te abrazo, respiramos juntos y te quedas conmigo hasta que te sientas tranquilo.'",
+    "📖 Niño no quiere dormir, pide 'otro cuento'. Dices: 'Ya leímos el cuento. Es hora de dormir. Mañana te leo dos si quieres. Te pongo tu música suave y me quedo un momentito. Cierro los ojos contigo.'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Crea una 'tabla visual de la rutina de noche' con dibujos: baño, pijama, cuento, abrazo, dormir. Que tu hijo la siga cada noche.",
+    "🎲 ACTIVIDAD 2: Durante una semana, apaga todas las pantallas 1 hora antes de dormir (incluyendo las tuyas). Observa cambios.",
+    "🎲 ACTIVIDAD 3: Prepara un 'ritual de calma': una cajita con un peluche para abrazar, una piedra lisa para apretar, un bote de calma (agua + purpurina)."
+  ],
+  tecnicas: ["Rutina visual", "Ritual de calma", "Acompañamiento en despertares", "Ambiente preparado"],
+  habilidades: ["Consistencia", "Empatía nocturna", "Autorregulación del adulto cansado"],
+  errores: [
+    "❌ Dejar llorar al niño ('que aprenda a dormir solo')",
+    "❌ Castigar con 'te acuesto sin cuento'",
+    "❌ Usar pantallas como 'relajación' antes de dormir",
+    "❌ Horarios diferentes cada día"
+  ],
+  frases: [
+    "'Te acompaño hasta que te duermas. No estás solo/a.'",
+    "'Cerramos los ojos, respiramos hondo y soñamos cosas bonitas.'",
+    "'La oscuridad no da miedo cuando estoy contigo.'"
+  ],
+  herramientas: ["Tabla visual de rutina", "Bote de calma", "Música relajante o ruido blanco", "Luz nocturna suave"]
+};
+
+// DÍA 14 - Alimentación sin lucha
+lecciones[14] = {
+  titulo: "🍽️ Día 14: Alimentación sin lucha - tú ofreces, ellos eligen",
+  objetivo: "Acabar con la guerra de la comida y fomentar una relación saludable con la alimentación.",
+  teoria: `
+    <p>Las <strong>luchas por la comida</strong> son una de las fuentes de estrés más comunes en la crianza. La buena noticia: pueden evitarse con un cambio de enfoque.</p>
+    
+    <p><strong>🥕 PRINCIPIO CLAVE (Ellyn Satter - 'Division of Responsibility'):</strong></p>
+    <ul>
+      <li><strong>Los padres deciden:</strong> QUÉ, CUÁNDO y DÓNDE se come</li>
+      <li><strong>Los niños deciden:</strong> SI comen y CUÁNTO comen</li>
+    </ul>
+    
+    <p><strong>🔑 CÓMO APLICARLO:</strong></p>
+    <ul>
+      <li><strong>No obligar a terminar el plato</strong> - Ellos regulan su hambre mejor que tú</li>
+      <li><strong>No usar la comida como premio o castigo</strong> - "Si comes, te doy helado" crea mala relación</li>
+      <li><strong>Ofrece variedad sin presión</strong> - Un alimento nuevo junto a otros que ya conoce</li>
+      <li><strong>Come en familia</strong> - El ejemplo es lo que más enseña</li>
+      <li><strong>Sin distracciones</strong> - Nada de tele, tablet o juguetes en la mesa</li>
+      <li><strong>Paciencia</strong> - Un niño puede necesitar ver un alimento 15 veces antes de probarlo</li>
+    </ul>
+    
+    <p><strong>🚫 NUNCA HACER:</strong> Forzar a probar, castigar por no comer, decir 'está rico, pruébalo' (no confían), hacer platos separados solo para él.</p>
+    
+    <p>💡 <em>"Tu trabajo es ofrecer comida sana y variada. Su trabajo es decidir cuánto comer. Confía en su cuerpo."</em></p>
+  `,
+  ejemplos: [
+    "📖 Niño de 4 años dice 'no me gusta el brócoli'. En lugar de 'pruébalo, está rico', dices: 'No te gusta hoy. Está bien. Aquí tienes también zanahoria y arroz. Comes lo que quieras.'",
+    "📖 Niño no come nada en la cena. En lugar de castigar o insistir, dices: 'Ya guardamos la comida. Si tienes hambre antes de dormir, puedes elegir fruta o pan. Mañana desayunamos.' (Sin ofrecer alternativas ultraprocesadas)"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Durante una semana, aplica la 'división de responsabilidades'. Observa si reduces tu ansiedad y si él come más variado sin presión.",
+    "🎲 ACTIVIDAD 2: Cocina con tu hijo. Que toque los alimentos, los lave, los mezcle. El contacto previo aumenta la probabilidad de que los pruebe.",
+    "🎲 ACTIVIDAD 3: Crea un 'plato arcoíris' - cada día un color diferente de verduras/frutas. Que él elija el color."
+  ],
+  tecnicas: ["División de responsabilidades", "Exposición repetida sin presión", "Cocinar juntos", "Plato arcoíris"],
+  habilidades: ["Paciencia", "Confianza en la regulación del niño", "Creatividad culinaria"],
+  errores: [
+    "❌ Decir 'come tres cucharadas más o no hay postre'",
+    "❌ Hacer platos especiales para cada niño",
+    "❌ Distraer con pantallas para que coma sin darse cuenta",
+    "❌ Comparar 'mira cómo come tu primo'"
+  ],
+  frases: [
+    "'No te gusta hoy. Mañana tal vez. Aquí tienes lo que hay.'",
+    "'Tu cuerpo sabe cuánto necesita. Confío en ti.'",
+    "'No hace falta que termines. Cuando estés lleno, dímelo.'"
+  ],
+  herramientas: ["Plato arcoíris", "Tabla de exposición a nuevos alimentos", "Recetas para cocinar juntos", "Calendario de 'probé algo nuevo'"]
+};
+
+// DÍA 15 - Manejo de rabietas (avanzado)
+lecciones[15] = {
+  titulo: "😤 Día 15: Manejo de rabietas - técnica avanzada",
+  objetivo: "Responder a las rabietas sin escalar el conflicto y enseñando regulación emocional.",
+  teoria: `
+    <p>Las <strong>rabietas</strong> son normales en niños de 1 a 6 años. Su cerebro aún no tiene desarrollada la corteza prefrontal (control de impulsos). No son manipulaciones, son crisis emocionales.</p>
+    
+    <p><strong>🔴 QUÉ NO HACER (lo que empeora):</strong></p>
+    <ul>
+      <li>No gritar ni castigar (activa su amígdala, empeora la regulación)</li>
+      <li>No ceder al chantaje (enseña que la rabieta funciona)</li>
+      <li>No dejar al niño solo (necesita tu presencia para co-regularse)</li>
+      <li>No razonar en el momento álgido (no te escucha, su cerebro está secuestrado)</li>
+    </ul>
+    
+    <p><strong>🟢 LOS 9 PASOS PARA MANEJAR UNA RABIETA:</strong></p>
+    <ol>
+      <li><strong>RESPIRA</strong> - Regúlate primero tú. Si tú explotas, él no puede calmarse</li>
+      <li><strong>ARRODÍLLATE</strong> - Ponte a su altura visual (reduce la sensación de amenaza)</li>
+      <li><strong>NOMBRA LA EMOCIÓN</strong> - "Veo que estás muy enojado/frustrado/triste"</li>
+      <li><strong>VALIDA SIN CEDER</strong> - "Está bien estar enojado. Entiendo que quieras el helado, pero hoy no."</li>
+      <li><strong>OFRECE CALMA FÍSICA</strong> - Un abrazo si lo acepta. Si no, solo presencia</li>
+      <li><strong>ESPERA EL PICO</strong> - No hables. Acompaña en silencio. El pico dura 1-2 minutos</li>
+      <li><strong>LÍMITE BREVE</strong> - "Cuando te calmes, hablamos. Estoy aquí."</li>
+      <li><strong>REDIRIGE</strong> - Después del pico, ofrece una alternativa atractiva</li>
+      <li><strong>RECONECTA</strong> - Abrazo, conversación breve sobre lo que pasó, y a seguir</li>
+    </ol>
+    
+    <p><strong>📌 DESPUÉS DE LA RABIETA (cuando está calmado):</strong> Valida su esfuerzo: "Lograste calmarte. Eso fue difícil. Estoy orgullosa/o de ti."</p>
+    
+    <p>💡 <em>"La rabieta no es una emergencia. Es una oportunidad para enseñar regulación emocional."</em></p>
+  `,
+  ejemplos: [
+    "📖 Rabieta en supermercado: Niño de 4 años grita y se tira al suelo. Mamá respira, se agacha y dice: 'Veo que estás muy enojado porque no te compré el chocolate. Está bien enojarse. Te voy a cargar y vamos afuera un momento.' (Sale del lugar, espera, luego redirige: 'Ya pasó. ¿Quieres ayudar a poner las frutas en la bolsa?')",
+    "📖 Rabieta por apagar la tele: 'Sé que te gusta mucho ver dibujos. Está bien sentirse triste cuando se acaba. Apagamos juntos. Cuando estés listo, podemos pintar o jugar con los bloques. Tú eliges.'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Practica los 9 pasos con un peluche o en tu mente antes de que ocurra la próxima rabieta. Ensaya la voz baja y las frases.",
+    "🎲 ACTIVIDAD 2: Crea un 'rincón de calma' en casa: cojines, un peluche, un papel con emociones, un bote de calma.",
+    "🎲 ACTIVIDAD 3: Lleva un registro: ¿Qué desencadenó la rabieta? ¿Qué funcionó? ¿Qué no? Encuentra patrones."
+  ],
+  tecnicas: ["9 pasos para rabietas", "Rincón de calma", "Nombrar la emoción", "Redirección post-crisis"],
+  habilidades: ["Regulación emocional del adulto", "Paciencia activa", "Contención emocional", "Observación de desencadenantes"],
+  errores: [
+    "❌ Gritar '¡cállate!' o '¡deja de llorar!'",
+    "❌ Ceder para que pare rápido (aprenderá que la rabieta funciona)",
+    "❌ Dejar al niño solo en su habitación ('que se calme solo')",
+    "❌ Razonar mientras grita ('no te escucha')"
+  ],
+  frases: [
+    "'Veo que estás enojado. Está bien. Estoy aquí contigo hasta que pase.'",
+    "'No estás solo en esto. Respiramos juntos.'",
+    "'Cuando el enojo se vaya, te voy a abrazar fuerte.'"
+  ],
+  herramientas: ["Rincón de calma", "Bote de calma", "Temporizador visual", "Póster del semáforo de emociones"]
+};
+
+// DÍA 16 - Comunicación no violenta
+lecciones[16] = {
+  titulo: "🗣️ Día 16: Comunicación no violenta con niños",
+  objetivo: "Hablar sin etiquetas, juicios ni críticas que dañen la autoestima.",
+  teoria: `
+    <p>La <strong>comunicación no violenta (CNV)</strong> de Marshall Rosenberg nos ayuda a expresar lo que sentimos y necesitamos sin atacar al otro.</p>
+    
+    <p><strong>📝 LA FÓRMULA CNV (4 pasos):</strong></p>
+    <ul>
+      <li><strong>OBSERVACIÓN:</strong> Describo lo que veo sin juzgar (NO "eres un desordenado", SÍ "veo tu ropa en el suelo")</li>
+      <li><strong>SENTIMIENTO:</strong> Expreso cómo me siente (NO "me molestas", SÍ "me siento frustrada")</li>
+      <li><strong>NECESIDAD:</strong> Identifico lo que necesito (NO "necesito que obedezcas", SÍ "necesito orden en casa")</li>
+      <li><strong>PETICIÓN:</strong> Pido algo concreto y positivo (NO "no dejes tirada la ropa", SÍ "¿puedes guardar tu ropa en el cesto antes de la cena?")</li>
+    </ul>
+    
+    <p><strong>🔑 FRASES QUE DAÑAN (evítalas):</strong></p>
+    <ul>
+      <li>"Eres un niño malo" (etiqueta) → Mejor: "Esa acción no estuvo bien"</li>
+      <li>"Siempre haces lo mismo" (absoluto) → Mejor: "Hoy decidiste no hacer la tarea"</li>
+      <li>"Mira a tu primo, él sí se porta bien" (comparación) → Mejor: "Cada uno tiene su ritmo"</li>
+      <li>"Me tienes harta/o" (ataque) → Mejor: "Me siento agotada cuando tengo que repetir lo mismo"</li>
+    </ul>
+    
+    <p><strong>🌟 CNV ADAPTADA PARA NIÑOS PEQUEÑOS:</strong> Usa frases cortas, nombra la emoción, ofrece opciones.</p>
+    
+    <p>💡 <em>"Separa la acción de la persona: 'no me gusta que grites' no 'eres gritón'. Así proteges su autoestima mientras pones límites."</em></p>
+  `,
+  ejemplos: [
+    "📖 En lugar de 'eres un mentiroso', decir: 'Me dijiste que habías hecho la tarea y veo que no. Me siento preocupada porque confío en ti. ¿Qué pasó? ¿Necesitas ayuda?'",
+    "📖 En lugar de 'no grites', decir: 'Veo que estás alzando la voz. Me cuesta escucharte así. Cuando hables más bajito, te escucho con atención.'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Durante un día, anota cada vez que uses un 'tú eres...' (juicio). Al final, reescribe la frase en CNV.",
+    "🎲 ACTIVIDAD 2: Practica la fórmula CNV con tu pareja o un amigo antes de usarla con tu hijo.",
+    "🎲 ACTIVIDAD 3: Crea un 'póster de frases CNV' y ponlo en la nevera: 'Observo... Siento... Necesito... ¿Podrías...?'"
+  ],
+  tecnicas: ["Fórmula CNV", "Observación vs juicio", "Peticiones positivas", "Eliminar absolutos"],
+  habilidades: ["Comunicación asertiva", "Empatía", "Autoconciencia emocional"],
+  errores: [
+    "❌ Usar 'tú eres...' (etiquetas estigmatizantes)",
+    "❌ Decir 'siempre' o 'nunca'",
+    "❌ Comparar con otros niños",
+    "❌ Hablar desde el enojo sin respirar"
+  ],
+  frases: [
+    "'Cuando veo [acción], me siento [emoción] porque necesito [necesidad]. ¿Podrías [petición concreta]?'",
+    "'No me gusta tu comportamiento, pero te quiero a ti.'",
+    "'Hablemos cuando ambos estemos tranquilos.'"
+  ],
+  herramientas: ["Póster CNV", "Tarjetas de emociones", "Diario de comunicación", "Frases para el espejo"]
+};
+
+// DÍA 17 - Disciplina positiva
+lecciones[17] = {
+  titulo: "🎮 Día 17: Disciplina positiva - enseñar sin castigar",
+  objetivo: "Aplicar los 7 principios de Jane Nelsen para disciplinar desde el respeto.",
+  teoria: `
+    <p>La <strong>disciplina positiva</strong> de Jane Nelsen NO es permisividad. Es firmeza con amabilidad. Enseña, no humilla.</p>
+    
+    <p><strong>🌟 LOS 7 PRINCIPIOS DE LA DISCIPLINA POSITIVA:</strong></p>
+    <ol>
+      <li><strong>Firme y amable a la vez</strong> - Respetuoso con el niño y con la situación</li>
+      <li><strong>Ayuda al niño a sentir pertenencia e importancia</strong> - Todos necesitan sentirse valorados</li>
+      <li><strong>Efectiva a largo plazo</strong> - Considera lo que el niño piensa, siente, aprende y decide</li>
+      <li><strong>Enseña valiosas habilidades sociales y de vida</strong> - Respeto, solución de problemas, cooperación</li>
+      <li><strong>Invita a los niños a descubrir sus capacidades</strong> - Fomenta la autonomía</li>
+      <li><strong>Se enfoca en soluciones</strong> - No culpas, no castigos, soluciones juntos</li>
+      <li><strong>Usa reuniones familiares</strong> - Para resolver problemas democráticamente</li>
+    </ol>
+    
+    <p><strong>🆚 DIFERENCIA CLAVE:</strong></p>
+    <ul>
+      <li><strong>Castigo:</strong> "Te quedas sin postre por pegaste a tu hermana" (sin relación, humillante)</li>
+      <li><strong>Disciplina positiva:</strong> "Pegar duele y no resuelve. ¿Qué puedes hacer la próxima vez que te enojes? ¿Cómo puedes reparar con tu hermana?" (enseña, conecta)</li>
+    </ul>
+    
+    <p><strong>🏠 REUNIONES FAMILIARES (niños +4 años):</strong> Semanalmente, sentarse a hablar: 1) Algo que salió bien esta semana. 2) Un problema a resolver. 3) Una solución entre todos.</p>
+    
+    <p>💡 <em>"La disciplina enseña, el castigo humilla. ¿Qué quieres que aprenda tu hijo?"</em></p>
+  `,
+  ejemplos: [
+    "📖 Niño de 6 años no recoge los juguetes. En lugar de castigar, decir: 'Veo los juguetes en el suelo. En esta casa recogemos antes de cenar. ¿Cómo podemos recordarlo? ¿Una alarma? ¿Un dibujo? Tú eliges la solución.'",
+    "📖 Niño le pega a un amigo. En lugar de 'vete a tu cuarto', decir: 'Pegar no está bien. Vamos a preguntarle a tu amigo cómo se siente. ¿Qué puedes hacer para que se sienta mejor? ¿Pedir disculpas? ¿Dibujarle algo?'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Esta semana, convoca una 'reunión familiar' (aunque sea de 10 minutos). Que cada uno diga algo positivo y un problema a resolver juntos.",
+    "🎲 ACTIVIDAD 2: Reemplaza un castigo habitual por un enfoque de disciplina positiva. Escribe la diferencia.",
+    "🎲 ACTIVIDAD 3: Crea una 'rueda de soluciones' con tu hijo: dibujen opciones para cuando hay conflicto (respirar, pedir ayuda, turnarse, etc.)"
+  ],
+  tecnicas: ["Reuniones familiares", "Rueda de soluciones", "Enfoque en reparación, no castigo", "Firmeza amable"],
+  habilidades: ["Liderazgo democrático", "Solución de problemas", "Empatía", "Paciencia"],
+  errores: [
+    "❌ Confundir disciplina positiva con ser permisivo ('no le pongo límites')",
+    "❌ Usar castigos disfrazados de consecuencias",
+    "❌ No ser consistente",
+    "❌ Hablar desde la ira"
+  ],
+  frases: [
+    "'Los errores son oportunidades para aprender. ¿Qué aprendiste?'",
+    "'¿Cómo podemos solucionar esto juntos?'",
+    "'En esta familia, todos nos equivocamos y todos aprendemos.'"
+  ],
+  herramientas: ["Rueda de soluciones", "Agenda de reuniones familiares", "Póster de disciplina positiva", "Frases reparadoras"]
+};
+
+// DÍA 18 - Inteligencia emocional
+lecciones[18] = {
+  titulo: "❤️ Día 18: Inteligencia emocional - cómo nombrar y gestionar emociones",
+  objetivo: "Ayudar a los niños a identificar, nombrar y regular sus emociones desde pequeños.",
+  teoria: `
+    <p>La <strong>inteligencia emocional</strong> es la capacidad de reconocer, comprender y gestionar las emociones propias y ajenas. Se entrena, no es innata.</p>
+    
+    <p><strong>📌 CÓMO ENSEÑAR INTELIGENCIA EMOCIONAL:</strong></p>
+    <ul>
+      <li><strong>Nombrar en el momento:</strong> "Veo que estás frustrado porque no te sale el dibujo"</li>
+      <li><strong>Enseñar vocabulario emocional:</strong> No solo "triste" y "feliz". Usa: frustrado, decepcionado, celoso, nervioso, avergonzado, emocionado</li>
+      <li><strong>Preguntar sobre sensaciones corporales:</strong> "¿Dónde sientes el enojo? ¿En las manos? ¿En la panza?"</li>
+      <li><strong>Validar siempre:</strong> "Todas las emociones están bien. Lo que hacemos con ellas puede mejorar."</li>
+      <li><strong>Modelar:</strong> "Yo también me siento frustrada a veces. Mira, voy a respirar hondo."</li>
+    </ul>
+    
+    <p><strong>🎨 HERRAMIENTAS PRÁCTICAS:</strong></p>
+    <ul>
+      <li><strong>Ruleta de emociones:</strong> Dibuja un círculo con 6 emociones. Cada mañana, el niño señala cómo se siente</li>
+      <li><strong>Termómetro de emociones:</strong> Del 1 (calma) al 5 (explosión). Ayuda a identificar intensidad</li>
+      <li><strong>Cuentos de emociones:</strong> "El monstruo de colores", "Así es mi corazón", "Cuando estoy enojado"</li>
+      <li><strong>Juego de caras:</strong> Imitar emociones frente al espejo, adivinar cómo se siente el otro</li>
+    </ul>
+    
+    <p><strong>🔑 LA CLAVE:</strong> No rescates al niño de la emoción. Acompáñalo. "Está bien estar triste. Yo estoy aquí. La tristeza se irá."</p>
+    
+    <p>💡 <em>"El cerebro emocional se entrena con nombre y presencia. Si nombras la emoción, la domesticas."</em></p>
+  `,
+  ejemplos: [
+    "📖 Niño llora porque se le perdió su juguete favorito. En lugar de 'no llores, te compro otro', decir: 'Veo que estás muy triste. Ese juguete era especial para ti. Está bien llorar. ¿Quieres que lo busquemos juntos?'",
+    "📖 Adolescente está enojado. En lugar de 'no te pongas así', decir: 'Noto que estás muy enojado. ¿Quieres hablar? Si no, respetaré tu espacio. Cuando quieras, estoy aquí.'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Crea una 'ruleta de emociones' con cartulina y un clip giratorio. Úsenla cada mañana y cada noche.",
+    "🎲 ACTIVIDAD 2: Lee un cuento sobre emociones hoy. Pregunta: '¿Cómo se siente el personaje? ¿Por qué? ¿Alguna vez te has sentido así?'",
+    "🎲 ACTIVIDAD 3: Juego de 'adivina la emoción': haz una cara y que tu hijo adivine cómo te sientes. Luego cambian roles."
+  ],
+  tecnicas: ["Nombrar en caliente", "Ruleta de emociones", "Termómetro emocional", "Validación sin rescate"],
+  habilidades: ["Inteligencia emocional", "Empatía", "Autorregulación", "Comunicación de necesidades"],
+  errores: [
+    "❌ Decir 'no estés triste/enojado' (invalida la emoción)",
+    "❌ Resolver rápido con premios para que 'no sienta'",
+    "❌ Ignorar la emoción",
+    "❌ Castigar la expresión emocional ('a tu cuarto si lloras')"
+  ],
+  frases: [
+    "'Todas las emociones son bienvenidas en esta casa. Dime cómo te sientes.'",
+    "'¿Dónde sientes el enojo? ¿En tus manos? ¿Quieres apretar algo?'",
+    "'Las emociones vienen y van. Esta también pasará.'"
+  ],
+  herramientas: ["Ruleta de emociones", "Termómetro imprimible", "Cuentos de emociones", "Espejo para imitar caras"]
+};
+
+// DÍA 19 - Rutinas que funcionan
+lecciones[19] = {
+  titulo: "🏠 Día 19: Rutinas que funcionan - estructura sin rigidez",
+  objetivo: "Establecer rutinas predecibles que den seguridad sin volverse opresivas.",
+  teoria: `
+    <p>Las <strong>rutinas</strong> son el andamiaje emocional de los niños. Les permiten anticipar, sentirse seguros y cooperar con menos resistencia.</p>
+    
+    <p><strong>🔑 BENEFICIOS DE LAS RUTINAS:</strong></p>
+    <ul>
+      <li>Reducen la ansiedad (saben qué viene después)</li>
+      <li>Disminuyen las luchas de poder (no negocian lo predecible)</li>
+      <li>Fomentan la autonomía (saben qué hacer sin que les digas)</li>
+      <li>Mejoran el sueño, la alimentación y la regulación</li>
+    </ul>
+    
+    <p><strong>📝 CÓMO CREAR RUTINAS EFECTIVAS:</strong></p>
+    <ol>
+      <li><strong>Visuales:</strong> Usa dibujos o fotos (los niños preescolares entienden mejor lo que ven)</li>
+      <li><strong>Secuencia lógica:</strong> Siempre el mismo orden (ej: cena → baño → pijama → cuento → cama)</li>
+      <li><strong>Flexibles pero consistentes:</strong> Mismo horario general, pero puede haber excepciones previstas</li>
+      <li><strong>Participación del niño:</strong> Que pegue los stickers o señale los pasos</li>
+      <li><strong>Avisos previos:</strong> "En 10 minutos empezamos la rutina de la noche"</li>
+    </ol>
+    
+    <p><strong>📋 EJEMPLOS DE RUTINAS VISUALES:</strong></p>
+    <ul>
+      <li><strong>Mañana:</strong> 1) Levantarse, 2) Ir al baño, 3) Desayunar, 4) Vestirse, 5) Lavarse dientes, 6) Salir</li>
+      <li><strong>Noche:</strong> 1) Recoger juguetes, 2) Baño, 3) Pijama, 4) Cuento, 5) Abrazo, 6) Dormir</li>
+    </ul>
+    
+    <p><strong>⚠️ ATENCIÓN:</strong> Las rutinas no son rígidas. Si el niño está muy cansado o enfermo, la flexibilidad es parte de la inteligencia parental.</p>
+    
+    <p>💡 <em>"Los niños se sienten seguros cuando saben qué viene después. La rutina es el mapa de su día."</em></p>
+  `,
+  ejemplos: [
+    "📖 Niña de 3 años no quiere ir a la cama. La rutina visual ayuda: 'Mira, ya hicimos baño y pijama. Ahora toca cuento. ¿Cuál quieres? Después del cuento, apagamos la luz.'",
+    "📖 Niño de 5 años se resiste a vestirse. En lugar de negociar cada prenda, seguir la rutina visual: 'La rutina dice: después de desayunar, nos vestimos. ¿Quieres ponerte la camisa roja o la azul? Tú eliges dentro de la rutina.'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Dibuja con tu hijo una 'tabla de rutina de la mañana' con dibujos simples. Pégala en su habitación o en el baño.",
+    "🎲 ACTIVIDAD 2: Usa un temporizador para las transiciones: 'En 5 minutos empezamos a recoger para la cena. Cuando suene el timer, guardamos los juguetes.'",
+    "🎲 ACTIVIDAD 3: Durante una semana, respeta el mismo horario de comidas y sueño. Observa si hay cambios en el comportamiento."
+  ],
+  tecnicas: ["Rutinas visuales", "Avisos previos", "Temporizador para transiciones", "Participación del niño"],
+  habilidades: ["Organización", "Consistencia", "Creatividad visual", "Paciencia en transiciones"],
+  errores: [
+    "❌ Cambiar la rutina cada día (confunde)",
+    "❌ No tener rutina para los momentos difíciles (mañana acostada, noche)",
+    "❌ Usar la rutina como control, no como apoyo",
+    "❌ No avisar con tiempo los cambios"
+  ],
+  frases: [
+    "'La rutina dice que ahora toca... ¿Qué sigue después?'",
+    "'Cuando termine el timer, guardamos los juguetes. ¿Preparados?'",
+    "'Tú puedes seguir la rutina solo. Mira el dibujo.'"
+  ],
+  herramientas: ["Tabla visual de rutinas", "Temporizador", "Stickers de recompensa", "Calendario semanal"]
+};
+
+// DÍA 20 - Crianza y neurodivergencia
+lecciones[20] = {
+  titulo: "🧠 Día 20: Crianza y neurodivergencia - adaptar técnicas a cada niño",
+  objetivo: "Comprender que no todos los niños responden igual y ajustar las estrategias.",
+  teoria: `
+    <p>La <strong>neurodivergencia</strong> incluye TDAH, autismo, dislexia, altas capacidades, entre otras. Cada cerebro funciona diferente. Lo que funciona para un niño puede no funcionar para otro.</p>
+    
+    <p><strong>🔑 PRINCIPIOS PARA CRIAR CON NEURODIVERGENCIA:</strong></p>
+    <ul>
+      <li><strong>Observa, no etiquetes:</strong> "Le cuesta regularse" no "es malo". Busca el 'por qué' detrás del comportamiento</li>
+      <li><strong>Ajusta el entorno, no al niño:</strong> Si se sobreestimula, reduce ruidos/luces. Si se aburre, ofrece desafíos</li>
+      <li><strong>Anticipa:</strong> Usa agendas visuales, avisos previos, rutinas muy predecibles</li>
+      <li><strong>Comunicación clara:</strong> Frases cortas, literal (para TEA), sin dobles sentidos</li>
+      <li><strong>Flexibilidad en las consecuencias:</strong> El castigo tradicional no funciona en TDAH/TEA (su cerebro no conecta acción-consecuencia como otros)</li>
+    </ul>
+    
+    <p><strong>📌 ADAPTACIONES ESPECÍFICAS:</strong></p>
+    <ul>
+      <li><strong>TDAH:</strong> Micro-objetivos, descansos frecuentes, ayudas visuales, mucho refuerzo positivo inmediato</li>
+      <li><strong>TEA (autismo):</strong> Anticipación visual, evitar sobrecarga sensorial, respetar intereses especiales, rutinas muy estables</li>
+      <li><strong>Altas capacidades:</strong> Desafío intelectual, validar su intensidad emocional, evitar la presión</li>
+      <li><strong>Sensibilidad sensorial:</strong> Observar qué detona (etiquetas de ropa, ruidos, luces) y adaptar</li>
+    </ul>
+    
+    <p><strong>⚠️ NO USAR:</strong> Técnicas de modificación de conducta que humillan, tiempo fuera sin explicación, castigos físicos o gritos. Son especialmente dañinos en neurodivergencia.</p>
+    
+    <p>💡 <em>"Lo que funciona para uno, no funciona para otro. Observa a tu hijo y adapta. El problema no es el niño, es que la neurotípico no encaja en su neurotipo."</em></p>
+  `,
+  ejemplos: [
+    "📖 Niño con TDAH no puede terminar la tarea. En lugar de 'concéntrate', divide: 'Hacemos 5 minutos de tarea, luego 2 de descanso para moverte. Pongo el timer.'",
+    "📖 Niño con TEA tiene una crisis sensorial en un lugar ruidoso. En lugar de 'cálmate', retirarse a un lugar tranquilo, ofrecer cascos de ruido o un objeto de regulación (pesado, textura)."
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Observa a tu hijo durante una semana. ¿Qué situaciones desencadenan dificultad? ¿Qué ayuda? Haz un registro.",
+    "🎲 ACTIVIDAD 2: Busca un profesional (neurólogo, psicólogo, terapeuta ocupacional) si sospechas neurodivergencia. El diagnóstico abre puertas a adaptaciones.",
+    "🎲 ACTIVIDAD 3: Crea un 'kit sensorial' con objetos que regulen a tu hijo: pelota antiestrés, trozo de tela suave, auriculares, peso en los hombros."
+  ],
+  tecnicas: ["Anticipación visual", "Descomposición de tareas", "Descansos sensoriales", "Entorno adaptado"],
+  habilidades: ["Observación clínica", "Empatía neurodivergente", "Flexibilidad", "Abogacía"],
+  errores: [
+    "❌ Forzar al niño a 'portarse normal' sin adaptar el entorno",
+    "❌ Usar castigos para conductas que no controla",
+    "❌ Comparar con otros niños neurotípicos",
+    "❌ Ignorar señales de sobrecarga sensorial"
+  ],
+  frases: [
+    "'Tu cerebro funciona diferente, no mal. Aprendamos juntos cómo te ayuda.'",
+    "'No pasa nada por necesitar ayuda. Yo te ayudo.'",
+    "'Vamos a encontrar la manera que funcione para ti.'"
+  ],
+  herramientas: ["Agenda visual", "Kit sensorial", "Auriculares de cancelación de ruido", "Peso (mantas, chalecos)", "Temporizador visual"]
+};
+
+// =====================================================
+// MÓDULO PREESCOLARES (3-5 AÑOS) - DÍAS 21 al 25
+// =====================================================
+
+// DÍA 21 - Manejo de rabietas en preescolares
+lecciones[21] = {
+  titulo: "😤 Día 21: Manejo de rabietas en niños de 3-5 años",
   objetivo: "Aprender a responder a las rabietas sin escalar el conflicto.",
   teoria: `
     <p>Las <strong>rabietas</strong> son normales en preescolares. Su cerebro aún no regula las emociones. No son manipulaciones, son crisis emocionales.</p>
@@ -583,9 +1132,9 @@ lecciones[11] = {
   herramientas: ["Rincón de calma", "Temporizador visual", "Póster del semáforo de emociones"]
 };
 
-// DÍA 12 - Control de esfínteres
-lecciones[12] = {
-  titulo: "🚽 Día 12: Control de esfínteres sin presión",
+// DÍA 22 - Control de esfínteres
+lecciones[22] = {
+  titulo: "🚽 Día 22: Control de esfínteres sin presión",
   objetivo: "Acompañar el proceso de dejar el pañal con respeto y paciencia.",
   teoria: `
     <p>El <strong>control de esfínteres</strong> es un hito del desarrollo. No se fuerza. La mayoría de niños están listos entre los 2 y 4 años.</p>
@@ -625,9 +1174,9 @@ lecciones[12] = {
   herramientas: ["Bacinica o adaptador", "Calendario de stickers", "Cuentos sobre control de esfínteres"]
 };
 
-// DÍA 13 - Primeros límites y rutinas
-lecciones[13] = {
-  titulo: "🔒 Día 13: Primeros límites y rutinas para preescolares",
+// DÍA 23 - Primeros límites y rutinas
+lecciones[23] = {
+  titulo: "🔒 Día 23: Primeros límites y rutinas para preescolares",
   objetivo: "Establecer límites claros y rutinas predecibles para niños de 3-5 años.",
   teoria: `
     <p>A esta edad, los niños necesitan <strong>límites claros</strong> para sentirse seguros. Los límites no son castigos, son protección.</p>
@@ -667,9 +1216,9 @@ lecciones[13] = {
   herramientas: ["Tabla visual imprimible", "Temporizador", "Semáforo de cartulina"]
 };
 
-// DÍA 14 - Juego como herramienta de crianza
-lecciones[14] = {
-  titulo: "🎮 Día 14: El juego como herramienta de crianza",
+// DÍA 24 - Juego como herramienta de crianza
+lecciones[24] = {
+  titulo: "🎮 Día 24: El juego como herramienta de crianza",
   objetivo: "Usar el juego para conectar, enseñar y resolver conflictos.",
   teoria: `
     <p>El <strong>juego</strong> es el lenguaje natural de los niños. A través del juego:</p>
@@ -706,9 +1255,9 @@ lecciones[14] = {
   herramientas: ["Muñecos o figuras", "Temporizador divertido", "Globos para respirar"]
 };
 
-// DÍA 15 - Emociones y vocabulario emocional
-lecciones[15] = {
-  titulo: "💖 Día 15: Enseñar inteligencia emocional a preescolares",
+// DÍA 25 - Emociones y vocabulario emocional
+lecciones[25] = {
+  titulo: "💖 Día 25: Enseñar inteligencia emocional a preescolares",
   objetivo: "Ayudar a los niños a identificar y nombrar sus emociones.",
   teoria: `
     <p>Los niños preescolares <strong>sienten todas las emociones</strong> pero no saben nombrarlas. Nuestro trabajo es darles <strong>vocabulario emocional</strong>.</p>
@@ -740,29 +1289,19 @@ lecciones[15] = {
   frases: ["'Todas las emociones están bien. Lo que hacemos con ellas puede mejorar.'", "'Dime cómo te sientes y te ayudo a ponerle nombre.'"],
   herramientas: ["Ruleta de emociones descargable", "Espejo para imitar caras", "Libros de emociones"]
 };
-// Días 16 al 33
+// Días 26 al 33
 const temasDias = {
-  11: { t:"📱 Día 16: Crianza y pantallas", obj:"Acuerdos digitales sin lucha", teo:"<p>Límites de tiempo + zonas libres de pantallas + modelo parental + alternativas creativas.</p><p>💡 <em>La mejor regla: nada de pantallas 1 hora antes de dormir.</em></p>" },
-  12: { t:"👥 Día 17: Rivalidad entre hermanos", obj:"Mediar sin tomar partido", teo:"<p>Escucha a cada uno, no busques culpable, ayúdalos a encontrar su propia solución.</p><p>💡 <em>No hay un culpable, hay una oportunidad de aprender a resolver conflictos.</em></p>" },
-  13: { t:"😴 Día 18: Sueño respetuoso", obj:"Rutinas de sueño sin castigo", teo:"<p>Consistencia + ambiente tranquilo + ritual de conexión previa (cuento, masaje).</p><p>💡 <em>El sueño no se negocia, se acompaña.</em></p>" },
-  14: { t:"🍽️ Día 19: Alimentación sin lucha", obj:"Tú ofreces, ellos eligen", teo:"<p>No obligar a terminar el plato. Ellos regulan su hambre. Ofrece opciones sanas.</p><p>💡 <em>Tu trabajo es ofrecer comida sana. Su trabajo es decidir cuánto comer.</em></p>" },
-  15: { t:"😤 Día 20: Manejo de rabietas", obj:"Responder sin escalar", teo:"<p><strong>9 pasos:</strong> respira, arrodíllate, nombra emoción, valida sin ceder, ofrece calma, espera el pico, límite breve, redirige, reconecta.</p><p>💡 <em>La rabieta no es una emergencia. Es una oportunidad para enseñar regulación.</em></p>" },
-  16: { t:"🗣️ Día 21: Comunicación no violenta", obj:"Hablar sin etiquetas ni juicios", teo:"<p>Observación + sentimiento + necesidad + petición.</p><p><strong>Fórmula:</strong> 'Cuando veo X, me siento Y porque necesito Z. ¿Podrías...?'</p><p>💡 <em>Separa la acción de la persona: 'no me gusta que grites' no 'eres gritón'.</em></p>" },
-  17: { t:"🎮 Día 22: Disciplina positiva", obj:"Enseñar en lugar de castigar", teo:"<p><strong>7 principios:</strong> firmeza y amabilidad, sentido de pertenencia, consecuencias lógicas, etc.</p><p>💡 <em>La disciplina enseña, el castigo humilla.</em></p>" },
-  18: { t:"❤️ Día 23: Inteligencia emocional", obj:"Nombrar y gestionar emociones", teo:"<p>El cerebro emocional se entrena. Ayuda a tu hijo a identificar sensaciones corporales.</p><p>💡 <em>'¿Dónde sientes el enojo? ¿En las manos? ¿En la panza?'</em></p>" },
-  19: { t:"🏠 Día 24: Rutinas que funcionan", obj:"Estructura sin rigidez", teo:"<p>Las rutinas dan seguridad. Usa tablas visuales, avisos previos, flexibilidad controlada.</p><p>💡 <em>Los niños se sienten seguros cuando saben qué sigue.</em></p>" },
-  20: { t:"🧠 Día 25: Crianza y neurodivergencia", obj:"Adaptar técnicas a cada niño", teo:"<p>No todos los niños responden igual. Ajusta tiempos, estímulos y expectativas.</p><p>💡 <em>Lo que funciona para uno, no funciona para otro. Observa a tu hijo.</em></p>" },
-  21: { t:"👪 Día 26: Co-parentalidad", obj:"Consistencia entre adultos cuidadores", teo:"<p>Acuerdos escritos, comunicación respetuosa, no desautorizar al otro frente al niño.</p><p>💡 <em>La peor herencia es la inconsistencia entre adultos.</em></p>" },
-  22: { t:"🛡️ Día 27: Prevención de abuso", obj:"Enseñar límites corporales", teo:"<p>Cuerpo es mío, secretos buenos y malos, buscar ayuda si algo incomoda.</p><p>💡 <em>Enseña: 'tu cuerpo es tuyo y nadie puede tocarlo sin tu permiso'.</em></p>" },
-  23: { t:"🎭 Día 28: Crianza en divorcio", obj:"Proteger el vínculo", teo:"<p>No hables mal del otro progenitor. El niño no es mensajero ni aliado.</p><p>💡 <em>Tu hijo no necesita elegir entre amarte a ti o al otro.</em></p>" },
-  24: { t:"🌱 Día 29: Adolescencia respetuosa", obj:"Autonomía con guía", teo:"<p>Negociar, no imponer. Escucha más de lo que hablas. Elige tus batallas.</p><p>💡 <em>La adolescencia es el ensayo para la adultez. Permite errores pequeños.</em></p>" },
-  25: { t:"🧘 Día 30: Mindfulness parental", obj:"Respirar antes de reaccionar", teo:"<p>La presencia plena reduce los conflictos. Entrena la pausa.</p><p>💡 <em>Tu calma es su ancla. Si tú te desregulas, él también.</em></p>" },
-  26: { t:"📖 Día 31: Cuentos como herramienta", obj:"Usar narrativa para enseñar", teo:"<p>Los cuentos permiten abordar temas difíciles sin confrontación directa.</p><p>💡 <em>Un cuento puede enseñar lo que una regaño no logra.</em></p>" },
-  27: { t:"🔁 Día 32: Reparación después del error", obj:"Pedir disculpas sinceras", teo:"<p>El error bien reparado fortalece el vínculo más que el acierto.</p><p>💡 <em>Pedir disculpas a tu hijo no te quita autoridad, te da respeto.</em></p>" },
-  28: { t:"🏅 Día 33: Maestría parental", obj:"Celebrar el recorrido", teo:"<p>No hay padres perfectos, sí conscientes. Cada día cuenta.</p><p>🎉 <strong>¡FELICIDADES! Has completado los 28 días.</strong> Eres un ejemplo de compromiso.</p>" }
+  26: { t:"👪 Día 26: Co-parentalidad", obj:"Consistencia entre adultos cuidadores", teo:"<p>Acuerdos escritos, comunicación respetuosa, no desautorizar al otro frente al niño.</p><p>💡 <em>La peor herencia es la inconsistencia entre adultos.</em></p>" },
+  27: { t:"🛡️ Día 27: Prevención de abuso", obj:"Enseñar límites corporales", teo:"<p>Cuerpo es mío, secretos buenos y malos, buscar ayuda si algo incomoda.</p><p>💡 <em>Enseña: 'tu cuerpo es tuyo y nadie puede tocarlo sin tu permiso'.</em></p>" },
+  28: { t:"🎭 Día 28: Crianza en divorcio", obj:"Proteger el vínculo", teo:"<p>No hables mal del otro progenitor. El niño no es mensajero ni aliado.</p><p>💡 <em>Tu hijo no necesita elegir entre amarte a ti o al otro.</em></p>" },
+  29: { t:"🌱 Día 29: Adolescencia respetuosa", obj:"Autonomía con guía", teo:"<p>Negociar, no imponer. Escucha más de lo que hablas. Elige tus batallas.</p><p>💡 <em>La adolescencia es el ensayo para la adultez. Permite errores pequeños.</em></p>" },
+  30: { t:"🧘 Día 30: Mindfulness parental", obj:"Respirar antes de reaccionar", teo:"<p>La presencia plena reduce los conflictos. Entrena la pausa.</p><p>💡 <em>Tu calma es su ancla. Si tú te desregulas, él también.</em></p>" },
+  31: { t:"📖 Día 31: Cuentos como herramienta", obj:"Usar narrativa para enseñar", teo:"<p>Los cuentos permiten abordar temas difíciles sin confrontación directa.</p><p>💡 <em>Un cuento puede enseñar lo que una regaño no logra.</em></p>" },
+  32: { t:"🔁 Día 32: Reparación después del error", obj:"Pedir disculpas sinceras", teo:"<p>El error bien reparado fortalece el vínculo más que el acierto.</p><p>💡 <em>Pedir disculpas a tu hijo no te quita autoridad, te da respeto.</em></p>" },
+  33: { t:"🏅 Día 33: Maestría parental", obj:"Celebrar el recorrido", teo:"<p>No hay padres perfectos, sí conscientes. Cada día cuenta.</p><p>🎉 <strong>¡FELICIDADES! Has completado los 28 días.</strong> Eres un ejemplo de compromiso.</p>" }
 };
 
-for (let i = 16; i <= 33; i++) {
+for (let i = 26; i <= 33; i++) {
   let tema = temasDias[i];
   lecciones[i] = {
     titulo: tema.t,
