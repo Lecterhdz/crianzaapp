@@ -30,6 +30,8 @@ function cargarProgreso() {
   }
   if (!cursoEstado.medallas) cursoEstado.medallas = [];
   if (!cursoEstado.estadisticas) cursoEstado.estadisticas = { tiempoTotalMinutos: 0, ultimoAcceso: null, diasMasProductivos: {} };
+  // VALIDACIÓN: si diaActual excede 33, corregir
+  if (cursoEstado.diaActual > 33) cursoEstado.diaActual = 33;
   actualizarMedallas();
 }
 
@@ -64,9 +66,13 @@ function actualizarMedallas() {
     cursoEstado.medallas.push("cerca_meta");
     mostrarNotificacion("🏅 ¡Medalla desbloqueada! CERCA DE LA META - 21 días, el final está cerca.");
   }
-  if (completados >= 28 && !cursoEstado.medallas.includes("maestro_parental")) {
+  if (completados >= 28 && !cursoEstado.medallas.includes("compromiso_28")) {
+    cursoEstado.medallas.push("compromiso_28");
+    mostrarNotificacion("🏅 ¡Medalla desbloqueada! COMPROMISO - 28 días completados.");
+  }
+  if (completados >= 33 && !cursoEstado.medallas.includes("maestro_parental")) {
     cursoEstado.medallas.push("maestro_parental");
-    mostrarNotificacion("🏅 ¡MEDALLA MÁXIMA! MAESTRO PARENTAL - Completaste los 28 días. ¡Eres un ejemplo!");
+    mostrarNotificacion("🏅 ¡MEDALLA MÁXIMA! MAESTRO PARENTAL - Completaste los 33 días. ¡Eres un ejemplo!");
   }
   guardarProgreso();
 }
@@ -1289,34 +1295,418 @@ lecciones[25] = {
   frases: ["'Todas las emociones están bien. Lo que hacemos con ellas puede mejorar.'", "'Dime cómo te sientes y te ayudo a ponerle nombre.'"],
   herramientas: ["Ruleta de emociones descargable", "Espejo para imitar caras", "Libros de emociones"]
 };
-// Días 26 al 33
-const temasDias = {
-  26: { t:"👪 Día 26: Co-parentalidad", obj:"Consistencia entre adultos cuidadores", teo:"<p>Acuerdos escritos, comunicación respetuosa, no desautorizar al otro frente al niño.</p><p>💡 <em>La peor herencia es la inconsistencia entre adultos.</em></p>" },
-  27: { t:"🛡️ Día 27: Prevención de abuso", obj:"Enseñar límites corporales", teo:"<p>Cuerpo es mío, secretos buenos y malos, buscar ayuda si algo incomoda.</p><p>💡 <em>Enseña: 'tu cuerpo es tuyo y nadie puede tocarlo sin tu permiso'.</em></p>" },
-  28: { t:"🎭 Día 28: Crianza en divorcio", obj:"Proteger el vínculo", teo:"<p>No hables mal del otro progenitor. El niño no es mensajero ni aliado.</p><p>💡 <em>Tu hijo no necesita elegir entre amarte a ti o al otro.</em></p>" },
-  29: { t:"🌱 Día 29: Adolescencia respetuosa", obj:"Autonomía con guía", teo:"<p>Negociar, no imponer. Escucha más de lo que hablas. Elige tus batallas.</p><p>💡 <em>La adolescencia es el ensayo para la adultez. Permite errores pequeños.</em></p>" },
-  30: { t:"🧘 Día 30: Mindfulness parental", obj:"Respirar antes de reaccionar", teo:"<p>La presencia plena reduce los conflictos. Entrena la pausa.</p><p>💡 <em>Tu calma es su ancla. Si tú te desregulas, él también.</em></p>" },
-  31: { t:"📖 Día 31: Cuentos como herramienta", obj:"Usar narrativa para enseñar", teo:"<p>Los cuentos permiten abordar temas difíciles sin confrontación directa.</p><p>💡 <em>Un cuento puede enseñar lo que una regaño no logra.</em></p>" },
-  32: { t:"🔁 Día 32: Reparación después del error", obj:"Pedir disculpas sinceras", teo:"<p>El error bien reparado fortalece el vínculo más que el acierto.</p><p>💡 <em>Pedir disculpas a tu hijo no te quita autoridad, te da respeto.</em></p>" },
-  33: { t:"🏅 Día 33: Maestría parental", obj:"Celebrar el recorrido", teo:"<p>No hay padres perfectos, sí conscientes. Cada día cuenta.</p><p>🎉 <strong>¡FELICIDADES! Has completado los 28 días.</strong> Eres un ejemplo de compromiso.</p>" }
+// =====================================================
+// DÍAS 26 AL 33 - TEMAS AVANZADOS (COMPLETOS)
+// =====================================================
+
+lecciones[26] = {
+  titulo: "👪 Día 26: Co-parentalidad - consistencia entre adultos",
+  objetivo: "Establecer acuerdos claros entre todos los cuidadores para una crianza coherente.",
+  teoria: `
+    <p>La <strong>co-parentalidad</strong> es la capacidad de dos o más adultos (papás, mamás, abuelos, cuidadores) de criar juntos de manera consistente, incluso si no viven juntos o no tienen la misma relación.</p>
+    
+    <p><strong>🔑 CLAVES PARA UNA CO-PARENTALIDAD SALUDABLE:</strong></p>
+    <ul>
+      <li><strong>Acuerdos escritos:</strong> Pongan por escrito las normas básicas (horarios, límites, consecuencias) para no contradecirse</li>
+      <li><strong>Comunicación respetuosa:</strong> Hablen en privado los desacuerdos. Nunca delante del niño</li>
+      <li><strong>No desautorizar al otro:</strong> "Tu papá dijo que no, entonces no" (aunque no estés de acuerdo, se habla después)</li>
+      <li><strong>Frente unificado:</strong> Los niños necesitan ver que los adultos están alineados</li>
+      <li><strong>Reuniones regulares:</strong> Semanal o quincenal para ajustar lo que no funciona</li>
+    </ul>
+    
+    <p><strong>⚠️ EN CASO DE SEPARACIÓN/DIVORCIO:</strong></p>
+    <ul>
+      <li>Nunca hables mal del otro progenitor delante del niño</li>
+      <li>El niño no es mensajero ("dile a tu papá que...")</li>
+      <li>El niño no es aliado ("tú y yo contra él/ella")</li>
+      <li>Mantén rutinas similares en ambas casas</li>
+    </ul>
+    
+    <p>💡 <em>"La peor herencia que puedes dejarle a tu hijo es la inconsistencia entre adultos. Un frente unificado da seguridad."</em></p>
+  `,
+  ejemplos: [
+    "📖 Mamá dice 'no más tele'. Papá llega y dice 'está bien, un ratito más'. Error. Deberían hablar en privado y mantener la misma regla.",
+    "📖 Acuerdo escrito: 'En ambas casas, la regla es: pantallas 1 hora al día, nada en la mesa ni antes de dormir.' Así el niño no negocia entre adultos."
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Reúne a todos los cuidadores y escriban juntos las 5 reglas básicas de la casa. Pónganlas en la nevera.",
+    "🎲 ACTIVIDAD 2: Si hay desacuerdo, programa una 'reunión de adultos' semanal para hablar sin el niño presente.",
+    "🎲 ACTIVIDAD 3: Practica la frase: 'Voy a hablarlo con tu papá/mamá y te respondemos juntos.' (no responder diferente cada uno)"
+  ],
+  tecnicas: ["Acuerdos por escrito", "Reuniones de adultos", "Frente unificado", "Comunicación privada"],
+  habilidades: ["Negociación entre adultos", "Consistencia", "Respeto mutuo"],
+  errores: [
+    "❌ Desautorizar al otro frente al niño",
+    "❌ Usar al niño como mensajero",
+    "❌ Criticar al otro progenitor",
+    "❌ Tener reglas diferentes en cada casa sin acordar"
+  ],
+  frases: [
+    "'Voy a hablarlo con tu papá/mamá y te damos la respuesta juntos.'",
+    "'En esta casa, mamá y papá tomamos las decisiones juntos.'"
+  ],
+  herramientas: ["Acuerdo de co-parentalidad escrito", "Calendario compartido", "App de comunicación coparental (OurFamilyWizard)"]
 };
 
-for (let i = 26; i <= 33; i++) {
-  let tema = temasDias[i];
-  lecciones[i] = {
-    titulo: tema.t,
-    objetivo: tema.obj,
-    teoria: tema.teo,
-    ejemplos: [`📖 Ejemplo 1 de "${tema.t}": Situación cotidiana donde aplicas este principio.`, `📖 Ejemplo 2: Otro escenario diferente, mostrando la flexibilidad de la técnica.`],
-    actividades: ["🎲 ACTIVIDAD 1: Identifica una situación hoy donde puedas aplicar este tema.", "🎲 ACTIVIDAD 2: Practica conscientemente la técnica principal de hoy.", "🎲 ACTIVIDAD 3: Escribe una breve reflexión sobre cómo te sentiste al aplicarlo."],
-    tecnicas: ["Técnica central del día", "Refuerzo positivo", "Pausa reflexiva"],
-    habilidades: ["Habilidad parental clave", "Regulación emocional", "Comunicación efectiva"],
-    errores: ["❌ Error común 1 relacionado", "❌ Error común 2 que debes evitar"],
-    frases: [`"Frase clave para recordar: ${tema.t.split(':')[0]}"`, "'La práctica hace al maestro.'"],
-    herramientas: ["Herramienta sugerida", "Recurso complementario"],
-    tieneTest: false
-  };
-}
+lecciones[27] = {
+  titulo: "🛡️ Día 27: Prevención de abuso - enseñar límites corporales",
+  objetivo: "Proteger a tus hijos del abuso enseñándoles que su cuerpo es suyo y cómo pedir ayuda.",
+  teoria: `
+    <p>La <strong>prevención del abuso sexual infantil</strong> comienza en casa. No con miedo, sino con educación en límites corporales.</p>
+    
+    <p><strong>🔑 CONCEPTOS CLAVE PARA ENSEÑAR (desde los 2 años):</strong></p>
+    <ul>
+      <li><strong>"Mi cuerpo es mío"</strong> - Nadie puede tocarlo sin mi permiso</li>
+      <li><strong>Partes íntimas tienen nombre real</strong> - Vulva, pene, ano. Usar nombres reales (no apodos) empodera y previene</li>
+      <li><strong>Secretos buenos y malos</strong> - Buenos: una sorpresa de cumpleaños. Malos: los que piden no contar algo que te hace sentir incómodo</li>
+      <li><strong>Decir NO a adultos</strong> - Enseña que puede decir "no" a un abrazo o beso, aunque sea un familiar</li>
+      <li><strong>Pedir ayuda</strong> - Identificar adultos de confianza (mamá, papá, maestra, abuela) a quien contarle siempre</li>
+    </ul>
+    
+    <p><strong>📌 CÓMO ENSEÑAR SIN MIEDO:</strong></p>
+    <ul>
+      <li>Usa canciones ('Mi cuerpo es mío'), cuentos, juegos de roles</li>
+      <li>Practica: "¿Qué harías si alguien te pide que guardes un secreto que te hace sentir raro?"</li>
+      <li>Nunca fuerces a dar besos o abrazos. Puede saludar con la mano o chocar los cinco</li>
+      <li>Normaliza las conversaciones sobre el cuerpo y los límites</li>
+    </ul>
+    
+    <p><strong>🚨 SEÑALES DE ALARMA (cambios repentinos):</strong> Pesadillas, no querer estar con alguien, cambios en el comportamiento, lenguaje sexual inapropiado para su edad.</p>
+    
+    <p>💡 <em>"Enseña a tu hijo: 'tu cuerpo es tuyo y nadie puede tocarlo sin tu permiso. Nunca es tarde para contar un secreto que te hace mal.'"</em></p>
+  `,
+  ejemplos: [
+    "📖 En lugar de 'anda, dale un beso a la tía', decir: '¿Cómo quieres saludar a la tía? ¿Con un abrazo, chocar los cinco o con la mano? Tú eliges.'",
+    "📖 Usar un cuento: 'Había una vez un niño que alguien le pidió guardar un secreto. Él le contó a su mamá y ella lo ayudó.'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Enséñale a tu hijo la canción 'Mi cuerpo es mío' (busca en YouTube). Cántenla juntos.",
+    "🎲 ACTIVIDAD 2: Practica la frase: 'Si alguien te toca donde no quieres o te pide un secreto que te hace sentir mal, me lo puedes contar a mí. Nunca me enojaré.'",
+    "🎲 ACTIVIDAD 3: Identifiquen 3 adultos de confianza (además de ti) a quienes pueda contar algo importante."
+  ],
+  tecnicas: ["Nombres reales de partes íntimas", "Regla de los secretos", "Empoderamiento para decir NO", "Adultos de confianza"],
+  habilidades: ["Comunicación abierta", "Detección temprana", "Empoderamiento infantil"],
+  errores: [
+    "❌ Usar apodos para partes íntimas ('colita', 'pito') - confunde y dificulta contar",
+    "❌ Forzar besos o abrazos",
+    "❌ Decir 'si no obedeces, te llevará el hombre del saco' (genera miedo a pedir ayuda)",
+    "❌ Ignorar cambios de comportamiento"
+  ],
+  frases: [
+    "'Tu cuerpo es tuyo. Tú decides quién lo toca y cómo.'",
+    "'No hay secretos que no puedas contarme. Pase lo que pase, yo te voy a creer y te voy a ayudar.'"
+  ],
+  herramientas: ["Cuentos sobre prevención de abuso", "Canción 'Mi cuerpo es mío'", "Lista de adultos de confianza"]
+};
+
+lecciones[28] = {
+  titulo: "🎭 Día 28: Crianza en divorcio - proteger el vínculo",
+  objetivo: "Cuidar la salud emocional de los hijos durante y después de una separación.",
+  teoria: `
+    <p>El <strong>divorcio o separación</strong> es un duelo para toda la familia. Los hijos no tienen que elegir bandos. Tu tarea es proteger su vínculo con ambos padres.</p>
+    
+    <p><strong>🔑 REGLAS DE ORO EN DIVORCIO:</strong></p>
+    <ul>
+      <li><strong>No hables mal del otro progenitor</strong> - Ni siquiera "en broma". El niño lo vive como un ataque a una parte de sí mismo</li>
+      <li><strong>El niño NO es mensajero</strong> - "Dile a tu papá que..." NO. Comunícate directamente con el otro adulto</li>
+      <li><strong>El niño NO es aliado</strong> - "Tú y yo contra él/ella" es una carga enorme. El niño necesita amar a ambos</li>
+      <li><strong>No interrogues</strong> - "¿Qué hizo tu mamá en su casa?" no es sano</li>
+      <li><strong>Rutinas similares</strong> - Si es posible, mantén horarios, reglas y límites parecidos en ambas casas</li>
+    </ul>
+    
+    <p><strong>📌 CÓMO ACOMPAÑAR LAS EMOCIONES DEL NIÑO:</strong></p>
+    <ul>
+      <li>Valida su tristeza, enojo, confusión: "Sé que esto es difícil. Está bien sentirte así."</li>
+      <li>No mientas, pero adapta la información a su edad</li>
+      <li>Reafirma el amor: "Tu papá y yo ya no vivimos juntos, pero los dos te queremos muchísimo. Eso no va a cambiar nunca."</li>
+      <li>Busca apoyo profesional (terapia familiar) si hay conflictos intensos</li>
+    </ul>
+    
+    <p>💡 <em>"Tu hijo no necesita elegir entre amarte a ti o al otro progenitor. Necesita poder amar a ambos sin culpa."</em></p>
+  `,
+  ejemplos: [
+    "📖 En lugar de 'tu papá nunca viene a buscarte', decir: 'Tu papá te quiere mucho. A veces los adultos tenemos dificultades, pero eso no es tu culpa.'",
+    "📖 Niños pregunta: '¿Por qué ya no viven juntos?'. Respuesta adecuada a su edad: 'Los adultos a veces decidimos vivir separados porque nos llevamos mejor así. Los dos te queremos igual.'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Si estás en divorcio, escribe una carta a tu ex-pareja (sin enviar si es necesario) comprometiéndote a no hablar mal delante del niño.",
+    "🎲 ACTIVIDAD 2: Crea un 'calendario de transiciones' visual para que el niño sepa cuándo está con cada progenitor.",
+    "🎲 ACTIVIDAD 3: Practica la frase: 'Eso se lo preguntas a tu papá/mamá directamente' (en lugar de transmitir mensajes)."
+  ],
+  tecnicas: ["Comunicación directa entre adultos", "Calendario de transiciones", "Validación emocional", "Mensajes unificados"],
+  habilidades: ["Comunicación respetuosa con ex-pareja", "Protección del vínculo", "Validación emocional"],
+  errores: [
+    "❌ Hablar mal del otro progenitor",
+    "❌ Usar al niño como espía o mensajero",
+    "❌ Competir por el amor del niño (regalos, permisos especiales)",
+    "❌ Poner al niño en medio de discusiones"
+  ],
+  frases: [
+    "'Tu papá/mamá te quiere mucho. Eso no cambia.'",
+    "'Los problemas entre adultos no son tu responsabilidad.'",
+    "'Puedes querer a los dos. No tienes que elegir.'"
+  ],
+  herramientas: ["Calendario de crianza compartida", "App de comunicación coparental", "Terapia familiar"]
+};
+
+lecciones[29] = {
+  titulo: "🌱 Día 29: Adolescencia respetuosa - autonomía con guía",
+  objetivo: "Acompañar la adolescencia con respeto, negociación y límites flexibles.",
+  teoria: `
+    <p>La <strong>adolescencia</strong> es el ensayo para la adultez. Los adolescentes necesitan autonomía para equivocarse en pequeño y aprender.</p>
+    
+    <p><strong>🔑 PRINCIPIOS PARA LA ADOLESCENCIA:</strong></p>
+    <ul>
+      <li><strong>Negocia, no impongas</strong> - Las reglas unilaterales generan rebeldía. Negocia horarios, límites, consecuencias</li>
+      <li><strong>Escucha más de lo que hablas</strong> - Pregunta, no sermons. "¿Qué piensas sobre...?"</li>
+      <li><strong>Elige tus batallas</strong> - No todo merece un conflicto. ¿Es peligroso o solo no te gusta?</li>
+      <li><strong>Valida sus emociones intensas</strong> - El cerebro adolescente es emocional. No minimices: "entiendo que te sientas así"</li>
+      <li><strong>Confía (con supervisión)</strong> - Dale responsabilidades progresivas. Si falla, no le retires toda la confianza</li>
+    </ul>
+    
+    <p><strong>📌 TEMAS CLAVE A NEGOCIAR:</strong></p>
+    <ul>
+      <li>Horario de llegada (negociable según edad y confianza)</li>
+      <li>Uso de pantallas y redes sociales</li>
+      <li>Ayuda en casa (responsabilidades)</li>
+      <li>Decisiones sobre estudios o actividades</li>
+    </ul>
+    
+    <p>💡 <em>"La adolescencia es el ensayo para la adultez. Permite errores pequeños para que aprendan a resolver los grandes."</em></p>
+  `,
+  ejemplos: [
+    "📖 En lugar de 'llegas a las 9 y punto', decir: 'Hablemos del horario. ¿Qué te parece llegar a las 10 los viernes, pero a cambio me mandas un mensaje cuando llegues y respondes los mensajes? ¿Cómo lo ves?'",
+    "📖 Adolescente llega tarde. En lugar de gritar, decir: 'Me preocupé. Hablemos de qué pasó y cómo podemos evitar que vuelva a pasar. También hablemos de una consecuencia lógica para la próxima.'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Esta semana, programa una 'conversación sin juicios' con tu adolescente. Solo escucha, no interrumpas, no des consejos a menos que te los pida.",
+    "🎲 ACTIVIDAD 2: Elige UNA regla que puedas negociar. Siéntense y escuchen su propuesta.",
+    "🎲 ACTIVIDAD 3: Pregúntale directamente: '¿Cómo preferirías que te ponga límites? ¿Qué funciona para ti?' (los adolescentes tienen buenas ideas)."
+  ],
+  tecnicas: ["Negociación democrática", "Escucha activa", "Elección de batallas", "Consecuencias lógicas pactadas"],
+  habilidades: ["Escucha", "Negociación", "Flexibilidad", "Confianza"],
+  errores: [
+    "❌ Sermonear en lugar de preguntar",
+    "❌ No negociar nada (todo impuesto)",
+    "❌ Ignorar sus emociones ('exageras')",
+    "❌ Retirar toda confianza tras un error"
+  ],
+  frases: [
+    "'¿Qué piensas sobre...? Me interesa tu opinión.'",
+    "'Confío en ti. Vamos a probar lo que acordamos y ajustamos si no funciona.'",
+    "'No estoy de acuerdo, pero quiero escuchar tu punto de vista.'"
+  ],
+  herramientas: ["Acuerdo de convivencia escrito", "Calendario familiar", "App de localización (si se acuerda)"]
+};
+
+lecciones[30] = {
+  titulo: "🧘 Día 30: Mindfulness parental - respirar antes de reaccionar",
+  objetivo: "Entrenar la presencia plena y la pausa antes de responder impulsivamente.",
+  teoria: `
+    <p>El <strong>mindfulness parental</strong> es la práctica de estar presente, sin juzgar, en cada interacción con tus hijos. No significa ser perfecto, significa volver a respirar cuando te desregulas.</p>
+    
+    <p><strong>🌿 TÉCNICAS DE MINDFULNESS PARA PADRES:</strong></p>
+    <ul>
+      <li><strong>Respiración 3-3-3:</strong> Inhalas 3 segundos, sostienes 3, exhalas 3. Repite 3 veces antes de responder</li>
+      <li><strong>Escaneo corporal rápido:</strong> Antes de reaccionar, nota: ¿tensión en los hombros? ¿mandíbula apretada? Relaja</li>
+      <li><strong>Pausa de 5 segundos:</strong> Antes de hablar, cuenta hasta 5 en silencio. Eso evita el 80% de los gritos</li>
+      <li><strong>Anclaje visual:</strong> Mira algo neutro (una pared, una planta) y respira antes de enfrentar la situación</li>
+    </ul>
+    
+    <p><strong>🔑 POR QUÉ FUNCIONA:</strong> La respiración activa el sistema nervioso parasimpático (calma). Cuando estás regulado, tu hijo también se regula (contagio emocional).</p>
+    
+    <p><strong>📌 MINDFULNESS EN EL DÍA A DÍA:</strong></p>
+    <ul>
+      <li>Al despertar: 3 respiraciones antes de levantarte</li>
+      <li>Antes de entrar a casa después del trabajo: respira 5 veces en el coche</li>
+      <li>Antes de poner un límite: pausa de 5 segundos</li>
+      <li>Cuando te sientes a punto de gritar: sal de la habitación, respira, vuelve</li>
+    </ul>
+    
+    <p>💡 <em>"Tu calma es su ancla. Si tú te desregulas, él también. Respira antes de reaccionar."</em></p>
+  `,
+  ejemplos: [
+    "📖 Niño tira la comida al suelo. En lugar de reaccionar con ira, respiras 3 veces, luego dices con voz baja: 'La comida no se tira. Recogemos juntos.'",
+    "📖 Estás al límite después de un día agotador y tu hijo pide atención. Tomas una pausa: respiras, luego dices: 'Mamá necesita respirar un momento. Dame 5 minutos y luego jugamos.'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Pon una alarma en tu teléfono que suene 3 veces al día. Cuando suene, respira 3 veces profundamente.",
+    "🎲 ACTIVIDAD 2: Antes de cada interacción difícil, practica la 'pausa de 5 segundos' (cuenta en silencio antes de hablar).",
+    "🎲 ACTIVIDAD 3: Descarga una app de meditación guiada (Headspace, Calm, Mindfulness en Español) y practica 5 minutos al día."
+  ],
+  tecnicas: ["Respiración 3-3-3", "Pausa de 5 segundos", "Escaneo corporal", "Anclaje visual"],
+  habilidades: ["Autorregulación", "Presencia plena", "Respuesta en lugar de reacción"],
+  errores: [
+    "❌ Saltarse la pausa y reaccionar impulsivamente",
+    "❌ Creer que no tienes tiempo para respirar (si no respiras, el conflicto durará más)",
+    "❌ Esperar ser perfecto (mindfulness es práctica, no perfección)"
+  ],
+  frases: [
+    "'Voy a respirar antes de responder. Dame un segundo.'",
+    "'Mami/papi necesita un momento para calmarse. Respiro y vuelvo.'",
+    "'Estoy aquí, presente. No necesito gritar para que me escuches.'"
+  ],
+  herramientas: ["App de mindfulness", "Alarma de respiración", "Pulsera de respiración (elástica)"]
+};
+
+lecciones[31] = {
+  titulo: "📖 Día 31: Cuentos como herramienta de crianza",
+  objetivo: "Usar narrativa y metáforas para enseñar, conectar y resolver conflictos.",
+  teoria: `
+    <p>Los <strong>cuentos</strong> son una de las herramientas más poderosas en la crianza. Permiten abordar temas difíciles sin confrontación directa.</p>
+    
+    <p><strong>✨ BENEFICIOS DE CONTAR CUENTOS:</strong></p>
+    <ul>
+      <li>El niño se identifica con el personaje sin sentirse señalado</li>
+      <li>Las metáforas llegan al cerebro emocional mejor que las órdenes</li>
+      <li>Fortalecen el vínculo a través del ritual de leer juntos</li>
+      <li>Ayudan a procesar miedos, rabietas, cambios (hermano nuevo, mudanza, escuela)</li>
+    </ul>
+    
+    <p><strong>📌 CÓMO USAR CUENTOS ESTRATÉGICAMENTE:</strong></p>
+    <ul>
+      <li><strong>Para un problema específico:</strong> Inventa un cuento con un personaje que vive lo mismo que tu hijo (rabietas, miedo a dormir solo, compartir)</li>
+      <li><strong>Para transiciones:</strong> Cuentos sobre la llegada de un hermano, ir al jardín, dejar el pañal</li>
+      <li><strong>Para emociones:</strong> Cuentos sobre el monstruo de colores (emociones), la tortuga que respiraba lento (calma)</li>
+      <li><strong>Pregunta después del cuento:</strong> "¿Cómo crees que se sintió el personaje? ¿Qué hubieras hecho tú?"</li>
+    </ul>
+    
+    <p><strong>🎨 CÓMO INVENTAR UN CUENTO:</strong> Un personaje (un osito, una princesa, un coche), un problema parecido al de tu hijo, un momento de dificultad, una solución que aprende, un final feliz.</p>
+    
+    <p>💡 <em>"Un cuento puede enseñar lo que una regaño no logra. La metáfora entra por la puerta de atrás del cerebro."</em></p>
+  `,
+  ejemplos: [
+    "📖 Para un niño con miedo a la oscuridad: cuento de 'Luna, la osita que aprendió que la oscuridad es solo la luz que se fue a dormir'. Inventa una canción para el momento de apagar la luz.",
+    "📖 Para un niño que no quiere compartir: cuento de 'Dos dragones y una piedra brillante' donde aprenden a turnarse."
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Hoy, en lugar de regañar por un problema, invéntate un cuento corto sobre ese tema. Cuéntaselo antes de dormir.",
+    "🎲 ACTIVIDAD 2: Pide a tu hijo que te invente un cuento. Deja que él sea el protagonista y resuelva el conflicto.",
+    "🎲 ACTIVIDAD 3: Crea una 'caja de cuentos' con personajes (muñecos, piedras pintadas) para inventar historias juntos."
+  ],
+  tecnicas: ["Cuento terapéutico", "Metáfora personalizada", "Preguntas post-cuento", "Caja de personajes"],
+  habilidades: ["Creatividad narrativa", "Conexión emocional", "Comunicación indirecta"],
+  errores: [
+    "❌ Hacer el cuento muy obvio (el personaje se llama como el niño y tiene su mismo problema - se siente señalado)",
+    "❌ Usar el cuento para sermonear al final",
+    "❌ No dejar espacio para que el niño pregunte o comente"
+  ],
+  frases: [
+    "'Vamos a inventar una historia juntos. Tú puedes decidir qué pasa después.'",
+    "'Había una vez un niño/a que se sentía... ¿cómo te sientes tú a veces?'"
+  ],
+  herramientas: ["Libros infantiles por tema", "Caja de personajes", "Cuentos de elaboración propia"]
+};
+
+lecciones[32] = {
+  titulo: "🔁 Día 32: Reparación después del error - pedir disculpas sinceras",
+  objetivo: "Aprender a reparar el vínculo cuando nos equivocamos (porque nos equivocaremos).",
+  teoria: `
+    <p>La <strong>reparación</strong> es una de las habilidades parentales más importantes. No hay padres perfectos. Los habrá que se equivocan. Lo que define una buena crianza es la capacidad de reparar.</p>
+    
+    <p><strong>🔑 CÓMO REPARAR (pasos):</strong></p>
+    <ol>
+      <li><strong>Reconoce el error:</strong> "Me equivoqué. Grité y no debí hacerlo."</li>
+      <li><strong>Pide disculpas sinceras:</strong> "Lo siento. No fue tu culpa."</li>
+      <li><strong>Explica qué pasó (sin justificarte):</strong> "Estaba muy cansado y reaccioné mal."</li>
+      <li><strong>Compromiso de cambio:</strong> "Voy a intentar respirar antes de gritar la próxima vez."</li>
+      <li><strong>Pregunta cómo se siente:</strong> "¿Cómo te sentiste cuando grité? ¿Cómo puedo reparar?"</li>
+    </ol>
+    
+    <p><strong>🌟 POR QUÉ REPARAR ES PODEROSO:</strong></p>
+    <ul>
+      <li>Enseña a tu hijo que los errores son oportunidades</li>
+      <li>Fortalece el vínculo (la honestidad acerca de los fallos genera más confianza que la falsa perfección)</li>
+      <li>Modela cómo pedir disculpas (ellos aprenderán a hacerlo)</li>
+      <li>Reduce la vergüenza y el resentimiento</li>
+    </ul>
+    
+    <p><strong>🚫 CÓMO NO PEDIR DISCULPAS:</strong></p>
+    <ul>
+      <li>"Lo siento, pero tú también..." (no mezcles, tu error es tuyo)</li>
+      <li>"Lo siento si te sentiste mal" (no es genuino)</li>
+      <li>"Ya te pedí disculpas, ya pasó" (la reparación lleva tiempo)</li>
+    </ul>
+    
+    <p>💡 <em>"Pedir disculpas a tu hijo no te quita autoridad, te da respeto. El error bien reparado fortalece el vínculo más que el acierto."</em></p>
+  `,
+  ejemplos: [
+    "📖 Le gritaste a tu hijo porque derramó leche. Después de calmarte, te arrodillas y dices: 'Hace un rato grité. Lo siento mucho. No debí hacerlo, aunque haya sido un accidente. Estaba frustrada, pero no fue tu culpa. La próxima vez voy a respirar antes. ¿Me perdonas? ¿Cómo te sentiste?'",
+    "📖 Castigaste desproporcionadamente. Al día siguiente: 'Ayer te castigué sin tele por una semana por algo pequeño. Me equivoqué. La consecuencia no era justa. Vamos a revisarla juntos. Propongo que sea solo un día. ¿Te parece bien?'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: La próxima vez que te equivoques con tu hijo, practica los 5 pasos de reparación. No lo dejes pasar.",
+    "🎲 ACTIVIDAD 2: Pregunta a tu hijo: '¿Hay algo por lo que sientas que debería pedirte disculpas?' (escucha sin defensas).",
+    "🎲 ACTIVIDAD 3: Modela la disculpa con tu pareja o familiares delante de él."
+  ],
+  tecnicas: ["Reparación en 5 pasos", "Disculpa sin 'peros'", "Preguntar cómo se sintió", "Compromiso de cambio"],
+  habilidades: ["Humildad", "Responsabilidad afectiva", "Modelado de reparación"],
+  errores: [
+    "❌ No pedir disculpas (falsa idea de que 'pierdes autoridad')",
+    "❌ Disculpa con 'pero' ("lo siento, PERO tú...")",
+    "❌ Minimizar el daño ("no fue para tanto")",
+    "❌ Esperar que el niño perdone inmediatamente"
+  ],
+  frases: [
+    "'Me equivoqué. Lo siento. No era mi intención hacerte sentir mal.'",
+    "'¿Cómo puedo reparar lo que hice? ¿Qué necesitas de mí?'",
+    "'Gracias por decirme cómo te sentiste. Me ayuda a ser mejor papá/mamá.'"
+  ],
+  herramientas: ["Tarjeta de reparación (pasos)", "Rincón de calma también para adultos", "Diario de errores y aprendizajes"]
+};
+
+lecciones[33] = {
+  titulo: "🏅 Día 33: Maestría parental - celebrar el recorrido",
+  objetivo: "Reconocer tu crecimiento como cuidador y celebrar el camino recorrido.",
+  teoria: `
+    <p>¡FELICIDADES! Has llegado al final de este curso de 33 días. No se trata de ser un padre/madre perfecto, sino de ser un padre/madre consciente.</p>
+    
+    <p><strong>🌟 LO QUE HAS LOGRADO:</strong></p>
+    <ul>
+      <li>Has dedicado 33 días a reflexionar sobre tu crianza</li>
+      <li>Has conocido tu estilo y aprendido herramientas para mejorarlo</li>
+      <li>Has practicado validación, límites, comunicación no violenta</li>
+      <li>Has explorado temas específicos: pantallas, hermanos, sueño, neurodivergencia</li>
+      <li>Has aprendido a reparar cuando te equivocas</li>
+    </ul>
+    
+    <p><strong>📌 RECUERDA SIEMPRE:</strong></p>
+    <ul>
+      <li>No hay padres perfectos, hay padres conscientes</li>
+      <li>Cada día es nuevo. Los errores de ayer no definen tu mañana</li>
+      <li>Tu hijo no necesita un adulto perfecto, necesita un adulto presente</li>
+      <li>El autocuidado no es egoísmo, es la base</li>
+      <li>Cada familia es única. No compares</li>
+    </ul>
+    
+    <p><strong>🎉 CÓMO CELEBRAR:</strong></p>
+    <ul>
+      <li>Descarga tu certificado de finalización</li>
+      <li>Comparte tu logro con alguien que te apoya</li>
+      <li>Revisa tus reflexiones de los 33 días (¿cuánto has cambiado?)</li>
+      <li>Recomienda este curso a otra familia</li>
+    </ul>
+    
+    <p>🎉 <strong>¡FELICIDADES! Has completado los 33 días del curso de crianza consciente. Eres un ejemplo de compromiso y amor.</strong></p>
+    
+    <p>💡 <em>"La crianza no es perfección, es presencia. Y tú has estado presente durante 33 días. Sigue así."</em></p>
+  `,
+  ejemplos: [
+    "📖 Mira hacia atrás: piensa en una situación que hace 33 días te habría desbordado. ¿Cómo respondes hoy? Eso es crecimiento.",
+    "📖 Comparte con tu hijo: 'Mamá/papá estuvo aprendiendo sobre crianza durante 33 días. ¿Notaste algún cambio?' Escucha su respuesta."
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Descarga tu certificado (botón abajo) y enmárcalo o ponlo en la nevera.",
+    "🎲 ACTIVIDAD 2: Escribe una carta a tu hijo sobre lo que has aprendido y cómo quieres seguir mejorando.",
+    "🎲 ACTIVIDAD 3: Comparte este curso con otra familia. La crianza consciente se multiplica cuando se comparte."
+  ],
+  tecnicas: ["Celebración del logro", "Reflexión retrospectiva", "Compartir el aprendizaje"],
+  habilidades: ["Gratitud", "Autocompasión", "Compromiso continuo"],
+  errores: ["❌ Creer que 'ya lo sé todo' - la crianza siempre se aprende", "❌ No celebrar el esfuerzo"],
+  frases: ["'La crianza consciente no es un destino, es un camino. Y tú has caminado 33 días.'"],
+  herramientas: ["Certificado descargable", "Lista de recursos continuos (libros, podcasts, comunidades)"]
+};
+
 
 // --- FUNCIÓN PARA GENERAR EL TEST COMPLETO ---
 function generarTestCompleto() {
@@ -1793,7 +2183,7 @@ function mostrarEstadisticas() {
   
   // Gráfico circular de progreso total
   const totalCompletados = completados;
-  const porcentajeTotal = (totalCompletados / 28) * 100;
+  const porcentajeTotal = (totalCompletados / 33) * 100;
   const angulo = (porcentajeTotal / 100) * 360;
   
   const graficoCircular = `
@@ -2079,7 +2469,7 @@ function mostrarRecursos() {
 }
 
 function mostrarPantallaPrincipal() {
-  const totalDias = 28;
+  const totalDias = 33
   const completados = cursoEstado.completados.length;
   const progreso = Math.round((completados / totalDias) * 100);
   
@@ -2101,23 +2491,33 @@ function mostrarPantallaPrincipal() {
     </div>
   `;
   
-  for (let modulo = 0; modulo < 4; modulo++) {
-    const inicio = modulo * 7 + 1;
-    const fin = inicio + 6;
-    const modNombres = ["📘 MÓDULO 1: Fundamentos", "📙 MÓDULO 2: Habilidades prácticas", "📒 MÓDULO 3: Situaciones específicas", "📕 MÓDULO 4: Maestría parental"];
-    html += `<div class="card"><h3>${modNombres[modulo]}</h3><div class="grid-2">`;
-    for (let dia = inicio; dia <= fin && dia <= totalDias; dia++) {
-      const completado = cursoEstado.completados.includes(dia);
-      const bloqueado = dia > cursoEstado.diaActual && !completado;
-      html += `
-        <div class="dia-card ${bloqueado ? 'bloqueado' : ''}">
-          ${completado ? '✅' : (bloqueado ? '🔒' : '📖')} <strong>Día ${dia}</strong>: ${lecciones[dia]?.titulo || `Tema ${dia}`}
-          ${!bloqueado && !completado ? `<br><button class="btn-dia" data-dia="${dia}">Ver lección</button>` : (bloqueado ? '<br><small>🔓 Completa el día anterior para desbloquear</small>' : '<br><small>✔ Completado</small>')}
-        </div>
-      `;
+const DIAS_TOTALES = 33;
+const DIAS_POR_MODULO = 7;
+const MODULOS = Math.ceil(DIAS_TOTALES / DIAS_POR_MODULO);
+const modNombres = [
+  "📘 MÓDULO 1: Fundamentos (Días 1-7)",
+  "📙 MÓDULO 2: Habilidades prácticas (Días 8-14)",
+  "📒 MÓDULO 3: Situaciones específicas (Días 15-21)",
+  "📕 MÓDULO 4: Maestría parental (Días 22-28)",
+  "📗 MÓDULO 5: Temas avanzados (Días 29-33)"
+];
+
+for (let modulo = 0; modulo < MODULOS; modulo++) {
+    const inicio = modulo * DIAS_POR_MODULO + 1;
+    const fin = Math.min(inicio + DIAS_POR_MODULO - 1, DIAS_TOTALES);
+    html += `<div class="card"><h3>${modNombres[modulo] || `Módulo ${modulo+1}`}</h3><div class="grid-2">`;
+    for (let dia = inicio; dia <= fin; dia++) {
+        const completado = cursoEstado.completados.includes(dia);
+        const bloqueado = dia > cursoEstado.diaActual && !completado;
+        html += `
+            <div class="dia-card ${bloqueado ? 'bloqueado' : ''}">
+                ${completado ? '✅' : (bloqueado ? '🔒' : '📖')} <strong>Día ${dia}</strong>: ${lecciones[dia]?.titulo || `Tema ${dia}`}
+                ${!bloqueado && !completado ? `<br><button class="btn-dia" data-dia="${dia}">Ver lección</button>` : (bloqueado ? '<br><small>🔓 Completa el día anterior</small>' : '<br><small>✔ Completado</small>')}
+            </div>
+        `;
     }
     html += `</div></div>`;
-  }
+}
   
   document.getElementById("contenido").innerHTML = html;
   
