@@ -1,6 +1,6 @@
 // =====================================================
 // CURSO DE CRIANZA - 28 DÍAS - VERSIÓN PROFESIONAL COMPLETA
-// Con: medallas, simulador, estadísticas, planificador, modo oscuro, voz
+// TEST CORREGIDO CON PREGUNTAS REALES
 // =====================================================
 
 // --- ESTADO DEL CURSO ---
@@ -146,7 +146,7 @@ function hablar(texto) {
 // --- CONTENIDO DE LOS 28 DÍAS ---
 const lecciones = {};
 
-// DÍA 1
+// DÍA 1 - CON TEST COMPLETO
 lecciones[1] = {
   titulo: "🎯 Día 1: Conoce tu estilo de crianza",
   objetivo: "Identificar tu estilo actual para poder mejorarlo.",
@@ -261,7 +261,7 @@ PASOS PARA VALIDAR:
   herramientas: ["Póster de emociones", "Tarjetas de validación", "Bote de la calma"]
 };
 
-// Días 5 al 28 (generados automáticamente con estructura completa)
+// Días 5 al 28
 const temasDias = {
   5: { t:"🔒 Día 5: Límites claros sin gritos", obj:"Poner límites firmes manteniendo la calma", teo:"Un límite efectivo es breve, claro y ejecutable. La fórmula: 'Cuando [conducta], entonces [consecuencia lógica]'. No necesitas gritar." },
   6: { t:"⚡ Día 6: Consecuencias lógicas", obj:"Usar consecuencias relacionadas con el acto", teo:"Castigo vs consecuencia lógica: castigo es arbitrario, consecuencia enseña. Ej: ensucia → limpia." },
@@ -304,6 +304,99 @@ for (let i = 5; i <= 28; i++) {
     herramientas: ["Herramienta sugerida", "Recurso complementario"],
     tieneTest: false
   };
+}
+
+// --- FUNCIÓN PARA GENERAR EL TEST COMPLETO CON PREGUNTAS REALES ---
+function generarTestCompleto() {
+  return `
+    <div class="card" style="margin-top:1rem;">
+      <h3>📋 TEST DE ESTILO DE CRIANZA</h3>
+      <p>Responde con honestidad cada pregunta. No hay respuestas "malas", solo oportunidades de aprendizaje.</p>
+      
+      <div style="margin:1rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
+        <p><strong>1. Tu hijo/a tiene una rabieta en público porque quiere un juguete. Tú...</strong></p>
+        <label><input type="radio" name="p1" value="0"> a) Le compro el juguete para que se calme</label><br>
+        <label><input type="radio" name="p1" value="1"> b) Le grito o lo amenazo con castigo</label><br>
+        <label><input type="radio" name="p1" value="2"> c) Lo tomo, me retiro del lugar y luego hablamos de su emoción</label><br>
+        <label><input type="radio" name="p1" value="3"> d) Lo ignoro o le digo "no me importa"</label>
+      </div>
+
+      <div style="margin:1rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
+        <p><strong>2. Antes de poner una norma nueva en casa, tú...</strong></p>
+        <label><input type="radio" name="p2" value="0"> a) La impongo sin explicación, "porque lo digo yo"</label><br>
+        <label><input type="radio" name="p2" value="1"> b) Se la explico y negocio los límites dentro de lo seguro</label><br>
+        <label><input type="radio" name="p2" value="2"> c) No pongo normas para no generar conflicto</label><br>
+        <label><input type="radio" name="p2" value="3"> d) Simplemente no hay normas consistentes en casa</label>
+      </div>
+
+      <div style="margin:1rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
+        <p><strong>3. Cuando tu hijo/a logra algo importante (aunque sea pequeño), tú...</strong></p>
+        <label><input type="radio" name="p3" value="0"> a) Le digo "bien, pero puedes hacerlo mejor" o lo comparo</label><br>
+        <label><input type="radio" name="p3" value="1"> b) Celebro su esfuerzo específico ("me encanta cómo lo intentaste")</label><br>
+        <label><input type="radio" name="p3" value="2"> c) Le doy regalos o premios materiales por todo</label><br>
+        <label><input type="radio" name="p3" value="3"> d) No le presto atención, no es relevante</label>
+      </div>
+
+      <div style="margin:1rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
+        <p><strong>4. Tu hijo/a rompe una regla importante. ¿Qué haces?</strong></p>
+        <label><input type="radio" name="p4" value="0"> a) Castigo severo sin explicación (gritar, quitar todo, golpear)</label><br>
+        <label><input type="radio" name="p4" value="1"> b) Aplico una consecuencia lógica relacionada con el acto</label><br>
+        <label><input type="radio" name="p4" value="2"> c) No hago nada "para no hacerle sentir mal"</label><br>
+        <label><input type="radio" name="p4" value="3"> d) Me da igual, no me involucro</label>
+      </div>
+
+      <div style="margin:1rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
+        <p><strong>5. Sobre las emociones de tu hijo/a (tristeza, miedo, enojo)...</strong></p>
+        <label><input type="radio" name="p5" value="0"> a) Las minimizo ("no es para tanto", "deja de llorar")</label><br>
+        <label><input type="radio" name="p5" value="1"> b) Las valido y le ayudo a nombrarlas ("veo que estás enojado")</label><br>
+        <label><input type="radio" name="p5" value="2"> c) Hago todo lo posible para que no sienta emociones "negativas"</label><br>
+        <label><input type="radio" name="p5" value="3"> d) Ignoro sus emociones, que se calme solo</label>
+      </div>
+
+      <div style="margin:1rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
+        <p><strong>6. ¿Cómo manejas los límites con pantallas, TV o videojuegos?</strong></p>
+        <label><input type="radio" name="p6" value="0"> a) Horario fijo y si excede, grito o castigo</label><br>
+        <label><input type="radio" name="p6" value="1"> b) Horario claro pero negocio flexible si está tranquilo</label><br>
+        <label><input type="radio" name="p6" value="2"> c) No hay límites, ve o juega lo que quiera cuando quiera</label><br>
+        <label><input type="radio" name="p6" value="3"> d) No superviso lo que hace en pantallas</label>
+      </div>
+
+      <div style="margin:1rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
+        <p><strong>7. Ante una pelea entre hermanos o amigos, tú...</strong></p>
+        <label><input type="radio" name="p7" value="0"> a) Castigo a ambos sin escuchar versiones</label><br>
+        <label><input type="radio" name="p7" value="1"> b) Escucho a cada uno y les ayudo a resolver juntos el conflicto</label><br>
+        <label><input type="radio" name="p7" value="2"> c) Dejo que se arreglen solos, aunque uno domine al otro</label><br>
+        <label><input type="radio" name="p7" value="3"> d) Me desentiendo, no es mi problema</label>
+      </div>
+
+      <div style="margin:1rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
+        <p><strong>8. Cuando tu hijo/a se equivoca o comete un error, tú...</strong></p>
+        <label><input type="radio" name="p8" value="0"> a) Lo humillo o comparo con otros niños</label><br>
+        <label><input type="radio" name="p8" value="1"> b) Le ayudo a reflexionar sobre el error y cómo mejorar</label><br>
+        <label><input type="radio" name="p8" value="2"> c) Le digo que no importa, que no se preocupe (sin aprendizaje)</label><br>
+        <label><input type="radio" name="p8" value="3"> d) No le presto atención, que aprenda solo</label>
+      </div>
+
+      <div style="margin:1rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
+        <p><strong>9. ¿Cómo tomas las decisiones importantes en casa?</strong></p>
+        <label><input type="radio" name="p9" value="0"> a) Solo decido yo, sin preguntarles a los hijos</label><br>
+        <label><input type="radio" name="p9" value="1"> b) Involucro a los hijos según su edad y capacidad de entender</label><br>
+        <label><input type="radio" name="p9" value="2"> c) Dejo que ellos decidan casi todo, aunque sean pequeños</label><br>
+        <label><input type="radio" name="p9" value="3"> d) No tomo decisiones, cada quien hace lo que quiere</label>
+      </div>
+
+      <div style="margin:1rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
+        <p><strong>10. Tu hijo/a tiene miedo o está muy triste. Tú...</strong></p>
+        <label><input type="radio" name="p10" value="0"> a) Le digo que no sea débil o que "deje de llorar como un bebé"</label><br>
+        <label><input type="radio" name="p10" value="1"> b) Le acompaño, nombro la emoción y le ofrezco seguridad</label><br>
+        <label><input type="radio" name="p10" value="2"> c) Lo distraigo rápido con algo material (dulce, comprar algo)</label><br>
+        <label><input type="radio" name="p10" value="3"> d) Lo dejo solo/a para que aprenda a manejar sus emociones solo</label>
+      </div>
+
+      <button id="calcularTest" class="juego" style="margin-top:1rem;">📊 CALCULAR MI ESTILO DE CRIANZA</button>
+      <div id="resultadoTest" style="margin-top:1.5rem;"></div>
+    </div>
+  `;
 }
 
 // --- FUNCIONES DE PANTALLAS ---
@@ -366,7 +459,7 @@ function mostrarEstadisticas() {
 }
 
 function mostrarPlanificador() {
-  const html = `<div class="card"><h2>📅 Planificador semanal</h2><div id="planificadorContenido"><table style="width:100%"><tr style="background:#4CAF50;color:white"><th>Día</th><th>Mi objetivo</th><th>✅</th></tr>${["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"].map((d,idx)=>`<tr><td>${d}</td><td><input type="text" id="plan${idx}" placeholder="Ej: Validar una emoción" style="width:100%"></td><td><input type="checkbox"></td></tr>`).join('')}</table><button id="imprimirPlanificador" class="juego">🖨️ Imprimir</button><button id="guardarPlanificador" class="juego">💾 Guardar</button></div><button id="volverPlanificador" class="juego">Volver</button></div>`;
+  const html = `<div class="card"><h2>📅 Planificador semanal</h2><div id="planificadorContenido"><table style="width:100%"><tr style="background:#4CAF50;color:white"><th>Día</th><th>Mi objetivo</th><th>✅</th><tr>${["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"].map((d,idx)=>`<tr><td>${d}</td><td><input type="text" id="plan${idx}" placeholder="Ej: Validar una emoción" style="width:100%"></td><td><input type="checkbox"></td></tr>`).join('')}</table><button id="imprimirPlanificador" class="juego">🖨️ Imprimir</button><button id="guardarPlanificador" class="juego">💾 Guardar</button></div><button id="volverPlanificador" class="juego">Volver</button></div>`;
   document.getElementById("contenido").innerHTML = html;
   const planGuardado = JSON.parse(localStorage.getItem("planificadorSemanal") || "{}");
   for(let i=0;i<7;i++) if(planGuardado[i]) document.getElementById(`plan${i}`).value = planGuardado[i];
@@ -446,7 +539,7 @@ function mostrarLeccion(dia) {
   
   let testHTML = "";
   if (lec.tieneTest) {
-    testHTML = `<div class="card"><h3>📋 TEST DE ESTILO DE CRIANZA</h3><div id="testContainer">${[1,2,3,4,5,6,7,8,9,10].map(i=>`<p><strong>${i}.</strong> <select id="test${i}"><option value="0">Opción A</option><option value="1">Opción B</option><option value="2">Opción C</option><option value="3">Opción D</option></select></p>`).join('')}<button id="calcularTest" class="juego">Calcular mi estilo</button><div id="resultadoTest"></div></div></div>`;
+    testHTML = generarTestCompleto();
   }
   
   const html = `<div class="card"><h2>${lec.titulo}</h2><p><strong>🎯 OBJETIVO:</strong> ${lec.objetivo}</p><h3>📖 TEORÍA</h3><p>${lec.teoria}</p><h3>📌 2 EJEMPLOS</h3>${lec.ejemplos.map(e=>`<div class="ejemplo">${e}</div>`).join('')}<h3>✏️ 3 ACTIVIDADES</h3>${lec.actividades.map(a=>`<div class="actividad">${a}</div>`).join('')}<h3>🛠️ TÉCNICAS</h3><div>${lec.tecnicas.map(t=>`<span class="badge-tecnica">🔧 ${t}</span>`).join(' ')}</div><h3>🧠 HABILIDADES</h3><div>${lec.habilidades.map(h=>`<span class="badge-habilidad">⭐ ${h}</span>`).join(' ')}</div><h3>⚠️ ERRORES COMUNES</h3><ul>${lec.errores.map(e=>`<li>${e}</li>`).join('')}</ul><h3>💬 FRASES CLAVE</h3>${lec.frases.map(f=>`<div class="frase-destacada">“${f}”</div>`).join('')}<h3>🧰 HERRAMIENTAS</h3><div>${lec.herramientas.map(h=>`<span class="badge-herramienta">📦 ${h}</span>`).join(' ')}</div><textarea id="reflexionDia" rows="4" placeholder="✍️ Tu reflexión del día..." style="width:100%; margin:1rem 0;"></textarea><button id="completarDiaBtn" class="juego" data-dia="${dia}">✅ Marcar Día ${dia} como completado</button></div>${testHTML}<button id="volverMapa" class="juego">🗺️ Volver al mapa</button>`;
@@ -463,15 +556,24 @@ function mostrarLeccion(dia) {
     mostrarPantallaPrincipal();
   };
   document.getElementById("volverMapa").onclick = mostrarPantallaPrincipal;
+  
   const testBtn = document.getElementById("calcularTest");
   if (testBtn) {
     testBtn.onclick = () => {
       let total = 0;
-      for(let i=1;i<=10;i++) total += parseInt(document.getElementById(`test${i}`).value);
-      let estilo = total<=8?"🟡 PERMISIVO":total<=16?"🔴 AUTORITARIO":total<=24?"🟢 DEMOCRÁTICO":"⚫ NEGLIGENTE";
+      for(let i=1;i<=10;i++) {
+        let seleccion = document.querySelector(`input[name="p${i}"]:checked`);
+        if (seleccion) total += parseInt(seleccion.value);
+      }
+      let estilo = "", mensaje = "";
+      if (total <= 8) { estilo = "🟡 PERMISIVO"; mensaje = "Priorizas el afecto sobre los límites. Te recomendamos: agregar 1 límite claro esta semana (ej. horario de pantallas) y practicar decir 'no' con calma."; }
+      else if (total <= 16) { estilo = "🔴 AUTORITARIO"; mensaje = "Usas mucho control pero poca calidez. Te recomendamos: validar una emoción al día sin juzgar, y respirar antes de castigar."; }
+      else if (total <= 24) { estilo = "🟢 DEMOCRÁTICO/ASERTIVO"; mensaje = "¡Excelente equilibrio! Sigues así. Te recomendamos: compartir tu experiencia con otros padres, eres un modelo a seguir."; }
+      else { estilo = "⚫ NEGLIGENTE"; mensaje = "Hay poca implicación en la crianza. Te recomendamos: dedicar 15 minutos diarios de atención plena a tu hijo, y buscar apoyo si te sientes abrumado."; }
+      
       cursoEstado.estiloCrianza = estilo;
       guardarProgreso();
-      document.getElementById("resultadoTest").innerHTML = `<div style="background:#e8f5e9;padding:1rem;border-radius:1rem;"><h3>Tu estilo: ${estilo}</h3><p>${total<=8?"Agrega 1 límite claro":total<=16?"Valida una emoción al día":total<=24?"Sigue así, eres un modelo":"Dedica 15 min diarios de atención plena"}</p></div>`;
+      document.getElementById("resultadoTest").innerHTML = `<div style="background:#e8f5e9; padding:1.5rem; border-radius:1rem;"><h3>🎭 Tu estilo de crianza es: ${estilo}</h3><p>${mensaje}</p><p><strong>Puntaje total:</strong> ${total} puntos (rango 0-30)</p><p>📌 Continúa con el Día 2 para profundizar en los 10 mandamientos.</p></div>`;
     };
   }
 }
