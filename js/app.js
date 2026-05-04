@@ -495,14 +495,136 @@ function mostrarRevisar() {
   document.getElementById("volverMapaRevisar").onclick = mostrarPantallaPrincipal;
 }
 
+// ===== FUNCIONES DE MODAL =====
+function mostrarModal(titulo, contenido) {
+  // Eliminar modal existente si hay
+  const modalExistente = document.querySelector(".modal");
+  if (modalExistente) modalExistente.remove();
+  
+  const modal = document.createElement("div");
+  modal.className = "modal";
+  modal.innerHTML = `
+    <div class="modal-content">
+      <div class="modal-header">${titulo}</div>
+      <div class="modal-body">${contenido}</div>
+      <div class="modal-footer"><button class="cerrar-modal">Cerrar</button></div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  modal.style.display = "flex";
+  
+  modal.querySelector(".cerrar-modal").onclick = () => modal.remove();
+  modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+}
+
+// ===== BIBLIOTECA DE RECURSOS CON MODALES BONITOS =====
 function mostrarRecursos() {
-  const html = `<div class="card"><h2>🧰 Biblioteca de recursos</h2><div class="grid-2"><div class="card"><h3>📜 10 Mandamientos</h3><button id="recMandamientos" class="btn-dia">Ver</button></div><div class="card"><h3>🧩 4 Pilares</h3><button id="recPilares" class="btn-dia">Ver</button></div><div class="card"><h3>⚡ 9 Pasos rabieta</h3><button id="recRabieta" class="btn-dia">Ver</button></div><div class="card"><h3>🎭 Estilos crianza</h3><button id="recEstilos" class="btn-dia">Ver</button></div><div class="card"><h3>💬 Frases clave</h3><button id="recFrases" class="btn-dia">Ver</button></div><div class="card"><h3>📊 Test de estilo</h3><button id="recTest" class="btn-dia">Hacer test</button></div></div><button id="volverRecursos" class="juego">Volver</button></div>`;
+  const html = `
+    <div class="card">
+      <h2>🧰 Biblioteca de recursos</h2>
+      <p>Haz clic en cualquier recurso para verlo con detalle y buen formato.</p>
+      <div class="grid-2">
+        <div class="card"><h3>📜 10 Mandamientos</h3><p>Los principios base de la crianza positiva.</p><button id="recMandamientos" class="btn-dia">Ver recurso</button></div>
+        <div class="card"><h3>🧩 4 Pilares</h3><p>Los cimientos de un hogar saludable.</p><button id="recPilares" class="btn-dia">Ver recurso</button></div>
+        <div class="card"><h3>⚡ 9 Pasos para rabietas</h3><p>Protocolo para manejar crisis emocionales.</p><button id="recRabieta" class="btn-dia">Ver recurso</button></div>
+        <div class="card"><h3>🔑 5 Reglas de oro</h3><p>Reglas simples para recordar cada día.</p><button id="recReglas" class="btn-dia">Ver recurso</button></div>
+        <div class="card"><h3>🎭 Estilos de crianza</h3><p>Tabla comparativa de los 4 estilos.</p><button id="recEstilos" class="btn-dia">Ver recurso</button></div>
+        <div class="card"><h3>💬 Frases clave</h3><p>Frases para usar en el día a día.</p><button id="recFrases" class="btn-dia">Ver recurso</button></div>
+        <div class="card"><h3>🧘 Autocuidado del adulto</h3><p>Estrategias para cuidarte mientras crías.</p><button id="recAutocuidado" class="btn-dia">Ver recurso</button></div>
+        <div class="card"><h3>📊 Test de estilo</h3><p>Descubre tu estilo de crianza.</p><button id="recTest" class="btn-dia">Hacer test</button></div>
+      </div>
+      <button id="volverRecursos" class="juego" style="margin-top:1rem;">🗺️ Volver al curso</button>
+    </div>
+  `;
+  
   document.getElementById("contenido").innerHTML = html;
-  document.getElementById("recMandamientos").onclick = () => alert("1.Conecta 2.Escucha 3.Límites firmes 4.Valida 5.No pegues 6.Sé el ejemplo 7.Ritmo 8.Juego 9.Error 10.Autocuidado");
-  document.getElementById("recPilares").onclick = () => alert("Vínculo + Comunicación + Límites + Autocuidado");
-  document.getElementById("recRabieta").onclick = () => alert("1.Respira 2.Arrodíllate 3.Nombra 4.Valida 5.Ofrece calma 6.Espera 7.Límite 8.Redirige 9.Reconecta");
-  document.getElementById("recEstilos").onclick = () => alert("Autoritario: alto control/bajo afecto | Democrático: alto+alto | Permisivo: bajo control/alto afecto | Negligente: bajo+bajo");
-  document.getElementById("recFrases").onclick = () => alert("'Veo que estás enojado' 'Te quiero aunque te equivoques' 'Estoy aquí' 'Los límites protegen'");
+  
+  // Contenido de los recursos con formato bonito
+  document.getElementById("recMandamientos").onclick = () => mostrarModal("📜 Los 10 Mandamientos de la Crianza Positiva", `
+    <ol style="margin-left:1rem;">
+      <li><strong>Conecta antes de corregir</strong> - El vínculo es la base. Un niño conectado escucha mejor.</li>
+      <li><strong>Escucha sin juzgar</strong> - Valida la emoción primero, luego aborda el comportamiento.</li>
+      <li><strong>Pon límites firmes pero amables</strong> - No necesitas gritar para ser firme.</li>
+      <li><strong>Valida todas las emociones</strong> - Ninguna emoción es mala, solo algunas acciones.</li>
+      <li><strong>No pegues, no grites</strong> - La violencia genera más violencia.</li>
+      <li><strong>Sé el ejemplo que quieres ver</strong> - Los niños aprenden de lo que haces.</li>
+      <li><strong>Cada niño tiene su ritmo</strong> - No compares. Respeta los tiempos.</li>
+      <li><strong>El juego es el mejor aprendizaje</strong> - A través del juego se conecta y se enseña.</li>
+      <li><strong>El error es oportunidad</strong> - No castigues, enseña. El error bien manejado construye resiliencia.</li>
+      <li><strong>Cuídate para poder cuidar</strong> - El autocuidado no es egoísmo.</li>
+    </ol>
+    <p style="margin-top:1rem;">📌 <em>"Primero conecto, luego corrijo"</em></p>
+  `);
+  
+  document.getElementById("recPilares").onclick = () => mostrarModal("🧩 Los 4 Pilares del Hogar", `
+    <h4>🏠 Pilar 1: VÍNCULO SEGURO</h4>
+    <p>El niño sabe que puede contar contigo. Se construye con presencia, contacto físico, respuesta consistente.</p>
+    <h4>🗣️ Pilar 2: COMUNICACIÓN RESPETUOSA</h4>
+    <p>Escuchar activamente, hablar sin etiquetas, usar mensajes "yo siento".</p>
+    <h4>🔒 Pilar 3: LÍMITES CLAROS</h4>
+    <p>Normas predecibles, consecuencias lógicas, no negociables en temas de seguridad.</p>
+    <h4>🧘 Pilar 4: AUTOCUIDADO DEL ADULTO</h4>
+    <p>No puedes dar lo que no tienes. Un adulto agotado no puede regular a un niño.</p>
+    <p style="margin-top:1rem;">💡 <em>"No puedo llenar su vaso si el mío está vacío"</em></p>
+  `);
+  
+  document.getElementById("recRabieta").onclick = () => mostrarModal("⚡ 9 Pasos para Manejar una Rabieta", `
+    <ol style="margin-left:1rem;">
+      <li><strong>Respira</strong> - Regúlate primero tú.</li>
+      <li><strong>Arrodíllate</strong> - Ponte a su altura visual.</li>
+      <li><strong>Nombra la emoción</strong> - "Veo que estás muy enojado"</li>
+      <li><strong>Valida sin ceder</strong> - "Está bien estar enojado, pero no se pega"</li>
+      <li><strong>Ofrece calma física</strong> - Un abrazo si lo acepta.</li>
+      <li><strong>Espera a que pase el pico</strong> - No razones en el momento álgido.</li>
+      <li><strong>Límite breve</strong> - "Cuando te calmes, hablamos"</li>
+      <li><strong>Redirige</strong> - Ofrece una alternativa.</li>
+      <li><strong>Reconecta</strong> - Después de la tormenta, vuelve al vínculo.</li>
+    </ol>
+  `);
+  
+  document.getElementById("recReglas").onclick = () => mostrarModal("🔑 5 Reglas de Oro para la Crianza", `
+    <ol style="margin-left:1rem;">
+      <li><strong>No negociar la seguridad</strong> - Cinturón, casco, cruzar la calle = innegociables.</li>
+      <li><strong>Tu calma es su ancla</strong> - Si tú te desregulas, él también.</li>
+      <li><strong>Sígueles la pista a la emoción</strong> - Detrás de cada conducta hay una emoción.</li>
+      <li><strong>El ejemplo siempre enseña</strong> - Tus acciones hablan más fuerte.</li>
+      <li><strong>Cada día es nuevo</strong> - Los errores de ayer no definen el mañana.</li>
+    </ol>
+  `);
+  
+  document.getElementById("recEstilos").onclick = () => mostrarModal("🎭 Los 4 Estilos de Crianza", `
+    <table class="tabla-recursos">
+      <tr><th>Estilo</th><th>Afecto</th><th>Control</th><th>Resultado</th></tr>
+      <tr><td>🔴 Autoritario</td><td>Bajo</td><td>Alto</td><td>Miedo, baja autoestima</td></tr>
+      <tr style="background:#e8f5e9;"><td>🟢 Democrático</td><td>Alto</td><td>Alto (flexible)</td><td>Seguro, autónomo, feliz</td></tr>
+      <tr><td>🟡 Permisivo</td><td>Alto</td><td>Bajo</td><td>Sin límites, frustración</td></tr>
+      <tr><td>⚫ Negligente</td><td>Bajo</td><td>Bajo</td><td>Abandono, inseguridad</td></tr>
+    </table>
+    <p>💡 <em>El estilo DEMOCRÁTICO es el recomendado: límites claros + calidez emocional</em></p>
+  `);
+  
+  document.getElementById("recFrases").onclick = () => mostrarModal("💬 Frases Clave para Usar cada Día", `
+    <div class="frase-destacada">"Veo que estás enojado. Está bien sentirlo. Estoy aquí contigo."</div>
+    <div class="frase-destacada">"Te quiero aunque te equivoques. El error nos ayuda a aprender."</div>
+    <div class="frase-destacada">"Los límites no son un castigo, son para protegerte."</div>
+    <div class="frase-destacada">"No puedo llenar tu vaso si el mío está vacío. Me tomo un momento."</div>
+    <div class="frase-destacada">"¿Cómo te sientes? Nombremos esa emoción juntos."</div>
+    <div class="frase-destacada">"Confío en ti. Tú puedes hacerlo."</div>
+  `);
+  
+  document.getElementById("recAutocuidado").onclick = () => mostrarModal("🧘 Autocuidado para el Adulto Cuidador", `
+    <h4>🌿 Autocuidado FÍSICO</h4>
+    <p>Duerme lo que puedas, come algo que te nutra, respira profundo 3 veces antes de reaccionar.</p>
+    <h4>💖 Autocuidado EMOCIONAL</h4>
+    <p>Valida tus propias emociones. Está bien sentirse frustrado. Pide ayuda sin culpa.</p>
+    <h4>👥 Autocuidado SOCIAL</h4>
+    <p>Conecta con otros adultos. Un café con un amigo, un grupo de crianza, una llamada.</p>
+    <h4>🎨 Autocuidado PERSONAL</h4>
+    <p>Haz algo solo para ti 15 minutos al día: leer, caminar, ducharte tranquilo, escuchar música.</p>
+    <p style="margin-top:1rem;">💡 <em>"No puedes dar lo que no tienes. Cuidarte es la mejor herencia para tus hijos."</em></p>
+  `);
+  
   document.getElementById("recTest").onclick = () => mostrarLeccion(1);
   document.getElementById("volverRecursos").onclick = mostrarPantallaPrincipal;
 }
