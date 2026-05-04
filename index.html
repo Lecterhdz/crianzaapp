@@ -3,34 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Manual de Crianza Interactivo</title>
+  <title>Manual de Crianza Interactivo | PWA</title>
+  
+  <!-- CSS Principal -->
   <link rel="stylesheet" href="css/estilo.css">
+  
+  <!-- Manifest PWA -->
   <link rel="manifest" href="manifest.json">
+  
+  <!-- Meta para PWA -->
   <meta name="theme-color" content="#4CAF50">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="CrianzaApp">
+  
+  <!-- Descripción para SEO y redes -->
+  <meta name="description" content="Curso interactivo y dinámico sobre crianza positiva. Incluye estilos de crianza, técnicas, retos diarios, 10 mandamientos, 4 pilares y mucho más.">
+  <meta name="keywords" content="crianza, hijos, educación, pwa, curso interactivo, crianza positiva, estilos de crianza">
+  <meta name="author" content="Manual de Crianza">
+  
+  <!-- Favicon básico (opcional, puedes generar uno) -->
+  <link rel="icon" type="image/png" href="icons/icon-72.png">
 </head>
 <body>
+
   <header>
     <h1>📘 Criar con conciencia</h1>
-    <p>Interactivo, práctico y para cada edad</p>
+    <p>Curso interactivo · Dinámico · Para toda la familia</p>
   </header>
 
+  <!-- Navegación principal: TODAS las secciones -->
   <nav>
-    <button class="tab-btn active" data-tab="inicio">Inicio</button>
-    <button class="tab-btn" data-tab="edades">0-12 años</button>
-    <button class="tab-btn" data-tab="interactivo">Actividades + Frases</button>
-    <button class="tab-btn" data-tab="herramientas">Herramientas</button>
-    <button class="tab-btn" data-tab="errores">Errores comunes</button>
+    <button class="tab-btn active" data-tab="inicio">🏠 Inicio</button>
+    <button class="tab-btn" data-tab="edades">👶 Por edades</button>
     <button class="tab-btn" data-tab="estilos">🎭 Estilos y técnicas</button>
+    <button class="tab-btn" data-tab="interactivo">✏️ Actividades</button>
+    <button class="tab-btn" data-tab="herramientas">🛠️ Herramientas</button>
+    <button class="tab-btn" data-tab="errores">⚠️ Errores comunes</button>
+    <button class="tab-btn" data-tab="reto">📅 Reto diario</button>
   </nav>
 
+  <!-- Contenido dinámico (lo llena JavaScript) -->
   <main id="contenido">
-    <!-- Cada sección se carga con JS o está directamente -->
+    <!-- El contenido se carga desde app.js -->
   </main>
 
   <footer>
-    <p>PWA - Manual vivo de crianza | Descargable para usar sin internet</p>
+    <p>🌱 PWA - Manual de Crianza Consciente | Instalable y usable sin internet</p>
+    <p>💡 Cada reto completado suma puntos en tu sesión. ¡Sigue aprendiendo!</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="js/app.js"></script>
 </body>
 </html>
