@@ -17,7 +17,138 @@ let cursoEstado = {
     diasMasProductivos: {}
   }
 };
+// =====================================================
+// SISTEMA DE LICENCIA - DEMO (7 días) / PRO (33 días)
+// Precio: $59 MXN / anual
+// =====================================================
 
+// Estado de licencia
+let licencia = {
+  tipo: "demo",     // "demo" o "pro"
+  activa: true,
+  expira: null
+};
+
+// Cargar licencia desde localStorage
+function cargarLicencia() {
+  const guardado = localStorage.getItem("licenciaCrianza");
+  if (guardado) {
+    licencia = JSON.parse(guardado);
+    // Verificar si expiró (solo aplica a pro)
+    if (licencia.tipo === "pro" && licencia.expira && new Date() > new Date(licencia.expira)) {
+      licencia.tipo = "demo";
+      licencia.activa = false;
+      guardarLicencia();
+      mostrarNotificacion("⏰ Tu licencia Pro ha expirado. Renueva para seguir accediendo a los 33 días.");
+    }
+  }
+}
+
+function guardarLicencia() {
+  localStorage.setItem("licenciaCrianza", JSON.stringify(licencia));
+}
+
+// Verificar si el usuario puede acceder a un día específico
+function puedeAccederADia(dia) {
+  if (licencia.tipo === "pro") return true;  // Pro: todos los días
+  if (dia <= 7) return true;                 // Demo: solo días 1-7
+  return false;                               // Demo: días 8-33 bloqueados
+}
+
+// Activar licencia Pro (válida por 365 días)
+function activarLicenciaPro() {
+  licencia.tipo = "pro";
+  licencia.activa = true;
+  const expira = new Date();
+  expira.setFullYear(expira.getFullYear() + 1);  // +1 año
+  licencia.expira = expira.toISOString();
+  guardarLicencia();
+  return true;
+}
+
+// Mostrar pantalla de oferta Pro
+function mostrarOfertaPro() {
+  const html = `
+    <div class="card" style="text-align:center;">
+      <span style="font-size:3rem;">🌟</span>
+      <h2>Desbloquea el curso completo</h2>
+      <p>Accede a los <strong>33 días</strong> del curso de crianza consciente</p>
+      
+      <div style="background:linear-gradient(135deg, #4CAF50, #2e7d32); color:white; padding:1.5rem; border-radius:1.5rem; margin:1.5rem 0;">
+        <span style="font-size:0.9rem; opacity:0.9;">SOLO</span>
+        <div style="font-size:3rem; font-weight:bold;">$59</div>
+        <div>pesos mexicanos</div>
+        <div style="font-size:0.8rem; opacity:0.8;">/ año</div>
+        <div style="margin-top:0.5rem;">≈ $4.92 MXN / mes</div>
+      </div>
+      
+      <div style="text-align:left; max-width:300px; margin:0 auto;">
+        <p><strong>✅ Incluye:</strong></p>
+        <ul style="list-style:none; padding-left:0;">
+          <li>✓ 33 días de contenido completo</li>
+          <li>✓ Simulador con 15+ escenarios</li>
+          <li>✓ Medallas desbloqueables</li>
+          <li>✓ Certificado de finalización</li>
+          <li>✓ Biblioteca de recursos completa</li>
+          <li>✓ Acceso por 1 año</li>
+          <li>✓ Actualizaciones gratuitas</li>
+        </ul>
+      </div>
+      
+      <button id="btnComprarPro" class="juego" style="background:#ff9800; font-size:1.2rem; padding:12px 24px; margin:1rem 0;">
+        💳 Comprar por $59 MXN
+      </button>
+      
+      <p style="font-size:0.7rem; color:#666;">Pago seguro vía Mercado Pago · Garantía de 7 días</p>
+      
+      <button id="btnVolverOferta" class="juego" style="background:#ccc;">Volver al curso demo</button>
+    </div>
+  `;
+  
+  document.getElementById("contenido").innerHTML = html;
+  
+  document.getElementById("btnComprarPro")?.addEventListener("click", () => {
+    // Redirigir a Mercado Pago (página de pago)
+    // Por ahora simulamos la compra
+    if (confirm("✅ SIMULACIÓN DE PAGO\n\nEsto redirigirá a Mercado Pago para pagar $59 MXN.\n\n¿Deseas continuar con la simulación?")) {
+      // En producción: window.location.href = "https://link.mercadopago.com.mx/crianzapp";
+      activarLicenciaPro();
+      alert("🎉 ¡Felicidades! Licencia Pro activada.\n\nYa tienes acceso a los 33 días completos.\n\nRecarga la página para ver los cambios.");
+      mostrarPantallaPrincipal();
+    }
+  });
+  
+  document.getElementById("btnVolverOferta")?.addEventListener("click", mostrarPantallaPrincipal);
+}
+
+// Mostrar banner de upgrade en modo demo
+function mostrarBannerDemo() {
+  if (licencia.tipo !== "pro") {
+    return `
+      <div class="card" style="background:linear-gradient(135deg, #fff3e0, #ffe0b2); border-left:4px solid #ff9800; margin-bottom:1rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+          <div>
+            <span style="font-size:1.5rem;">🔓</span>
+            <strong>Modo Demo</strong> - Acceso gratuito a los primeros 7 días
+          </div>
+          <button id="btnUpgradePro" class="juego" style="background:#ff9800; padding:8px 16px;">⬆️ Pro por $59 MXN/año</button>
+        </div>
+        <p style="margin-top:0.5rem; font-size:0.8rem;">⭐ Desbloquea los 33 días completos + simulador + medallas + certificado</p>
+      </div>
+    `;
+  }
+  return `
+    <div class="card" style="background:#e8f5e9; border-left:4px solid #4CAF50;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+        <div>
+          <span style="font-size:1.5rem;">✅</span>
+          <strong>Modo Pro activo</strong> - Tienes acceso a los 33 días completos
+        </div>
+        <div style="font-size:0.8rem;">Expira: ${new Date(licencia.expira).toLocaleDateString()}</div>
+      </div>
+    </div>
+  `;
+}
 // --- CONFIGURACIÓN ---
 let modoOscuro = localStorage.getItem("modoOscuro") === "true";
 let vozActiva = localStorage.getItem("vozActiva") === "true";
@@ -1824,6 +1955,10 @@ function mostrarModal(titulo, contenido) {
 // =====================================================
 
 function mostrarSimulador() {
+  if (licencia.tipo !== "pro") {
+    mostrarOfertaPro();
+    return;
+  }  
   // Banco de escenarios organizados por edad
   const escenariosPorEdad = {
     "0-2 años": [
@@ -2120,6 +2255,10 @@ function mostrarSimulador() {
 // =====================================================
 
 function mostrarEstadisticas() {
+  if (licencia.tipo !== "pro") {
+    mostrarOfertaPro();
+    return;
+  }  
   const completados = cursoEstado.completados.length;
   const diasSemana = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
   const completadosPorModulo = [0, 0, 0, 0];
@@ -2314,6 +2453,10 @@ Firma: ___________________
   }
 }
 function mostrarPlanificador() {
+  if (licencia.tipo !== "pro") {
+    mostrarOfertaPro();
+    return;
+  }
   const html = `<div class="card"><h2>📅 Planificador semanal</h2><div id="planificadorContenido"><table style="width:100%; border-collapse:collapse;"><tr style="background:#4CAF50;color:white"><th>Día</th><th>Mi objetivo</th><th>✅</th><tr>${["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"].map((d,idx)=>`<tr><td>${d}</td><td><input type="text" id="plan${idx}" placeholder="Ej: Validar una emoción" style="width:100%; padding:8px;"></td><td><input type="checkbox"></td></tr>`).join('')}</table><button id="imprimirPlanificador" class="juego" style="margin-top:1rem;">🖨️ Imprimir</button><button id="guardarPlanificador" class="juego">💾 Guardar</button></div><button id="volverPlanificador" class="juego">Volver</button></div>`;
   document.getElementById("contenido").innerHTML = html;
   const planGuardado = JSON.parse(localStorage.getItem("planificadorSemanal") || "{}");
@@ -2464,14 +2607,17 @@ function mostrarRecursos() {
 }
 
 function mostrarPantallaPrincipal() {
-  const totalDias = 33
+  const DIAS_TOTALES = 33;
+  const DIAS_VISIBLES = licencia.tipo === "pro" ? 33 : 7;
   const completados = cursoEstado.completados.length;
-  const progreso = Math.round((completados / totalDias) * 100);
+  const progreso = Math.round((completados / (licencia.tipo === "pro" ? 33 : 7)) * 100);
   
-  let html = `
+  let html = mostrarBannerDemo();
+  
+  html += `
     <div class="card">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-        <h2>🗺️ Curso de crianza - 28 días</h2>
+        <h2>🗺️ Curso de crianza - ${licencia.tipo === "pro" ? "33 días" : "7 días demo"}</h2>
         <div>
           <button id="btnSimulador" class="juego" style="background:#9C27B0;">🎭 Simulador</button>
           <button id="btnEstadisticas" class="juego" style="background:#2196F3;">📊 Stats</button>
@@ -2480,53 +2626,115 @@ function mostrarPantallaPrincipal() {
         </div>
       </div>
       <div class="progreso-bar"><div class="progreso-fill" style="width:${progreso}%;">${progreso}%</div></div>
-      <p>🔥 Racha: ${cursoEstado.racha} días | ✅ Completados: ${completados}/${totalDias} | 🏅 Medallas: ${cursoEstado.medallas.length}</p>
-      ${cursoEstado.estiloCrianza ? `<p>🎭 Tu estilo identificado: ${cursoEstado.estiloCrianza}</p>` : '<p>📝 Completa el <strong>Día 1</strong> para conocer tu estilo de crianza.</p>'}
-      ${cursoEstado.diaActual > totalDias ? '<p>🎉 ¡FELICIDADES! Completaste el curso. Descarga tu certificado desde la sección de estadísticas.</p>' : ''}
+      <p>🔥 Racha: ${cursoEstado.racha} días | ✅ Completados: ${completados}/${DIAS_VISIBLES}</p>
+      ${cursoEstado.estiloCrianza ? `<p>🎭 Tu estilo: ${cursoEstado.estiloCrianza}</p>` : '<p>📝 Completa el Día 1 para conocer tu estilo.</p>'}
+      ${licencia.tipo === "demo" ? '<p style="color:#ff9800;">🔓 Modo demo: días 1-7 gratis. <button id="btnUpgradeDesdeBanner" class="btn-dia" style="background:#ff9800;">⬆️ Pro por $59 MXN/año</button></p>' : ''}
     </div>
   `;
   
-const DIAS_TOTALES = 33;
-const DIAS_POR_MODULO = 7;
-const MODULOS = Math.ceil(DIAS_TOTALES / DIAS_POR_MODULO);
-const modNombres = [
-  "📘 MÓDULO 1: Fundamentos (Días 1-7)",
-  "📙 MÓDULO 2: Habilidades prácticas (Días 8-14)",
-  "📒 MÓDULO 3: Situaciones específicas (Días 15-21)",
-  "📕 MÓDULO 4: Maestría parental (Días 22-28)",
-  "📗 MÓDULO 5: Temas avanzados (Días 29-33)"
-];
-
-for (let modulo = 0; modulo < MODULOS; modulo++) {
+  // Generar módulos (solo mostrar días accesibles)
+  const MODULOS = licencia.tipo === "pro" ? 5 : 1;
+  const DIAS_POR_MODULO = 7;
+  const modNombres = licencia.tipo === "pro" 
+    ? ["📘 MÓDULO 1: Fundamentos (Días 1-7)", "📙 MÓDULO 2: Habilidades prácticas (Días 8-14)", "📒 MÓDULO 3: Situaciones específicas (Días 15-21)", "📕 MÓDULO 4: Maestría parental (Días 22-28)", "📗 MÓDULO 5: Temas avanzados (Días 29-33)"]
+    : ["📘 MÓDULO 1: Fundamentos (Días 1-7) - Acceso demo"];
+  
+  for (let modulo = 0; modulo < MODULOS; modulo++) {
     const inicio = modulo * DIAS_POR_MODULO + 1;
-    const fin = Math.min(inicio + DIAS_POR_MODULO - 1, DIAS_TOTALES);
-    html += `<div class="card"><h3>${modNombres[modulo] || `Módulo ${modulo+1}`}</h3><div class="grid-2">`;
+    let fin = Math.min(inicio + DIAS_POR_MODULO - 1, DIAS_VISIBLES);
+    if (licencia.tipo === "demo") fin = Math.min(fin, 7);
+    
+    html += `<div class="card"><h3>${modNombres[modulo]}</h3><div class="grid-2">`;
     for (let dia = inicio; dia <= fin; dia++) {
-        const completado = cursoEstado.completados.includes(dia);
-        const bloqueado = dia > cursoEstado.diaActual && !completado;
-        html += `
-            <div class="dia-card ${bloqueado ? 'bloqueado' : ''}">
-                ${completado ? '✅' : (bloqueado ? '🔒' : '📖')} <strong>Día ${dia}</strong>: ${lecciones[dia]?.titulo || `Tema ${dia}`}
-                ${!bloqueado && !completado ? `<br><button class="btn-dia" data-dia="${dia}">Ver lección</button>` : (bloqueado ? '<br><small>🔓 Completa el día anterior</small>' : '<br><small>✔ Completado</small>')}
-            </div>
-        `;
+      const completado = cursoEstado.completados.includes(dia);
+      const bloqueado = dia > cursoEstado.diaActual && !completado;
+      const diaBloqueadoPorLicencia = licencia.tipo === "demo" && dia > 7;
+      
+      html += `
+        <div class="dia-card ${bloqueado || diaBloqueadoPorLicencia ? 'bloqueado' : ''}">
+          ${completado ? '✅' : (bloqueado || diaBloqueadoPorLicencia ? '🔒' : '📖')} 
+          <strong>Día ${dia}</strong>: ${lecciones[dia]?.titulo || `Tema ${dia}`}
+          ${diaBloqueadoPorLicencia ? '<br><small>🔓 Actualiza a Pro ($59 MXN/año)</small>' : (bloqueado ? '<br><small>🔓 Completa el día anterior</small>' : (completado ? '<br><small>✔ Completado</small>' : '<br><button class="btn-dia" data-dia="'+dia+'">Ver lección</button>'))}
+        </div>
+      `;
     }
     html += `</div></div>`;
-}
+  }
+  
+  // Si es demo, mostrar bloqueo de módulos 2-5 con mensaje de upgrade
+  if (licencia.tipo === "demo") {
+    for (let modulo = 1; modulo < 5; modulo++) {
+      const modNombresBloqueados = ["📙 MÓDULO 2: Habilidades prácticas (Días 8-14)", "📒 MÓDULO 3: Situaciones específicas (Días 15-21)", "📕 MÓDULO 4: Maestría parental (Días 22-28)", "📗 MÓDULO 5: Temas avanzados (Días 29-33)"];
+      html += `
+        <div class="card" style="opacity:0.6; filter:grayscale(0.3);">
+          <h3>${modNombresBloqueados[modulo-1]}</h3>
+          <div style="text-align:center; padding:2rem;">
+            <span style="font-size:3rem;">🔒</span>
+            <p>Módulo bloqueado en modo Demo</p>
+            <button id="btnUpgradeModulo${modulo}" class="juego" style="background:#ff9800;">⬆️ Actualizar a Pro por $59 MXN/año</button>
+          </div>
+        </div>
+      `;
+    }
+    // Agregar eventos para los botones de upgrade
+    setTimeout(() => {
+      for (let i = 1; i <= 4; i++) {
+        const btn = document.getElementById(`btnUpgradeModulo${i}`);
+        if (btn) btn.onclick = mostrarOfertaPro;
+      }
+    }, 100);
+  }
   
   document.getElementById("contenido").innerHTML = html;
   
   document.querySelectorAll(".btn-dia").forEach(btn => {
-    btn.onclick = () => mostrarLeccion(parseInt(btn.getAttribute("data-dia")));
+    btn.onclick = () => {
+      const dia = parseInt(btn.getAttribute("data-dia"));
+      if (!puedeAccederADia(dia)) {
+        mostrarOfertaPro();
+        return;
+      }
+      mostrarLeccion(dia);
+    };
   });
   
-  document.getElementById("btnSimulador")?.addEventListener("click", mostrarSimulador);
-  document.getElementById("btnEstadisticas")?.addEventListener("click", mostrarEstadisticas);
-  document.getElementById("btnPlanificador")?.addEventListener("click", mostrarPlanificador);
+  // Eventos botones principales
+  document.getElementById("btnSimulador")?.addEventListener("click", () => {
+    if (licencia.tipo !== "pro") {
+      mostrarOfertaPro();
+      return;
+    }
+    mostrarSimulador();
+  });
+  
+  document.getElementById("btnUpgradePro")?.addEventListener("click", mostrarOfertaPro);
+  document.getElementById("btnUpgradeDesdeBanner")?.addEventListener("click", mostrarOfertaPro);
+  
+  document.getElementById("btnEstadisticas")?.addEventListener("click", () => {
+    if (licencia.tipo !== "pro") {
+      mostrarOfertaPro();
+      return;
+    }
+    mostrarEstadisticas();
+  });
+  
+  document.getElementById("btnPlanificador")?.addEventListener("click", () => {
+    if (licencia.tipo !== "pro") {
+      mostrarOfertaPro();
+      return;
+    }
+    mostrarPlanificador();
+  });
+  
   document.getElementById("btnConfig")?.addEventListener("click", mostrarConfiguracion);
 }
 
 function mostrarLeccion(dia) {
+  // VALIDACIÓN DE LICENCIA
+  if (!puedeAccederADia(dia)) {
+    mostrarOfertaPro();
+    return;
+  }
   const lec = lecciones[dia];
   if (!lec) return;
   
@@ -2618,8 +2826,15 @@ function mostrarLeccion(dia) {
     };
   }
 }
+// SOLO PARA PRUEBAS - eliminar en producción
+function activarProPrueba() {
+  activarLicenciaPro();
+  alert("✅ Modo Pro activado (modo prueba)");
+  location.reload();
+}
 
 function iniciarApp() {
+  cargarLicencia();  // Cargar estado de licencia
   cargarProgreso();
   mostrarPantallaPrincipal();
   
