@@ -1643,8 +1643,8 @@ lecciones[32] = {
   habilidades: ["Humildad", "Responsabilidad afectiva", "Modelado de reparación"],
   errores: [
     "❌ No pedir disculpas (falsa idea de que 'pierdes autoridad')",
-    "❌ Disculpa con 'pero' ("lo siento, PERO tú...")",
-    "❌ Minimizar el daño ("no fue para tanto")",
+    "❌ Disculpa con 'pero' (\"lo siento, PERO tú...\")",
+    "❌ Minimizar el daño (\"no fue para tanto\")",
     "❌ Esperar que el niño perdone inmediatamente"
   ],
   frases: [
