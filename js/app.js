@@ -1093,49 +1093,44 @@ lecciones[20] = {
 // MÓDULO PREESCOLARES (3-5 AÑOS) - DÍAS 21 al 25
 // =====================================================
 
-// DÍA 21 - Manejo de rabietas en preescolares
 lecciones[21] = {
-  titulo: "😤 Día 21: Manejo de rabietas en niños de 3-5 años",
-  objetivo: "Aprender a responder a las rabietas sin escalar el conflicto.",
+  titulo: "🛒 Día 21: Rabietas en público - cómo actuar sin vergüenza",
+  objetivo: "Manejar rabietas en espacios públicos con confianza y sin ceder al chantaje social.",
   teoria: `
-    <p>Las <strong>rabietas</strong> son normales en preescolares. Su cerebro aún no regula las emociones. No son manipulaciones, son crisis emocionales.</p>
+    <p>Las <strong>rabietas en público</strong> son especialmente difíciles porque sentimos la presión de "qué dirán". Pero los principios son los mismos que en casa.</p>
     
-    <p><strong>🔴 QUÉ NO HACER:</strong></p>
+    <p><strong>🔑 CLAVES PARA RABIETAS EN PÚBLICO:</strong></p>
     <ul>
-      <li>No gritar ni castigar (empeora la regulación)</li>
-      <li>No ceder al chantaje (enseña que la rabieta funciona)</li>
-      <li>No dejar al niño solo (necesita tu presencia para regularse)</li>
+      <li><strong>Respira primero:</strong> La vergüenza es tuya, no del niño</li>
+      <li><strong>Sal del lugar si puedes:</strong> Afuera del supermercado, al baño, al coche</li>
+      <li><strong>No cedas al chantaje social:</strong> Comprar algo para que se calle enseña que la rabieta funciona</li>
+      <li><strong>Ignora las miradas:</strong> La gente que juzga no cría a tu hijo</li>
+      <li><strong>Validación breve:</strong> "Veo que estás enojado. Te acompaño hasta que se pase"</li>
     </ul>
     
-    <p><strong>🟢 QUÉ SÍ HACER (los 9 pasos):</strong></p>
-    <ol>
-      <li><strong>Respira</strong> - Regúlate primero tú</li>
-      <li><strong>Arrodíllate</strong> - Ponte a su altura visual</li>
-      <li><strong>Nombra la emoción</strong> - "Veo que estás muy enojado"</li>
-      <li><strong>Valida sin ceder</strong> - "Está bien estar enojado, pero no se pega"</li>
-      <li><strong>Ofrece calma física</strong> - Un abrazo si lo acepta</li>
-      <li><strong>Espera el pico</strong> - No razones en el momento álgido</li>
-      <li><strong>Límite breve</strong> - "Cuando te calmes, hablamos"</li>
-      <li><strong>Redirige</strong> - Ofrece una alternativa después</li>
-      <li><strong>Reconecta</strong> - Después de la tormenta, vuelve al vínculo</li>
-    </ol>
-    
-    <p>💡 <em>La rabieta no es una emergencia. Es una oportunidad para enseñar regulación.</em></p>
+    <p>💡 <em>"La mirada de un desconocido no cría a tu hijo. Tú eres su referente, no el público."</em></p>
   `,
   ejemplos: [
-    "📖 Rabieta en supermercado: niño grita y se tira al suelo. Mamá respira, se agacha y dice: 'Veo que estás muy enojado porque no te compré el chocolate. Está bien enojarse. Te voy a cargar y vamos afuera un momento. Cuando te calmes, podemos volver.'",
-    "📖 Rabieta por tener que apagar la tele: 'Sé que te gusta mucho ver Pepa. Está bien sentirse triste cuando se acaba. Apagamos juntos la tele. ¿Quieres elegir qué hacemos ahora, pintar o jugar con los bloques?'"
+    "📖 En el supermercado: niño grita en el piso. Respiras, lo cargas, sales afuera y dices: 'Veo que estás muy enojado. Te tengo. Cuando te calmes, volvemos.'",
+    "📖 En el parque: no quiere irse. Dices en voz baja: 'Sé que quieres seguir jugando. Nos vamos en 5 minutos. Pongo el timer.'"
   ],
   actividades: [
-    "🎲 ACTIVIDAD 1: La próxima rabieta, practica los 9 pasos. Respira antes de actuar.",
-    "🎲 ACTIVIDAD 2: Crea un 'rincón de calma' en casa con cojines, un peluche y un papel con el semáforo de emociones.",
-    "🎲 ACTIVIDAD 3: Ensaya con tu pareja o un espejo cómo te agacharías y qué dirías ante una rabieta."
+    "🎲 ACTIVIDAD 1: Practica la frase 'Qué amable que te preocupes, pero yo sé criar a mi hijo' para responder a miradas o comentarios.",
+    "🎲 ACTIVIDAD 2: Lleva siempre un 'kit de emergencia' para rabietas: agua, snack, peluche pequeño, timer.",
+    "🎲 ACTIVIDAD 3: Ensaya en casa cómo saldrías de un lugar público con tu hijo en brazos sin perder la calma."
   ],
-  tecnicas: ["9 pasos para rabietas", "Rincón de calma", "Nombrar la emoción"],
-  habilidades: ["Regulación emocional propia", "Paciencia activa", "Contención emocional"],
-  errores: ["❌ Gritar '¡cállate!' o '¡deja de llorar!'", "❌ Ceder para que pare rápido", "❌ Dejar al niño solo en su habitación"],
-  frases: ["'Veo que estás enojado. Está bien. Estoy aquí contigo.'", "'Cuando te calmes, te voy a abrazar fuerte.'"],
-  herramientas: ["Rincón de calma", "Temporizador visual", "Póster del semáforo de emociones"]
+  tecnicas: ["Salida estratégica", "Kit de emergencia", "Ignorar el público", "Validación breve"],
+  habilidades: ["Manejo de presión social", "Firmeza amable", "Respiración bajo estrés"],
+  errores: [
+    "❌ Ceder por vergüenza ('toma el chocolate, pero cállate')",
+    "❌ Gritar más fuerte que el niño",
+    "❌ Decir 'mira cómo te mira la señora' (usa la vergüenza como herramienta)"
+  ],
+  frases: [
+    "'Tú no eres el problema. La gente que juzga no nos conoce.'",
+    "'Vamos a un lugar tranquilo a respirar juntos.'"
+  ],
+  herramientas: ["Kit de emergencia", "Timer de bolsillo", "Tarjeta de validación rápida"]
 };
 
 // DÍA 22 - Control de esfínteres
