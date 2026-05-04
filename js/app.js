@@ -534,30 +534,235 @@ lecciones[10] = {
   frases: ["'Hoy tú decides. Yo confío en ti.'"],
   herramientas: ["Corona de líder", "Planificador semanal de tareas"]
 };
+// =====================================================
+// MÓDULO PREESCOLARES (3-5 AÑOS) - DÍAS 11 al 15
+// =====================================================
 
-// Días 11 al 28
-const temasDias = {
-  11: { t:"📱 Día 11: Crianza y pantallas", obj:"Acuerdos digitales sin lucha", teo:"<p>Límites de tiempo + zonas libres de pantallas + modelo parental + alternativas creativas.</p><p>💡 <em>La mejor regla: nada de pantallas 1 hora antes de dormir.</em></p>" },
-  12: { t:"👥 Día 12: Rivalidad entre hermanos", obj:"Mediar sin tomar partido", teo:"<p>Escucha a cada uno, no busques culpable, ayúdalos a encontrar su propia solución.</p><p>💡 <em>No hay un culpable, hay una oportunidad de aprender a resolver conflictos.</em></p>" },
-  13: { t:"😴 Día 13: Sueño respetuoso", obj:"Rutinas de sueño sin castigo", teo:"<p>Consistencia + ambiente tranquilo + ritual de conexión previa (cuento, masaje).</p><p>💡 <em>El sueño no se negocia, se acompaña.</em></p>" },
-  14: { t:"🍽️ Día 14: Alimentación sin lucha", obj:"Tú ofreces, ellos eligen", teo:"<p>No obligar a terminar el plato. Ellos regulan su hambre. Ofrece opciones sanas.</p><p>💡 <em>Tu trabajo es ofrecer comida sana. Su trabajo es decidir cuánto comer.</em></p>" },
-  15: { t:"😤 Día 15: Manejo de rabietas", obj:"Responder sin escalar", teo:"<p><strong>9 pasos:</strong> respira, arrodíllate, nombra emoción, valida sin ceder, ofrece calma, espera el pico, límite breve, redirige, reconecta.</p><p>💡 <em>La rabieta no es una emergencia. Es una oportunidad para enseñar regulación.</em></p>" },
-  16: { t:"🗣️ Día 16: Comunicación no violenta", obj:"Hablar sin etiquetas ni juicios", teo:"<p>Observación + sentimiento + necesidad + petición.</p><p><strong>Fórmula:</strong> 'Cuando veo X, me siento Y porque necesito Z. ¿Podrías...?'</p><p>💡 <em>Separa la acción de la persona: 'no me gusta que grites' no 'eres gritón'.</em></p>" },
-  17: { t:"🎮 Día 17: Disciplina positiva", obj:"Enseñar en lugar de castigar", teo:"<p><strong>7 principios:</strong> firmeza y amabilidad, sentido de pertenencia, consecuencias lógicas, etc.</p><p>💡 <em>La disciplina enseña, el castigo humilla.</em></p>" },
-  18: { t:"❤️ Día 18: Inteligencia emocional", obj:"Nombrar y gestionar emociones", teo:"<p>El cerebro emocional se entrena. Ayuda a tu hijo a identificar sensaciones corporales.</p><p>💡 <em>'¿Dónde sientes el enojo? ¿En las manos? ¿En la panza?'</em></p>" },
-  19: { t:"🏠 Día 19: Rutinas que funcionan", obj:"Estructura sin rigidez", teo:"<p>Las rutinas dan seguridad. Usa tablas visuales, avisos previos, flexibilidad controlada.</p><p>💡 <em>Los niños se sienten seguros cuando saben qué sigue.</em></p>" },
-  20: { t:"🧠 Día 20: Crianza y neurodivergencia", obj:"Adaptar técnicas a cada niño", teo:"<p>No todos los niños responden igual. Ajusta tiempos, estímulos y expectativas.</p><p>💡 <em>Lo que funciona para uno, no funciona para otro. Observa a tu hijo.</em></p>" },
-  21: { t:"👪 Día 21: Co-parentalidad", obj:"Consistencia entre adultos cuidadores", teo:"<p>Acuerdos escritos, comunicación respetuosa, no desautorizar al otro frente al niño.</p><p>💡 <em>La peor herencia es la inconsistencia entre adultos.</em></p>" },
-  22: { t:"🛡️ Día 22: Prevención de abuso", obj:"Enseñar límites corporales", teo:"<p>Cuerpo es mío, secretos buenos y malos, buscar ayuda si algo incomoda.</p><p>💡 <em>Enseña: 'tu cuerpo es tuyo y nadie puede tocarlo sin tu permiso'.</em></p>" },
-  23: { t:"🎭 Día 23: Crianza en divorcio", obj:"Proteger el vínculo", teo:"<p>No hables mal del otro progenitor. El niño no es mensajero ni aliado.</p><p>💡 <em>Tu hijo no necesita elegir entre amarte a ti o al otro.</em></p>" },
-  24: { t:"🌱 Día 24: Adolescencia respetuosa", obj:"Autonomía con guía", teo:"<p>Negociar, no imponer. Escucha más de lo que hablas. Elige tus batallas.</p><p>💡 <em>La adolescencia es el ensayo para la adultez. Permite errores pequeños.</em></p>" },
-  25: { t:"🧘 Día 25: Mindfulness parental", obj:"Respirar antes de reaccionar", teo:"<p>La presencia plena reduce los conflictos. Entrena la pausa.</p><p>💡 <em>Tu calma es su ancla. Si tú te desregulas, él también.</em></p>" },
-  26: { t:"📖 Día 26: Cuentos como herramienta", obj:"Usar narrativa para enseñar", teo:"<p>Los cuentos permiten abordar temas difíciles sin confrontación directa.</p><p>💡 <em>Un cuento puede enseñar lo que una regaño no logra.</em></p>" },
-  27: { t:"🔁 Día 27: Reparación después del error", obj:"Pedir disculpas sinceras", teo:"<p>El error bien reparado fortalece el vínculo más que el acierto.</p><p>💡 <em>Pedir disculpas a tu hijo no te quita autoridad, te da respeto.</em></p>" },
-  28: { t:"🏅 Día 28: Maestría parental", obj:"Celebrar el recorrido", teo:"<p>No hay padres perfectos, sí conscientes. Cada día cuenta.</p><p>🎉 <strong>¡FELICIDADES! Has completado los 28 días.</strong> Eres un ejemplo de compromiso.</p>" }
+// DÍA 11 - Manejo de rabietas en preescolares
+lecciones[11] = {
+  titulo: "😤 Día 11: Manejo de rabietas en niños de 3-5 años",
+  objetivo: "Aprender a responder a las rabietas sin escalar el conflicto.",
+  teoria: `
+    <p>Las <strong>rabietas</strong> son normales en preescolares. Su cerebro aún no regula las emociones. No son manipulaciones, son crisis emocionales.</p>
+    
+    <p><strong>🔴 QUÉ NO HACER:</strong></p>
+    <ul>
+      <li>No gritar ni castigar (empeora la regulación)</li>
+      <li>No ceder al chantaje (enseña que la rabieta funciona)</li>
+      <li>No dejar al niño solo (necesita tu presencia para regularse)</li>
+    </ul>
+    
+    <p><strong>🟢 QUÉ SÍ HACER (los 9 pasos):</strong></p>
+    <ol>
+      <li><strong>Respira</strong> - Regúlate primero tú</li>
+      <li><strong>Arrodíllate</strong> - Ponte a su altura visual</li>
+      <li><strong>Nombra la emoción</strong> - "Veo que estás muy enojado"</li>
+      <li><strong>Valida sin ceder</strong> - "Está bien estar enojado, pero no se pega"</li>
+      <li><strong>Ofrece calma física</strong> - Un abrazo si lo acepta</li>
+      <li><strong>Espera el pico</strong> - No razones en el momento álgido</li>
+      <li><strong>Límite breve</strong> - "Cuando te calmes, hablamos"</li>
+      <li><strong>Redirige</strong> - Ofrece una alternativa después</li>
+      <li><strong>Reconecta</strong> - Después de la tormenta, vuelve al vínculo</li>
+    </ol>
+    
+    <p>💡 <em>La rabieta no es una emergencia. Es una oportunidad para enseñar regulación.</em></p>
+  `,
+  ejemplos: [
+    "📖 Rabieta en supermercado: niño grita y se tira al suelo. Mamá respira, se agacha y dice: 'Veo que estás muy enojado porque no te compré el chocolate. Está bien enojarse. Te voy a cargar y vamos afuera un momento. Cuando te calmes, podemos volver.'",
+    "📖 Rabieta por tener que apagar la tele: 'Sé que te gusta mucho ver Pepa. Está bien sentirse triste cuando se acaba. Apagamos juntos la tele. ¿Quieres elegir qué hacemos ahora, pintar o jugar con los bloques?'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: La próxima rabieta, practica los 9 pasos. Respira antes de actuar.",
+    "🎲 ACTIVIDAD 2: Crea un 'rincón de calma' en casa con cojines, un peluche y un papel con el semáforo de emociones.",
+    "🎲 ACTIVIDAD 3: Ensaya con tu pareja o un espejo cómo te agacharías y qué dirías ante una rabieta."
+  ],
+  tecnicas: ["9 pasos para rabietas", "Rincón de calma", "Nombrar la emoción"],
+  habilidades: ["Regulación emocional propia", "Paciencia activa", "Contención emocional"],
+  errores: ["❌ Gritar '¡cállate!' o '¡deja de llorar!'", "❌ Ceder para que pare rápido", "❌ Dejar al niño solo en su habitación"],
+  frases: ["'Veo que estás enojado. Está bien. Estoy aquí contigo.'", "'Cuando te calmes, te voy a abrazar fuerte.'"],
+  herramientas: ["Rincón de calma", "Temporizador visual", "Póster del semáforo de emociones"]
 };
 
-for (let i = 11; i <= 28; i++) {
+// DÍA 12 - Control de esfínteres
+lecciones[12] = {
+  titulo: "🚽 Día 12: Control de esfínteres sin presión",
+  objetivo: "Acompañar el proceso de dejar el pañal con respeto y paciencia.",
+  teoria: `
+    <p>El <strong>control de esfínteres</strong> es un hito del desarrollo. No se fuerza. La mayoría de niños están listos entre los 2 y 4 años.</p>
+    
+    <p><strong>🔴 SEÑALES DE QUE ESTÁ LISTO:</strong></p>
+    <ul>
+      <li>Se mantiene seco por 2 horas seguidas</li>
+      <li>Le molesta el pañal sucio</li>
+      <li>Puede subirse y bajarse los pantalones solo</li>
+      <li>Muestra interés por ir al baño como los adultos</li>
+    </ul>
+    
+    <p><strong>🟢 CÓMO ACOMPAÑAR:</strong></p>
+    <ul>
+      <li>Nunca castigar los accidentes (son parte del aprendizaje)</li>
+      <li>Usar bacinica o adaptador, no forzar sentarse</li>
+      <li>Rutinas: sentarlo en horarios clave (después de comer, antes de dormir)</li>
+      <li>Refuerzo positivo: "¡Lo lograste! ¡Qué orgullo!"</li>
+      <li>Paciencia: los retrocesos son normales (un viaje, un cambio de rutina)</li>
+    </ul>
+    
+    <p>💡 <em>El control de esfínteres es del niño, no del adulto. Nuestra tarea es acompañar, no apurar.</em></p>
+  `,
+  ejemplos: [
+    "📖 Niño de 3 años tiene un accidente mientras juega. En lugar de enojarse, decir con calma: 'Uy, se te escapó. No pasa nada. Vamos a cambiarte y la próxima podemos intentar llegar al baño. ¿Te ayudo?'",
+    "📖 Niño logra hacer pipí en la bacinica por primera vez. Celebrar: '¡Lo lograste! ¡Qué bien! Tú solito. ¿Cómo te sientes? ¡Estoy muy orgulloso de ti!'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Crea un 'calendario de logros' con stickers. Cada vez que use el baño, pega un sticker.",
+    "🎲 ACTIVIDAD 2: Busca un cuento sobre control de esfínteres ('Mi bacinica' o similares) y léelo con tu hijo.",
+    "🎲 ACTIVIDAD 3: Practica la paciencia: durante una semana, no preguntes '¿quieres ir al baño?' (presión), sino 'avísame cuando sientas ganas'."
+  ],
+  tecnicas: ["Rutina de baño", "Calendario de stickers", "Refuerzo positivo"],
+  habilidades: ["Paciencia", "Observación de señales", "Contención de la ansiedad"],
+  errores: ["❌ Castigar por accidentes", "❌ Comparar con otros niños", "❌ Forzar sentarse en la bacinica", "❌ Quitar el pañal de golpe sin preparación"],
+  frases: ["'Los accidentes pasan. Aprendemos juntos.'", "'¡Qué bien! Tú solito. Estoy muy orgulloso.'"],
+  herramientas: ["Bacinica o adaptador", "Calendario de stickers", "Cuentos sobre control de esfínteres"]
+};
+
+// DÍA 13 - Primeros límites y rutinas
+lecciones[13] = {
+  titulo: "🔒 Día 13: Primeros límites y rutinas para preescolares",
+  objetivo: "Establecer límites claros y rutinas predecibles para niños de 3-5 años.",
+  teoria: `
+    <p>A esta edad, los niños necesitan <strong>límites claros</strong> para sentirse seguros. Los límites no son castigos, son protección.</p>
+    
+    <p><strong>📌 LÍMITES NO NEGOCIABLES (seguridad):</strong></p>
+    <ul>
+      <li>Cinturón de seguridad en el coche</li>
+      <li>No cruzar la calle solo</li>
+      <li>No tocar cosas peligrosas (enchufes, cuchillos, medicinas)</li>
+      <li>No pegar ni morder</li>
+    </ul>
+    
+    <p><strong>📌 RUTINAS QUE DAN SEGURIDAD:</strong></p>
+    <ul>
+      <li><strong>Mañana:</strong> levantarse, desayunar, vestirse, lavarse dientes</li>
+      <li><strong>Comida:</strong> lavar manos, comer juntos, recoger la mesa</li>
+      <li><strong>Siesta/Noche:</strong> baño, cuento, canción, dormir</li>
+    </ul>
+    
+    <p><strong>🔑 CLAVE:</strong> Usar <strong>tablas visuales</strong> (dibujos de cada paso). Los niños preescolares entienden mejor lo que ven.</p>
+    
+    <p>💡 <em>Los límites dichos con calma son más efectivos que los gritos. 'En este coche, todos usamos cinturón' es un límite claro.</em></p>
+  `,
+  ejemplos: [
+    "📖 Límite en el supermercado: 'En el supermercado caminamos agarrados de la mano o vas en el carrito. Tú eliges.'",
+    "📖 Rutina visual: Dibujar en una cartulina: 1) lavarse manos, 2) sentarse en la mesa, 3) comer, 4) lavarse los dientes. Cada paso se tapa con un sticker al completarlo."
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Dibuja una tabla visual de la rutina de la mañana con tu hijo. Pega dibujos o imprime imágenes.",
+    "🎲 ACTIVIDAD 2: Elige UN límite que te cueste poner esta semana y escríbelo. Practica decirlo en voz baja pero firme.",
+    "🎲 ACTIVIDAD 3: Crea un 'semáforo de comportamiento': verde (bien), amarillo (aviso), rojo (consecuencia). Úsalo con calma."
+  ],
+  tecnicas: ["Tablas visuales", "Límite con opción", "Semáforo de comportamiento"],
+  habilidades: ["Firmeza amable", "Consistencia", " Creatividad pedagógica"],
+  errores: ["❌ Decir 'no' sin alternativa", "❌ Cambiar los límites según el humor del adulto", "❌ Gritar el límite"],
+  frases: ["'Los límites no son un castigo, son para protegerte.'", "'Tú decides dentro de lo seguro.'"],
+  herramientas: ["Tabla visual imprimible", "Temporizador", "Semáforo de cartulina"]
+};
+
+// DÍA 14 - Juego como herramienta de crianza
+lecciones[14] = {
+  titulo: "🎮 Día 14: El juego como herramienta de crianza",
+  objetivo: "Usar el juego para conectar, enseñar y resolver conflictos.",
+  teoria: `
+    <p>El <strong>juego</strong> es el lenguaje natural de los niños. A través del juego:</p>
+    <ul>
+      <li>Se fortalece el vínculo</li>
+      <li>Se regulan emociones</li>
+      <li>Se aprenden habilidades sociales</li>
+      <li>Se resuelven conflictos</li>
+    </ul>
+    
+    <p><strong>🎲 TÉCNICAS DE JUEGO:</strong></p>
+    <ul>
+      <li><strong>Juego de roles:</strong> simular situaciones difíciles (ir al médico, compartir juguetes) con muñecos</li>
+      <li><strong>Juego de risa:</strong> cosquillas, persecuciones, imitar animales → libera tensión</li>
+      <li><strong>Juego de regulación:</strong> respirar como un dragón, inflar un globo imaginario</li>
+      <li><strong>Juego de cooperación:</strong> construir algo juntos, resolver puzzles</li>
+    </ul>
+    
+    <p>💡 <em>10 minutos de juego ininterrumpido al día (sin teléfono, sin prisas) transforman la relación.</em></p>
+  `,
+  ejemplos: [
+    "📖 Niño tiene miedo al doctor: Jugar con un muñeco a 'curarlo'. El niño es el médico, luego cambian roles. Reduce la ansiedad.",
+    "📖 Niño frustrado porque no sabe armar un puzzle: convertirlo en juego '¿quién encuentra la pieza roja más rápido?'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Dedica 15 minutos hoy a jugar lo que tu hijo elija. Sin pantallas, sin correcciones. Solo presencia.",
+    "🎲 ACTIVIDAD 2: Inventa un juego para una transición difícil (¡a ver quién se pone los zapatos más rápido cantando una canción!).",
+    "🎲 ACTIVIDAD 3: Usa muñecos para representar una situación que fue conflicto ayer. Pregunta a tu hijo: '¿cómo crees que podrían resolverlo?'"
+  ],
+  tecnicas: ["Juego de roles", "Transiciones jugadas", "Juego de risa"],
+  habilidades: ["Creatividad", "Conexión lúdica", "Regulación a través del juego"],
+  errores: ["❌ Convertir el juego en enseñanza ('ahora aprende las letras')", "❌ Usar pantallas como único juego", "❌ No participar, solo observar"],
+  frases: ["'Hoy juegas tú a lo que quieras. Yo solo te acompaño.'", "'¿Cómo podemos convertir esto en un juego?'"],
+  herramientas: ["Muñecos o figuras", "Temporizador divertido", "Globos para respirar"]
+};
+
+// DÍA 15 - Emociones y vocabulario emocional
+lecciones[15] = {
+  titulo: "💖 Día 15: Enseñar inteligencia emocional a preescolares",
+  objetivo: "Ayudar a los niños a identificar y nombrar sus emociones.",
+  teoria: `
+    <p>Los niños preescolares <strong>sienten todas las emociones</strong> pero no saben nombrarlas. Nuestro trabajo es darles <strong>vocabulario emocional</strong>.</p>
+    
+    <p><strong>📌 CÓMO ENSEÑAR EMOCIONES:</strong></p>
+    <ul>
+      <li><strong>Nombrar en el momento:</strong> "Veo que estás frustrado porque no te sale el dibujo"</li>
+      <li><strong>Usar cuentos:</strong> libros sobre emociones (El monstruo de colores, Así es mi corazón)</li>
+      <li><strong>Juego de caras:</strong> imitar emociones con el espejo o dibujar caritas</li>
+      <li><strong>Tarjetas de emociones:</strong> mostrar diferentes caras y preguntar "¿cómo se siente?"</li>
+    </ul>
+    
+    <p><strong>🎨 RULETA DE EMOCIONES:</strong> Dibuja un círculo con 4-6 emociones básicas (alegría, tristeza, enojo, miedo, calma). Cada mañana, el niño señala cómo se siente.</p>
+    
+    <p>💡 <em>"Nombrar la emoción es el primer paso para regularla."</em></p>
+  `,
+  ejemplos: [
+    "📖 Niño llora porque se le cayó un dibujo. En lugar de 'no llores', decir: 'Veo que estás triste porque se dañó tu dibujo. Está bien estar triste. ¿Quieres que intentemos hacer otro?'",
+    "📖 Juego antes de dormir: '¿Cómo te sentiste hoy? Señala en la ruleta. ¿Qué fue lo que más te gustó? ¿Qué fue difícil?'"
+  ],
+  actividades: [
+    "🎲 ACTIVIDAD 1: Crea una 'ruleta de emociones' con cartulina y un clip giratorio. Úsala cada mañana y cada noche.",
+    "🎲 ACTIVIDAD 2: Lee un cuento sobre emociones hoy. Pregunta: '¿Cómo se siente el personaje? ¿Por qué?'",
+    "🎲 ACTIVIDAD 3: Juego de 'adivina la emoción': haz una cara y que tu hijo adivine cómo te sientes. Luego cambian roles."
+  ],
+  tecnicas: ["Nombrar la emoción en caliente", "Ruleta de emociones", "Cuentos emocionales"],
+  habilidades: ["Inteligencia emocional", "Empatía", "Comunicación"],
+  errores: ["❌ Decir 'no estés triste/enojado'", "❌ Ignorar la emoción", "❌ Resolver rápido con premios"],
+  frases: ["'Todas las emociones están bien. Lo que hacemos con ellas puede mejorar.'", "'Dime cómo te sientes y te ayudo a ponerle nombre.'"],
+  herramientas: ["Ruleta de emociones descargable", "Espejo para imitar caras", "Libros de emociones"]
+};
+// Días 16 al 33
+const temasDias = {
+  11: { t:"📱 Día 16: Crianza y pantallas", obj:"Acuerdos digitales sin lucha", teo:"<p>Límites de tiempo + zonas libres de pantallas + modelo parental + alternativas creativas.</p><p>💡 <em>La mejor regla: nada de pantallas 1 hora antes de dormir.</em></p>" },
+  12: { t:"👥 Día 17: Rivalidad entre hermanos", obj:"Mediar sin tomar partido", teo:"<p>Escucha a cada uno, no busques culpable, ayúdalos a encontrar su propia solución.</p><p>💡 <em>No hay un culpable, hay una oportunidad de aprender a resolver conflictos.</em></p>" },
+  13: { t:"😴 Día 18: Sueño respetuoso", obj:"Rutinas de sueño sin castigo", teo:"<p>Consistencia + ambiente tranquilo + ritual de conexión previa (cuento, masaje).</p><p>💡 <em>El sueño no se negocia, se acompaña.</em></p>" },
+  14: { t:"🍽️ Día 19: Alimentación sin lucha", obj:"Tú ofreces, ellos eligen", teo:"<p>No obligar a terminar el plato. Ellos regulan su hambre. Ofrece opciones sanas.</p><p>💡 <em>Tu trabajo es ofrecer comida sana. Su trabajo es decidir cuánto comer.</em></p>" },
+  15: { t:"😤 Día 20: Manejo de rabietas", obj:"Responder sin escalar", teo:"<p><strong>9 pasos:</strong> respira, arrodíllate, nombra emoción, valida sin ceder, ofrece calma, espera el pico, límite breve, redirige, reconecta.</p><p>💡 <em>La rabieta no es una emergencia. Es una oportunidad para enseñar regulación.</em></p>" },
+  16: { t:"🗣️ Día 21: Comunicación no violenta", obj:"Hablar sin etiquetas ni juicios", teo:"<p>Observación + sentimiento + necesidad + petición.</p><p><strong>Fórmula:</strong> 'Cuando veo X, me siento Y porque necesito Z. ¿Podrías...?'</p><p>💡 <em>Separa la acción de la persona: 'no me gusta que grites' no 'eres gritón'.</em></p>" },
+  17: { t:"🎮 Día 22: Disciplina positiva", obj:"Enseñar en lugar de castigar", teo:"<p><strong>7 principios:</strong> firmeza y amabilidad, sentido de pertenencia, consecuencias lógicas, etc.</p><p>💡 <em>La disciplina enseña, el castigo humilla.</em></p>" },
+  18: { t:"❤️ Día 23: Inteligencia emocional", obj:"Nombrar y gestionar emociones", teo:"<p>El cerebro emocional se entrena. Ayuda a tu hijo a identificar sensaciones corporales.</p><p>💡 <em>'¿Dónde sientes el enojo? ¿En las manos? ¿En la panza?'</em></p>" },
+  19: { t:"🏠 Día 24: Rutinas que funcionan", obj:"Estructura sin rigidez", teo:"<p>Las rutinas dan seguridad. Usa tablas visuales, avisos previos, flexibilidad controlada.</p><p>💡 <em>Los niños se sienten seguros cuando saben qué sigue.</em></p>" },
+  20: { t:"🧠 Día 25: Crianza y neurodivergencia", obj:"Adaptar técnicas a cada niño", teo:"<p>No todos los niños responden igual. Ajusta tiempos, estímulos y expectativas.</p><p>💡 <em>Lo que funciona para uno, no funciona para otro. Observa a tu hijo.</em></p>" },
+  21: { t:"👪 Día 26: Co-parentalidad", obj:"Consistencia entre adultos cuidadores", teo:"<p>Acuerdos escritos, comunicación respetuosa, no desautorizar al otro frente al niño.</p><p>💡 <em>La peor herencia es la inconsistencia entre adultos.</em></p>" },
+  22: { t:"🛡️ Día 27: Prevención de abuso", obj:"Enseñar límites corporales", teo:"<p>Cuerpo es mío, secretos buenos y malos, buscar ayuda si algo incomoda.</p><p>💡 <em>Enseña: 'tu cuerpo es tuyo y nadie puede tocarlo sin tu permiso'.</em></p>" },
+  23: { t:"🎭 Día 28: Crianza en divorcio", obj:"Proteger el vínculo", teo:"<p>No hables mal del otro progenitor. El niño no es mensajero ni aliado.</p><p>💡 <em>Tu hijo no necesita elegir entre amarte a ti o al otro.</em></p>" },
+  24: { t:"🌱 Día 29: Adolescencia respetuosa", obj:"Autonomía con guía", teo:"<p>Negociar, no imponer. Escucha más de lo que hablas. Elige tus batallas.</p><p>💡 <em>La adolescencia es el ensayo para la adultez. Permite errores pequeños.</em></p>" },
+  25: { t:"🧘 Día 30: Mindfulness parental", obj:"Respirar antes de reaccionar", teo:"<p>La presencia plena reduce los conflictos. Entrena la pausa.</p><p>💡 <em>Tu calma es su ancla. Si tú te desregulas, él también.</em></p>" },
+  26: { t:"📖 Día 31: Cuentos como herramienta", obj:"Usar narrativa para enseñar", teo:"<p>Los cuentos permiten abordar temas difíciles sin confrontación directa.</p><p>💡 <em>Un cuento puede enseñar lo que una regaño no logra.</em></p>" },
+  27: { t:"🔁 Día 32: Reparación después del error", obj:"Pedir disculpas sinceras", teo:"<p>El error bien reparado fortalece el vínculo más que el acierto.</p><p>💡 <em>Pedir disculpas a tu hijo no te quita autoridad, te da respeto.</em></p>" },
+  28: { t:"🏅 Día 33: Maestría parental", obj:"Celebrar el recorrido", teo:"<p>No hay padres perfectos, sí conscientes. Cada día cuenta.</p><p>🎉 <strong>¡FELICIDADES! Has completado los 28 días.</strong> Eres un ejemplo de compromiso.</p>" }
+};
+
+for (let i = 16; i <= 33; i++) {
   let tema = temasDias[i];
   lecciones[i] = {
     titulo: tema.t,
@@ -690,63 +895,500 @@ function mostrarModal(titulo, contenido) {
 
 // --- FUNCIONES DE PANTALLAS ---
 
+// =====================================================
+// SIMULADOR CON 15+ ESCENARIOS POR EDAD
+// =====================================================
+
 function mostrarSimulador() {
-  const escenarios = [
-    { texto: "Tu hijo de 4 años tira un juguete porque está enojado. ¿Qué haces?",
-      opciones: ["Le grito que recoja el juguete", "Me agacho y digo: 'Veo que estás enojado. Los juguetes no se tiran. ¿Recogemos juntos?'", "Lo ignoro", "Le quito todos los juguetes"],
-      correcta: 1, feedback: "Excelente. Validaste la emoción y pusiste un límite sin gritar." },
-    { texto: "Tu hijo de 7 años no quiere hacer la tarea. ¿Qué haces?",
-      opciones: ["Le castigo sin tele", "Le ayudo a organizar la tarea en partes pequeñas", "Hago la tarea por él", "Le digo que es un irresponsable"],
-      correcta: 1, feedback: "Correcto. Dividir en partes enseña autonomía." },
-    { texto: "Tu hijo adolescente llega tarde sin avisar. ¿Qué haces?",
-      opciones: ["Le grito y le prohíbo salir", "Le pregunto qué pasó y acordamos juntos una consecuencia", "No le digo nada", "Le reviso el celular"],
-      correcta: 1, feedback: "Perfecto. Escuchar y acordar juntos fortalece la responsabilidad." }
-  ];
-  
+  // Banco de escenarios organizados por edad
+  const escenariosPorEdad = {
+    "0-2 años": [
+      {
+        texto: "Tu bebé de 1 año llora desconsoladamente en medio de la noche. Lleva 20 minutos llorando. ¿Qué haces?",
+        opciones: [
+          "Lo dejo llorar para que aprenda a dormir solo",
+          "Me levanto, lo tomo en brazos, le hablo suave y lo acuno",
+          "Le doy biberón aunque no tenga hambre para que se calle",
+          "Me enojo y le grito que se calle"
+        ],
+        correcta: 1,
+        feedback: "Excelente. Los bebés no lloran para manipular, lloran porque necesitan algo o compañía. El contacto y la voz suave regulan su sistema nervioso."
+      },
+      {
+        texto: "Tu bebé de 6 meses se despierta cada 2 horas. Estás agotado/a. ¿Qué haces?",
+        opciones: [
+          "Lo dejo llorar hasta que se duerma solo (método 'dejar llorar')",
+          "Busco ayuda para turnarme con otro adulto, reviso si tiene hambre/frío/calor o pañal sucio",
+          "Le doy medicamento para que duerma",
+          "Me frustro y lo ignoro"
+        ],
+        correcta: 1,
+        feedback: "Correcto. Las interrupciones del sueño son normales en bebés. Buscar ayuda y revisar necesidades básicas es lo más respetuoso."
+      }
+    ],
+    "3-5 años": [
+      {
+        texto: "Tu hijo de 4 años tiene una RABIETA en el supermercado porque no le compras un chocolate. Grita y se tira al suelo. ¿Qué haces?",
+        opciones: [
+          "Le compro el chocolate para que se calle (para evitar la vergüenza)",
+          "Lo tomo en brazos, salgo del supermercado, me siento con él afuera, respiro y valido su emoción: 'Veo que estás muy enojado. Está bien. No te compraré el chocolate hoy. Cuando te calmes, podemos volver.'",
+          "Lo dejo tirado en el suelo y me voy",
+          "Le grito más fuerte que deje de hacer berrinche"
+        ],
+        correcta: 1,
+        feedback: "Excelente. Salir del lugar, validar la emoción sin ceder al chantaje, y acompañar la rabieta es la técnica más efectiva a largo plazo."
+      },
+      {
+        texto: "Tu hijo de 3 años NO QUIERE IR AL BAÑO. Tiene accidentes frecuentes. ¿Qué haces?",
+        opciones: [
+          "Lo castigo cada vez que se hace pipí encima",
+          "Lo comparo con su primo que ya no usa pañal",
+          "Le quito el pañal de golpe y lo siento en el baño cada 30 minutos sin preguntarle, con calma y ofreciendo premios pequeños cuando lo logra",
+          "Me rindo y espero a que él solo quiera"
+        ],
+        correcta: 2,
+        feedback: "Correcto. El control de esfínteres no se fuerza. Rutinas suaves, paciencia, premios pequeños y nunca castigar los accidentes es la clave."
+      },
+      {
+        texto: "Tu hijo de 5 años PELEA CON OTRO NIÑO en el parque por un juguete. ¿Qué haces?",
+        opciones: [
+          "Le grito '¡suelta eso ahora!' y lo retiro castigado",
+          "Me acerco, me arrodillo, separo suavemente y digo: 'Veo que los dos quieren el mismo juguete. ¿Cómo podemos resolverlo? ¿Primero uno y luego el otro? ¿O buscan otro juguete?'",
+          "Le digo 'eres un niño malo' y me voy",
+          "Lo dejo que se peleen, que aprendan solos"
+        ],
+        correcta: 1,
+        feedback: "Perfecto. Mediar, no juzgar. Ayudarles a encontrar soluciones pacíficas les enseña habilidades sociales."
+      },
+      {
+        texto: "Tu hijo de 3 años NO QUIERE VESTIRSE por la mañana. Tienes prisa por llevarlo al jardín. ¿Qué haces?",
+        opciones: [
+          "Lo visto a la fuerza mientras grita",
+          "Le das dos opciones: '¿quieres ponerte la camisa roja o la azul? ¿Te vistes tú o te ayudo?' y usas un temporizador: 'a ver si terminamos antes de que suene el timer'",
+          "Le dices 'si no te vistes, te quedas en casa solo'",
+          "Te rindes y lo llevas en pijama"
+        ],
+        correcta: 1,
+        feedback: "Excelente. Las opciones limitadas y el juego (timer) convierten una lucha en algo manejable."
+      }
+    ],
+    "6-12 años": [
+      {
+        texto: "Tu hijo de 8 años NO QUIERE HACER LA TAREA. Se queja, se distrae, llora. ¿Qué haces?",
+        opciones: [
+          "Le grito 'si no haces la tarea, te quito la tablet para siempre'",
+          "Le sientas contigo, divides la tarea en partes pequeñas, usas un timer ('15 minutos de tarea, luego 5 de descanso') y ofreces ayuda sin hacerla por él",
+          "Hago la tarea yo para que termine rápido",
+          "Lo dejo, total la maestra le pondrá mala nota"
+        ],
+        correcta: 1,
+        feedback: "Correcto. Dividir en partes, timer y acompañamiento sin sobreproteger es la técnica más efectiva."
+      },
+      {
+        texto: "Tu hija de 10 años VIENE TRISTE DE LA ESCUELA, no quiere hablar. ¿Qué haces?",
+        opciones: [
+          "La presiono: 'dime qué pasó ahora mismo'",
+          "Le digo 'no estés triste, seguro no es para tanto'",
+          "Le ofrezco un abrazo, le digo 'cuando quieras hablar, estoy aquí', y la acompaño en silencio si quiere",
+          "La castigo por estar de mal humor"
+        ],
+        correcta: 2,
+        feedback: "Perfecto. A veces solo necesitan compañía, no palabras. Respetar su timing es validación."
+      }
+    ],
+    "Adolescentes 13+": [
+      {
+        texto: "Tu hijo adolescente de 15 años LLEGA TARDE A CASA SIN AVISAR (1 hora tarde). ¿Qué haces?",
+        opciones: [
+          "Le grito, le quitas el celular por un mes y le prohíbes salir",
+          "Lo esperas en la puerta, respiras, y dices: 'Me preocupé mucho. Hablemos mañana con calma sobre qué pasó y cómo evitar que vuelva a pasar. También hablaremos de una consecuencia lógica juntos.'",
+          "No le dices nada, total ya llegó",
+          "Revisas su celular para ver con quién estaba"
+        ],
+        correcta: 1,
+        feedback: "Excelente. Abordar con calma, expresar preocupación no enojo, y acordar consecuencias juntos fortalece la responsabilidad."
+      },
+      {
+        texto: "Tu hijo adolescente te dice: '¡LOS ODIO! ¡NO ME ENTIENDEN!' y se encierra en su habitación. ¿Qué haces?",
+        opciones: [
+          "Le gritas '¡con esa boca no me hablas!' y le quitas la puerta",
+          "Le dices en voz baja desde afuera: 'Veo que estás muy enojado. Está bien. Cuando quieras hablar, voy a estar aquí para escucharte sin juzgar.' Luego le dejas espacio.",
+          "Rompes la puerta para enfrentarlo",
+          "Lo ignoras completamente por días"
+        ],
+        correcta: 1,
+        feedback: "Correcto. Validar su emoción, ofrecer puente sin forzar, y respetar su necesidad de espacio construye confianza."
+      }
+    ],
+    "Situaciones especiales": [
+      {
+        texto: "Tu hijo te miente sobre haber hecho la tarea. Descubres la mentira. ¿Qué haces?",
+        opciones: [
+          "Lo castigas sin salir un mes por mentiroso",
+          "Dices: 'Sé que no hiciste la tarea. Me preocupa que hayas mentido. ¿Qué te impidió hacerla? ¿Necesitas ayuda? Hablemos de cómo podemos solucionarlo. Las mentiras no ayudan, pero entiendo que a veces da miedo decir la verdad. Estoy aquí para ayudarte.'",
+          "Le dices 'eres un mentiroso' y no le vuelves a creer nada",
+          "Lo ignoras, ya pasará"
+        ],
+        correcta: 1,
+        feedback: "Excelente. Abordar la mentira sin humillar, buscar la causa y mantener la conexión es más efectivo que el castigo."
+      },
+      {
+        texto: "Tu hijo rompe algo valioso sin querer (un jarrón). ¿Qué haces?",
+        opciones: [
+          "Le gritas '¡siempre rompes todo!' y lo castigas",
+          "Respiras, dices: 'Fue un accidente. Lo importante es que no te lastimaste. ¿Cómo podemos limpiar esto juntos? La próxima podemos jugar en un espacio más seguro.'",
+          "Le dices 'no importa' y limpias tú solo",
+          "Le cobras el valor del jarrón de su mesada"
+        ],
+        correcta: 1,
+        feedback: "Perfecto. Separar el accidente de la intención, enseñar a reparar sin humillar, y aprender juntos."
+      },
+      {
+        texto: "Tu hijo no quiere compartir un juguete con su hermana. ¿Qué haces?",
+        opciones: [
+          "Le quitas el juguete y se lo das a la hermana",
+          "Le dices 'entiendo que no quieras compartir ahora. Es tu turno. ¿Cuántos minutos más quieres jugar antes de darle su turno a tu hermana?' (usas timer)",
+          "Le dices 'eres egoísta' y lo castigas",
+          "Ignoras la pelea"
+        ],
+        correcta: 1,
+        feedback: "Excelente. Enseñar turnos, no compartir forzado. Respetar la posesión y negociar tiempos."
+      }
+    ]
+  };
+
+  let edadSeleccionada = "3-5 años";
   let escenarioActual = 0;
   let puntajeSimulador = 0;
-  
+  let escenarios = [...escenariosPorEdad["3-5 años"]];
+
+  function cargarSelectorEdad() {
+    return `
+      <div style="margin:1rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <button class="btn-edad-simulador" data-edad="0-2 años" style="background:${edadSeleccionada==='0-2 años'?'#4CAF50':'#ddd'}; border:none; padding:8px 16px; border-radius:20px; cursor:pointer;">🍼 0-2 años</button>
+        <button class="btn-edad-simulador" data-edad="3-5 años" style="background:${edadSeleccionada==='3-5 años'?'#4CAF50':'#ddd'}; border:none; padding:8px 16px; border-radius:20px; cursor:pointer;">🧸 3-5 años</button>
+        <button class="btn-edad-simulador" data-edad="6-12 años" style="background:${edadSeleccionada==='6-12 años'?'#4CAF50':'#ddd'}; border:none; padding:8px 16px; border-radius:20px; cursor:pointer;">📚 6-12 años</button>
+        <button class="btn-edad-simulador" data-edad="Adolescentes 13+" style="background:${edadSeleccionada==='Adolescentes 13+'?'#4CAF50':'#ddd'}; border:none; padding:8px 16px; border-radius:20px; cursor:pointer;">🌟 Adolescentes 13+</button>
+        <button class="btn-edad-simulador" data-edad="Situaciones especiales" style="background:${edadSeleccionada==='Situaciones especiales'?'#4CAF50':'#ddd'}; border:none; padding:8px 16px; border-radius:20px; cursor:pointer;">🌀 Especiales</button>
+      </div>
+    `;
+  }
+
   function cargarEscenario() {
     if (escenarioActual >= escenarios.length) {
+      const porcentaje = Math.round((puntajeSimulador / escenarios.length) * 100);
+      let mensajeFinal = "";
+      if (porcentaje >= 80) mensajeFinal = "🏆 ¡Excelente! Eres un experto en crianza respetuosa. Sigue así.";
+      else if (porcentaje >= 60) mensajeFinal = "🌟 ¡Muy bien! Vas por buen camino. Sigue practicando.";
+      else mensajeFinal = "🌱 Estás aprendiendo. Cada error es oportunidad para crecer. ¡Sigue adelante!";
+      
       document.getElementById("simuladorContainer").innerHTML = `
-        <div style="text-align:center"><h3>🎉 Simulador completado</h3>
-        <p>Tu puntaje: ${puntajeSimulador}/${escenarios.length}</p>
-        <button id="reiniciarSimulador" class="juego">🔄 Volver a intentar</button></div>`;
-      const reiniciar = document.getElementById("reiniciarSimulador");
-      if (reiniciar) reiniciar.onclick = () => { escenarioActual = 0; puntajeSimulador = 0; cargarEscenario(); };
+        <div style="text-align:center">
+          <h3>🎉 Simulador completado</h3>
+          <p>Tu puntaje: ${puntajeSimulador}/${escenarios.length} (${porcentaje}%)</p>
+          <p>${mensajeFinal}</p>
+          <button id="reiniciarSimulador" class="juego">🔄 Volver a intentar</button>
+          <button id="cambiarEdadSimulador" class="juego">📅 Cambiar edad</button>
+        </div>
+      `;
+      document.getElementById("reiniciarSimulador")?.addEventListener("click", () => {
+        escenarioActual = 0;
+        puntajeSimulador = 0;
+        cargarEscenario();
+      });
+      document.getElementById("cambiarEdadSimulador")?.addEventListener("click", () => {
+        mostrarSimulador();
+      });
       return;
     }
+    
     const esc = escenarios[escenarioActual];
     let opcionesHtml = "";
     esc.opciones.forEach((op, idx) => {
-      opcionesHtml += `<button class="opcion-simulador" data-idx="${idx}" style="display:block; width:100%; margin:8px 0; padding:12px; background:#f0f0f0; border:none; border-radius:12px; text-align:left; cursor:pointer;">${String.fromCharCode(65+idx)}. ${op}</button>`;
+      const letra = String.fromCharCode(65+idx);
+      opcionesHtml += `
+        <button class="opcion-simulador" data-idx="${idx}" style="display:block; width:100%; margin:8px 0; padding:12px; background:#f0f0f0; border:none; border-radius:12px; text-align:left; cursor:pointer; transition:0.2s;">
+          <strong>${letra}.</strong> ${op}
+        </button>
+      `;
     });
-    document.getElementById("simuladorContainer").innerHTML = `<h3>📋 Escenario ${escenarioActual+1}/${escenarios.length}</h3><p><strong>${esc.texto}</strong></p><div id="opcionesSimulador">${opcionesHtml}</div><div id="feedbackSimulador"></div>`;
+    
+    document.getElementById("simuladorContainer").innerHTML = `
+      <div class="progreso-simulador" style="margin:1rem 0;">
+        <div style="background:#e0e0e0; border-radius:1rem; height:8px;">
+          <div style="background:#4CAF50; width:${(escenarioActual/escenarios.length)*100}%; height:8px; border-radius:1rem;"></div>
+        </div>
+        <p style="margin-top:0.5rem;">Escenario ${escenarioActual+1} de ${escenarios.length} | Puntaje: ${puntajeSimulador}</p>
+      </div>
+      <h3>📋 ${esc.texto}</h3>
+      <div id="opcionesSimulador">${opcionesHtml}</div>
+      <div id="feedbackSimulador" style="margin-top:1rem;"></div>
+    `;
+    
     document.querySelectorAll(".opcion-simulador").forEach(btn => {
       btn.onclick = () => {
         const idx = parseInt(btn.getAttribute("data-idx"));
         const feedbackDiv = document.getElementById("feedbackSimulador");
-        if (idx === esc.correcta) { puntajeSimulador++; feedbackDiv.innerHTML = `<div style="background:#c8e6c9; padding:12px; border-radius:12px;">✅ Correcto! ${esc.feedback}</div>`; }
-        else { feedbackDiv.innerHTML = `<div style="background:#ffcdd2; padding:12px; border-radius:12px;">❌ Incorrecto. La mejor opción era: ${esc.opciones[esc.correcta]}</div>`; }
-        setTimeout(() => { escenarioActual++; cargarEscenario(); }, 2000);
+        const todasOpciones = document.querySelectorAll(".opcion-simulador");
+        todasOpciones.forEach(opt => opt.style.opacity = "0.6");
+        
+        if (idx === esc.correcta) {
+          puntajeSimulador++;
+          feedbackDiv.innerHTML = `<div style="background:#c8e6c9; padding:15px; border-radius:12px;">✅ <strong>¡Correcto!</strong> ${esc.feedback}</div>`;
+          btn.style.background = "#4CAF50";
+          btn.style.color = "white";
+        } else {
+          feedbackDiv.innerHTML = `<div style="background:#ffcdd2; padding:15px; border-radius:12px;">❌ <strong>Incorrecto.</strong> La mejor opción era: <br><br> <strong>${String.fromCharCode(65+esc.correcta)}.</strong> ${esc.opciones[esc.correcta]}<br><br>${esc.feedback}</div>`;
+          btn.style.background = "#f44336";
+          btn.style.color = "white";
+          document.querySelectorAll(".opcion-simulador")[esc.correcta].style.background = "#4CAF50";
+          document.querySelectorAll(".opcion-simulador")[esc.correcta].style.color = "white";
+        }
+        
+        setTimeout(() => {
+          escenarioActual++;
+          cargarEscenario();
+        }, 3500);
       };
     });
   }
-  const simuladorHtml = `<div class="card"><h2>🎭 Simulador de escenarios</h2><p>Practica cómo reaccionarías en situaciones reales.</p><div id="simuladorContainer"></div><button id="cerrarSimulador" class="juego">Cerrar</button></div>`;
+
+  function cambiarEdad(edad) {
+    edadSeleccionada = edad;
+    escenarios = [...escenariosPorEdad[edad]];
+    escenarioActual = 0;
+    puntajeSimulador = 0;
+    const edadSelectorHtml = cargarSelectorEdad();
+    document.getElementById("selectorEdadContainer").innerHTML = edadSelectorHtml;
+    cargarEscenario();
+    
+    document.querySelectorAll(".btn-edad-simulador").forEach(btn => {
+      btn.onclick = (e) => {
+        cambiarEdad(btn.getAttribute("data-edad"));
+      };
+    });
+  }
+
+  const simuladorHtml = `
+    <div class="card" style="max-width:800px; margin:0 auto;">
+      <h2>🎭 Simulador de escenarios de crianza</h2>
+      <p>Elige la edad de tu hijo/a y practica cómo responder en situaciones reales.</p>
+      <div id="selectorEdadContainer">${cargarSelectorEdad()}</div>
+      <div id="simuladorContainer" style="min-height:400px;"></div>
+      <button id="cerrarSimulador" class="juego" style="margin-top:1rem;">✖️ Cerrar simulador</button>
+    </div>
+  `;
+  
   document.getElementById("contenido").innerHTML = simuladorHtml;
   cargarEscenario();
+  
+  document.querySelectorAll(".btn-edad-simulador").forEach(btn => {
+    btn.onclick = (e) => {
+      cambiarEdad(btn.getAttribute("data-edad"));
+    };
+  });
+  
   document.getElementById("cerrarSimulador").onclick = mostrarPantallaPrincipal;
 }
 
+// =====================================================
+// GRÁFICOS DE PROGRESO VISUALES
+// =====================================================
+
 function mostrarEstadisticas() {
   const completados = cursoEstado.completados.length;
-  const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-  let topDias = Object.entries(cursoEstado.estadisticas.diasMasProductivos).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([dia,count]) => `${diasSemana[parseInt(dia)]}: ${count} días`);
-  const html = `<div class="card"><h2>📊 Tus estadísticas</h2><div class="grid-2"><div class="card"><h3>📅 Progreso</h3><p>✅ Completados: ${completados}/28</p><p>🔥 Racha: ${cursoEstado.racha} días</p><p>🏅 Medallas: ${cursoEstado.medallas.length}</p></div><div class="card"><h3>📈 Días más productivos</h3><ul>${topDias.map(d=>`<li>${d}</li>`).join('')}</ul></div><div class="card"><h3>🏆 Medallas</h3><ul>${cursoEstado.medallas.map(m=>`<li>🏅 ${m.replace(/_/g,' ')}</li>`).join('')}</ul></div></div><button id="volverEstadisticas" class="juego">Volver</button></div>`;
+  const diasSemana = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+  const completadosPorModulo = [0, 0, 0, 0];
+  
+  // Calcular completados por módulo
+  for (let dia = 1; dia <= 28; dia++) {
+    const modulo = Math.floor((dia - 1) / 7);
+    if (cursoEstado.completados.includes(dia)) {
+      completadosPorModulo[modulo]++;
+    }
+  }
+  
+  // Preparar datos para gráfico de barras
+  let barrasModulos = "";
+  const nombresModulos = ["Fundamentos", "Habilidades prácticas", "Situaciones específicas", "Maestría parental"];
+  const coloresModulos = ["#4CAF50", "#2196F3", "#FF9800", "#9C27B0"];
+  
+  for (let i = 0; i < 4; i++) {
+    const porcentaje = (completadosPorModulo[i] / 7) * 100;
+    barrasModulos += `
+      <div style="margin:1rem 0;">
+        <div style="display:flex; justify-content:space-between;">
+          <span><strong>${nombresModulos[i]}</strong></span>
+          <span>${completadosPorModulo[i]}/7 días</span>
+        </div>
+        <div style="background:#e0e0e0; border-radius:1rem; height:20px; overflow:hidden;">
+          <div style="background:${coloresModulos[i]}; width:${porcentaje}%; height:20px; border-radius:1rem; transition:width 0.5s;"></div>
+        </div>
+      </div>
+    `;
+  }
+  
+  // Datos para gráfico de racha (últimos 7 días)
+  const ultimaSemana = [];
+  const hoy = new Date();
+  for (let i = 6; i >= 0; i--) {
+    const fecha = new Date();
+    fecha.setDate(hoy.getDate() - i);
+    const fechaStr = fecha.toDateString();
+    const completo = cursoEstado.ultimoCompletado === fechaStr;
+    ultimaSemana.push({ dia: diasSemana[fecha.getDay()], completo });
+  }
+  
+  let rachaHtml = `<div style="display:flex; justify-content:space-around; margin:1rem 0; gap:0.5rem;">`;
+  ultimaSemana.forEach(dia => {
+    rachaHtml += `
+      <div style="text-align:center; flex:1;">
+        <div style="background:${dia.completo ? '#4CAF50' : '#e0e0e0'}; width:100%; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:${dia.completo ? 'white' : '#666'};">
+          ${dia.completo ? '✅' : '◻️'}
+        </div>
+        <div>${dia.dia}</div>
+      </div>
+    `;
+  });
+  rachaHtml += `</div>`;
+  
+  // Gráfico circular de progreso total
+  const totalCompletados = completados;
+  const porcentajeTotal = (totalCompletados / 28) * 100;
+  const angulo = (porcentajeTotal / 100) * 360;
+  
+  const graficoCircular = `
+    <div style="position:relative; width:150px; height:150px; margin:0 auto;">
+      <svg viewBox="0 0 36 36" style="width:100%; height:100%; transform:rotate(-90deg);">
+        <circle cx="18" cy="18" r="15.9" fill="none" stroke="#e0e0e0" stroke-width="3"></circle>
+        <circle cx="18" cy="18" r="15.9" fill="none" stroke="#4CAF50" stroke-width="3" stroke-dasharray="${porcentajeTotal * 1.39} 100" stroke-dashoffset="0" style="transition:stroke-dasharray 0.5s;"></circle>
+      </svg>
+      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;">
+        <span style="font-size:1.8rem; font-weight:bold;">${Math.round(porcentajeTotal)}%</span>
+      </div>
+    </div>
+  `;
+  
+  // Medallas con iconos
+  const medallasInfo = {
+    primer_paso: { nombre: "Primer paso", icono: "🌱", desc: "Completaste tu primer día" },
+    semana_completa: { nombre: "Semana completa", icono: "📆", desc: "7 días de compromiso" },
+    racha_7: { nombre: "Racha de fuego", icono: "🔥", desc: "7 días seguidos" },
+    mitad_camino: { nombre: "Mitad de camino", icono: "🧗", desc: "14 días completados" },
+    cerca_meta: { nombre: "Cerca de la meta", icono: "🎯", desc: "21 días completados" },
+    maestro_parental: { nombre: "Maestro parental", icono: "🏆", desc: "Curso completado" }
+  };
+  
+  let medallasHtml = `<div style="display:flex; flex-wrap:wrap; gap:1rem; margin:1rem 0;">`;
+  for (let [id, info] of Object.entries(medallasInfo)) {
+    const tiene = cursoEstado.medallas.includes(id);
+    medallasHtml += `
+      <div style="text-align:center; flex:1; min-width:80px; opacity:${tiene ? 1 : 0.3}; filter:${tiene ? 'none' : 'grayscale(1)'};">
+        <div style="font-size:2rem;">${info.icono}</div>
+        <div><strong>${info.nombre}</strong></div>
+        <div style="font-size:0.7rem; color:#666;">${info.desc}</div>
+        ${!tiene ? '<div style="font-size:0.7rem;">🔒 Bloqueada</div>' : '✅'}
+      </div>
+    `;
+  }
+  medallasHtml += `</div>`;
+  
+  // Días más productivos (gráfico de barras horizontal)
+  let productivosHtml = "";
+  const productivos = cursoEstado.estadisticas.diasMasProductivos;
+  const maxCount = Math.max(...Object.values(productivos), 1);
+  for (let i = 0; i < 7; i++) {
+    const count = productivos[i] || 0;
+    const porcentaje = (count / maxCount) * 100;
+    productivosHtml += `
+      <div style="display:flex; align-items:center; margin:0.5rem 0;">
+        <div style="width:80px;">${diasSemana[i]}</div>
+        <div style="flex:1; background:#e0e0e0; border-radius:1rem; height:24px; overflow:hidden;">
+          <div style="background:#4CAF50; width:${porcentaje}%; height:24px; border-radius:1rem; display:flex; align-items:center; justify-content:flex-end; padding-right:8px; color:white; font-size:0.8rem;">
+            ${count > 0 ? count : ''}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
+  const html = `
+    <div class="card">
+      <h2>📊 Tus estadísticas de progreso</h2>
+      
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1rem 0;">
+        <div class="card" style="text-align:center;">
+          <h3>🎯 Progreso total</h3>
+          ${graficoCircular}
+          <p>${totalCompletados} de 28 días completados</p>
+          <p>🔥 Racha actual: <strong>${cursoEstado.racha}</strong> días</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <h3>📅 Racha semanal</h3>
+          ${rachaHtml}
+          <p style="margin-top:0.5rem;">✅ Días completados esta semana</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>📚 Progreso por módulo</h3>
+        ${barrasModulos}
+      </div>
+      
+      <div class="card">
+        <h3>🏅 Medallas desbloqueadas</h3>
+        ${medallasHtml}
+      </div>
+      
+      <div class="card">
+        <h3>📈 Días más productivos</h3>
+        <p>¿Qué días de la semana practicas más?</p>
+        ${productivosHtml}
+      </div>
+      
+      ${cursoEstado.diaActual > 28 ? `
+      <div class="card" style="text-align:center; background:#e8f5e9;">
+        <h3>🎉 ¡FELICIDADES!</h3>
+        <p>Completaste los 28 días del curso.</p>
+        <button id="descargarCertificadoFinal" class="juego">🎓 Descargar certificado</button>
+      </div>
+      ` : ''}
+      
+      <button id="volverEstadisticas" class="juego">🗺️ Volver al curso</button>
+    </div>
+  `;
+  
   document.getElementById("contenido").innerHTML = html;
+  
   document.getElementById("volverEstadisticas").onclick = mostrarPantallaPrincipal;
-}
+  
+  const certBtn = document.getElementById("descargarCertificadoFinal");
+  if (certBtn) {
+    certBtn.onclick = () => {
+      const certificado = `
+🎓 CERTIFICADO DE FINALIZACIÓN DEL CURSO DE CRIANZA CONSciente 🎓
 
+Fecha: ${new Date().toLocaleDateString()}
+
+Completaste los 28 días del curso.
+Racha final: ${cursoEstado.racha} días
+Estilo de crianza: ${cursoEstado.estiloCrianza || "No evaluado"}
+Medallas obtenidas: ${cursoEstado.medallas.length}/6
+
+¡Felicidades! Eres un ejemplo de compromiso con la crianza consciente.
+
+"La crianza consciente no es perfección, es presencia. Tú lo lograste."
+
+Firma: ___________________
+      `;
+      const blob = new Blob([certificado], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "certificado_crianza_28_dias.txt";
+      link.click();
+    };
+  }
+}
 function mostrarPlanificador() {
   const html = `<div class="card"><h2>📅 Planificador semanal</h2><div id="planificadorContenido"><table style="width:100%; border-collapse:collapse;"><tr style="background:#4CAF50;color:white"><th>Día</th><th>Mi objetivo</th><th>✅</th><tr>${["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"].map((d,idx)=>`<tr><td>${d}</td><td><input type="text" id="plan${idx}" placeholder="Ej: Validar una emoción" style="width:100%; padding:8px;"></td><td><input type="checkbox"></td></tr>`).join('')}</table><button id="imprimirPlanificador" class="juego" style="margin-top:1rem;">🖨️ Imprimir</button><button id="guardarPlanificador" class="juego">💾 Guardar</button></div><button id="volverPlanificador" class="juego">Volver</button></div>`;
   document.getElementById("contenido").innerHTML = html;
