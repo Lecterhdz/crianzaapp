@@ -26,128 +26,394 @@ let cursoEstado = {
 let licencia = {
   tipo: "demo",     // "demo" o "pro"
   activa: true,
-  expira: null
+  expira: null,
+  email: null
 };
+let usuarioActual = null;
+let usuarioId = null;
 
-// Cargar licencia desde localStorage
-function cargarLicencia() {
-  const guardado = localStorage.getItem("licenciaCrianza");
-  if (guardado) {
-    licencia = JSON.parse(guardado);
-    // Verificar si expiró (solo aplica a pro)
-    if (licencia.tipo === "pro" && licencia.expira && new Date() > new Date(licencia.expira)) {
-      licencia.tipo = "demo";
-      licencia.activa = false;
-      guardarLicencia();
-      mostrarNotificacion("⏰ Tu licencia Pro ha expirado. Renueva para seguir accediendo a los 33 días.");
+// =====================================================
+// FUNCIONES DE AUTH Y LICENCIA CON FIREBASE
+// =====================================================
+
+// Registrar/Login con email
+async function registrarConEmail(email, password) {
+  try {
+    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+    usuarioActual = userCredential.user;
+    usuarioId = usuarioActual.uid;
+    localStorage.setItem("usuarioEmail", email);
+    await cargarLicenciaFirebase();
+    return { exito: true, mensaje: "✅ Cuenta creada. ¡Bienvenido!" };
+  } catch (error) {
+    if (error.code === 'auth/email-already-in-use') {
+      return { exito: false, mensaje: "❌ Este email ya está registrado. Inicia sesión." };
     }
+    return { exito: false, mensaje: `❌ Error: ${error.message}` };
   }
 }
 
-function guardarLicencia() {
-  localStorage.setItem("licenciaCrianza", JSON.stringify(licencia));
+async function iniciarSesion(email, password) {
+  try {
+    const userCredential = await auth.signInWithEmailAndPassword(email, password);
+    usuarioActual = userCredential.user;
+    usuarioId = usuarioActual.uid;
+    localStorage.setItem("usuarioEmail", email);
+    await cargarLicenciaFirebase();
+    await cargarProgresoFirebase();
+    return { exito: true, mensaje: "✅ Sesión iniciada. Cargando tu progreso..." };
+  } catch (error) {
+    return { exito: false, mensaje: "❌ Email o contraseña incorrectos." };
+  }
+}
+
+function cerrarSesion() {
+  auth.signOut();
+  usuarioActual = null;
+  usuarioId = null;
+  localStorage.removeItem("usuarioEmail");
+  // Resetear a demo
+  licencia = { tipo: "demo", activa: true, expira: null, email: null };
+  cursoEstado = {
+    diaActual: 1, completados: [], estiloCrianza: null, racha: 0,
+    ultimoCompletado: null, medallas: [], estadisticas: {}
+  };
+  guardarProgresoLocal();
+  mostrarPantallaPrincipal();
+}
+
+// Cargar licencia desde Firebase
+async function cargarLicenciaFirebase() {
+  if (!usuarioId) return;
+  
+  try {
+    const docRef = db.collection("licencias").doc(usuarioId);
+    const doc = await docRef.get();
+    
+    if (doc.exists) {
+      const data = doc.data();
+      licencia.tipo = data.tipo || "demo";
+      licencia.expira = data.expira;
+      licencia.email = data.email;
+      
+      if (licencia.tipo === "pro" && new Date(licencia.expira) < new Date()) {
+        licencia.tipo = "demo";
+        await docRef.update({ tipo: "demo", activa: false });
+      }
+    }
+    guardarLicenciaLocal();
+  } catch (error) {
+    console.log("Error cargando licencia:", error);
+  }
+}
+
+function guardarLicenciaLocal() {
+  localStorage.setItem("licenciaCrianza", JSON.stringify({
+    tipo: licencia.tipo,
+    expira: licencia.expira,
+    email: licencia.email
+  }));
+}
+
+// Cargar progreso desde Firebase
+async function cargarProgresoFirebase() {
+  if (!usuarioId) return;
+  
+  try {
+    const docRef = db.collection("progreso").doc(usuarioId);
+    const doc = await docRef.get();
+    
+    if (doc.exists) {
+      const data = doc.data();
+      cursoEstado = {
+        ...cursoEstado,
+        ...data,
+        completados: data.completados || [],
+        medallas: data.medallas || []
+      };
+      guardarProgresoLocal();
+    }
+  } catch (error) {
+    console.log("Error cargando progreso:", error);
+  }
+}
+
+// Guardar progreso en Firebase
+async function guardarProgresoFirebase() {
+  if (!usuarioId) return;
+  
+  try {
+    await db.collection("progreso").doc(usuarioId).set({
+      diaActual: cursoEstado.diaActual,
+      completados: cursoEstado.completados,
+      estiloCrianza: cursoEstado.estiloCrianza,
+      racha: cursoEstado.racha,
+      ultimoCompletado: cursoEstado.ultimoCompletado,
+      medallas: cursoEstado.medallas,
+      estadisticas: cursoEstado.estadisticas,
+      actualizado: new Date().toISOString()
+    });
+  } catch (error) {
+    console.log("Error guardando progreso:", error);
+  }
+}
+
+function guardarProgresoLocal() {
+  localStorage.setItem("cursoCrianzaProfesional", JSON.stringify(cursoEstado));
+}
+
+function cargarProgresoLocal() {
+  const guardado = localStorage.getItem("cursoCrianzaProfesional");
+  if (guardado) {
+    const temp = JSON.parse(guardado);
+    cursoEstado = { ...cursoEstado, ...temp };
+  }
+}
+
+// Activar licencia con código
+async function activarProConCodigo(codigo, email) {
+  if (!usuarioId) {
+    return { valido: false, mensaje: "❌ Debes iniciar sesión primero. Usa el botón 'Iniciar sesión'." };
+  }
+  
+  try {
+    const codigosRef = db.collection("codigos");
+    const query = await codigosRef.where("codigo", "==", codigo).get();
+    
+    if (query.empty) {
+      return { valido: false, mensaje: "❌ Código inválido" };
+    }
+    
+    const docCodigo = query.docs[0];
+    const codigoData = docCodigo.data();
+    
+    if (codigoData.usado) {
+      return { valido: false, mensaje: "❌ Este código ya fue usado" };
+    }
+    
+    if (new Date(codigoData.expira) < new Date()) {
+      return { valido: false, mensaje: "❌ Código expirado" };
+    }
+    
+    await docCodigo.ref.update({
+      usado: true,
+      usadoPor: usuarioId,
+      usadoEn: new Date().toISOString(),
+      email: email
+    });
+    
+    const expira = new Date();
+    expira.setFullYear(expira.getFullYear() + 1);
+    
+    await db.collection("licencias").doc(usuarioId).set({
+      tipo: "pro",
+      expira: expira.toISOString(),
+      email: email,
+      activadoEn: new Date().toISOString()
+    });
+    
+    licencia.tipo = "pro";
+    licencia.expira = expira.toISOString();
+    licencia.email = email;
+    guardarLicenciaLocal();
+    
+    return { valido: true, mensaje: "✅ ¡Licencia Pro activada! Funciona en todos tus dispositivos." };
+    
+  } catch (error) {
+    console.error(error);
+    return { valido: false, mensaje: "❌ Error al activar. Intenta de nuevo." };
+  }
 }
 
 // Verificar si el usuario puede acceder a un día específico
 function puedeAccederADia(dia) {
-  if (licencia.tipo === "pro") return true;  // Pro: todos los días
-  if (dia <= 7) return true;                 // Demo: solo días 1-7
-  return false;                               // Demo: días 8-33 bloqueados
+  if (licencia.tipo === "pro") return true;
+  return dia <= 7;
 }
 
-// Activar licencia Pro (válida por 365 días)
-function activarLicenciaPro() {
-  licencia.tipo = "pro";
-  licencia.activa = true;
-  const expira = new Date();
-  expira.setFullYear(expira.getFullYear() + 1);  // +1 año
-  licencia.expira = expira.toISOString();
-  guardarLicencia();
-  return true;
-}
 
-// Mostrar pantalla de oferta Pro
-function mostrarOfertaPro() {
+// =====================================================
+// PANTALLA DE INICIO DE SESIÓN / REGISTRO
+// =====================================================
+
+function mostrarPantallaLogin() {
   const html = `
-    <div class="card" style="text-align:center;">
-      <span style="font-size:3rem;">🌟</span>
-      <h2>Desbloquea el curso completo</h2>
-      <p>Accede a los <strong>33 días</strong> del curso de crianza consciente</p>
+    <div class="card" style="max-width:400px; margin:0 auto; text-align:center;">
+      <h2>🔐 Iniciar sesión</h2>
+      <p>Para guardar tu progreso en la nube y usar la app en todos tus dispositivos</p>
       
-      <div style="background:linear-gradient(135deg, #4CAF50, #2e7d32); color:white; padding:1.5rem; border-radius:1.5rem; margin:1.5rem 0;">
-        <span style="font-size:0.9rem; opacity:0.9;">SOLO</span>
-        <div style="font-size:3rem; font-weight:bold;">$59</div>
-        <div>pesos mexicanos</div>
-        <div style="font-size:0.8rem; opacity:0.8;">/ año</div>
-        <div style="margin-top:0.5rem;">≈ $4.92 MXN / mes</div>
+      <div style="margin:1rem 0;">
+        <input type="email" id="loginEmail" placeholder="Correo electrónico" style="width:100%; padding:0.8rem; margin:0.5rem 0; border-radius:1rem; border:1px solid #ccc;">
+        <input type="password" id="loginPassword" placeholder="Contraseña" style="width:100%; padding:0.8rem; margin:0.5rem 0; border-radius:1rem; border:1px solid #ccc;">
+        <button id="btnIniciarSesion" class="juego" style="width:100%;">🔓 Iniciar sesión</button>
+        <button id="btnRegistrarse" class="juego" style="width:100%; margin-top:0.5rem; background:#2196F3;">📝 Registrarse (gratis)</button>
       </div>
       
-      <div style="text-align:left; max-width:300px; margin:0 auto;">
-        <p><strong>✅ Incluye:</strong></p>
-        <ul style="list-style:none; padding-left:0;">
-          <li>✓ 33 días de contenido completo</li>
-          <li>✓ Simulador con 15+ escenarios</li>
-          <li>✓ Medallas desbloqueables</li>
-          <li>✓ Certificado de finalización</li>
-          <li>✓ Biblioteca de recursos completa</li>
-          <li>✓ Acceso por 1 año</li>
-          <li>✓ Actualizaciones gratuitas</li>
-        </ul>
-      </div>
+      <p style="font-size:0.8rem; color:#666;">También puedes usar el modo demo sin registro (tu progreso no se guardará entre dispositivos)</p>
+      <button id="btnModoDemo" class="juego" style="background:#ccc;">🎮 Continuar sin registro (demo)</button>
       
-      <button id="btnComprarPro" class="juego" style="background:#ff9800; font-size:1.2rem; padding:12px 24px; margin:1rem 0;">
-        💳 Comprar por $59 MXN
-      </button>
-      
-      <p style="font-size:0.7rem; color:#666;">Pago seguro vía Mercado Pago · Garantía de 7 días</p>
-      
-      <button id="btnVolverOferta" class="juego" style="background:#ccc;">Volver al curso demo</button>
+      <div id="mensajeLogin" style="margin-top:1rem;"></div>
     </div>
   `;
   
   document.getElementById("contenido").innerHTML = html;
   
-  document.getElementById("btnComprarPro")?.addEventListener("click", () => {
-    // Redirigir a Mercado Pago (página de pago)
-    // Por ahora simulamos la compra
-    if (confirm("✅ SIMULACIÓN DE PAGO\n\nEsto redirigirá a Mercado Pago para pagar $59 MXN.\n\n¿Deseas continuar con la simulación?")) {
-      // En producción: window.location.href = "https://link.mercadopago.com.mx/crianzapp";
-      activarLicenciaPro();
-      alert("🎉 ¡Felicidades! Licencia Pro activada.\n\nYa tienes acceso a los 33 días completos.\n\nRecarga la página para ver los cambios.");
-      mostrarPantallaPrincipal();
+  document.getElementById("btnIniciarSesion")?.addEventListener("click", async () => {
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+    const resultado = await iniciarSesion(email, password);
+    document.getElementById("mensajeLogin").innerHTML = resultado.mensaje;
+    if (resultado.exito) {
+      setTimeout(() => mostrarPantallaPrincipal(), 1500);
     }
   });
   
-  document.getElementById("btnVolverOferta")?.addEventListener("click", mostrarPantallaPrincipal);
+  document.getElementById("btnRegistrarse")?.addEventListener("click", async () => {
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+    if (!email || !password) {
+      document.getElementById("mensajeLogin").innerHTML = "❌ Ingresa email y contraseña";
+      return;
+    }
+    const resultado = await registrarConEmail(email, password);
+    document.getElementById("mensajeLogin").innerHTML = resultado.mensaje;
+    if (resultado.exito) {
+      setTimeout(() => mostrarPantallaPrincipal(), 1500);
+    }
+  });
+  
+  document.getElementById("btnModoDemo")?.addEventListener("click", () => {
+    usuarioId = "demo_" + Math.random().toString(36).substring(2, 8);
+    mostrarPantallaPrincipal();
+  });
 }
 
-// Mostrar banner de upgrade en modo demo
-function mostrarBannerDemo() {
-  if (licencia.tipo !== "pro") {
-    return `
-      <div class="card" style="background:linear-gradient(135deg, #fff3e0, #ffe0b2); border-left:4px solid #ff9800; margin-bottom:1rem;">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-          <div>
-            <span style="font-size:1.5rem;">🔓</span>
-            <strong>Modo Demo</strong> - Acceso gratuito a los primeros 7 días
-          </div>
-          <button id="btnUpgradePro" class="juego" style="background:#ff9800; padding:8px 16px;">⬆️ Pro por $59 MXN/año</button>
-        </div>
-        <p style="margin-top:0.5rem; font-size:0.8rem;">⭐ Desbloquea los 33 días completos + simulador + medallas + certificado</p>
-      </div>
-    `;
+// =====================================================
+// PANEL ADMIN (generar códigos)
+// =====================================================
+
+async function mostrarPanelAdmin() {
+  const clave = prompt("🔐 Contraseña de administrador:");
+  if (clave !== "admin123") {
+    alert("Acceso denegado");
+    mostrarPantallaPrincipal();
+    return;
   }
-  return `
-    <div class="card" style="background:#e8f5e9; border-left:4px solid #4CAF50;">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-        <div>
-          <span style="font-size:1.5rem;">✅</span>
-          <strong>Modo Pro activo</strong> - Tienes acceso a los 33 días completos
-        </div>
-        <div style="font-size:0.8rem;">Expira: ${new Date(licencia.expira).toLocaleDateString()}</div>
+  
+  const codigosSnapshot = await db.collection("codigos").get();
+  let listaCodigos = "";
+  codigosSnapshot.forEach(doc => {
+    const data = doc.data();
+    listaCodigos += `
+      <tr>
+        <td style="border:1px solid #ddd; padding:8px; font-family:monospace;">${data.codigo}</td>
+        <td style="border:1px solid #ddd; padding:8px;">${data.usado ? '✅ Usado' : '🟢 Disponible'}</td>
+        <td style="border:1px solid #ddd; padding:8px;">${data.usadoPor || '—'}</td>
+        <td style="border:1px solid #ddd; padding:8px;">${new Date(data.expira).toLocaleDateString()}</td>
+      </tr>
+    `;
+  });
+  
+  const html = `
+    <div class="card">
+      <h2>🔧 Panel Admin</h2>
+      <button id="btnGenerarCodigo" class="juego">➕ Generar código (1 año)</button>
+      <div style="margin-top:1rem; overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse;">
+          <tr style="background:#4CAF50; color:white;">
+            <th>Código</th><th>Estado</th><th>Usado por</th><th>Expira</th>
+          </tr>
+          ${listaCodigos || '<tr><td colspan="4">No hay códigos</td></tr>'}
+        </table>
       </div>
+      <button id="btnVolverAdmin" class="juego">Volver</button>
     </div>
   `;
+  
+  document.getElementById("contenido").innerHTML = html;
+  
+  document.getElementById("btnGenerarCodigo")?.addEventListener("click", async () => {
+    const codigo = "CRIANZA-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+    const expira = new Date();
+    expira.setFullYear(expira.getFullYear() + 1);
+    
+    await db.collection("codigos").doc(codigo).set({
+      codigo: codigo,
+      usado: false,
+      expira: expira.toISOString(),
+      creado: new Date().toISOString()
+    });
+    
+    alert(`✅ Código generado:\n\n${codigo}\n\nCópialo y envíalo al usuario.`);
+    mostrarPanelAdmin();
+  });
+  
+  document.getElementById("btnVolverAdmin")?.addEventListener("click", mostrarPantallaPrincipal);
+}
+
+// =====================================================
+// MOSTRAR OFERTA PRO CON LOGIN
+// =====================================================
+
+function mostrarOfertaPro() {
+  const html = `
+    <div class="card" style="text-align:center;">
+      <h2>🌟 Desbloquea el curso completo</h2>
+      <div style="background:linear-gradient(135deg,#4CAF50,#2e7d32); color:white; padding:1.5rem; border-radius:1.5rem;">
+        <div style="font-size:3rem; font-weight:bold;">$59 MXN</div>
+        <div>/ año</div>
+      </div>
+      
+      ${!usuarioId ? `
+        <div style="margin:1rem 0; padding:1rem; background:#fff3e0; border-radius:1rem;">
+          <p>🔐 Para activar tu licencia, primero inicia sesión o regístrate:</p>
+          <button id="btnIrLogin" class="juego">🔓 Iniciar sesión</button>
+        </div>
+      ` : `
+        <div style="margin:1.5rem 0;">
+          <h3>🔑 ¿Ya tienes un código?</h3>
+          <input type="text" id="codigoInput" placeholder="Ej: CRIANZA-ABCD1234" style="width:100%; max-width:300px;">
+          <input type="email" id="emailInput" placeholder="Tu correo" style="width:100%; max-width:300px; margin-top:0.5rem;">
+          <button id="btnActivarCodigo" class="juego" style="margin-top:0.5rem;">✅ Activar licencia</button>
+          <p id="mensajeCodigo" style="margin-top:0.5rem;"></p>
+        </div>
+      `}
+      
+      <div style="margin:1rem 0;">
+        <p><strong>¿No tienes código?</strong></p>
+        <button id="btnComprar" class="juego" style="background:#25D366;">📱 Contactar por WhatsApp</button>
+      </div>
+      
+      <button id="btnVolverOferta" class="juego">Volver al curso</button>
+    </div>
+  `;
+  
+  document.getElementById("contenido").innerHTML = html;
+  
+  document.getElementById("btnIrLogin")?.addEventListener("click", mostrarPantallaLogin);
+  
+  document.getElementById("btnActivarCodigo")?.addEventListener("click", async () => {
+    const codigo = document.getElementById("codigoInput").value.trim().toUpperCase();
+    const email = document.getElementById("emailInput").value.trim();
+    
+    if (!codigo || !email) {
+      document.getElementById("mensajeCodigo").innerHTML = "<span style='color:#f44336;'>❌ Ingresa código y email</span>";
+      return;
+    }
+    
+    const resultado = await activarProConCodigo(codigo, email);
+    document.getElementById("mensajeCodigo").innerHTML = `<span style='color:${resultado.valido ? '#4CAF50' : '#f44336'}'>${resultado.mensaje}</span>`;
+    
+    if (resultado.valido) {
+      setTimeout(() => mostrarPantallaPrincipal(), 2000);
+    }
+  });
+  
+  document.getElementById("btnComprar")?.addEventListener("click", () => {
+    window.open("https://wa.me/521234567890?text=Hola%2C%20quiero%20adquirir%20la%20licencia%20Pro%20del%20curso%20de%20crianza%20($59%20MXN)", "_blank");
+  });
+  
+  document.getElementById("btnVolverOferta")?.addEventListener("click", mostrarPantallaPrincipal);
 }
 // --- CONFIGURACIÓN ---
 let modoOscuro = localStorage.getItem("modoOscuro") === "true";
