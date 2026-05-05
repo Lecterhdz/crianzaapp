@@ -2940,7 +2940,6 @@ function mostrarPoliticasPrivacidad() {
       <h3>5. Tus derechos</h3>
       <p>Tienes derecho a:</p>
       <ul>
-        <li>🔍 Solicitar qué datos tenemos sobre ti.</li>
         <li>🗑️ Solicitar la eliminación de tus datos.</li>
         <li>✏️ Corregir información incorrecta.</li>
       </ul>
@@ -2955,8 +2954,7 @@ function mostrarPoliticasPrivacidad() {
       <h3>8. Contacto</h3>
       <p>Si tienes preguntas sobre esta política, contáctanos:</p>
       <ul>
-        <li>📧 Email: <strong>contacto@crianzaapp.com</strong></li>
-        <li>📱 WhatsApp: <strong>+52 1 234 567 8900</strong></li>
+        <li>📧 Email: <strong>hdzlecter@gmail.com</strong></li>
       </ul>
       
       <button id="volverDesdePoliticas" class="juego" style="margin-top:1rem;">🗺️ Volver al curso</button>
@@ -2990,9 +2988,9 @@ function mostrarTerminosCondiciones() {
       <h3>2. Licencias y pagos</h3>
       <ul>
         <li><strong>Modo Demo:</strong> Acceso gratuito a los primeros 7 días del curso.</li>
-        <li><strong>Licencia Pro:</strong> Acceso completo a los 33 días del curso por <strong>$59 MXN por año</strong>.</li>
+        <li><strong>Licencia Pro:</strong> Acceso completo a los 33 días del curso por <strong>$199 MXN por año</strong>.</li>
         <li>La licencia es <strong>personal e intransferible</strong>, pero puede usarse en múltiples dispositivos del mismo usuario.</li>
-        <li>Los pagos son no reembolsables, excepto en casos de error técnico comprobado.</li>
+        <li>Los pagos son no reembolsables.</li>
       </ul>
       
       <h3>3. Códigos de licencia</h3>
@@ -3019,11 +3017,11 @@ function mostrarTerminosCondiciones() {
       <h3>6. Limitación de responsabilidad</h3>
       <p><strong>Criar con Conciencia</strong> es una herramienta educativa, no sustituye el consejo de un profesional de la salud mental o pediatría. Los resultados pueden variar según cada familia.</p>
       
-      <h3>7. Cancelación y reembolsos</h3>
+      <h3>7. Cancelación</h3>
       <ul>
         <li>Puedes cancelar tu suscripción en cualquier momento.</li>
         <li>No se realizan reembolsos por tiempo no utilizado.</li>
-        <li>Si experimentas problemas técnicos, contáctanos dentro de los primeros 7 días para evaluar un reembolso.</li>
+        <li>Si experimentas problemas técnicos, contáctanos dentro de los primeros 7 días para resolverlos.</li>
       </ul>
       
       <h3>8. Modificaciones</h3>
@@ -3032,8 +3030,7 @@ function mostrarTerminosCondiciones() {
       <h3>9. Contacto</h3>
       <p>Para cualquier consulta sobre estos términos:</p>
       <ul>
-        <li>📧 Email: <strong>contacto@crianzaapp.com</strong></li>
-        <li>📱 WhatsApp: <strong>+52 1 234 567 8900</strong></li>
+        <li>📧 Email: <strong>hdzlecter@gmail.com</strong></li>
       </ul>
       
       <h3>10. Legislación aplicable</h3>
