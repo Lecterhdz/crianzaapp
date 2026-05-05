@@ -264,9 +264,9 @@ function mostrarOfertaPro() {
         <div style="position:absolute; top:-10px; right:0; background:#ff9800; color:#333; padding:4px 12px; border-radius:20px; font-size:0.7rem; font-weight:bold;">
           🔥 70% DESCUENTO
         </div>
-        <div style="font-size:0.8rem; text-decoration:line-through; opacity:0.7;">$197 MXN</div>
+        <div style="font-size:0.8rem; text-decoration:line-through; opacity:0.7;">$199 MXN</div>
         <div style="font-size:3rem; font-weight:bold;">$59</div>
-        <div>pesos mexicanos / año</div>
+        <div>MXN / año</div>
         <div style="font-size:0.7rem; margin-top:0.5rem;">⚡ Precio especial. En julio 2026 sube a $197</div>
       </div>
       
