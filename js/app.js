@@ -320,7 +320,11 @@ function mostrarOfertaPro() {
   document.getElementById("btnVolverOferta")?.addEventListener("click", mostrarPantallaPrincipal);
 }
 
-// Activar licencia usando SOLO email + código (sin contraseña)
+// =====================================================
+// SISTEMA DE LICENCIA SIMPLIFICADO - UNA SOLA VARIABLE
+// =====================================================
+
+// Activar licencia usando email + código
 async function activarLicenciaPorEmail(codigo, email) {
   if (!email || !codigo) {
     return { valido: false, mensaje: "❌ Ingresa email y código" };
@@ -331,7 +335,7 @@ async function activarLicenciaPorEmail(codigo, email) {
   }
   
   try {
-    // Buscar código en Firestore (colección "codigos")
+    // Buscar código en Firestore
     const codigosRef = db.collection("codigos");
     const query = await codigosRef.where("codigo", "==", codigo.toUpperCase()).get();
     
@@ -368,20 +372,15 @@ async function activarLicenciaPorEmail(codigo, email) {
       email: email
     };
     
-    // Guardar en localStorage (para este dispositivo)
-    localStorage.setItem("licenciaCrianza", JSON.stringify({
+    // ✅ UNIFICADO: Solo usamos "emailPro" para todo
+    localStorage.setItem("emailPro", email);
+    localStorage.setItem("licenciaPro", JSON.stringify({
       tipo: licencia.tipo,
       expira: licencia.expira,
       email: licencia.email
     }));
-    localStorage.setItem("emailLicencia", email);
-
     
-    // Después de activar, guarda el email en localStorage
-    localStorage.setItem("emailActivo", email);
-    localStorage.setItem("licenciaActiva", "true");
-    
-    // Guardar en Firestore (para sincronizar entre dispositivos)
+    // Guardar en Firestore
     await db.collection("licencias").doc(email).set({
       tipo: "pro",
       expira: expira.toISOString(),
@@ -390,7 +389,7 @@ async function activarLicenciaPorEmail(codigo, email) {
       codigoUsado: codigo.toUpperCase()
     });
     
-    return { valido: true, mensaje: "✅ ¡Licencia Pro activada! Usa el mismo email en otros dispositivos." };
+    return { valido: true, mensaje: "✅ ¡Licencia Pro activada! Puedes cerrar y volver a entrar sin código." };
     
   } catch (error) {
     console.error("Error activando licencia:", error);
@@ -398,8 +397,15 @@ async function activarLicenciaPorEmail(codigo, email) {
   }
 }
 
-async function recuperarLicenciaPorEmail(email) {
-  if (!email) return false;
+// Recuperar licencia automáticamente (se llama al iniciar la app)
+async function recuperarLicenciaAutomatica() {
+  // ✅ Buscar el email guardado con la variable UNIFICADA
+  const email = localStorage.getItem("emailPro");
+  
+  if (!email) {
+    console.log("📧 No hay email guardado, modo demo");
+    return false;
+  }
   
   try {
     const docRef = db.collection("licencias").doc(email);
@@ -414,52 +420,26 @@ async function recuperarLicenciaPorEmail(email) {
           expira: data.expira,
           email: email
         };
-        localStorage.setItem("licenciaCrianza", JSON.stringify({
+        // ✅ Actualizar localStorage (por si acaso)
+        localStorage.setItem("licenciaPro", JSON.stringify({
           tipo: licencia.tipo,
           expira: licencia.expira,
           email: licencia.email
         }));
-        localStorage.setItem("emailLicencia", email);
+        console.log("✅ Licencia Pro recuperada para:", email);
         return true;
+      } else {
+        console.log("⚠️ Licencia expirada para:", email);
+        localStorage.removeItem("emailPro");
+        localStorage.removeItem("licenciaPro");
       }
+    } else {
+      console.log("📧 No se encontró licencia para:", email);
     }
   } catch (error) {
     console.log("Error recuperando licencia:", error);
   }
   return false;
-}
-
-// Cargar licencia desde Firestore usando el email guardado
-async function cargarLicenciaPorEmail() {
-  const emailGuardado = localStorage.getItem("emailLicenciaActiva");
-  
-  if (!emailGuardado) return;
-  
-  try {
-    const docRef = db.collection("licencias").doc(emailGuardado);
-    const doc = await docRef.get();
-    
-    if (doc.exists) {
-      const data = doc.data();
-      licencia.tipo = data.tipo || "demo";
-      licencia.expira = data.expira;
-      licencia.email = data.email;
-      
-      if (licencia.tipo === "pro" && new Date(licencia.expira) < new Date()) {
-        licencia.tipo = "demo";
-        localStorage.removeItem("emailLicenciaActiva");
-      } else if (licencia.tipo === "pro") {
-        // Sincronizar con localStorage
-        localStorage.setItem("licenciaCrianza", JSON.stringify({
-          tipo: licencia.tipo,
-          expira: licencia.expira,
-          email: licencia.email
-        }));
-      }
-    }
-  } catch (error) {
-    console.log("Error cargando licencia:", error);
-  }
 }
 
 // --- CONFIGURACIÓN ---
@@ -3217,74 +3197,33 @@ async function iniciarApp() {
     return;
   }
   
-  // PASO 1: Verificar si hay un email activo guardado
-  const emailActivo = localStorage.getItem("emailActivo");
+  // ✅ Recuperar licencia automáticamente
+  await recuperarLicenciaAutomatica();
   
-  // PASO 2: Si hay email activo, recuperar licencia desde Firestore
-  if (emailActivo) {
-    try {
-      const docRef = db.collection("licencias").doc(emailActivo);
-      const doc = await docRef.get();
-      
-      if (doc.exists) {
-        const data = doc.data();
-        if (data.tipo === "pro" && new Date(data.expira) > new Date()) {
-          // Licencia válida encontrada
-          licencia = {
-            tipo: "pro",
-            activa: true,
-            expira: data.expira,
-            email: emailActivo
-          };
-          // Guardar en localStorage para rápido acceso
-          localStorage.setItem("licenciaCrianza", JSON.stringify({
-            tipo: licencia.tipo,
-            expira: licencia.expira,
-            email: licencia.email
-          }));
-          console.log("✅ Licencia Pro recuperada automáticamente para:", emailActivo);
-        } else if (data.tipo === "pro" && new Date(data.expira) <= new Date()) {
-          // Licencia expirada
-          console.log("⚠️ Licencia expirada para:", emailActivo);
-          licencia.tipo = "demo";
-          localStorage.removeItem("emailActivo");
-          localStorage.removeItem("licenciaCrianza");
-        }
-      } else {
-        // No hay documento de licencia para este email
-        console.log("📧 No se encontró licencia para:", emailActivo);
-        licencia.tipo = "demo";
-      }
-    } catch (error) {
-      console.log("Error recuperando licencia:", error);
-      licencia.tipo = "demo";
-    }
-  }
-  
-  // PASO 3: Si no hay email activo, intentar cargar licencia desde localStorage (backup)
+  // Si no hay licencia Pro, intentar cargar desde backup
   if (licencia.tipo !== "pro") {
-    const licenciaGuardada = localStorage.getItem("licenciaCrianza");
+    const licenciaGuardada = localStorage.getItem("licenciaPro");
     if (licenciaGuardada) {
       const temp = JSON.parse(licenciaGuardada);
-      licencia.tipo = temp.tipo || "demo";
-      licencia.expira = temp.expira;
-      licencia.email = temp.email;
-      
-      if (licencia.tipo === "pro" && licencia.expira && new Date(licencia.expira) < new Date()) {
-        licencia.tipo = "demo";
-        localStorage.removeItem("licenciaCrianza");
-        localStorage.removeItem("emailActivo");
+      if (temp.tipo === "pro" && (!temp.expira || new Date(temp.expira) > new Date())) {
+        licencia.tipo = "pro";
+        licencia.expira = temp.expira;
+        licencia.email = temp.email;
+      } else {
+        // Backup expirado o inválido
+        localStorage.removeItem("licenciaPro");
+        localStorage.removeItem("emailPro");
       }
     }
   }
   
-  // PASO 4: Cargar progreso del curso
+  // Cargar progreso del curso
   cargarProgreso();
   
-  // PASO 5: Mostrar pantalla principal
+  // Mostrar pantalla principal
   mostrarPantallaPrincipal();
   
-  // PASO 6: Configurar navegación
+  // Navegación
   document.querySelectorAll(".tab-btn").forEach(btn => {
     btn.onclick = () => {
       document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
