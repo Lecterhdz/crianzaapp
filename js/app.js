@@ -402,7 +402,7 @@ function mostrarOfertaPro() {
       return;
     }
     
-    const resultado = await activarLicenciaPorEmail(codigo, email);
+    const resultado = activarLicenciaProLocal(codigo, email);
     mensajeDiv.innerHTML = `<span style='color:${resultado.valido ? '#4CAF50' : '#f44336'}'>${resultado.mensaje}</span>`;
     
     if (resultado.valido) {
