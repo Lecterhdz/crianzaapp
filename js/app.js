@@ -3099,11 +3099,46 @@ function activarProPrueba() {
   location.reload();
 }
 
-function iniciarApp() {
-  cargarLicencia();  // Cargar estado de licencia
-  cargarProgreso();
-  mostrarPantallaPrincipal();
+// =====================================================
+// INICIALIZACIÓN CORREGIDA
+// =====================================================
+
+async function iniciarApp() {
+  // Verificar admin (sin necesidad de cargarLicencia)
+  if (window.location.search.includes("admin=true")) {
+    mostrarPanelAdmin();
+    return;
+  }
   
+  // Verificar si hay usuario guardado
+  const emailGuardado = localStorage.getItem("usuarioEmail");
+  
+  if (emailGuardado && !usuarioId) {
+    // Usuario ya inició sesión antes, esperamos que Firebase lo recupere
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        usuarioActual = user;
+        usuarioId = user.uid;
+        await cargarLicenciaFirebase();
+        await cargarProgresoFirebase();
+        mostrarPantallaPrincipal();
+      } else {
+        // No hay sesión activa, cargar progreso local y modo demo
+        cargarProgresoLocal();
+        // Inicializar licencia demo por defecto
+        licencia = { tipo: "demo", activa: true, expira: null, email: null };
+        mostrarPantallaPrincipal();
+      }
+    });
+  } else {
+    // Modo demo sin usuario
+    cargarProgresoLocal();
+    // Inicializar licencia demo por defecto
+    licencia = { tipo: "demo", activa: true, expira: null, email: null };
+    mostrarPantallaPrincipal();
+  }
+  
+  // Navegación
   document.querySelectorAll(".tab-btn").forEach(btn => {
     btn.onclick = () => {
       document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
@@ -3114,6 +3149,28 @@ function iniciarApp() {
       else if (tab === "recursos") mostrarRecursos();
     };
   });
+}
+
+// Asegurar que cargarProgresoLocal existe
+function cargarProgresoLocal() {
+  const guardado = localStorage.getItem("cursoCrianzaProfesional");
+  if (guardado) {
+    const temp = JSON.parse(guardado);
+    cursoEstado = {
+      diaActual: temp.diaActual || 1,
+      completados: temp.completados || [],
+      estiloCrianza: temp.estiloCrianza || null,
+      racha: temp.racha || 0,
+      ultimoCompletado: temp.ultimoCompletado || null,
+      medallas: temp.medallas || [],
+      estadisticas: temp.estadisticas || { tiempoTotalMinutos: 0, ultimoAcceso: null, diasMasProductivos: {} }
+    };
+  }
+}
+
+// Asegurar que guardarProgresoLocal existe
+function guardarProgresoLocal() {
+  localStorage.setItem("cursoCrianzaProfesional", JSON.stringify(cursoEstado));
 }
 
 iniciarApp();
