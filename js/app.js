@@ -35,92 +35,55 @@ let usuarioId = null;
 // =====================================================
 // FUNCIONES DE AUTH Y LICENCIA CON FIREBASE
 // =====================================================
-
-// Registrar/Login con email
-async function registrarConEmail(email, password) {
-  try {
-    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-    usuarioActual = userCredential.user;
-    usuarioId = usuarioActual.uid;
-    localStorage.setItem("usuarioEmail", email);
-    await cargarLicenciaFirebase();
-    return { exito: true, mensaje: "✅ Cuenta creada. ¡Bienvenido!" };
-  } catch (error) {
-    if (error.code === 'auth/email-already-in-use') {
-      return { exito: false, mensaje: "❌ Este email ya está registrado. Inicia sesión." };
-    }
-    return { exito: false, mensaje: `❌ Error: ${error.message}` };
-  }
-}
-
-async function iniciarSesion(email, password) {
-  try {
-    const userCredential = await auth.signInWithEmailAndPassword(email, password);
-    usuarioActual = userCredential.user;
-    usuarioId = usuarioActual.uid;
-    localStorage.setItem("usuarioEmail", email);
-    await cargarLicenciaFirebase();
-    await cargarProgresoFirebase();
-    return { exito: true, mensaje: "✅ Sesión iniciada. Cargando tu progreso..." };
-  } catch (error) {
-    return { exito: false, mensaje: "❌ Email o contraseña incorrectos." };
-  }
-}
-
-function cerrarSesion() {
-  auth.signOut();
-  usuarioActual = null;
-  usuarioId = null;
-  localStorage.removeItem("usuarioEmail");
-  // Resetear a demo
-  licencia = { tipo: "demo", activa: true, expira: null, email: null };
-  cursoEstado = {
-    diaActual: 1, completados: [], estiloCrianza: null, racha: 0,
-    ultimoCompletado: null, medallas: [], estadisticas: {}
-  };
-  guardarProgresoLocal();
-  mostrarPantallaPrincipal();
-}
-
-// Cargar licencia desde Firebase
 async function cargarLicenciaFirebase() {
-  if (!usuarioId) return;
+  const email = localStorage.getItem("emailLicencia");
+  if (!email) return false;
   
   try {
-    const docRef = db.collection("licencias").doc(usuarioId);
+    const docRef = db.collection("licencias").doc(email);
     const doc = await docRef.get();
     
     if (doc.exists) {
       const data = doc.data();
-      licencia.tipo = data.tipo || "demo";
-      licencia.expira = data.expira;
-      licencia.email = data.email;
-      
-      if (licencia.tipo === "pro" && new Date(licencia.expira) < new Date()) {
-        licencia.tipo = "demo";
-        await docRef.update({ tipo: "demo", activa: false });
+      if (data.tipo === "pro" && new Date(data.expira) > new Date()) {
+        licencia.tipo = "pro";
+        licencia.expira = data.expira;
+        licencia.email = data.email;
+        guardarLicenciaLocal();
+        return true;
       }
     }
-    guardarLicenciaLocal();
   } catch (error) {
     console.log("Error cargando licencia:", error);
   }
+  return false;
 }
-
-function guardarLicenciaLocal() {
-  localStorage.setItem("licenciaCrianza", JSON.stringify({
-    tipo: licencia.tipo,
-    expira: licencia.expira,
-    email: licencia.email
-  }));
-}
-
-// Cargar progreso desde Firebase
-async function cargarProgresoFirebase() {
-  if (!usuarioId) return;
+async function guardarProgresoFirebase() {
+  const email = localStorage.getItem("emailLicencia");
+  if (!email || licencia.tipo !== "pro") return;
   
   try {
-    const docRef = db.collection("progreso").doc(usuarioId);
+    await db.collection("progreso").doc(email).set({
+      diaActual: cursoEstado.diaActual,
+      completados: cursoEstado.completados,
+      estiloCrianza: cursoEstado.estiloCrianza,
+      racha: cursoEstado.racha,
+      ultimoCompletado: cursoEstado.ultimoCompletado,
+      medallas: cursoEstado.medallas,
+      estadisticas: cursoEstado.estadisticas,
+      actualizado: new Date().toISOString()
+    });
+  } catch (error) {
+    console.log("Error guardando progreso:", error);
+  }
+}
+
+async function cargarProgresoFirebase() {
+  const email = localStorage.getItem("emailLicencia");
+  if (!email || licencia.tipo !== "pro") return;
+  
+  try {
+    const docRef = db.collection("progreso").doc(email);
     const doc = await docRef.get();
     
     if (doc.exists) {
@@ -138,25 +101,16 @@ async function cargarProgresoFirebase() {
   }
 }
 
-// Guardar progreso en Firebase
-async function guardarProgresoFirebase() {
-  if (!usuarioId) return;
-  
-  try {
-    await db.collection("progreso").doc(usuarioId).set({
-      diaActual: cursoEstado.diaActual,
-      completados: cursoEstado.completados,
-      estiloCrianza: cursoEstado.estiloCrianza,
-      racha: cursoEstado.racha,
-      ultimoCompletado: cursoEstado.ultimoCompletado,
-      medallas: cursoEstado.medallas,
-      estadisticas: cursoEstado.estadisticas,
-      actualizado: new Date().toISOString()
-    });
-  } catch (error) {
-    console.log("Error guardando progreso:", error);
-  }
+
+function guardarLicenciaLocal() {
+  localStorage.setItem("licenciaCrianza", JSON.stringify({
+    tipo: licencia.tipo,
+    expira: licencia.expira,
+    email: licencia.email
+  }));
+  if (licencia.email) localStorage.setItem("emailLicencia", licencia.email);
 }
+
 
 function guardarProgresoLocal() {
   localStorage.setItem("cursoCrianzaProfesional", JSON.stringify(cursoEstado));
@@ -231,62 +185,6 @@ function puedeAccederADia(dia) {
   return dia <= 7;
 }
 
-
-// =====================================================
-// PANTALLA DE INICIO DE SESIÓN / REGISTRO
-// =====================================================
-
-function mostrarPantallaLogin() {
-  const html = `
-    <div class="card" style="max-width:400px; margin:0 auto; text-align:center;">
-      <h2>🔐 Iniciar sesión</h2>
-      <p>Para guardar tu progreso en la nube y usar la app en todos tus dispositivos</p>
-      
-      <div style="margin:1rem 0;">
-        <input type="email" id="loginEmail" placeholder="Correo electrónico" style="width:100%; padding:0.8rem; margin:0.5rem 0; border-radius:1rem; border:1px solid #ccc;">
-        <input type="password" id="loginPassword" placeholder="Contraseña" style="width:100%; padding:0.8rem; margin:0.5rem 0; border-radius:1rem; border:1px solid #ccc;">
-        <button id="btnIniciarSesion" class="juego" style="width:100%;">🔓 Iniciar sesión</button>
-        <button id="btnRegistrarse" class="juego" style="width:100%; margin-top:0.5rem; background:#2196F3;">📝 Registrarse (gratis)</button>
-      </div>
-      
-      <p style="font-size:0.8rem; color:#666;">También puedes usar el modo demo sin registro (tu progreso no se guardará entre dispositivos)</p>
-      <button id="btnModoDemo" class="juego" style="background:#ccc;">🎮 Continuar sin registro (demo)</button>
-      
-      <div id="mensajeLogin" style="margin-top:1rem;"></div>
-    </div>
-  `;
-  
-  document.getElementById("contenido").innerHTML = html;
-  
-  document.getElementById("btnIniciarSesion")?.addEventListener("click", async () => {
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
-    const resultado = await iniciarSesion(email, password);
-    document.getElementById("mensajeLogin").innerHTML = resultado.mensaje;
-    if (resultado.exito) {
-      setTimeout(() => mostrarPantallaPrincipal(), 1500);
-    }
-  });
-  
-  document.getElementById("btnRegistrarse")?.addEventListener("click", async () => {
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
-    if (!email || !password) {
-      document.getElementById("mensajeLogin").innerHTML = "❌ Ingresa email y contraseña";
-      return;
-    }
-    const resultado = await registrarConEmail(email, password);
-    document.getElementById("mensajeLogin").innerHTML = resultado.mensaje;
-    if (resultado.exito) {
-      setTimeout(() => mostrarPantallaPrincipal(), 1500);
-    }
-  });
-  
-  document.getElementById("btnModoDemo")?.addEventListener("click", () => {
-    usuarioId = "demo_" + Math.random().toString(36).substring(2, 8);
-    mostrarPantallaPrincipal();
-  });
-}
 
 // =====================================================
 // PANEL ADMIN (generar códigos)
@@ -364,21 +262,20 @@ function mostrarOfertaPro() {
       
       <div style="background:linear-gradient(135deg, #4CAF50, #2e7d32); color:white; padding:1.5rem; border-radius:1.5rem; margin:1.5rem 0;">
         <div style="font-size:3rem; font-weight:bold;">$59</div>
-        <div>pesos mexicanos</div>
-        <div style="font-size:0.8rem;">/ año</div>
+        <div>pesos mexicanos / año</div>
       </div>
       
       <div style="margin:1.5rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
         <h3>🔑 Activar licencia Pro</h3>
-        <input type="email" id="emailLicencia" placeholder="Tu correo electrónico" style="width:100%; padding:0.8rem; border-radius:1rem; border:1px solid #ccc; margin-bottom:0.5rem;">
-        <input type="text" id="codigoLicencia" placeholder="Código de licencia (ej: PRO-2024)" style="width:100%; padding:0.8rem; border-radius:1rem; border:1px solid #ccc;">
+        <input type="email" id="emailLicenciaInput" placeholder="Tu correo electrónico" style="width:100%; padding:0.8rem; border-radius:1rem; border:1px solid #ccc; margin-bottom:0.5rem;">
+        <input type="text" id="codigoLicenciaInput" placeholder="Código de licencia" style="width:100%; padding:0.8rem; border-radius:1rem; border:1px solid #ccc;">
         <button id="btnActivarLicencia" class="juego" style="margin-top:0.5rem;">✅ Activar licencia</button>
         <p id="mensajeActivacion" style="margin-top:0.5rem;"></p>
       </div>
       
       <div style="margin:1rem 0;">
         <p><strong>¿No tienes código?</strong></p>
-        <button id="btnComprarWhatsApp" class="juego" style="background:#25D366;">📱 Contactar por WhatsApp</button>
+        <button id="btnComprarWP" class="juego" style="background:#25D366;">📱 Comprar por WhatsApp</button>
       </div>
       
       <button id="btnVolverOferta" class="juego" style="background:#ccc;">Volver al curso demo</button>
@@ -388,8 +285,8 @@ function mostrarOfertaPro() {
   document.getElementById("contenido").innerHTML = html;
   
   document.getElementById("btnActivarLicencia")?.addEventListener("click", async () => {
-    const email = document.getElementById("emailLicencia").value.trim();
-    const codigo = document.getElementById("codigoLicencia").value.trim().toUpperCase();
+    const email = document.getElementById("emailLicenciaInput").value.trim();
+    const codigo = document.getElementById("codigoLicenciaInput").value.trim().toUpperCase();
     const mensajeDiv = document.getElementById("mensajeActivacion");
     
     if (!email || !codigo) {
@@ -397,12 +294,8 @@ function mostrarOfertaPro() {
       return;
     }
     
-    if (!email.includes("@") || !email.includes(".")) {
-      mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ Ingresa un email válido</span>";
-      return;
-    }
-    
-    const resultado = activarLicenciaProLocal(codigo, email);
+    mensajeDiv.innerHTML = "<span style='color:#2196F3;'>⏳ Validando...</span>";
+    const resultado = await activarLicenciaPorEmail(codigo, email);
     mensajeDiv.innerHTML = `<span style='color:${resultado.valido ? '#4CAF50' : '#f44336'}'>${resultado.mensaje}</span>`;
     
     if (resultado.valido) {
@@ -410,8 +303,8 @@ function mostrarOfertaPro() {
     }
   });
   
-  document.getElementById("btnComprarWhatsApp")?.addEventListener("click", () => {
-    window.open("https://wa.me/521234567890?text=Hola%2C%20quiero%20adquirir%20la%20licencia%20Pro%20del%20curso%20de%20crianza%20($59%20MXN)", "_blank");
+  document.getElementById("btnComprarWP")?.addEventListener("click", () => {
+    window.open("https://wa.me/521234567890?text=Hola%2C%20quiero%20comprar%20licencia%20Pro%20($59%20MXN)", "_blank");
   });
   
   document.getElementById("btnVolverOferta")?.addEventListener("click", mostrarPantallaPrincipal);
@@ -419,10 +312,17 @@ function mostrarOfertaPro() {
 
 // Activar licencia usando SOLO email + código (sin contraseña)
 async function activarLicenciaPorEmail(codigo, email) {
+  if (!email || !codigo) {
+    return { valido: false, mensaje: "❌ Ingresa email y código" };
+  }
+  
+  if (!email.includes("@") || !email.includes(".")) {
+    return { valido: false, mensaje: "❌ Ingresa un email válido" };
+  }
+  
   try {
-    // Buscar el código en la colección "codigos"
     const codigosRef = db.collection("codigos");
-    const query = await codigosRef.where("codigo", "==", codigo).get();
+    const query = await codigosRef.where("codigo", "==", codigo.toUpperCase()).get();
     
     if (query.empty) {
       return { valido: false, mensaje: "❌ Código inválido" };
@@ -432,21 +332,19 @@ async function activarLicenciaPorEmail(codigo, email) {
     const codigoData = docCodigo.data();
     
     if (codigoData.usado) {
-      return { valido: false, mensaje: "❌ Este código ya fue usado por otro usuario" };
+      return { valido: false, mensaje: "❌ Este código ya fue usado" };
     }
     
     if (new Date(codigoData.expira) < new Date()) {
       return { valido: false, mensaje: "❌ Código expirado" };
     }
     
-    // Marcar código como usado
     await docCodigo.ref.update({
       usado: true,
       usadoPor: email,
       usadoEn: new Date().toISOString()
     });
     
-    // Guardar licencia activa en localStorage (para este dispositivo)
     const expira = new Date();
     expira.setFullYear(expira.getFullYear() + 1);
     
@@ -457,28 +355,25 @@ async function activarLicenciaPorEmail(codigo, email) {
       email: email
     };
     
-    // Guardar en localStorage
     localStorage.setItem("licenciaCrianza", JSON.stringify({
       tipo: licencia.tipo,
       expira: licencia.expira,
       email: licencia.email
     }));
+    localStorage.setItem("emailLicencia", email);
     
-    // También guardar en Firestore para sincronizar entre dispositivos
-    // Usamos el email como ID del documento (simplificado)
     await db.collection("licencias").doc(email).set({
       tipo: "pro",
       expira: expira.toISOString(),
       email: email,
-      activadoEn: new Date().toISOString(),
-      codigoUsado: codigo
+      activadoEn: new Date().toISOString()
     });
     
-    return { valido: true, mensaje: "✅ ¡Licencia Pro activada! Funciona en este dispositivo. En otros dispositivos, usa el mismo email y código." };
+    return { valido: true, mensaje: "✅ ¡Licencia Pro activada!" };
     
   } catch (error) {
-    console.error("Error activando licencia:", error);
-    return { valido: false, mensaje: "❌ Error al activar. Intenta de nuevo." };
+    console.error(error);
+    return { valido: false, mensaje: "❌ Error al activar" };
   }
 }
 
@@ -3264,39 +3159,34 @@ function activarLicenciaPro() {
 // =====================================================
 
 async function iniciarApp() {
-  // Verificar admin (sin necesidad de cargarLicencia)
+  // Verificar panel admin
   if (window.location.search.includes("admin=true")) {
     mostrarPanelAdmin();
     return;
   }
   
-  // Verificar si hay usuario guardado
-  const emailGuardado = localStorage.getItem("usuarioEmail");
-  
-  if (emailGuardado && !usuarioId) {
-    // Usuario ya inició sesión antes, esperamos que Firebase lo recupere
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        usuarioActual = user;
-        usuarioId = user.uid;
-        await cargarLicenciaFirebase();
-        await cargarProgresoFirebase();
-        mostrarPantallaPrincipal();
-      } else {
-        // No hay sesión activa, cargar progreso local y modo demo
-        cargarProgresoLocal();
-        // Inicializar licencia demo por defecto
-        licencia = { tipo: "demo", activa: true, expira: null, email: null };
-        mostrarPantallaPrincipal();
-      }
-    });
-  } else {
-    // Modo demo sin usuario
-    cargarProgresoLocal();
-    // Inicializar licencia demo por defecto
-    licencia = { tipo: "demo", activa: true, expira: null, email: null };
-    mostrarPantallaPrincipal();
+  // Cargar licencia desde localStorage
+  const licenciaGuardada = localStorage.getItem("licenciaCrianza");
+  if (licenciaGuardada) {
+    const temp = JSON.parse(licenciaGuardada);
+    licencia.tipo = temp.tipo || "demo";
+    licencia.expira = temp.expira;
+    licencia.email = temp.email;
+    
+    if (licencia.tipo === "pro" && licencia.expira && new Date(licencia.expira) < new Date()) {
+      licencia.tipo = "demo";
+      localStorage.removeItem("licenciaCrianza");
+      localStorage.removeItem("emailLicencia");
+    }
   }
+  
+  // Sincronizar con Firebase si hay email
+  if (licencia.email) {
+    await cargarLicenciaFirebase();
+  }
+  
+  cargarProgreso();
+  mostrarPantallaPrincipal();
   
   // Navegación
   document.querySelectorAll(".tab-btn").forEach(btn => {
