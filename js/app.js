@@ -32,6 +32,49 @@ let licencia = {
 let usuarioActual = null;
 let usuarioId = null;
 
+// Variables globales para el timer (colocar al inicio del archivo app.js)
+let tiempoRestante = {
+  horas: 23,
+  minutos: 59,
+  segundos: 59
+};
+let intervaloTimer;
+
+function iniciarTimer() {
+  if (intervaloTimer) clearInterval(intervaloTimer);
+  
+  intervaloTimer = setInterval(() => {
+    if (tiempoRestante.segundos > 0) {
+      tiempoRestante.segundos--;
+    } else if (tiempoRestante.minutos > 0) {
+      tiempoRestante.minutos--;
+      tiempoRestante.segundos = 59;
+    } else if (tiempoRestante.horas > 0) {
+      tiempoRestante.horas--;
+      tiempoRestante.minutos = 59;
+      tiempoRestante.segundos = 59;
+    } else {
+      clearInterval(intervaloTimer);
+      const timerDiv = document.getElementById("timerOferta");
+      if (timerDiv) timerDiv.innerHTML = "❤️ OFERTA FINALIZADA ❤️";
+    }
+    actualizarTimerDisplay();
+  }, 1000);
+}
+
+function actualizarTimerDisplay() {
+  const timerDiv = document.getElementById("timerOferta");
+  if (timerDiv) {
+    timerDiv.innerHTML = `
+      ⏰ OFERTA TERMINA EN:<br>
+      <span style="font-size:1.2rem; font-weight:bold;">
+        ${String(tiempoRestante.horas).padStart(2, '0')}h 
+        ${String(tiempoRestante.minutos).padStart(2, '0')}m 
+        ${String(tiempoRestante.segundos).padStart(2, '0')}s
+      </span>
+    `;
+  }
+}
 // =====================================================
 // FUNCIONES DE AUTH Y LICENCIA CON FIREBASE
 // =====================================================
@@ -270,6 +313,11 @@ function mostrarOfertaPro() {
         <div style="font-size:0.7rem; margin-top:0.5rem;">⚡ Precio especial. En julio 2026 sube a $199</div>
       </div>
       
+      <!-- TIMER DE URGENCIA -->
+      <div id="timerOferta" style="background:#ff9800; color:#333; padding:0.8rem; border-radius:0.8rem; margin:1rem auto; text-align:center; font-weight:bold; max-width:300px;">
+        ⏰ Cargando oferta...
+      </div     
+      
       <div style="margin:1.5rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
         <h3>🔑 Activar licencia Pro</h3>
         <input type="email" id="emailLicenciaInput" placeholder="Tu correo electrónico" style="width:100%; padding:0.8rem; border-radius:1rem; border:1px solid #ccc; margin-bottom:0.5rem;">
@@ -289,6 +337,9 @@ function mostrarOfertaPro() {
   `;
   
   document.getElementById("contenido").innerHTML = html;
+  
+  // Iniciar el timer
+  iniciarTimer();
   
   document.getElementById("btnActivarLicencia")?.addEventListener("click", async () => {
     const email = document.getElementById("emailLicenciaInput").value.trim();
