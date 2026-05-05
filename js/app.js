@@ -310,7 +310,7 @@ function mostrarOfertaPro() {
   });
   
   document.getElementById("btnComprarWP")?.addEventListener("click", () => {
-    const numeroWhatsApp = "521234567890";
+    const numeroWhatsApp = "524641177116";
     const mensaje = encodeURIComponent(
       "Hola, quiero comprar la licencia Pro del curso de crianza ($59 MXN - 70% descuento). Mi correo para activar la licencia es: [ESCRIBE AQUÍ TU CORREO]. ¿Me envías los datos para pagar? Gracias."
     );
