@@ -375,6 +375,11 @@ async function activarLicenciaPorEmail(codigo, email) {
       email: licencia.email
     }));
     localStorage.setItem("emailLicencia", email);
+
+    
+    // Después de activar, guarda el email en localStorage
+    localStorage.setItem("emailActivo", email);
+    localStorage.setItem("licenciaActiva", "true");
     
     // Guardar en Firestore (para sincronizar entre dispositivos)
     await db.collection("licencias").doc(email).set({
@@ -3202,7 +3207,7 @@ function activarLicenciaPro() {
 }
 
 // =====================================================
-// INICIALIZACIÓN CORREGIDA
+// INICIALIZACIÓN CORREGIDA - CON RECUPERACIÓN AUTOMÁTICA
 // =====================================================
 
 async function iniciarApp() {
@@ -3212,31 +3217,74 @@ async function iniciarApp() {
     return;
   }
   
-  // Cargar licencia desde localStorage
-  const licenciaGuardada = localStorage.getItem("licenciaCrianza");
-  if (licenciaGuardada) {
-    const temp = JSON.parse(licenciaGuardada);
-    licencia.tipo = temp.tipo || "demo";
-    licencia.expira = temp.expira;
-    licencia.email = temp.email;
-    
-    if (licencia.tipo === "pro" && licencia.expira && new Date(licencia.expira) < new Date()) {
+  // PASO 1: Verificar si hay un email activo guardado
+  const emailActivo = localStorage.getItem("emailActivo");
+  
+  // PASO 2: Si hay email activo, recuperar licencia desde Firestore
+  if (emailActivo) {
+    try {
+      const docRef = db.collection("licencias").doc(emailActivo);
+      const doc = await docRef.get();
+      
+      if (doc.exists) {
+        const data = doc.data();
+        if (data.tipo === "pro" && new Date(data.expira) > new Date()) {
+          // Licencia válida encontrada
+          licencia = {
+            tipo: "pro",
+            activa: true,
+            expira: data.expira,
+            email: emailActivo
+          };
+          // Guardar en localStorage para rápido acceso
+          localStorage.setItem("licenciaCrianza", JSON.stringify({
+            tipo: licencia.tipo,
+            expira: licencia.expira,
+            email: licencia.email
+          }));
+          console.log("✅ Licencia Pro recuperada automáticamente para:", emailActivo);
+        } else if (data.tipo === "pro" && new Date(data.expira) <= new Date()) {
+          // Licencia expirada
+          console.log("⚠️ Licencia expirada para:", emailActivo);
+          licencia.tipo = "demo";
+          localStorage.removeItem("emailActivo");
+          localStorage.removeItem("licenciaCrianza");
+        }
+      } else {
+        // No hay documento de licencia para este email
+        console.log("📧 No se encontró licencia para:", emailActivo);
+        licencia.tipo = "demo";
+      }
+    } catch (error) {
+      console.log("Error recuperando licencia:", error);
       licencia.tipo = "demo";
-      localStorage.removeItem("licenciaCrianza");
-      localStorage.removeItem("emailLicencia");
     }
   }
   
-  // Si hay email guardado pero la licencia no es pro, intentar recuperar
-  const emailGuardado = localStorage.getItem("emailLicencia");
-  if (emailGuardado && licencia.tipo !== "pro") {
-    await recuperarLicenciaPorEmail(emailGuardado);
+  // PASO 3: Si no hay email activo, intentar cargar licencia desde localStorage (backup)
+  if (licencia.tipo !== "pro") {
+    const licenciaGuardada = localStorage.getItem("licenciaCrianza");
+    if (licenciaGuardada) {
+      const temp = JSON.parse(licenciaGuardada);
+      licencia.tipo = temp.tipo || "demo";
+      licencia.expira = temp.expira;
+      licencia.email = temp.email;
+      
+      if (licencia.tipo === "pro" && licencia.expira && new Date(licencia.expira) < new Date()) {
+        licencia.tipo = "demo";
+        localStorage.removeItem("licenciaCrianza");
+        localStorage.removeItem("emailActivo");
+      }
+    }
   }
   
+  // PASO 4: Cargar progreso del curso
   cargarProgreso();
+  
+  // PASO 5: Mostrar pantalla principal
   mostrarPantallaPrincipal();
   
-  // Navegación
+  // PASO 6: Configurar navegación
   document.querySelectorAll(".tab-btn").forEach(btn => {
     btn.onclick = () => {
       document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
@@ -3249,8 +3297,11 @@ async function iniciarApp() {
   });
 }
 
-// Asegurar que cargarProgresoLocal existe
-function cargarProgresoLocal() {
+// =====================================================
+// FUNCIONES DE PROGRESO LOCAL
+// =====================================================
+
+function cargarProgreso() {
   const guardado = localStorage.getItem("cursoCrianzaProfesional");
   if (guardado) {
     const temp = JSON.parse(guardado);
@@ -3261,18 +3312,102 @@ function cargarProgresoLocal() {
       racha: temp.racha || 0,
       ultimoCompletado: temp.ultimoCompletado || null,
       medallas: temp.medallas || [],
-      estadisticas: temp.estadisticas || { tiempoTotalMinutos: 0, ultimoAcceso: null, diasMasProductivos: {} }
+      estadisticas: temp.estadisticas || { 
+        tiempoTotalMinutos: 0, 
+        ultimoAcceso: null, 
+        diasMasProductivos: {} 
+      }
     };
   }
 }
 
-// Asegurar que guardarProgresoLocal existe
-function guardarProgresoLocal() {
+function guardarProgreso() {
   localStorage.setItem("cursoCrianzaProfesional", JSON.stringify(cursoEstado));
+  guardarProgresoFirebase(); // Sincronizar con Firebase si está activo
 }
+
+// =====================================================
+// RECUPERAR LICENCIA POR EMAIL (para otros dispositivos)
+// =====================================================
+
+async function recuperarLicenciaPorEmail(email) {
+  if (!email) return false;
+  
+  try {
+    const docRef = db.collection("licencias").doc(email);
+    const doc = await docRef.get();
+    
+    if (doc.exists) {
+      const data = doc.data();
+      if (data.tipo === "pro" && new Date(data.expira) > new Date()) {
+        licencia = {
+          tipo: "pro",
+          activa: true,
+          expira: data.expira,
+          email: email
+        };
+        localStorage.setItem("licenciaCrianza", JSON.stringify({
+          tipo: licencia.tipo,
+          expira: licencia.expira,
+          email: licencia.email
+        }));
+        localStorage.setItem("emailActivo", email);
+        return true;
+      }
+    }
+  } catch (error) {
+    console.log("Error recuperando licencia:", error);
+  }
+  return false;
+}
+
+// =====================================================
+// FUNCIÓN PARA FORZAR RECUPERACIÓN MANUAL (botón opcional)
+// =====================================================
+
+async function forzarRecuperacionLicencia() {
+  const email = prompt("📧 Ingresa tu correo electrónico para recuperar tu licencia Pro:");
+  if (!email) return;
+  
+  const recuperado = await recuperarLicenciaPorEmail(email);
+  if (recuperado) {
+    alert("✅ ¡Licencia recuperada! La página se recargará.");
+    location.reload();
+  } else {
+    alert("❌ No encontramos una licencia activa para este email. ¿Ya la activaste antes?");
+  }
+}
+
+// =====================================================
+// GUARDAR PROGRESO EN FIRESTORE (opcional)
+// =====================================================
+
+async function guardarProgresoFirebase() {
+  const email = localStorage.getItem("emailActivo");
+  if (!email || licencia.tipo !== "pro") return;
+  
+  try {
+    await db.collection("progreso").doc(email).set({
+      diaActual: cursoEstado.diaActual,
+      completados: cursoEstado.completados,
+      estiloCrianza: cursoEstado.estiloCrianza,
+      racha: cursoEstado.racha,
+      ultimoCompletado: cursoEstado.ultimoCompletado,
+      medallas: cursoEstado.medallas,
+      estadisticas: cursoEstado.estadisticas,
+      actualizado: new Date().toISOString()
+    });
+  } catch (error) {
+    console.log("Error guardando progreso en Firebase:", error);
+  }
+}
+
+// =====================================================
+// INICIAR APLICACIÓN
+// =====================================================
 
 iniciarApp();
 
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js");
+  navigator.serviceWorker.register("sw.js").catch(console.log);
 }
