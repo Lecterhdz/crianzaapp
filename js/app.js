@@ -3047,6 +3047,7 @@ function mostrarPantallaPrincipal() {
           <button id="btnEstadisticas" class="juego" style="background:#2196F3;">📊 Stats</button>
           <button id="btnPlanificador" class="juego" style="background:#FF9800;">📅 Plan</button>
           <button id="btnConfig" class="juego" style="background:#607D8B;">⚙️ Config</button>
+          <button id="btnCerrarSesion" class="juego" style="background:#f44336;">🚪 Cerrar sesión</button>
         </div>
       </div>
       <div class="progreso-bar"><div class="progreso-fill" style="width:${progreso}%;">${progreso}%</div></div>
@@ -3149,7 +3150,11 @@ function mostrarPantallaPrincipal() {
     }
     mostrarPlanificador();
   });
-  
+  document.getElementById("btnCerrarSesion")?.addEventListener("click", () => {
+    localStorage.removeItem("emailPro");
+    localStorage.removeItem("licenciaPro");
+    location.reload();
+  });  
   document.getElementById("btnConfig")?.addEventListener("click", mostrarConfiguracion);
 }
 
