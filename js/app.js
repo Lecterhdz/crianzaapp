@@ -318,6 +318,7 @@ function mostrarOfertaPro() {
   });
   
   document.getElementById("btnVolverOferta")?.addEventListener("click", mostrarPantallaPrincipal);
+  asignarEventosNavegacion();
 }
 
 // =====================================================
@@ -2957,6 +2958,12 @@ function mostrarPantallaReingreso() {
   
   document.getElementById("contenido").innerHTML = html;
   
+  // =====================================================
+  // REASIGNAR EVENTOS DE NAVEGACIÓN CADA VEZ
+  // =====================================================
+  asignarEventosNavegacion();
+  
+  // Eventos específicos de esta pantalla
   document.getElementById("btnReingresar")?.addEventListener("click", async () => {
     const email = document.getElementById("emailReingreso").value.trim();
     const mensajeDiv = document.getElementById("mensajeReingreso");
@@ -2975,7 +2982,6 @@ function mostrarPantallaReingreso() {
       if (doc.exists) {
         const data = doc.data();
         if (data.tipo === "pro" && new Date(data.expira) > new Date()) {
-          // Licencia encontrada
           licencia = {
             tipo: "pro",
             activa: true,
@@ -2983,7 +2989,6 @@ function mostrarPantallaReingreso() {
             email: email
           };
           
-          // Guardar en localStorage
           localStorage.setItem("emailPro", email);
           localStorage.setItem("licenciaPro", JSON.stringify({
             tipo: licencia.tipo,
@@ -2992,12 +2997,15 @@ function mostrarPantallaReingreso() {
           }));
           
           mensajeDiv.innerHTML = "<span style='color:#4CAF50;'>✅ ¡Licencia recuperada! Redirigiendo...</span>";
-          setTimeout(() => mostrarPantallaPrincipal(), 1500);
+          setTimeout(() => {
+            asignarEventosNavegacion();
+            mostrarPantallaPrincipal();
+          }, 1500);
         } else {
           mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ Tu licencia ha expirado. Contacta para renovar.</span>";
         }
       } else {
-        mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ No encontramos una licencia activa para este email. ¿Ya la activaste antes?</span>";
+        mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ No encontramos una licencia activa para este email.</span>";
       }
     } catch (error) {
       console.error(error);
@@ -3005,9 +3013,48 @@ function mostrarPantallaReingreso() {
     }
   });
   
-  document.getElementById("btnIrAOferta")?.addEventListener("click", mostrarOfertaPro);
+  document.getElementById("btnIrAOferta")?.addEventListener("click", () => {
+    asignarEventosNavegacion();
+    mostrarOfertaPro();
+  });
 }
 
+// =====================================================
+// FUNCIÓN CENTRAL PARA REASIGNAR EVENTOS DE NAVEGACIÓN
+// =====================================================
+
+function asignarEventosNavegacion() {
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    // Remover eventos anteriores para evitar duplicados
+    btn.removeEventListener("click", btn._listener);
+    
+    // Crear nuevo evento
+    const listener = () => {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      
+      const tab = btn.getAttribute("data-tab");
+      
+      if (tab === "curso") {
+        mostrarPantallaPrincipal();
+      } 
+      else if (tab === "revisar") {
+        console.log("🔄 Abriendo revisar días");
+        mostrarRevisar();
+      }
+      else if (tab === "recursos") {
+        console.log("📚 Abriendo biblioteca de recursos");
+        mostrarRecursos();
+      }
+    };
+    
+    // Guardar referencia para poder remover después
+    btn._listener = listener;
+    btn.addEventListener("click", listener);
+  });
+  
+  console.log("✅ Eventos de navegación asignados");
+}
 
 function mostrarPantallaPrincipal() {
 
@@ -3156,6 +3203,8 @@ function mostrarPantallaPrincipal() {
     location.reload();
   });  
   document.getElementById("btnConfig")?.addEventListener("click", mostrarConfiguracion);
+ 
+  asignarEventosNavegacion();
 }
 
 function mostrarLeccion(dia) {
@@ -3272,10 +3321,49 @@ function activarLicenciaPro() {
 }
 
 // =====================================================
+// FUNCIÓN CENTRAL PARA REASIGNAR EVENTOS DE NAVEGACIÓN
+// =====================================================
+
+function asignarEventosNavegacion() {
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    // Remover eventos anteriores para evitar duplicados
+    btn.removeEventListener("click", btn._listener);
+    
+    // Crear nuevo evento
+    const listener = () => {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      
+      const tab = btn.getAttribute("data-tab");
+      
+      if (tab === "curso") {
+        mostrarPantallaPrincipal();
+      } 
+      else if (tab === "revisar") {
+        console.log("🔄 Abriendo revisar días");
+        mostrarRevisar();
+      }
+      else if (tab === "recursos") {
+        console.log("📚 Abriendo biblioteca de recursos");
+        mostrarRecursos();
+      }
+    };
+    
+    // Guardar referencia para poder remover después
+    btn._listener = listener;
+    btn.addEventListener("click", listener);
+  });
+  
+  console.log("✅ Eventos de navegación asignados");
+}
+
+// =====================================================
 // INICIALIZACIÓN CORREGIDA - CON RECUPERACIÓN AUTOMÁTICA
 // =====================================================
 
 async function iniciarApp() {
+  console.log("🚀 Iniciando aplicación...");
+  
   // Verificar panel admin
   if (window.location.search.includes("admin=true")) {
     mostrarPanelAdmin();
@@ -3284,31 +3372,43 @@ async function iniciarApp() {
   
   // Verificar si hay email guardado
   const emailGuardado = localStorage.getItem("emailPro");
+  console.log("📧 Email guardado:", emailGuardado);
   
   if (!emailGuardado) {
     // No hay email guardado → mostrar pantalla de reingreso
+    console.log("🔐 No hay email guardado, mostrando pantalla de reingreso");
     mostrarPantallaReingreso();
     return;
-  }  
+  }
   
-  // ✅ Recuperar licencia automáticamente
+  // Intentar recuperar licencia automáticamente
+  console.log("🔄 Recuperando licencia para:", emailGuardado);
   await recuperarLicenciaAutomatica();
   
   // Si no hay licencia Pro, intentar cargar desde backup
   if (licencia.tipo !== "pro") {
+    console.log("⚠️ No se recuperó licencia Pro, buscando backup...");
     const licenciaGuardada = localStorage.getItem("licenciaPro");
     if (licenciaGuardada) {
       const temp = JSON.parse(licenciaGuardada);
       if (temp.tipo === "pro" && (!temp.expira || new Date(temp.expira) > new Date())) {
+        console.log("✅ Licencia recuperada desde backup");
         licencia.tipo = "pro";
         licencia.expira = temp.expira;
         licencia.email = temp.email;
       } else {
-        // Backup expirado o inválido
+        console.log("❌ Backup expirado o inválido, limpiando...");
         localStorage.removeItem("licenciaPro");
         localStorage.removeItem("emailPro");
       }
     }
+  }
+  
+  // Si después de todo no hay licencia Pro, mostrar reingreso
+  if (licencia.tipo !== "pro") {
+    console.log("🔐 No hay licencia activa, mostrando pantalla de reingreso");
+    mostrarPantallaReingreso();
+    return;
   }
   
   // Cargar progreso del curso
@@ -3317,17 +3417,8 @@ async function iniciarApp() {
   // Mostrar pantalla principal
   mostrarPantallaPrincipal();
   
-  // Navegación
-  document.querySelectorAll(".tab-btn").forEach(btn => {
-    btn.onclick = () => {
-      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      const tab = btn.getAttribute("data-tab");
-      if (tab === "curso") mostrarPantallaPrincipal();
-      else if (tab === "revisar") mostrarRevisar();
-      else if (tab === "recursos") mostrarRecursos();
-    };
-  });
+  // Asignar eventos de navegación
+  asignarEventosNavegacion();
 }
 
 // =====================================================
