@@ -2929,6 +2929,86 @@ function mostrarBannerDemo() {
     </div>
   `;
 }
+
+// =====================================================
+// PANTALLA DE REINGRESO (para recuperar licencia)
+// =====================================================
+
+function mostrarPantallaReingreso() {
+  const html = `
+    <div class="card" style="max-width:400px; margin:50px auto; text-align:center;">
+      <span style="font-size:3rem;">🔐</span>
+      <h2>¿Ya tienes una licencia?</h2>
+      <p>Ingresa el email que usaste al activar tu licencia Pro</p>
+      
+      <div style="margin:1rem 0;">
+        <input type="email" id="emailReingreso" placeholder="tucorreo@ejemplo.com" style="width:100%; padding:0.8rem; border-radius:1rem; border:1px solid #ccc;">
+        <button id="btnReingresar" class="juego" style="margin-top:0.5rem;">🔓 Recuperar mi licencia</button>
+      </div>
+      
+      <div style="margin:1rem 0;">
+        <p>¿No tienes licencia?</p>
+        <button id="btnIrAOferta" class="juego" style="background:#ff9800;">💰 Comprar Pro por $59 MXN</button>
+      </div>
+      
+      <div id="mensajeReingreso" style="margin-top:1rem;"></div>
+    </div>
+  `;
+  
+  document.getElementById("contenido").innerHTML = html;
+  
+  document.getElementById("btnReingresar")?.addEventListener("click", async () => {
+    const email = document.getElementById("emailReingreso").value.trim();
+    const mensajeDiv = document.getElementById("mensajeReingreso");
+    
+    if (!email) {
+      mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ Ingresa tu email</span>";
+      return;
+    }
+    
+    mensajeDiv.innerHTML = "<span style='color:#2196F3;'>⏳ Buscando licencia...</span>";
+    
+    try {
+      const docRef = db.collection("licencias").doc(email);
+      const doc = await docRef.get();
+      
+      if (doc.exists) {
+        const data = doc.data();
+        if (data.tipo === "pro" && new Date(data.expira) > new Date()) {
+          // Licencia encontrada
+          licencia = {
+            tipo: "pro",
+            activa: true,
+            expira: data.expira,
+            email: email
+          };
+          
+          // Guardar en localStorage
+          localStorage.setItem("emailPro", email);
+          localStorage.setItem("licenciaPro", JSON.stringify({
+            tipo: licencia.tipo,
+            expira: licencia.expira,
+            email: licencia.email
+          }));
+          
+          mensajeDiv.innerHTML = "<span style='color:#4CAF50;'>✅ ¡Licencia recuperada! Redirigiendo...</span>";
+          setTimeout(() => mostrarPantallaPrincipal(), 1500);
+        } else {
+          mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ Tu licencia ha expirado. Contacta para renovar.</span>";
+        }
+      } else {
+        mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ No encontramos una licencia activa para este email. ¿Ya la activaste antes?</span>";
+      }
+    } catch (error) {
+      console.error(error);
+      mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ Error al verificar. Intenta de nuevo.</span>";
+    }
+  });
+  
+  document.getElementById("btnIrAOferta")?.addEventListener("click", mostrarOfertaPro);
+}
+
+
 function mostrarPantallaPrincipal() {
 
   // Cargar licencia desde localStorage (rápido)
@@ -3196,6 +3276,15 @@ async function iniciarApp() {
     mostrarPanelAdmin();
     return;
   }
+  
+  // Verificar si hay email guardado
+  const emailGuardado = localStorage.getItem("emailPro");
+  
+  if (!emailGuardado) {
+    // No hay email guardado → mostrar pantalla de reingreso
+    mostrarPantallaReingreso();
+    return;
+  }  
   
   // ✅ Recuperar licencia automáticamente
   await recuperarLicenciaAutomatica();
