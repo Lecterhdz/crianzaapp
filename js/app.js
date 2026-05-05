@@ -357,64 +357,164 @@ async function mostrarPanelAdmin() {
 
 function mostrarOfertaPro() {
   const html = `
-    <div class="card" style="text-align:center;">
-      <h2>🌟 Desbloquea el curso completo</h2>
-      <div style="background:linear-gradient(135deg,#4CAF50,#2e7d32); color:white; padding:1.5rem; border-radius:1.5rem;">
-        <div style="font-size:3rem; font-weight:bold;">$59 MXN</div>
-        <div>/ año</div>
+    <div class="card" style="text-align:center; max-width:500px; margin:0 auto;">
+      <span style="font-size:3rem;">🌟</span>
+      <h2>Desbloquea el curso completo</h2>
+      <p>Accede a los <strong>33 días</strong> del curso de crianza consciente</p>
+      
+      <div style="background:linear-gradient(135deg, #4CAF50, #2e7d32); color:white; padding:1.5rem; border-radius:1.5rem; margin:1.5rem 0;">
+        <div style="font-size:3rem; font-weight:bold;">$59</div>
+        <div>pesos mexicanos</div>
+        <div style="font-size:0.8rem;">/ año</div>
       </div>
       
-      ${!usuarioId ? `
-        <div style="margin:1rem 0; padding:1rem; background:#fff3e0; border-radius:1rem;">
-          <p>🔐 Para activar tu licencia, primero inicia sesión o regístrate:</p>
-          <button id="btnIrLogin" class="juego">🔓 Iniciar sesión</button>
-        </div>
-      ` : `
-        <div style="margin:1.5rem 0;">
-          <h3>🔑 ¿Ya tienes un código?</h3>
-          <input type="text" id="codigoInput" placeholder="Ej: CRIANZA-ABCD1234" style="width:100%; max-width:300px;">
-          <input type="email" id="emailInput" placeholder="Tu correo" style="width:100%; max-width:300px; margin-top:0.5rem;">
-          <button id="btnActivarCodigo" class="juego" style="margin-top:0.5rem;">✅ Activar licencia</button>
-          <p id="mensajeCodigo" style="margin-top:0.5rem;"></p>
-        </div>
-      `}
+      <div style="margin:1.5rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
+        <h3>🔑 Activar licencia Pro</h3>
+        <input type="email" id="emailLicencia" placeholder="Tu correo electrónico" style="width:100%; padding:0.8rem; border-radius:1rem; border:1px solid #ccc; margin-bottom:0.5rem;">
+        <input type="text" id="codigoLicencia" placeholder="Código de licencia (ej: PRO-2024)" style="width:100%; padding:0.8rem; border-radius:1rem; border:1px solid #ccc;">
+        <button id="btnActivarLicencia" class="juego" style="margin-top:0.5rem;">✅ Activar licencia</button>
+        <p id="mensajeActivacion" style="margin-top:0.5rem;"></p>
+      </div>
       
       <div style="margin:1rem 0;">
         <p><strong>¿No tienes código?</strong></p>
-        <button id="btnComprar" class="juego" style="background:#25D366;">📱 Contactar por WhatsApp</button>
+        <button id="btnComprarWhatsApp" class="juego" style="background:#25D366;">📱 Contactar por WhatsApp</button>
       </div>
       
-      <button id="btnVolverOferta" class="juego">Volver al curso</button>
+      <button id="btnVolverOferta" class="juego" style="background:#ccc;">Volver al curso demo</button>
     </div>
   `;
   
   document.getElementById("contenido").innerHTML = html;
   
-  document.getElementById("btnIrLogin")?.addEventListener("click", mostrarPantallaLogin);
-  
-  document.getElementById("btnActivarCodigo")?.addEventListener("click", async () => {
-    const codigo = document.getElementById("codigoInput").value.trim().toUpperCase();
-    const email = document.getElementById("emailInput").value.trim();
+  document.getElementById("btnActivarLicencia")?.addEventListener("click", async () => {
+    const email = document.getElementById("emailLicencia").value.trim();
+    const codigo = document.getElementById("codigoLicencia").value.trim().toUpperCase();
+    const mensajeDiv = document.getElementById("mensajeActivacion");
     
-    if (!codigo || !email) {
-      document.getElementById("mensajeCodigo").innerHTML = "<span style='color:#f44336;'>❌ Ingresa código y email</span>";
+    if (!email || !codigo) {
+      mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ Ingresa email y código</span>";
       return;
     }
     
-    const resultado = await activarProConCodigo(codigo, email);
-    document.getElementById("mensajeCodigo").innerHTML = `<span style='color:${resultado.valido ? '#4CAF50' : '#f44336'}'>${resultado.mensaje}</span>`;
+    if (!email.includes("@") || !email.includes(".")) {
+      mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ Ingresa un email válido</span>";
+      return;
+    }
+    
+    const resultado = await activarLicenciaPorEmail(codigo, email);
+    mensajeDiv.innerHTML = `<span style='color:${resultado.valido ? '#4CAF50' : '#f44336'}'>${resultado.mensaje}</span>`;
     
     if (resultado.valido) {
       setTimeout(() => mostrarPantallaPrincipal(), 2000);
     }
   });
   
-  document.getElementById("btnComprar")?.addEventListener("click", () => {
+  document.getElementById("btnComprarWhatsApp")?.addEventListener("click", () => {
     window.open("https://wa.me/521234567890?text=Hola%2C%20quiero%20adquirir%20la%20licencia%20Pro%20del%20curso%20de%20crianza%20($59%20MXN)", "_blank");
   });
   
   document.getElementById("btnVolverOferta")?.addEventListener("click", mostrarPantallaPrincipal);
 }
+
+// Activar licencia usando SOLO email + código (sin contraseña)
+async function activarLicenciaPorEmail(codigo, email) {
+  try {
+    // Buscar el código en la colección "codigos"
+    const codigosRef = db.collection("codigos");
+    const query = await codigosRef.where("codigo", "==", codigo).get();
+    
+    if (query.empty) {
+      return { valido: false, mensaje: "❌ Código inválido" };
+    }
+    
+    const docCodigo = query.docs[0];
+    const codigoData = docCodigo.data();
+    
+    if (codigoData.usado) {
+      return { valido: false, mensaje: "❌ Este código ya fue usado por otro usuario" };
+    }
+    
+    if (new Date(codigoData.expira) < new Date()) {
+      return { valido: false, mensaje: "❌ Código expirado" };
+    }
+    
+    // Marcar código como usado
+    await docCodigo.ref.update({
+      usado: true,
+      usadoPor: email,
+      usadoEn: new Date().toISOString()
+    });
+    
+    // Guardar licencia activa en localStorage (para este dispositivo)
+    const expira = new Date();
+    expira.setFullYear(expira.getFullYear() + 1);
+    
+    licencia = {
+      tipo: "pro",
+      activa: true,
+      expira: expira.toISOString(),
+      email: email
+    };
+    
+    // Guardar en localStorage
+    localStorage.setItem("licenciaCrianza", JSON.stringify({
+      tipo: licencia.tipo,
+      expira: licencia.expira,
+      email: licencia.email
+    }));
+    
+    // También guardar en Firestore para sincronizar entre dispositivos
+    // Usamos el email como ID del documento (simplificado)
+    await db.collection("licencias").doc(email).set({
+      tipo: "pro",
+      expira: expira.toISOString(),
+      email: email,
+      activadoEn: new Date().toISOString(),
+      codigoUsado: codigo
+    });
+    
+    return { valido: true, mensaje: "✅ ¡Licencia Pro activada! Funciona en este dispositivo. En otros dispositivos, usa el mismo email y código." };
+    
+  } catch (error) {
+    console.error("Error activando licencia:", error);
+    return { valido: false, mensaje: "❌ Error al activar. Intenta de nuevo." };
+  }
+}
+
+// Cargar licencia desde Firestore usando el email guardado
+async function cargarLicenciaPorEmail() {
+  const emailGuardado = localStorage.getItem("emailLicenciaActiva");
+  
+  if (!emailGuardado) return;
+  
+  try {
+    const docRef = db.collection("licencias").doc(emailGuardado);
+    const doc = await docRef.get();
+    
+    if (doc.exists) {
+      const data = doc.data();
+      licencia.tipo = data.tipo || "demo";
+      licencia.expira = data.expira;
+      licencia.email = data.email;
+      
+      if (licencia.tipo === "pro" && new Date(licencia.expira) < new Date()) {
+        licencia.tipo = "demo";
+        localStorage.removeItem("emailLicenciaActiva");
+      } else if (licencia.tipo === "pro") {
+        // Sincronizar con localStorage
+        localStorage.setItem("licenciaCrianza", JSON.stringify({
+          tipo: licencia.tipo,
+          expira: licencia.expira,
+          email: licencia.email
+        }));
+      }
+    }
+  } catch (error) {
+    console.log("Error cargando licencia:", error);
+  }
+}
+
 // --- CONFIGURACIÓN ---
 let modoOscuro = localStorage.getItem("modoOscuro") === "true";
 let vozActiva = localStorage.getItem("vozActiva") === "true";
@@ -2903,6 +3003,27 @@ function mostrarBannerDemo() {
   `;
 }
 function mostrarPantallaPrincipal() {
+
+  // Cargar licencia desde localStorage (rápido)
+  const licenciaGuardada = localStorage.getItem("licenciaCrianza");
+  if (licenciaGuardada) {
+    const temp = JSON.parse(licenciaGuardada);
+    licencia.tipo = temp.tipo || "demo";
+    licencia.expira = temp.expira;
+    licencia.email = temp.email;
+    
+    if (licencia.tipo === "pro" && licencia.expira && new Date(licencia.expira) < new Date()) {
+      licencia.tipo = "demo";
+      localStorage.removeItem("licenciaCrianza");
+      localStorage.removeItem("emailLicenciaActiva");
+    }
+  }
+  
+  // Si hay email guardado, intentar sincronizar con Firestore (para otros dispositivos)
+  const emailGuardado = localStorage.getItem("emailLicenciaActiva");
+  if (emailGuardado && licencia.tipo !== "pro") {
+    cargarLicenciaPorEmail();
+  }
   const DIAS_TOTALES = 33;
   const DIAS_VISIBLES = licencia.tipo === "pro" ? 33 : 7;
   const completados = cursoEstado.completados.length;
