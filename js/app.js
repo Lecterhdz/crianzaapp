@@ -260,9 +260,14 @@ function mostrarOfertaPro() {
       <h2>Desbloquea el curso completo</h2>
       <p>Accede a los <strong>33 días</strong> del curso de crianza consciente</p>
       
-      <div style="background:linear-gradient(135deg, #4CAF50, #2e7d32); color:white; padding:1.5rem; border-radius:1.5rem; margin:1.5rem 0;">
+      <div style="background:linear-gradient(135deg, #4CAF50, #2e7d32); color:white; padding:1.5rem; border-radius:1.5rem; margin:1.5rem 0; position:relative;">
+        <div style="position:absolute; top:-10px; right:0; background:#ff9800; color:#333; padding:4px 12px; border-radius:20px; font-size:0.7rem; font-weight:bold;">
+          🔥 70% DESCUENTO
+        </div>
+        <div style="font-size:0.8rem; text-decoration:line-through; opacity:0.7;">$197 MXN</div>
         <div style="font-size:3rem; font-weight:bold;">$59</div>
         <div>pesos mexicanos / año</div>
+        <div style="font-size:0.7rem; margin-top:0.5rem;">⚡ Precio especial. En julio 2026 sube a $197</div>
       </div>
       
       <div style="margin:1.5rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
@@ -277,6 +282,7 @@ function mostrarOfertaPro() {
         <p><strong>¿No tienes código?</strong></p>
         <button id="btnComprarWP" class="juego" style="background:#25D366;">📱 Comprar por WhatsApp</button>
       </div>
+        <p style="font-size:0.7rem; margin-top:0.5rem;">🎯 Oferta por tiempo limitado. Aprovecha el 70% de descuento.</p>
       
       <button id="btnVolverOferta" class="juego" style="background:#ccc;">Volver al curso demo</button>
     </div>
@@ -304,7 +310,11 @@ function mostrarOfertaPro() {
   });
   
   document.getElementById("btnComprarWP")?.addEventListener("click", () => {
-    window.open("https://wa.me/521234567890?text=Hola%2C%20quiero%20comprar%20licencia%20Pro%20($59%20MXN)", "_blank");
+    const numeroWhatsApp = "521234567890";
+    const mensaje = encodeURIComponent(
+      "Hola, quiero comprar la licencia Pro del curso de crianza ($59 MXN - 70% descuento). Mi correo para activar la licencia es: [ESCRIBE AQUÍ TU CORREO]. ¿Me envías los datos para pagar? Gracias."
+    );
+    window.open(`https://wa.me/${numeroWhatsApp}?text=${mensaje}`, "_blank");
   });
   
   document.getElementById("btnVolverOferta")?.addEventListener("click", mostrarPantallaPrincipal);
