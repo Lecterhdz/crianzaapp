@@ -2899,6 +2899,160 @@ function mostrarRecursos() {
   document.getElementById("recTest").onclick = () => mostrarLeccion(1);
   document.getElementById("volverRecursos").onclick = mostrarPantallaPrincipal;
 }
+
+
+// =====================================================
+// POLÍTICAS DE PRIVACIDAD
+// =====================================================
+
+function mostrarPoliticasPrivacidad() {
+  const html = `
+    <div class="card" style="max-width:800px; margin:0 auto;">
+      <h2>📋 Políticas de Privacidad</h2>
+      <p><strong>Última actualización:</strong> ${new Date().toLocaleDateString()}</p>
+      
+      <h3>1. Información que recopilamos</h3>
+      <p>En <strong>Criar con Conciencia</strong> recopilamos la siguiente información:</p>
+      <ul>
+        <li><strong>Correo electrónico:</strong> Para activar tu licencia y recuperar tu progreso entre dispositivos.</li>
+        <li><strong>Progreso del curso:</strong> Días completados, reflexiones, medallas obtenidas y racha de práctica.</li>
+        <li><strong>Preferencias:</strong> Modo oscuro, activación de voz, etc.</li>
+      </ul>
+      
+      <h3>2. Cómo usamos tu información</h3>
+      <ul>
+        <li>✅ Para activar y mantener tu licencia Pro.</li>
+        <li>✅ Para sincronizar tu progreso entre dispositivos.</li>
+        <li>✅ Para mejorar la experiencia de usuario.</li>
+        <li>✅ Para enviarte recordatorios (si activas las notificaciones).</li>
+      </ul>
+      
+      <h3>3. Almacenamiento de datos</h3>
+      <p>Tus datos se almacenan en:</p>
+      <ul>
+        <li><strong>Localmente:</strong> En tu dispositivo (navegador) para acceso rápido.</li>
+        <li><strong>En la nube:</strong> En <strong>Firebase (Google)</strong>, una plataforma segura con estándares internacionales de seguridad.</li>
+      </ul>
+      
+      <h3>4. Seguridad de los datos</h3>
+      <p>No compartimos, vendemos ni alquilamos tu información personal a terceros. Tus datos son solo para el funcionamiento de la aplicación.</p>
+      
+      <h3>5. Tus derechos</h3>
+      <p>Tienes derecho a:</p>
+      <ul>
+        <li>🔍 Solicitar qué datos tenemos sobre ti.</li>
+        <li>🗑️ Solicitar la eliminación de tus datos.</li>
+        <li>✏️ Corregir información incorrecta.</li>
+      </ul>
+      <p>Para ejercer estos derechos, contáctanos al correo: <strong>contacto@crianzaapp.com</strong></p>
+      
+      <h3>6. Menores de edad</h3>
+      <p>Esta aplicación está dirigida a padres y cuidadores adultos. No recopilamos información directamente de menores de edad.</p>
+      
+      <h3>7. Cambios en esta política</h3>
+      <p>Podemos actualizar esta política ocasionalmente. Te notificaremos dentro de la aplicación.</p>
+      
+      <h3>8. Contacto</h3>
+      <p>Si tienes preguntas sobre esta política, contáctanos:</p>
+      <ul>
+        <li>📧 Email: <strong>contacto@crianzaapp.com</strong></li>
+        <li>📱 WhatsApp: <strong>+52 1 234 567 8900</strong></li>
+      </ul>
+      
+      <button id="volverDesdePoliticas" class="juego" style="margin-top:1rem;">🗺️ Volver al curso</button>
+    </div>
+  `;
+  
+  document.getElementById("contenido").innerHTML = html;
+  
+  document.getElementById("volverDesdePoliticas")?.addEventListener("click", () => {
+    if (licencia.tipo === "pro") {
+      mostrarPantallaPrincipal();
+    } else {
+      mostrarPantallaReingreso();
+    }
+  });
+}
+
+// =====================================================
+// TÉRMINOS Y CONDICIONES
+// =====================================================
+
+function mostrarTerminosCondiciones() {
+  const html = `
+    <div class="card" style="max-width:800px; margin:0 auto;">
+      <h2>📜 Términos y Condiciones</h2>
+      <p><strong>Última actualización:</strong> ${new Date().toLocaleDateString()}</p>
+      
+      <h3>1. Aceptación de los términos</h3>
+      <p>Al utilizar <strong>Criar con Conciencia</strong>, aceptas cumplir con estos términos y condiciones. Si no estás de acuerdo, por favor no uses la aplicación.</p>
+      
+      <h3>2. Licencias y pagos</h3>
+      <ul>
+        <li><strong>Modo Demo:</strong> Acceso gratuito a los primeros 7 días del curso.</li>
+        <li><strong>Licencia Pro:</strong> Acceso completo a los 33 días del curso por <strong>$59 MXN por año</strong>.</li>
+        <li>La licencia es <strong>personal e intransferible</strong>, pero puede usarse en múltiples dispositivos del mismo usuario.</li>
+        <li>Los pagos son no reembolsables, excepto en casos de error técnico comprobado.</li>
+      </ul>
+      
+      <h3>3. Códigos de licencia</h3>
+      <ul>
+        <li>Los códigos de licencia son de <strong>un solo uso</strong>.</li>
+        <li>Una vez activados, quedan asociados permanentemente al correo electrónico ingresado.</li>
+        <li>No compartas tu código con otras personas.</li>
+      </ul>
+      
+      <h3>4. Uso permitido</h3>
+      <p>La aplicación está diseñada para:</p>
+      <ul>
+        <li>✅ Padres y cuidadores que buscan herramientas de crianza consciente.</li>
+        <li>✅ Profesionales de la psicología y educación (uso personal o con pacientes).</li>
+      </ul>
+      
+      <h3>5. Uso no permitido</h3>
+      <ul>
+        <li>❌ Compartir códigos de licencia con no pagantes.</li>
+        <li>❌ Intentar extraer, copiar o distribuir el contenido del curso sin autorización.</li>
+        <li>❌ Usar la aplicación para fines ilegales.</li>
+      </ul>
+      
+      <h3>6. Limitación de responsabilidad</h3>
+      <p><strong>Criar con Conciencia</strong> es una herramienta educativa, no sustituye el consejo de un profesional de la salud mental o pediatría. Los resultados pueden variar según cada familia.</p>
+      
+      <h3>7. Cancelación y reembolsos</h3>
+      <ul>
+        <li>Puedes cancelar tu suscripción en cualquier momento.</li>
+        <li>No se realizan reembolsos por tiempo no utilizado.</li>
+        <li>Si experimentas problemas técnicos, contáctanos dentro de los primeros 7 días para evaluar un reembolso.</li>
+      </ul>
+      
+      <h3>8. Modificaciones</h3>
+      <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios serán notificados dentro de la aplicación.</p>
+      
+      <h3>9. Contacto</h3>
+      <p>Para cualquier consulta sobre estos términos:</p>
+      <ul>
+        <li>📧 Email: <strong>contacto@crianzaapp.com</strong></li>
+        <li>📱 WhatsApp: <strong>+52 1 234 567 8900</strong></li>
+      </ul>
+      
+      <h3>10. Legislación aplicable</h3>
+      <p>Estos términos se rigen por las leyes de los Estados Unidos Mexicanos.</p>
+      
+      <button id="volverDesdeTerminos" class="juego" style="margin-top:1rem;">🗺️ Volver al curso</button>
+    </div>
+  `;
+  
+  document.getElementById("contenido").innerHTML = html;
+  
+  document.getElementById("volverDesdeTerminos")?.addEventListener("click", () => {
+    if (licencia.tipo === "pro") {
+      mostrarPantallaPrincipal();
+    } else {
+      mostrarPantallaReingreso();
+    }
+  });
+}
 // =====================================================
 // FUNCIÓN DE BANNER DEMO (FALTANTE)
 // =====================================================
@@ -3419,6 +3573,24 @@ async function iniciarApp() {
   
   // Asignar eventos de navegación
   asignarEventosNavegacion();
+  
+  // Eventos para footer (Políticas y Términos)
+  const linkPoliticas = document.getElementById("linkPoliticas");
+  const linkTerminos = document.getElementById("linkTerminos");
+  
+  if (linkPoliticas) {
+    linkPoliticas.onclick = (e) => {
+      e.preventDefault();
+      mostrarPoliticasPrivacidad();
+    };
+  }
+  
+  if (linkTerminos) {
+    linkTerminos.onclick = (e) => {
+      e.preventDefault();
+      mostrarTerminosCondiciones();
+    };
+  }  
 }
 
 // =====================================================
