@@ -331,6 +331,7 @@ async function activarLicenciaPorEmail(codigo, email) {
   }
   
   try {
+    // Buscar código en Firestore (colección "codigos")
     const codigosRef = db.collection("codigos");
     const query = await codigosRef.where("codigo", "==", codigo.toUpperCase()).get();
     
@@ -342,19 +343,21 @@ async function activarLicenciaPorEmail(codigo, email) {
     const codigoData = docCodigo.data();
     
     if (codigoData.usado) {
-      return { valido: false, mensaje: "❌ Este código ya fue usado" };
+      return { valido: false, mensaje: "❌ Este código ya fue usado por otro email" };
     }
     
     if (new Date(codigoData.expira) < new Date()) {
       return { valido: false, mensaje: "❌ Código expirado" };
     }
     
+    // Marcar código como usado
     await docCodigo.ref.update({
       usado: true,
       usadoPor: email,
       usadoEn: new Date().toISOString()
     });
     
+    // Activar licencia
     const expira = new Date();
     expira.setFullYear(expira.getFullYear() + 1);
     
@@ -365,6 +368,7 @@ async function activarLicenciaPorEmail(codigo, email) {
       email: email
     };
     
+    // Guardar en localStorage (para este dispositivo)
     localStorage.setItem("licenciaCrianza", JSON.stringify({
       tipo: licencia.tipo,
       expira: licencia.expira,
@@ -372,19 +376,52 @@ async function activarLicenciaPorEmail(codigo, email) {
     }));
     localStorage.setItem("emailLicencia", email);
     
+    // Guardar en Firestore (para sincronizar entre dispositivos)
     await db.collection("licencias").doc(email).set({
       tipo: "pro",
       expira: expira.toISOString(),
       email: email,
-      activadoEn: new Date().toISOString()
+      activadoEn: new Date().toISOString(),
+      codigoUsado: codigo.toUpperCase()
     });
     
-    return { valido: true, mensaje: "✅ ¡Licencia Pro activada!" };
+    return { valido: true, mensaje: "✅ ¡Licencia Pro activada! Usa el mismo email en otros dispositivos." };
     
   } catch (error) {
-    console.error(error);
-    return { valido: false, mensaje: "❌ Error al activar" };
+    console.error("Error activando licencia:", error);
+    return { valido: false, mensaje: "❌ Error al activar. Verifica tu conexión." };
   }
+}
+
+async function recuperarLicenciaPorEmail(email) {
+  if (!email) return false;
+  
+  try {
+    const docRef = db.collection("licencias").doc(email);
+    const doc = await docRef.get();
+    
+    if (doc.exists) {
+      const data = doc.data();
+      if (data.tipo === "pro" && new Date(data.expira) > new Date()) {
+        licencia = {
+          tipo: "pro",
+          activa: true,
+          expira: data.expira,
+          email: email
+        };
+        localStorage.setItem("licenciaCrianza", JSON.stringify({
+          tipo: licencia.tipo,
+          expira: licencia.expira,
+          email: licencia.email
+        }));
+        localStorage.setItem("emailLicencia", email);
+        return true;
+      }
+    }
+  } catch (error) {
+    console.log("Error recuperando licencia:", error);
+  }
+  return false;
 }
 
 // Cargar licencia desde Firestore usando el email guardado
@@ -3190,9 +3227,10 @@ async function iniciarApp() {
     }
   }
   
-  // Sincronizar con Firebase si hay email
-  if (licencia.email) {
-    await cargarLicenciaFirebase();
+  // Si hay email guardado pero la licencia no es pro, intentar recuperar
+  const emailGuardado = localStorage.getItem("emailLicencia");
+  if (emailGuardado && licencia.tipo !== "pro") {
+    await recuperarLicenciaPorEmail(emailGuardado);
   }
   
   cargarProgreso();
