@@ -2871,7 +2871,37 @@ function mostrarRecursos() {
   document.getElementById("recTest").onclick = () => mostrarLeccion(1);
   document.getElementById("volverRecursos").onclick = mostrarPantallaPrincipal;
 }
+// =====================================================
+// FUNCIÓN DE BANNER DEMO (FALTANTE)
+// =====================================================
 
+function mostrarBannerDemo() {
+  if (licencia.tipo !== "pro") {
+    return `
+      <div class="card" style="background:linear-gradient(135deg, #fff3e0, #ffe0b2); border-left:4px solid #ff9800; margin-bottom:1rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+          <div>
+            <span style="font-size:1.5rem;">🔓</span>
+            <strong>Modo Demo</strong> - Acceso gratuito a los primeros 7 días
+          </div>
+          <button id="btnUpgradePro" class="juego" style="background:#ff9800; padding:8px 16px;">⬆️ Pro por $59 MXN/año</button>
+        </div>
+        <p style="margin-top:0.5rem; font-size:0.8rem;">⭐ Desbloquea los 33 días completos + simulador + medallas + certificado</p>
+      </div>
+    `;
+  }
+  return `
+    <div class="card" style="background:#e8f5e9; border-left:4px solid #4CAF50;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+        <div>
+          <span style="font-size:1.5rem;">✅</span>
+          <strong>Modo Pro activo</strong> - Tienes acceso a los 33 días completos
+        </div>
+        <div style="font-size:0.8rem;">${licencia.expira ? `Expira: ${new Date(licencia.expira).toLocaleDateString()}` : ''}</div>
+      </div>
+    </div>
+  `;
+}
 function mostrarPantallaPrincipal() {
   const DIAS_TOTALES = 33;
   const DIAS_VISIBLES = licencia.tipo === "pro" ? 33 : 7;
@@ -3093,10 +3123,19 @@ function mostrarLeccion(dia) {
   }
 }
 // SOLO PARA PRUEBAS - eliminar en producción
-function activarProPrueba() {
-  activarLicenciaPro();
-  alert("✅ Modo Pro activado (modo prueba)");
-  location.reload();
+// Función para activar Pro en modo prueba (sin código)
+function activarLicenciaPro() {
+  const expira = new Date();
+  expira.setFullYear(expira.getFullYear() + 1);
+  
+  licencia = {
+    tipo: "pro",
+    activa: true,
+    expira: expira.toISOString(),
+    email: "prueba@demo.com"
+  };
+  guardarLicencia();
+  guardarProgreso();
 }
 
 // =====================================================
