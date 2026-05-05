@@ -267,7 +267,7 @@ function mostrarOfertaPro() {
         <div style="font-size:0.8rem; text-decoration:line-through; opacity:0.7;">$199 MXN</div>
         <div style="font-size:3rem; font-weight:bold;">$59</div>
         <div>MXN / año</div>
-        <div style="font-size:0.7rem; margin-top:0.5rem;">⚡ Precio especial. En julio 2026 sube a $197</div>
+        <div style="font-size:0.7rem; margin-top:0.5rem;">⚡ Precio especial. En julio 2026 sube a $199</div>
       </div>
       
       <div style="margin:1.5rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
