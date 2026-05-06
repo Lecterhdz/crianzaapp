@@ -3314,39 +3314,85 @@ function mostrarTerminosCondiciones() {
   });
 }
 // =====================================================
-// FUNCIÓN DE BANNER DEMO (FALTANTE)
+// FUNCIÓN DE BANNER DEMO (ACTUALIZADA CON TODOS LOS PLANES)
 // =====================================================
 
 function mostrarBannerDemo() {
-  if (licencia.tipo !== "pro") {
+  if (licencia.tipo === "demo") {
     return `
       <div class="card" style="background:linear-gradient(135deg, #fff3e0, #ffe0b2); border-left:4px solid #ff9800; margin-bottom:1rem;">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
           <div>
             <span style="font-size:1.5rem;">🔓</span>
-            <strong>Modo Demo</strong> - Acceso gratuito a los primeros 7 días
+            <strong>Modo Demo</strong> - Acceso gratuito a los primeros 3 días
           </div>
-          <button id="btnUpgradePro" class="juego" style="background:#ff9800; padding:8px 16px;">⬆️ Pro por $59 MXN/año</button>
+          <button id="btnUpgradePro" class="juego" style="background:#ff9800; padding:8px 16px;">⬆️ Ver planes</button>
         </div>
         <p style="margin-top:0.5rem; font-size:0.8rem;">⭐ Desbloquea los 33 días completos + simulador + medallas + certificado</p>
       </div>
     `;
   }
+  
+  if (licencia.tipo === "basico") {
+    return `
+      <div class="card" style="background:linear-gradient(135deg, #e3f2fd, #bbdef5); border-left:4px solid #2196F3; margin-bottom:1rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+          <div>
+            <span style="font-size:1.5rem;">📘</span>
+            <strong>Plan Básico</strong> - Tienes acceso a los 33 días del curso
+          </div>
+          <button id="btnUpgradePro" class="juego" style="background:#ff9800; padding:8px 16px;">⬆️ Mejorar a Pro/Platino</button>
+        </div>
+        <p style="margin-top:0.5rem; font-size:0.8rem;">⭐ Mejora a Pro o Platino para desbloquear simulador, medallas y herramientas descargables</p>
+      </div>
+    `;
+  }
+  
+  if (licencia.tipo === "pro") {
+    return `
+      <div class="card" style="background:linear-gradient(135deg, #e8f5e9, #c8e6c9); border-left:4px solid #4CAF50; margin-bottom:1rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+          <div>
+            <span style="font-size:1.5rem;">🌟</span>
+            <strong>Plan Pro activo</strong> - Disfruta del simulador y todas las funciones
+          </div>
+          <div style="font-size:0.8rem;">${licencia.expira ? `Expira: ${new Date(licencia.expira).toLocaleDateString()}` : ''}</div>
+        </div>
+        <p style="margin-top:0.5rem; font-size:0.8rem;">⭐ ¿Quieres aún más? Mejora a Platino para herramientas descargables exclusivas</p>
+      </div>
+    `;
+  }
+  
+  if (licencia.tipo === "platino") {
+    return `
+      <div class="card" style="background:linear-gradient(135deg, #f3e5f5, #e1bee7); border-left:4px solid #9C27B0; margin-bottom:1rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+          <div>
+            <span style="font-size:1.5rem;">👑</span>
+            <strong>Plan Platino activo</strong> - Tienes acceso a TODO el contenido premium
+          </div>
+          <div style="font-size:0.8rem;">${licencia.expira ? `Expira: ${new Date(licencia.expira).toLocaleDateString()}` : ''}</div>
+        </div>
+        <p style="margin-top:0.5rem; font-size:0.8rem;">⭐ Disfruta de las herramientas descargables y contenido exclusivo</p>
+      </div>
+    `;
+  }
+  
+  // Fallback (por si algo sale mal)
   return `
     <div class="card" style="background:#e8f5e9; border-left:4px solid #4CAF50;">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
         <div>
           <span style="font-size:1.5rem;">✅</span>
-          <strong>Modo Pro activo</strong> - Tienes acceso a los 33 días completos
+          <strong>Curso activo</strong>
         </div>
-        <div style="font-size:0.8rem;">${licencia.expira ? `Expira: ${new Date(licencia.expira).toLocaleDateString()}` : ''}</div>
       </div>
     </div>
   `;
 }
 
 // =====================================================
-// PANTALLA DE REINGRESO (para recuperar licencia)
+// PANTALLA DE REINGRESO (para recuperar licencia de cualquier plan)
 // =====================================================
 
 function mostrarPantallaReingreso() {
@@ -3354,7 +3400,7 @@ function mostrarPantallaReingreso() {
     <div class="card" style="max-width:400px; margin:50px auto; text-align:center;">
       <span style="font-size:3rem;">🔐</span>
       <h2>¿Ya tienes una licencia?</h2>
-      <p>Ingresa el email que usaste al activar tu licencia Pro</p>
+      <p>Ingresa el email que usaste al activar tu plan</p>
       
       <div style="margin:1rem 0;">
         <input type="email" id="emailReingreso" placeholder="tucorreo@ejemplo.com" style="width:100%; padding:0.8rem; border-radius:1rem; border:1px solid #ccc;">
@@ -3363,7 +3409,7 @@ function mostrarPantallaReingreso() {
       
       <div style="margin:1rem 0;">
         <p>¿No tienes licencia?</p>
-        <button id="btnIrAOferta" class="juego" style="background:#ff9800;">💰 Comprar Pro por $59 MXN</button>
+        <button id="btnIrAOferta" class="juego" style="background:#ff9800;">💰 Ver planes disponibles</button>
       </div>
       
       <div id="mensajeReingreso" style="margin-top:1rem;"></div>
@@ -3372,12 +3418,10 @@ function mostrarPantallaReingreso() {
   
   document.getElementById("contenido").innerHTML = html;
   
-  // =====================================================
-  // REASIGNAR EVENTOS DE NAVEGACIÓN CADA VEZ
-  // =====================================================
+  // Reasignar eventos de navegación
   asignarEventosNavegacion();
   
-  // Eventos específicos de esta pantalla
+  // Evento: Recuperar licencia
   document.getElementById("btnReingresar")?.addEventListener("click", async () => {
     const email = document.getElementById("emailReingreso").value.trim();
     const mensajeDiv = document.getElementById("mensajeReingreso");
@@ -3395,28 +3439,40 @@ function mostrarPantallaReingreso() {
       
       if (doc.exists) {
         const data = doc.data();
-        if (data.tipo === "pro" && new Date(data.expira) > new Date()) {
+        const tipoPlan = data.tipo || "demo";
+        const planesValidos = ["basico", "pro", "platino"];
+        
+        let nombrePlan = "";
+        let colorPlan = "";
+        if (tipoPlan === "basico") { nombrePlan = "Básico"; colorPlan = "#2196F3"; }
+        if (tipoPlan === "pro") { nombrePlan = "Pro ⭐"; colorPlan = "#4CAF50"; }
+        if (tipoPlan === "platino") { nombrePlan = "Platino 👑"; colorPlan = "#9C27B0"; }
+        
+        if (planesValidos.includes(tipoPlan) && new Date(data.expira) > new Date()) {
           licencia = {
-            tipo: "pro",
+            tipo: tipoPlan,
             activa: true,
             expira: data.expira,
             email: email
           };
           
           localStorage.setItem("emailPro", email);
-          localStorage.setItem("licenciaPro", JSON.stringify({
+          localStorage.setItem("licenciaCrianza", JSON.stringify({
             tipo: licencia.tipo,
             expira: licencia.expira,
             email: licencia.email
           }));
+          localStorage.setItem("emailLicenciaActiva", email);
           
-          mensajeDiv.innerHTML = "<span style='color:#4CAF50;'>✅ ¡Licencia recuperada! Redirigiendo...</span>";
+          mensajeDiv.innerHTML = `<span style='color:#4CAF50;'>✅ ¡Licencia ${nombrePlan} recuperada! Redirigiendo...</span>`;
           setTimeout(() => {
             asignarEventosNavegacion();
             mostrarPantallaPrincipal();
           }, 1500);
-        } else {
+        } else if (planesValidos.includes(tipoPlan) && new Date(data.expira) <= new Date()) {
           mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ Tu licencia ha expirado. Contacta para renovar.</span>";
+        } else {
+          mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ No se encontró una licencia activa para este email.</span>";
         }
       } else {
         mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ No encontramos una licencia activa para este email.</span>";
@@ -3427,6 +3483,7 @@ function mostrarPantallaReingreso() {
     }
   });
   
+  // Evento: Ir a planes
   document.getElementById("btnIrAOferta")?.addEventListener("click", () => {
     asignarEventosNavegacion();
     mostrarPantallaPlanes();
@@ -3438,13 +3495,21 @@ function mostrarPantallaReingreso() {
 // =====================================================
 
 function asignarEventosNavegacion() {
-  document.querySelectorAll(".tab-btn").forEach(btn => {
+  const botones = document.querySelectorAll(".tab-btn");
+  
+  if (botones.length === 0) {
+    console.log("⚠️ No se encontraron botones de navegación");
+    return;
+  }
+  
+  botones.forEach(btn => {
     // Remover eventos anteriores para evitar duplicados
     btn.removeEventListener("click", btn._listener);
     
     // Crear nuevo evento
     const listener = () => {
-      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      // Cambiar clase activa
+      botones.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       
       const tab = btn.getAttribute("data-tab");
@@ -3534,7 +3599,7 @@ function mostrarPantallaPrincipal() {
   const progreso = Math.round((completados / DIAS_VISIBLES) * 100);
   
   // =====================================================
-  // GENERAR HTML
+  // GENERAR HTML (CON TODOS LOS BOTONES)
   // =====================================================
   
   let html = `
@@ -3549,6 +3614,15 @@ function mostrarPantallaPrincipal() {
       <p>🔥 Racha: ${cursoEstado.racha} días | ✅ Completados: ${completados}/${DIAS_VISIBLES}</p>
       ${cursoEstado.estiloCrianza ? `<p>🎭 Tu estilo: ${cursoEstado.estiloCrianza}</p>` : '<p>📝 Completa el Día 1 para conocer tu estilo.</p>'}
       <p>${mensajePlan}</p>
+      
+      <!-- BOTONES DE ACCIÓN (TODOS INCLUIDOS) -->
+      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:1rem; justify-content:center;">
+        <button id="btnSimulador" class="juego" style="background:#9C27B0; flex:1; min-width:80px;">🎭 Simulador</button>
+        <button id="btnEstadisticas" class="juego" style="background:#2196F3; flex:1; min-width:80px;">📊 Stats</button>
+        <button id="btnPlanificador" class="juego" style="background:#FF9800; flex:1; min-width:80px;">📅 Plan</button>
+        <button id="btnConfig" class="juego" style="background:#607D8B; flex:1; min-width:80px;">⚙️ Config</button>
+        <button id="btnCerrarSesion" class="juego" style="background:#f44336; flex:1; min-width:80px;">🚪 Salir</button>
+      </div>
     </div>
   `;
   
@@ -3594,7 +3668,6 @@ function mostrarPantallaPrincipal() {
           <li>✅ Estadísticas detalladas</li>
           <li>✅ Sincronización entre dispositivos</li>
           ${licencia.tipo === "basico" ? '<li>✅ Días 4 al 33 completos</li>' : ''}
-          ${licencia.tipo === "pro" ? '<li>✅ Herramientas descargables</li>' : ''}
         </ul>
         <button id="btnUpgradeBloqueado" class="juego" style="background:#ff9800; margin-top:1rem;">⬆️ Ver planes disponibles</button>
       </div>
@@ -3607,6 +3680,7 @@ function mostrarPantallaPrincipal() {
   // EVENTOS DE LOS BOTONES
   // =====================================================
   
+  // Evento para cada día
   document.querySelectorAll(".btn-dia").forEach(btn => {
     btn.onclick = () => {
       const dia = parseInt(btn.getAttribute("data-dia"));
@@ -3648,25 +3722,29 @@ function mostrarPantallaPrincipal() {
     mostrarPlanificador();
   });
   
+  // Botón Configuración (disponible para todos)
+  document.getElementById("btnConfig")?.addEventListener("click", mostrarConfiguracion);
+  
   // Botón Upgrade desde banner
   document.getElementById("btnUpgradeDesdeBanner")?.addEventListener("click", mostrarPantallaPlanes);
   document.getElementById("btnUpgradeBloqueado")?.addEventListener("click", mostrarPantallaPlanes);
   
-  // Cerrar sesión
+  // Botón Cerrar sesión
   document.getElementById("btnCerrarSesion")?.addEventListener("click", () => {
     if (confirm("¿Cerrar sesión? Perderás el acceso a tu plan en este dispositivo.")) {
       localStorage.removeItem("emailPro");
       localStorage.removeItem("licenciaPro");
       localStorage.removeItem("licenciaCrianza");
       localStorage.removeItem("emailLicenciaActiva");
+      localStorage.removeItem("planSeleccionado");
+      localStorage.removeItem("precioSeleccionado");
+      localStorage.removeItem("emailComprador");
       licencia.tipo = "demo";
       location.reload();
     }
   });
   
-  // Configuración
-  document.getElementById("btnConfig")?.addEventListener("click", mostrarConfiguracion);
-  
+  // Reasignar eventos de navegación
   asignarEventosNavegacion();
 }
 
