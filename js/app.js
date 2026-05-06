@@ -3711,7 +3711,7 @@ function mostrarPantallaPrincipal() {
     }
     mostrarEstadisticas();
   });
-  
+    
   // Botón Planificador (solo para Pro y Platino)
   document.getElementById("btnPlanificador")?.addEventListener("click", () => {
     if (licencia.tipo !== "pro" && licencia.tipo !== "platino") {
