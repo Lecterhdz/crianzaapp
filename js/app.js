@@ -1,5 +1,5 @@
 // =====================================================
-// CURSO DE CRIANZA - 28 DÍAS - VERSIÓN PROFESIONAL COMPLETA
+// CURSO DE CRIANZA - 33 DÍAS - VERSIÓN PROFESIONAL COMPLETA
 // CON TEORÍAS FORMATEADAS Y MODALES MEJORADOS
 // =====================================================
 
@@ -726,7 +726,7 @@ function formatearTeoria(texto) {
   return formateado;
 }
 
-// --- CONTENIDO DE LOS 28 DÍAS ---
+// --- CONTENIDO DE LOS 33 DÍAS ---
 const lecciones = {};
 
 // DÍA 1 - TEORÍA FORMATEADA
@@ -2821,7 +2821,7 @@ function mostrarEstadisticas() {
   const completadosPorModulo = [0, 0, 0, 0];
   
   // Calcular completados por módulo
-  for (let dia = 1; dia <= 28; dia++) {
+  for (let dia = 1; dia <= 33; dia++) {
     const modulo = Math.floor((dia - 1) / 7);
     if (cursoEstado.completados.includes(dia)) {
       completadosPorModulo[modulo]++;
@@ -2940,7 +2940,7 @@ function mostrarEstadisticas() {
         <div class="card" style="text-align:center;">
           <h3>🎯 Progreso total</h3>
           ${graficoCircular}
-          <p>${totalCompletados} de 28 días completados</p>
+          <p>${totalCompletados} de 33 días completados</p>
           <p>🔥 Racha actual: <strong>${cursoEstado.racha}</strong> días</p>
         </div>
         <div class="card" style="text-align:center;">
@@ -2966,10 +2966,10 @@ function mostrarEstadisticas() {
         ${productivosHtml}
       </div>
       
-      ${cursoEstado.diaActual > 28 ? `
+      ${cursoEstado.diaActual > 33 ? `
       <div class="card" style="text-align:center; background:#e8f5e9;">
         <h3>🎉 ¡FELICIDADES!</h3>
-        <p>Completaste los 28 días del curso.</p>
+        <p>Completaste los 33 días del curso.</p>
         <button id="descargarCertificadoFinal" class="juego">🎓 Descargar certificado</button>
       </div>
       ` : ''}
@@ -2990,7 +2990,7 @@ function mostrarEstadisticas() {
 
 Fecha: ${new Date().toLocaleDateString()}
 
-Completaste los 28 días del curso.
+Completaste los 33 días del curso.
 Racha final: ${cursoEstado.racha} días
 Estilo de crianza: ${cursoEstado.estiloCrianza || "No evaluado"}
 Medallas obtenidas: ${cursoEstado.medallas.length}/6
@@ -3004,7 +3004,7 @@ Firma: ___________________
       const blob = new Blob([certificado], { type: "text/plain" });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
-      link.download = "certificado_crianza_28_dias.txt";
+      link.download = "certificado_crianza_33_dias.txt";
       link.click();
     };
   }
