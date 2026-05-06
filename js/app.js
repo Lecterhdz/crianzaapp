@@ -313,79 +313,6 @@ async function mostrarPanelAdmin() {
   document.getElementById("btnVolverAdmin")?.addEventListener("click", mostrarPantallaPrincipal);
 }
 
-// =====================================================
-// MOSTRAR OFERTA PRO CON LOGIN
-// =====================================================
-
-function mostrarOfertaPro() {
-  const html = `
-    <div class="card" style="text-align:center; max-width:500px; margin:0 auto;">
-      <span style="font-size:3rem;">🌟</span>
-      <h2>Desbloquea el curso completo</h2>
-      <p>Accede a los <strong>33 días</strong> del curso de crianza consciente</p>
-      
-      <div style="background:linear-gradient(135deg, #4CAF50, #2e7d32); color:white; padding:1.5rem; border-radius:1.5rem; margin:1.5rem 0; position:relative;">
-        <div style="position:absolute; top:-10px; right:0; background:#ff9800; color:#333; padding:4px 12px; border-radius:20px; font-size:0.7rem; font-weight:bold;">
-          🔥 70% DESCUENTO
-        </div>
-        <div style="font-size:0.8rem; text-decoration:line-through; opacity:0.7;">$199 MXN</div>
-        <div style="font-size:3rem; font-weight:bold;">$59</div>
-        <div>MXN / año</div>
-        <div style="font-size:0.7rem; margin-top:0.5rem;">⚡ Precio especial. En julio 2026 sube a $199</div>
-      </div>
-      
-      
-      <div style="margin:1.5rem 0; padding:1rem; background:#f5f5f5; border-radius:1rem;">
-        <h3>🔑 Activar licencia Pro</h3>
-        <input type="email" id="emailLicenciaInput" placeholder="Tu correo electrónico" style="width:100%; padding:0.8rem; border-radius:1rem; border:1px solid #ccc; margin-bottom:0.5rem;">
-        <input type="text" id="codigoLicenciaInput" placeholder="Código de licencia" style="width:100%; padding:0.8rem; border-radius:1rem; border:1px solid #ccc;">
-        <button id="btnActivarLicencia" class="juego" style="margin-top:0.5rem;">✅ Activar licencia</button>
-        <p id="mensajeActivacion" style="margin-top:0.5rem;"></p>
-      </div>
-      
-      <div style="margin:1rem 0;">
-        <p><strong>¿No tienes código?</strong></p>
-        <button id="btnComprarWP" class="juego" style="background:#25D366;">📱 Comprar por WhatsApp</button>
-      </div>
-        <p style="font-size:0.7rem; margin-top:0.5rem;">🎯 Oferta por tiempo limitado. Aprovecha el 70% de descuento.</p>
-      
-      <button id="btnVolverOferta" class="juego" style="background:#ccc;">Volver al curso demo</button>
-    </div>
-  `;
-  
-  document.getElementById("contenido").innerHTML = html;
-
-  
-  document.getElementById("btnActivarLicencia")?.addEventListener("click", async () => {
-    const email = document.getElementById("emailLicenciaInput").value.trim();
-    const codigo = document.getElementById("codigoLicenciaInput").value.trim().toUpperCase();
-    const mensajeDiv = document.getElementById("mensajeActivacion");
-    
-    if (!email || !codigo) {
-      mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ Ingresa email y código</span>";
-      return;
-    }
-    
-    mensajeDiv.innerHTML = "<span style='color:#2196F3;'>⏳ Validando...</span>";
-    const resultado = await activarLicenciaPorEmail(codigo, email);
-    mensajeDiv.innerHTML = `<span style='color:${resultado.valido ? '#4CAF50' : '#f44336'}'>${resultado.mensaje}</span>`;
-    
-    if (resultado.valido) {
-      setTimeout(() => mostrarPantallaPrincipal(), 2000);
-    }
-  });
-  
-  document.getElementById("btnComprarWP")?.addEventListener("click", () => {
-    const numeroWhatsApp = "524641177116";
-    const mensaje = encodeURIComponent(
-      "Hola, quiero comprar la licencia Pro del curso de crianza ($59 MXN - 70% descuento). Mi correo para activar la licencia es: [ESCRIBE AQUÍ TU CORREO]. ¿Me envías los datos para pagar? Gracias."
-    );
-    window.open(`https://wa.me/${numeroWhatsApp}?text=${mensaje}`, "_blank");
-  });
-  
-  document.getElementById("btnVolverOferta")?.addEventListener("click", mostrarPantallaPrincipal);
-  asignarEventosNavegacion();
-}
 
 // =====================================================
 // SISTEMA DE LICENCIA SIMPLIFICADO - UNA SOLA VARIABLE
@@ -2414,9 +2341,11 @@ function mostrarModal(titulo, contenido) {
 // PANTALLA DE PLANES (BÁSICO, PRO, PLATINO)
 // =====================================================
 
+// =====================================================
+// PANTALLA DE PLANES (BÁSICO, PRO, PLATINO)
+// =====================================================
+
 function mostrarPantallaPlanes() {
-  const emailActual = localStorage.getItem("emailPro") || "";
-  
   const html = `
     <div class="card" style="text-align:center; max-width:900px; margin:0 auto;">
       <h2>🎯 Elige el plan que mejor se adapte a ti</h2>
@@ -2437,7 +2366,7 @@ function mostrarPantallaPlanes() {
             <li>❌ Sin medallas</li>
             <li>❌ Sin herramientas</li>
           </ul>
-          <button class="btn-plan" data-plan="basico" data-precio="189" class="btn-dia" style="background:#2196F3; color:white; border:none; padding:0.5rem 1rem; border-radius:2rem; cursor:pointer; width:100%;">Elegir Básico</button>
+          <button class="btn-plan" data-plan="basico" data-precio="189" style="background:#2196F3; color:white; border:none; padding:0.5rem 1rem; border-radius:2rem; cursor:pointer; width:100%;">Elegir Básico</button>
         </div>
         
         <!-- PLAN PRO (DESTACADO) -->
@@ -2445,7 +2374,7 @@ function mostrarPantallaPlanes() {
           <div style="position:absolute; top:-10px; right:10px; background:#ff9800; color:#333; padding:4px 12px; border-radius:20px; font-size:0.7rem; font-weight:bold;">🔥 MÁS POPULAR</div>
           <div style="font-size:2rem;">🌟</div>
           <h3 style="color:white;">Pro</h3>
-          <div style="font-size:0.8rem; text-decoration:line-through; opacity:0.7;">$199</div>
+          <div style="font-size:0.8rem; text-decoration:line-through; opacity:0.7;">$189</div>
           <div style="font-size:2rem; font-weight:bold;">$59</div>
           <div style="font-size:0.7rem;">MXN / año</div>
           <div style="background:#ff9800; color:#333; display:inline-block; padding:2px 12px; border-radius:20px; margin-top:0.5rem; font-weight:bold;">70% DESCUENTO</div>
@@ -2478,7 +2407,17 @@ function mostrarPantallaPlanes() {
         
       </div>
       
-      <div style="margin-top:1rem;">
+      <!-- SECCIÓN PARA USUARIOS QUE YA TIENEN CÓDIGO -->
+      <div style="margin-top: 2rem; padding: 1.5rem; background: #e8f5e9; border-radius: 1rem;">
+        <h3 style="color: #2e7d32;">🔑 ¿Ya tienes un código de licencia?</h3>
+        <p>Ingresa tu código y correo para activar tu plan.</p>
+        <input type="text" id="codigoActivacion" placeholder="Código de licencia (ej: CRIANZA-XXXXXX)" style="width:100%; padding:0.8rem; border-radius:1rem; border:1px solid #ccc; margin-bottom:0.5rem;">
+        <input type="email" id="emailActivacion" placeholder="Tu correo electrónico" style="width:100%; padding:0.8rem; border-radius:1rem; border:1px solid #ccc;">
+        <button id="btnActivarCodigoPlan" class="juego" style="margin-top:0.5rem; background:#4CAF50;">✅ Activar mi licencia</button>
+        <p id="mensajeActivacionPlan" style="margin-top:0.5rem;"></p>
+      </div>
+      
+      <div style="margin-top:2rem;">
         <p style="font-size:0.7rem;">⚡ Los precios de Básico y Platino son regulares. El plan Pro tiene 70% de descuento por tiempo limitado.</p>
         <button id="btnVolverPlanes" class="juego" style="background:#ccc;">← Volver al curso</button>
       </div>
@@ -2487,31 +2426,79 @@ function mostrarPantallaPlanes() {
   
   document.getElementById("contenido").innerHTML = html;
   
-  // Eventos para botones de planes
+  // =====================================================
+  // EVENTO: Elegir un plan (abre WhatsApp)
+  // =====================================================
   document.querySelectorAll(".btn-plan").forEach(btn => {
-    btn.onclick = () => {
+    btn.onclick = async () => {
       const plan = btn.getAttribute("data-plan");
       const precio = btn.getAttribute("data-precio");
-      const email = prompt("📧 Ingresa tu correo electrónico para recibir el código de activación:");
+      
+      const email = prompt("📧 Ingresa tu correo electrónico:\n\n(Recibirás el código de activación después del pago)");
       
       if (!email || !email.includes("@")) {
         alert("❌ Ingresa un email válido");
         return;
       }
       
-      // Guardar selección para cuando se active el código
+      // Guardar selección en localStorage
       localStorage.setItem("planSeleccionado", plan);
       localStorage.setItem("precioSeleccionado", precio);
       localStorage.setItem("emailComprador", email);
       
-      // Abrir WhatsApp con mensaje personalizado según el plan
-      let mensaje = "";
-      if (plan === "basico") mensaje = `Hola, quiero comprar el plan Básico del curso de crianza ($${precio} MXN). Mi correo es: ${email}`;
-      if (plan === "pro") mensaje = `Hola, quiero comprar el plan Pro con 70% de descuento ($${precio} MXN). Mi correo es: ${email}`;
-      if (plan === "platino") mensaje = `Hola, quiero comprar el plan Platino del curso de crianza ($${precio} MXN). Mi correo es: ${email}`;
+      // Guardar en Firestore (para llevar registro)
+      try {
+        await db.collection("interesados").add({
+          email: email,
+          plan: plan,
+          precio: precio,
+          fecha: new Date().toISOString(),
+          estado: "pendiente"
+        });
+        console.log("✅ Interesado guardado en Firestore");
+      } catch (error) {
+        console.log("Error guardando interesado:", error);
+      }
       
-      window.open(`https://wa.me/524641177116?text=${encodeURIComponent(mensaje)}`, "_blank");
+      // Mensaje según el plan
+      let mensajeWhatsApp = "";
+      if (plan === "basico") mensajeWhatsApp = `Hola, quiero comprar el plan BÁSICO del curso de crianza ($${precio} MXN). Mi correo para activar la licencia es: ${email}`;
+      if (plan === "pro") mensajeWhatsApp = `Hola, quiero comprar el plan PRO con 70% de descuento ($${precio} MXN). Mi correo para activar la licencia es: ${email}`;
+      if (plan === "platino") mensajeWhatsApp = `Hola, quiero comprar el plan PLATINO del curso de crianza ($${precio} MXN). Mi correo para activar la licencia es: ${email}`;
+      
+      // Abrir WhatsApp
+      window.open(`https://wa.me/524641177116?text=${encodeURIComponent(mensajeWhatsApp)}`, "_blank");
+      
+      alert(`✅ Mensaje enviado por WhatsApp. Pronto recibirás tu código de activación para el plan ${plan.toUpperCase()}.`);
     };
+  });
+  
+  // =====================================================
+  // EVENTO: Activar código existente
+  // =====================================================
+  document.getElementById("btnActivarCodigoPlan")?.addEventListener("click", async () => {
+    const codigo = document.getElementById("codigoActivacion").value.trim().toUpperCase();
+    const email = document.getElementById("emailActivacion").value.trim();
+    const mensajeDiv = document.getElementById("mensajeActivacionPlan");
+    
+    if (!codigo || !email) {
+      mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ Ingresa código y email</span>";
+      return;
+    }
+    
+    if (!email.includes("@")) {
+      mensajeDiv.innerHTML = "<span style='color:#f44336;'>❌ Ingresa un email válido</span>";
+      return;
+    }
+    
+    mensajeDiv.innerHTML = "<span style='color:#2196F3;'>⏳ Validando código...</span>";
+    
+    const resultado = await activarLicenciaPorEmail(codigo, email);
+    mensajeDiv.innerHTML = `<span style='color:${resultado.valido ? '#4CAF50' : '#f44336'}'>${resultado.mensaje}</span>`;
+    
+    if (resultado.valido) {
+      setTimeout(() => mostrarPantallaPrincipal(), 2000);
+    }
   });
   
   document.getElementById("btnVolverPlanes")?.addEventListener("click", mostrarPantallaPrincipal);
@@ -2826,7 +2813,7 @@ function mostrarSimulador() {
 
 function mostrarEstadisticas() {
   if (licencia.tipo !== "pro") {
-    mostrarOfertaPro();
+    mostrarPantallaPlanes();
     return;
   }  
   const completados = cursoEstado.completados.length;
@@ -3024,7 +3011,7 @@ Firma: ___________________
 }
 function mostrarPlanificador() {
   if (licencia.tipo !== "pro") {
-    mostrarOfertaPro();
+    mostrarPantallaPlanes();
     return;
   }
   const html = `<div class="card"><h2>📅 Planificador semanal</h2><div id="planificadorContenido"><table style="width:100%; border-collapse:collapse;"><tr style="background:#4CAF50;color:white"><th>Día</th><th>Mi objetivo</th><th>✅</th><tr>${["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"].map((d,idx)=>`<tr><td>${d}</td><td><input type="text" id="plan${idx}" placeholder="Ej: Validar una emoción" style="width:100%; padding:8px;"></td><td><input type="checkbox"></td></tr>`).join('')}</table><button id="imprimirPlanificador" class="juego" style="margin-top:1rem;">🖨️ Imprimir</button><button id="guardarPlanificador" class="juego">💾 Guardar</button></div><button id="volverPlanificador" class="juego">Volver</button></div>`;
@@ -3442,7 +3429,7 @@ function mostrarPantallaReingreso() {
   
   document.getElementById("btnIrAOferta")?.addEventListener("click", () => {
     asignarEventosNavegacion();
-    mostrarOfertaPro();
+    mostrarPantallaPlanes();
   });
 }
 
@@ -3686,7 +3673,7 @@ function mostrarPantallaPrincipal() {
 function mostrarLeccion(dia) {
   // VALIDACIÓN DE LICENCIA
   if (!puedeAccederADia(dia)) {
-    mostrarOfertaPro();
+    mostrarPantallaPlanes();
     return;
   }
   const lec = lecciones[dia];
