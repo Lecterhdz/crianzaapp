@@ -3616,13 +3616,13 @@ function mostrarPantallaPrincipal() {
       <p>${mensajePlan}</p>
       
       <!-- BOTONES DE ACCIÓN (TODOS INCLUIDOS) -->
-      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:1rem; justify-content:center;">
-        <button id="btnSimulador" class="juego" style="background:#9C27B0; flex:1; min-width:80px;">🎭 Simulador</button>
-        <button id="btnEstadisticas" class="juego" style="background:#2196F3; flex:1; min-width:80px;">📊 Stats</button>
-        <button id="btnPlanificador" class="juego" style="background:#FF9800; flex:1; min-width:80px;">📅 Plan</button>
-        <button id="btnConfig" class="juego" style="background:#607D8B; flex:1; min-width:80px;">⚙️ Config</button>
-        <button id="btnCerrarSesion" class="juego" style="background:#f44336; flex:1; min-width:80px;">🚪 Salir</button>
-      </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:1rem; justify-content:center;">
+      <button id="btnSimulador" class="juego" style="background:#9C27B0; flex:1; min-width:70px;">🎭 Simulador</button>
+      <button id="btnEstadisticas" class="juego" style="background:#2196F3; flex:1; min-width:70px;">📊 Stats</button>
+      <button id="btnPlanificador" class="juego" style="background:#FF9800; flex:1; min-width:70px;">📅 Plan</button>
+      <button id="btnHerramientasPlatino" class="juego" style="background:#9C27B0; flex:1; min-width:70px;">👑 Herramientas</button>
+      <button id="btnConfig" class="juego" style="background:#607D8B; flex:1; min-width:70px;">⚙️ Config</button>
+      <button id="btnCerrarSesion" class="juego" style="background:#f44336; flex:1; min-width:70px;">🚪 Salir</button>
     </div>
   `;
   
@@ -3742,6 +3742,16 @@ function mostrarPantallaPrincipal() {
       licencia.tipo = "demo";
       location.reload();
     }
+
+  // Botón Herramientas Platino (solo para plan Platino)
+  document.getElementById("btnHerramientasPlatino")?.addEventListener("click", () => {
+    if (licencia.tipo !== "platino") {
+      alert("👑 Las herramientas Platino solo están disponibles para el plan Platino.");
+      mostrarPantallaPlanes();
+      return;
+    }
+    mostrarHerramientasPlatino();
+    
   });
   
   // Reasignar eventos de navegación
@@ -4084,7 +4094,75 @@ async function guardarProgresoFirebase() {
     console.log("Error guardando progreso en Firebase:", error);
   }
 }
+// =====================================================
+// HERRAMIENTAS PLATINO (solo visibles para plan Platino)
+// =====================================================
 
+function mostrarHerramientasPlatino() {
+  if (licencia.tipo !== "platino") {
+    mostrarPantallaPlanes();
+    return;
+  }
+  
+  const html = `
+    <div class="card">
+      <h2>👑 Herramientas Platino</h2>
+      <p>Descarga estas herramientas exclusivas para aplicar la crianza consciente en tu día a día.</p>
+      <div class="grid-2" id="herramientasContainer">
+        <!-- Las herramientas se cargarán aquí -->
+      </div>
+      <button id="volverHerramientas" class="juego" style="margin-top:1rem;">← Volver al curso</button>
+    </div>
+  `;
+  
+  document.getElementById("contenido").innerHTML = html;
+  
+  const herramientas = [
+    { id: "consecuencias", nombre: "📋 Tabla de consecuencias lógicas", descripcion: "Guía para aplicar consecuencias sin castigar." },
+    { id: "stickers", nombre: "📅 Calendario de stickers", descripcion: "Motiva a tu hijo en el control de esfínteres." },
+    { id: "ruleta", nombre: "🎨 Ruleta de emociones", descripcion: "Ayuda a identificar y nombrar emociones." },
+    { id: "planificador", nombre: "📅 Planificador semanal", descripcion: "Organiza tus objetivos de crianza." },
+    { id: "registro", nombre: "📝 Registro de rabietas", descripcion: "Identifica patrones y desencadenantes." },
+    { id: "limites", nombre: "✅ Checklist de límites", descripcion: "Límites esenciales por edad." },
+    { id: "diario", nombre: "📓 Diario de reflexión", descripcion: "Registra tus aprendizajes." },
+    { id: "mandamientos", nombre: "🖼️ Póster 10 mandamientos", descripcion: "Recordatorio diario para la nevera." },
+    { id: "semaforo", nombre: "🚦 Semáforo de emociones", descripcion: "Enseña a regular las emociones." }
+  ];
+  
+  let herramientasHtml = "";
+  for (const h of herramientas) {
+    herramientasHtml += `
+      <div class="card" style="text-align:center;">
+        <div style="font-size:2rem;">${h.nombre.split(" ")[0]}</div>
+        <h3>${h.nombre}</h3>
+        <p>${h.descripcion}</p>
+        <button class="btn-descargar" data-id="${h.id}" style="background:#4CAF50; color:white; border:none; padding:8px 16px; border-radius:20px; cursor:pointer;">📥 Descargar PDF</button>
+      </div>
+    `;
+  }
+  
+  document.getElementById("herramientasContainer").innerHTML = herramientasHtml;
+  
+  document.querySelectorAll(".btn-descargar").forEach(btn => {
+    btn.onclick = () => {
+      const id = btn.getAttribute("data-id");
+      descargarHerramientaPDF(id);
+    };
+  });
+  
+  document.getElementById("volverHerramientas").onclick = mostrarPantallaPrincipal;
+}
+
+function descargarHerramientaPDF(id) {
+  // Por ahora, simulamos la descarga
+  alert(`📥 Descargando herramienta: ${id}\n\n(Próximamente: PDF real con contenido detallado)`);
+  
+  // Simulación de descarga
+  const link = document.createElement("a");
+  link.download = `herramienta_${id}.pdf`;
+  link.href = `data:application/octet-stream,${encodeURIComponent("Contenido del PDF - Herramienta " + id)}`;
+  link.click();
+}
 // =====================================================
 // INICIAR APLICACIÓN
 // =====================================================
