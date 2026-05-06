@@ -729,7 +729,7 @@ function formatearTeoria(texto) {
 // --- CONTENIDO DE LOS 33 DÍAS ---
 const lecciones = {};
 
-// DÍA 1 - TEORÍA FORMATEADA
+// DÍA 1 - MEJORADO
 lecciones[1] = {
   titulo: "🎯 Día 1: Conoce tu estilo de crianza",
   objetivo: "Identificar tu estilo actual para poder mejorarlo.",
@@ -744,6 +744,16 @@ lecciones[1] = {
     </ul>
     
     <p>El estilo <strong>DEMOCRÁTICO</strong> es el que mejores resultados da: hijos seguros, autónomos, con alta autoestima y autocontrol. Hoy descubrirás cuál es tu estilo.</p>
+    
+    <div class="highlight" style="background:#e8f5e9; padding:15px; border-radius:10px; margin:20px 0;">
+      <p><strong>🎯 MINI TEST RÁPIDO (3 preguntas):</strong></p>
+      <p>1. Cuando tu hijo se equivoca, ¿lo castigas o le ayudas a reflexionar?<br>
+      2. Cuando hay una norma nueva, ¿la impones o la explicas?<br>
+      3. Cuando tu hijo está triste, ¿lo ignoras o lo acompañas?</p>
+      <p>💡 <em>Responder más "ayudas", "explicas" y "acompañas" se acerca al estilo democrático.</em></p>
+    </div>
+    
+    <p>🎯 <strong>Recuerda:</strong> este test no te etiqueta para siempre. Es un punto de partida para crecer. Tu estilo puede cambiar con práctica y conciencia.</p>
   `,
   ejemplos: [
     "👎 AUTORITARIO: '¡Hazlo porque lo digo yo y punto! Si lloras, peor.'",
@@ -752,17 +762,18 @@ lecciones[1] = {
   actividades: [
     "🎲 ACTIVIDAD 1: Responde el TEST DE ESTILO que está al final de esta lección. Anota tu resultado.",
     "🎲 ACTIVIDAD 2: Hoy, observa una interacción tuya con tu hijo y pregúntate: ¿qué estilo usé?",
-    "🎲 ACTIVIDAD 3: Pide a alguien cercano que te describa cómo te ve en momentos de conflicto con tu hijo."
+    "🎲 ACTIVIDAD 3: Pide a alguien cercano que te describa cómo te ve en momentos de conflicto con tu hijo.",
+    "🎲 ACTIVIDAD 4: Anota en un papel el estilo que crees tener hoy. Al final del curso, compáralo."
   ],
-  tecnicas: ["Observación metacognitiva", "Pausa antes de reaccionar"],
-  habilidades: ["Autoconciencia parental", "Regulación emocional del adulto"],
+  tecnicas: ["Observación metacognitiva", "Pausa antes de reaccionar", "Mini test de autoevaluación"],
+  habilidades: ["Autoconciencia parental", "Regulación emocional del adulto", "Aceptación del cambio"],
   errores: ["❌ Confundir firmeza con dureza (autoritario)", "❌ Confundir ternura con ausencia de límites (permisivo)"],
-  frases: ["'Hoy voy a observar mi reacción antes de juzgarla.'", "'Mi estilo no es mi destino, puedo mejorar.'"],
+  frases: ["'Hoy voy a observar mi reacción antes de juzgarla.'", "'Mi estilo no es mi destino, puedo mejorar.'", "'Este test es un punto de partida, no una etiqueta final.'"],
   herramientas: ["Diario de crianza", "Test de estilo (abajo)"],
   tieneTest: true
 };
 
-// DÍA 2 - TEORÍA FORMATEADA
+// DÍA 2 - MEJORADO
 lecciones[2] = {
   titulo: "📜 Día 2: Los 10 mandamientos de la crianza positiva",
   objetivo: "Interiorizar los principios que guían una crianza respetuosa y efectiva.",
@@ -780,9 +791,14 @@ lecciones[2] = {
       <li><strong>🎮 EL JUEGO ES EL MEJOR APRENDIZAJE</strong> - A través del juego se conecta y se enseña.</li>
       <li><strong>🌟 EL ERROR ES OPORTUNIDAD</strong> - No castigues, enseña. El error bien manejado construye resiliencia.</li>
       <li><strong>🧘 CUIDATE PARA PODER CUIDAR</strong> - El autocuidado no es egoísmo, es la base.</li>
+      <li><strong>📱 MODELAS EL USO DE PANTALLAS</strong> - Tú eres su ejemplo digital. Si estás todo el día con el teléfono, ellos aprenderán eso.</li>
     </ol>
     
     <p>📌 <em>Imprime estos mandamientos y ponlos en tu nevera como recordatorio diario.</em></p>
+    
+    <div class="highlight" style="background:#fff3e0; padding:15px; border-radius:10px; margin:20px 0;">
+      <p><strong>📌 RETO DEL DÍA:</strong> Elige UN mandamiento y ponlo en práctica conscientemente hoy. Al final del día, reflexiona: ¿cómo te sentiste? ¿cómo reaccionó tu hijo?</p>
+    </div>
   `,
   ejemplos: [
     "📖 Ejemplo de conectar antes de corregir: Tu hijo tira un juguete. Te arrodillas y dices: 'Veo que estás frustrado. Los juguetes no se tiran. ¿Cómo podemos solucionarlo?'",
@@ -791,16 +807,18 @@ lecciones[2] = {
   actividades: [
     "🎲 ACTIVIDAD 1: Escribe los 3 mandamientos que más se te olvidan y pon el papel en la nevera.",
     "🎲 ACTIVIDAD 2: Hoy, antes de corregir, respira 3 veces y pregúntate: ¿estoy conectando?",
-    "🎲 ACTIVIDAD 3: Comparte los mandamientos con tu pareja o co-cuidador y elijan 1 para practicar juntos esta semana."
+    "🎲 ACTIVIDAD 3: Comparte los mandamientos con tu pareja o co-cuidador y elijan 1 para practicar juntos esta semana.",
+    "🎲 ACTIVIDAD 4: Imprime los mandamientos (descarga el PDF exclusivo del plan Platino)."
   ],
-  tecnicas: ["Pausa de 3 respiraciones", "Reencuadre del error como oportunidad"],
-  habilidades: ["Empatía", "Consistencia", "Autorregulación"],
+  tecnicas: ["Pausa de 3 respiraciones", "Reencuadre del error como oportunidad", "Reto de un mandamiento al día"],
+  habilidades: ["Empatía", "Consistencia", "Autorregulación", "Modelado digital"],
   errores: ["❌ Corregir en caliente sin haber conectado primero", "❌ Usar frases como 'siempre haces lo mismo'"],
   frases: ["'Primero conecto, luego corrijo.'", "'Tu emoción es válida, tu acción necesita cambio.'"],
-  herramientas: ["Póster de los 10 mandamientos", "Temporizador de pausa"]
+  herramientas: ["Póster de los 10 mandamientos", "Temporizador de pausa", "Calendario de retos diarios"],
+  tieneTest: false
 };
 
-// DÍA 3 - TEORÍA FORMATEADA
+// DÍA 3 - MEJORADO
 lecciones[3] = {
   titulo: "🧩 Día 3: Los 4 pilares del hogar",
   objetivo: "Identificar qué pilar está más débil en tu familia para fortalecerlo.",
@@ -814,6 +832,11 @@ lecciones[3] = {
       <li><strong>🧘 PILAR 4: AUTOCUIDADO DEL ADULTO</strong><br>No puedes dar lo que no tienes. Un adulto agotado o irritable no puede regular a un niño.</li>
     </ul>
     
+    <div class="highlight" style="background:#e8f5e9; padding:15px; border-radius:10px; margin:20px 0;">
+      <p><strong>🎨 Rueda de evaluación de pilares:</strong></p>
+      <p>Dibuja un círculo dividido en 4 secciones (cada pilar). Puntúa del 1 al 10 cada uno. El pilar con menor puntuación será tu foco de mejora esta semana.</p>
+    </div>
+    
     <p>💡 <em>"No puedo llenar su vaso si el mío está vacío"</em></p>
   `,
   ejemplos: [
@@ -823,16 +846,18 @@ lecciones[3] = {
   actividades: [
     "🎲 ACTIVIDAD 1: Dibuja una rueda con 4 sectores. Puntúa cada pilar del 1 al 10. El más bajo es tu foco.",
     "🎲 ACTIVIDAD 2: Hoy refuerza tu pilar más débil con una acción concreta.",
-    "🎲 ACTIVIDAD 3: Pregunta a tu hijo: '¿qué crees que necesitamos mejorar en casa?'"
+    "🎲 ACTIVIDAD 3: Pregunta a tu hijo: '¿qué crees que necesitamos mejorar en casa?'",
+    "🎲 ACTIVIDAD 4: ¿Cuál es tu pilar más fuerte? ¿Cómo puedes usarlo para fortalecer el más débil?"
   ],
-  tecnicas: ["Rueda de pilares", "Checklist semanal de pilares"],
-  habilidades: ["Evaluación sistémica", "Priorización"],
+  tecnicas: ["Rueda de pilares", "Checklist semanal de pilares", "Evaluación visual"],
+  habilidades: ["Evaluación sistémica", "Priorización", "Autoconciencia familiar"],
   errores: ["❌ Descuidar el autocuidado por culpa", "❌ Centrarse solo en límites olvidando el vínculo"],
   frases: ["'No puedo llenar su vaso si el mío está vacío.'", "'Hoy fortaleceré mi pilar más débil.'"],
-  herramientas: ["Rueda imprimible", "Diario de pilares"]
+  herramientas: ["Rueda imprimible", "Diario de pilares", "Plantilla de evaluación"],
+  tieneTest: false
 };
 
-// DÍA 4 - TEORÍA FORMATEADA
+// DÍA 4 - MEJORADO
 lecciones[4] = {
   titulo: "💖 Día 4: Validación emocional",
   objetivo: "Aprender a responder a las emociones difíciles sin negarlas ni minimizarlas.",
@@ -850,25 +875,35 @@ lecciones[4] = {
     
     <p>La validación <strong>reduce la intensidad emocional a la mitad</strong> y enseña inteligencia emocional.</p>
     
+    <div class="highlight" style="background:#fff3e0; padding:15px; border-radius:10px; margin:20px 0;">
+      <p><strong>⚠️ DIFERENCIA CLAVE:</strong></p>
+      <p>Validar no significa estar de acuerdo. Puedes decir: "Veo que estás enojado (validación), pero no puedes pegar (límite)".</p>
+      <p><strong>Ejemplo de validación fallida:</strong> "No llores, no es para tanto" → ❌ Invalida la emoción.</p>
+      <p><strong>Ejemplo correcto:</strong> "Veo que estás triste. Está bien llorar. Estoy aquí." → ✅ Valida y acompaña.</p>
+    </div>
+    
     <p>📌 <em>Validar no es: minimizar ("no es para tanto"), resolver rápido ("ya te compro algo"), comparar ("a otros les va peor").</em></p>
   `,
   ejemplos: [
     "📖 Niño de 4 años llora porque su castillo se cayó. Decir: 'Qué frustrante que se cayó. ¿Quieres que intentemos hacer otro?'",
-    "📖 Adolescente: '¡Odio a mi profesor!' Decir: 'Parece que estás muy enfadado. Cuéntame qué pasó.'"
+    "📖 Adolescente: '¡Odio a mi profesor!' Decir: 'Parece que estás muy enfadado. Cuéntame qué pasó.'",
+    "📖 Validación con límite: 'Veo que estás muy enojado porque no quieres apagar la tele. Está bien enojarse, pero igual la apagamos. Yo te ayudo.'"
   ],
   actividades: [
     "🎲 ACTIVIDAD 1: Hoy, ante cualquier emoción 'negativa', practica nombrarla.",
     "🎲 ACTIVIDAD 2: Escribe 3 frases de validación para usar esta semana.",
-    "🎲 ACTIVIDAD 3: Pídele a tu hijo que nombre sus emociones 3 veces hoy."
+    "🎲 ACTIVIDAD 3: Pídele a tu hijo que nombre sus emociones 3 veces hoy.",
+    "🎲 ACTIVIDAD 4: Identifica una vez que hayas invalidado una emoción hoy y reescríbela en versión validante."
   ],
-  tecnicas: ["Nombrar la emoción", "Escucha reflectante", "Silencio activo"],
+  tecnicas: ["Nombrar la emoción", "Escucha reflectante", "Silencio activo", "Validación + límite"],
   habilidades: ["Empatía", "Regulación emocional", "Comunicación no violenta"],
   errores: ["❌ Minimizar: 'no es para tanto'", "❌ Resolver rápido: 'ya está, te compro algo'"],
   frases: ["'Veo que estás enojado. Está bien enojarse. Yo estoy aquí.'", "'No me gusta tu comportamiento, pero entiendo tu emoción.'"],
-  herramientas: ["Póster de emociones", "Tarjetas de validación", "Bote de la calma"]
+  herramientas: ["Póster de emociones", "Tarjetas de validación", "Bote de la calma"],
+  tieneTest: false
 };
 
-// DÍA 5
+// DÍA 5 - MEJORADO
 lecciones[5] = {
   titulo: "🔒 Día 5: Límites claros sin gritos",
   objetivo: "Poner límites firmes manteniendo la calma.",
@@ -881,25 +916,35 @@ lecciones[5] = {
     </ul>
     <p>La fórmula: <strong>"Cuando [conducta], entonces [consecuencia lógica]"</strong></p>
     <p>No necesitas gritar. Un límite dicho en <strong>voz baja pero con convicción</strong> es más poderoso que un grito.</p>
+    
+    <div class="highlight" style="background:#e8f5e9; padding:15px; border-radius:10px; margin:20px 0;">
+      <p><strong>🎯 TÉCNICA DEL PUENTE (para transiciones):</strong></p>
+      <p>En lugar de "apaga ya", usa: "En 5 minutos apagamos. Te pongo el timer. Cuando suene, eliges: ¿apagas tú o ayudo yo?"</p>
+      <p><strong>Límite con opciones:</strong> "En el supermercado caminas agarrado de mi mano o vas en el carrito. Tú decides."</p>
+    </div>
+    
     <p>💡 <em>Ejemplo: "Si sigues corriendo en el supermercado, te subiré al carrito. Tú decides."</em></p>
   `,
   ejemplos: [
     "📖 Ejemplo: Niño golpea la mesa. Te acercas, contacto visual, voz baja: 'Las mesas no se golpean. Si vuelves a golpear, te sentarás 2 minutos en la silla de calma.'",
-    "📖 Ejemplo en supermercado: 'Si sigues corriendo, te subiré al carrito. Tú decides.'"
+    "📖 Ejemplo en supermercado: 'Si sigues corriendo, te subiré al carrito. Tú decides.'",
+    "📖 Ejemplo con opciones: '¿Te vistes tú o te ayudo? ¿La camisa roja o la azul?'"
   ],
   actividades: [
     "🎲 ACTIVIDAD 1: Identifica 1 límite que te cueste poner. Escríbelo y ensáyalo en voz baja.",
     "🎲 ACTIVIDAD 2: Hoy, cada vez que quieras gritar, respira, baja la voz y di el límite más despacio.",
-    "🎲 ACTIVIDAD 3: Pide a tu hijo que repita el límite (para asegurar comprensión)."
+    "🎲 ACTIVIDAD 3: Pide a tu hijo que repita el límite (para asegurar comprensión).",
+    "🎲 ACTIVIDAD 4: Practica la técnica del puente en una transición difícil hoy."
   ],
-  tecnicas: ["Voz baja y firme", "Consecuencia lógica", "Tiempo fuera positivo"],
-  habilidades: ["Firmeza amable", "Consistencia", "Previsibilidad"],
-  errores: ["❌ Gritar el límite (pierde efecto)", "❌ Poner límites que no estás dispuesto a cumplir"],
-  frases: ["'Las reglas no cambian porque llores. Yo te acompaño.'", "'No voy a gritar. Tú decides.'"],
-  herramientas: ["Rutina visual", "Temporizador", "Silla de calma"]
+  tecnicas: ["Voz baja y firme", "Consecuencia lógica", "Tiempo fuera positivo", "Técnica del puente", "Límite con opciones"],
+  habilidades: ["Firmeza amable", "Consistencia", "Previsibilidad", "Paciencia en transiciones"],
+  errores: ["❌ Gritar el límite (pierde efecto)", "❌ Poner límites que no estás dispuesto a cumplir", "❌ No dar aviso previo"],
+  frases: ["'Las reglas no cambian porque llores. Yo te acompaño.'", "'No voy a gritar. Tú decides.'", "'En 5 minutos apagamos. ¿Preparado?'"],
+  herramientas: ["Rutina visual", "Temporizador", "Silla de calma", "Timer visual"],
+  tieneTest: false
 };
 
-// DÍA 6
+// DÍA 6 - MEJORADO
 lecciones[6] = {
   titulo: "⚡ Día 6: Consecuencias lógicas",
   objetivo: "Usar consecuencias relacionadas con el acto, no arbitrarias.",
@@ -915,26 +960,40 @@ lecciones[6] = {
       <li>Razonable en duración/intensidad</li>
       <li>Aplicada con calma</li>
       <li>Explicada antes si es posible</li>
+      <li><strong>PREDECIBLE:</strong> El niño sabe de antemano qué pasará si hace X</li>
     </ul>
+    
+    <div class="highlight" style="background:#e8f5e9; padding:15px; border-radius:10px; margin:20px 0;">
+      <p><strong>📊 TIPOS DE CONSECUENCIAS LÓGICAS:</strong></p>
+      <ul>
+        <li><strong>REPARACIÓN:</strong> Si rompe, repara (pega, limpia, ayuda)</li>
+        <li><strong>RESTITUCIÓN:</strong> Si ensucia, limpia</li>
+        <li><strong>PÉRDIDA DE PRIVILEGIO RELACIONADO:</strong> Si no guarda los juguetes, pierde acceso a ellos</li>
+      </ul>
+    </div>
+    
     <p>💡 <em>"No es un castigo, es lo que toca hacer cuando ocurre esto."</em></p>
   `,
   ejemplos: [
     "📖 Si tira la comida al suelo → recoge la comida (con ayuda si es pequeño).",
-    "📖 Si no guarda los juguetes → pierde acceso a ellos por 1 hora."
+    "📖 Si no guarda los juguetes → pierde acceso a ellos por 1 hora.",
+    "📖 Si llega tarde sin avisar → llega más temprano la próxima vez o paga el tiempo con una tarea extra."
   ],
   actividades: [
     "🎲 ACTIVIDAD 1: Hoy, en lugar de castigar, aplica 1 consecuencia lógica.",
     "🎲 ACTIVIDAD 2: Pregúntale a tu hijo: '¿Qué crees que debería pasar cuando alguien hace X?'",
-    "🎲 ACTIVIDAD 3: Escribe 3 castigos que usas y transfórmalos en consecuencias lógicas."
+    "🎲 ACTIVIDAD 3: Escribe 3 castigos que usas y transfórmalos en consecuencias lógicas.",
+    "🎲 ACTIVIDAD 4: Crea una tabla de consecuencias predecibles para situaciones comunes de tu casa."
   ],
-  tecnicas: ["Consecuencia por elección", "Reparación del daño", "Pérdida de privilegio relacionada"],
-  habilidades: ["Justicia restaurativa", "Creatividad pedagógica"],
-  errores: ["❌ Consecuencias desproporcionadas", "❌ Confundir consecuencia con venganza"],
-  frases: ["'No es un castigo, es lo que toca hacer.'"],
-  herramientas: ["Tabla de consecuencias lógicas", "Rincón de reparación"]
+  tecnicas: ["Consecuencia por elección", "Reparación del daño", "Pérdida de privilegio relacionada", "Consecuencia predecible"],
+  habilidades: ["Justicia restaurativa", "Creatividad pedagógica", "Consistencia"],
+  errores: ["❌ Consecuencias desproporcionadas", "❌ Confundir consecuencia con venganza", "❌ Consecuencias impredecibles"],
+  frases: ["'No es un castigo, es lo que toca hacer.'", "'Tú decides: ¿guardas ahora o pierdes los juguetes 1 hora?'"],
+  herramientas: ["Tabla de consecuencias lógicas", "Rincón de reparación", "Acuerdo de consecuencias por escrito"],
+  tieneTest: false
 };
 
-// DÍA 7
+// DÍA 7 - MEJORADO
 lecciones[7] = {
   titulo: "🧘 Día 7: Autocuidado del adulto",
   objetivo: "Reconocer que cuidarte es parte esencial de la crianza.",
@@ -949,25 +1008,39 @@ lecciones[7] = {
       <li><strong>Social:</strong> tiempo con amigos, pareja, grupos de apoyo</li>
       <li><strong>Personal:</strong> hobbies, silencio, 15 minutos al día para ti</li>
     </ul>
+    
+    <div class="highlight" style="background:#fff3e0; padding:15px; border-radius:10px; margin:20px 0;">
+      <p><strong>📝 TEST RÁPIDO DE AUTOCUIDADO:</strong></p>
+      <p>Responde sí/no honestamente:</p>
+      <p>☐ ¿Duermes al menos 6 horas diarias?<br>
+      ☐ ¿Comes al menos una comida al día sin prisas?<br>
+      ☐ ¿Tienes una actividad o hobby que disfrutes?<br>
+      ☐ ¿Pides ayuda cuando la necesitas?<br>
+      ☐ ¿Te tomas al menos 10 minutos al día para ti?</p>
+      <p><strong>Cada respuesta NO es un área de oportunidad. Pide ayuda si tienes 3 o más NO.</strong></p>
+    </div>
+    
     <p>💡 <em>"No puedo llenar su vaso si el mío está vacío. Cuidarme es la mejor herencia para mis hijos."</em></p>
   `,
   ejemplos: [
     "📖 Pedir 15 minutos a solas al llegar del trabajo antes de atender a los niños.",
-    "📖 Ir a terapia o a un grupo de apoyo parental (no es de débiles)."
+    "📖 Ir a terapia o a un grupo de apoyo parental (no es de débiles, es de valientes)."
   ],
   actividades: [
     "🎲 ACTIVIDAD 1: Haz algo solo para ti durante 15 minutos (sin pantallas, sin hijos).",
     "🎲 ACTIVIDAD 2: Escribe una lista de 5 pequeñas cosas que te recargan.",
-    "🎲 ACTIVIDAD 3: Pide ayuda a alguien hoy (pareja, familiar, amigo)."
+    "🎲 ACTIVIDAD 3: Pide ayuda a alguien hoy (pareja, familiar, amigo).",
+    "🎲 ACTIVIDAD 4: Elige un área del test de autocuidado para mejorar esta semana."
   ],
-  tecnicas: ["Microdescansos", "Respiración consciente", "Delegar sin culpa"],
-  habilidades: ["Autocompasión", "Establecer límites personales"],
-  errores: ["❌ Esperar a estar agotado para cuidarte", "❌ Sentir culpa por tomarte un tiempo"],
-  frases: ["'No puedo llenar su vaso si el mío está vacío.'", "'Cuidarme es la mejor herencia.'"],
-  herramientas: ["Alarma de autocuidado", "Lista de placeres simples"]
+  tecnicas: ["Microdescansos", "Respiración consciente", "Delegar sin culpa", "Test de autocuidado"],
+  habilidades: ["Autocompasión", "Establecer límites personales", "Pedir ayuda"],
+  errores: ["❌ Esperar a estar agotado para cuidarte", "❌ Sentir culpa por tomarte un tiempo", "❌ No pedir ayuda cuando la necesitas"],
+  frases: ["'No puedo llenar su vaso si el mío está vacío.'", "'Cuidarme es la mejor herencia.'", "'Pedir ayuda es un acto de valentía, no de debilidad.'"],
+  herramientas: ["Alarma de autocuidado", "Lista de placeres simples", "Test de autocuidado imprimible"],
+  tieneTest: false
 };
 
-// DÍA 8
+// DÍA 8 - MEJORADO
 lecciones[8] = {
   titulo: "🌟 Día 8: Autoestima en acción",
   objetivo: "Fortalecer la autoestima de tu hijo con acciones concretas.",
@@ -979,25 +1052,37 @@ lecciones[8] = {
       <li><strong>Responsabilidades reales:</strong> dar tareas que aporten a la familia</li>
       <li><strong>Evitar comparaciones:</strong> con hermanos, primos o compañeros</li>
     </ul>
+    
+    <div class="highlight" style="background:#e8f5e9; padding:15px; border-radius:10px; margin:20px 0;">
+      <p><strong>📖 EL PELIGRO DE LA SOBREPROTECCIÓN:</strong></p>
+      <p>Hacer por tu hijo lo que él puede hacer solo, o resolverle todos los problemas, también daña su autoestima. Le enseña que no es capaz. Permítele equivocarse y aprender.</p>
+      <p><strong>Ejemplo de elogio descriptivo vs halago vacío:</strong><br>
+      ❌ Halago vacío: "Eres el niño más inteligente del mundo".<br>
+      ✅ Elogio descriptivo: "Me encanta cómo te esforzaste resolviendo ese problema difícil. Noté que no te rendiste."</p>
+    </div>
+    
     <p>💡 <em>"Te quiero porque eres tú, no por lo que haces o dejas de hacer."</em></p>
   `,
   ejemplos: [
     "📖 Elogiar el esfuerzo: 'pasaste mucho tiempo ordenando, qué dedicación' vs 'qué bien ordenaste'",
-    "📖 Fallo manejado: 'fallaste, ¿qué aprendiste?'"
+    "📖 Fallo manejado: 'fallaste, ¿qué aprendiste?'",
+    "📖 Responsabilidad real: 'Hoy tú te encargas de poner la mesa para toda la familia.'"
   ],
   actividades: [
-    "🎲 ACTIVIDAD 1: Dale una responsabilidad real (poner la mesa, regar una planta)",
-    "🎲 ACTIVIDAD 2: Di 'te quiero' sin condición alguna hoy",
-    "🎲 ACTIVIDAD 3: Haz un 'álbum de logros' con dibujos/fotos"
+    "🎲 ACTIVIDAD 1: Dale una responsabilidad real (poner la mesa, regar una planta, ordenar su ropa).",
+    "🎲 ACTIVIDAD 2: Di 'te quiero' sin condición alguna hoy.",
+    "🎲 ACTIVIDAD 3: Haz un 'álbum de logros' con dibujos/fotos.",
+    "🎲 ACTIVIDAD 4: Identifica una cosa que sueles hacer por tu hijo y hoy déjale que lo intente solo."
   ],
-  tecnicas: ["Elogio descriptivo", "Delegar tareas"],
-  habilidades: ["Autoestima contingente", "Evitar comparaciones"],
-  errores: ["❌ Halagos vacíos", "❌ Comparar con hermanos"],
-  frases: ["'Te quiero porque eres tú, no por lo que haces.'"],
-  herramientas: ["Diario de logros", "Frases para el espejo"]
+  tecnicas: ["Elogio descriptivo", "Delegar tareas", "Mensajes incondicionales", "Evitar sobreprotección"],
+  habilidades: ["Valorar el esfuerzo", "Fomentar autonomía", "Comunicación positiva"],
+  errores: ["❌ Halagos vacíos", "❌ Comparar con hermanos", "❌ Resolverle todo (sobreproteger)", "❌ Criticar el error sin enseñar"],
+  frases: ["'Te quiero porque eres tú, no por lo que haces.'", "'Me encanta cómo lo intentaste.'", "'Confío en ti. Tú puedes hacerlo.'"],
+  herramientas: ["Diario de logros", "Frases para el espejo", "Tabla de responsabilidades por edad"],
+  tieneTest: false
 };
 
-// DÍA 9
+// DÍA 9 - MEJORADO
 lecciones[9] = {
   titulo: "⏳ Día 9: Enseñar autocontrol",
   objetivo: "Entrenar la pausa entre emoción y acción.",
@@ -1010,23 +1095,37 @@ lecciones[9] = {
       <li><strong>🟡 AMARILLO:</strong> PIENSA - Nombra la emoción, piensa en opciones</li>
       <li><strong>🟢 VERDE:</strong> ACTÚA - Elige la mejor opción</li>
     </ul>
+    
+    <div class="highlight" style="background:#e8f5e9; padding:15px; border-radius:10px; margin:20px 0;">
+      <p><strong>🎮 JUEGOS PARA ENTRENAR AUTOCONTROL POR EDAD:</strong></p>
+      <ul>
+        <li><strong>2-4 años:</strong> estatuas musicales, simón dice simple, esperar 5 segundos antes de abrir un regalo</li>
+        <li><strong>4-6 años:</strong> esperar turnos con timer visual, el juego del silencio, respiración globo</li>
+        <li><strong>6-9 años:</strong> ajedrez, juegos de mesa con turnos largos, respiración guiada, contar hasta 20 antes de hablar</li>
+      </ul>
+      <p><strong>🔑 CLAVE:</strong> El adulto debe MODELAR el autocontrol. Si tú gritas, no puedes pedirle que no grite.</p>
+    </div>
+    
     <p><strong>Juegos que entrenan autocontrol:</strong> estatua musical, simón dice, esperar turnos, el juego del silencio.</p>
     <p>💡 <em>"Puedes estar enojado, pero no pegas. Respira conmigo."</em></p>
   `,
   ejemplos: [
     "📖 Jugar a 'estatuas musicales' - detenerse al azar.",
-    "📖 Semáforo: cuando se enoja, rojo 3 respiraciones."
+    "📖 Semáforo: cuando se enoja, rojo 3 respiraciones.",
+    "📖 Timer visual: 'Vamos a esperar 5 minutos. Mira cómo baja la manecilla.'"
   ],
   actividades: [
     "🎲 ACTIVIDAD 1: Juego de espera: 'contamos hasta 10 antes de abrir el regalo'",
     "🎲 ACTIVIDAD 2: Dibujar semáforo en un papel",
-    "🎲 ACTIVIDAD 3: Modelar: 'voy a respirar porque estoy enojado'"
+    "🎲 ACTIVIDAD 3: Modelar: 'voy a respirar porque estoy enojado'",
+    "🎲 ACTIVIDAD 4: Elige un juego de la lista según la edad de tu hijo y practícalo hoy."
   ],
-  tecnicas: ["Semáforo emocional", "Respiración globo"],
-  habilidades: ["Autorregulación", "Tolerancia a la frustración"],
-  errores: ["❌ Castigar por falta de autocontrol", "❌ No practicar en calma"],
-  frases: ["'Puedes estar enojado, pero no pegas. Respira conmigo.'"],
-  herramientas: ["Tarjeta semáforo", "Temporizador visual"]
+  tecnicas: ["Semáforo emocional", "Respiración globo", "Timer visual", "Juegos de espera", "Modelado parental"],
+  habilidades: ["Autorregulación", "Tolerancia a la frustración", "Paciencia activa"],
+  errores: ["❌ Castigar por falta de autocontrol", "❌ No practicar en calma", "❌ Gritar mientras le pides que no grite (contradicción)"],
+  frases: ["'Puedes estar enojado, pero no pegas. Respira conmigo.'", "'Vamos a contar hasta 10 juntos.'", "'Mira cómo respiro yo cuando estoy enojado.'"],
+  herramientas: ["Tarjeta semáforo", "Temporizador visual", "Juegos de mesa cooperativos", "Alarma de respiración"],
+  tieneTest: false
 };
 
 // DÍA 10
