@@ -3742,7 +3742,7 @@ function mostrarPantallaPrincipal() {
       licencia.tipo = "demo";
       location.reload();
     }
-
+  });
   // Botón Herramientas Platino (solo para plan Platino)
   document.getElementById("btnHerramientasPlatino")?.addEventListener("click", () => {
     if (licencia.tipo !== "platino") {
@@ -4153,15 +4153,388 @@ function mostrarHerramientasPlatino() {
   document.getElementById("volverHerramientas").onclick = mostrarPantallaPrincipal;
 }
 
+// =====================================================
+// DESCARGA DE HERRAMIENTAS PLATINO (PDF reales)
+// =====================================================
+
 function descargarHerramientaPDF(id) {
-  // Por ahora, simulamos la descarga
-  alert(`📥 Descargando herramienta: ${id}\n\n(Próximamente: PDF real con contenido detallado)`);
+  let titulo = "";
+  let contenido = "";
   
-  // Simulación de descarga
+  switch(id) {
+    case "consecuencias":
+      titulo = "Tabla de consecuencias lógicas";
+      contenido = `
+TABLA DE CONSECUENCIAS LÓGICAS
+================================
+
+¿Qué es una consecuencia lógica?
+Es una consecuencia que está DIRECTAMENTE RELACIONADA con el acto. No es un castigo arbitrario.
+
+DIFERENCIA CLAVE:
+- CASTIGO: "No ordenaste → sin tele 3 días" (no relacionado)
+- CONSECUENCIA LÓGICA: "EnsUCiaste → limpias" (relacionado)
+
+EJEMPLOS PRÁCTICOS:
+
+| Comportamiento | Consecuencia lógica | Castigo (evitar) |
+|----------------|---------------------|------------------|
+| Tira la comida al suelo | Recoge la comida | Sin postre |
+| No guarda los juguetes | Pierde acceso a ellos 1 hora | Sin tele |
+| Golpea a un hermano | Reparar el daño (pedir disculpas, dibujo) | Castigo físico |
+| Llega tarde sin avisar | Pagar el tiempo perdido con tarea extra | Quitar celular 1 mes |
+| No hace la tarea | Terminarla antes de jugar | Gritar |
+
+PASOS PARA APLICAR UNA CONSECUENCIA LÓGICA:
+
+1. CALMA: Respira antes de actuar
+2. EXPLICA: "Cuando haces X, entonces pasa Y"
+3. EJECUTA: Sin gritos, sin negociación
+4. REFLEXIONA: "¿Qué aprendiste? ¿Qué harías diferente?"
+
+FRASES ÚTILES:
+- "No es un castigo, es lo que toca hacer cuando pasa esto."
+- "Tú decides: ¿recoges ahora o pierdes los juguetes 1 hora?"
+
+ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      `;
+      break;
+      
+    case "stickers":
+      titulo = "Calendario de stickers - Control de esfínteres";
+      contenido = `
+CALENDARIO DE STICKERS
+CONTROL DE ESFÍNTERES
+================================
+
+INSTRUCCIONES:
+1. Imprime este calendario
+2. Cada vez que tu hijo use el baño, pega un sticker
+3. Al final del día, celebra los logros
+
+CALENDARIO DEL MES: _______________
+
+  LUN │ MAR │ MIÉ │ JUE │ VIE │ SÁB │ DOM
+─────┼─────┼─────┼─────┼─────┼─────┼─────
+  ☐   │  ☐  │  ☐  │  ☐  │  ☐  │  ☐  │  ☐
+  ☐   │  ☐  │  ☐  │  ☐  │  ☐  │  ☐  │  ☐
+  ☐   │  ☐  │  ☐  │  ☐  │  ☐  │  ☐  │  ☐
+  ☐   │  ☐  │  ☐  │  ☐  │  ☐  │  ☐  │  ☐
+  ☐   │  ☐  │  ☐  │  ☐  │  ☐  │  ☐  │  ☐
+
+SEÑALES DE QUE ESTÁ LISTO:
+□ Se mantiene seco 2 horas seguidas
+□ Le molesta el pañal sucio
+□ Puede subirse y bajarse los pantalones
+□ Muestra interés por el baño
+
+RECOMENDACIONES:
+- Nunca castigar los accidentes
+- Usar refuerzo positivo ("¡Lo lograste!")
+- Tener paciencia (retrocesos son normales)
+
+ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      `;
+      break;
+      
+    case "ruleta":
+      titulo = "Ruleta de emociones";
+      contenido = `
+RULETA DE EMOCIONES
+================================
+
+CÓMO ARMARLA:
+1. Recorta el círculo principal
+2. Recorta la flecha
+3. Une con un encuadre (clip o broche)
+
+EMOCIONES INCLUIDAS:
+┌─────────┐ ┌─────────┐ ┌─────────┐
+│ ALEGRÍA │ │ TRISTEZA│ │  ENOJO  │
+│ 🟡      │ │ 🔵      │ │ 🔴      │
+└─────────┘ └─────────┘ └─────────┘
+┌─────────┐ ┌─────────┐ ┌─────────┐
+│  MIEDO  │ │  CALMA  │ │SORPRESA │
+│ 🟣      │ │ 🟢      │ │ 🟠      │
+└─────────┘ └─────────┘ └─────────┘
+
+CÓMO USARLA:
+1. Cada mañana: "¿Cómo te sientes hoy?"
+2. Después de una rabieta: "¿Qué sentiste?"
+3. Antes de dormir: "¿Cómo fue tu día?"
+
+PREGUNTAS GUÍA:
+- "¿Dónde sientes esa emoción en tu cuerpo?"
+- "¿Qué color le pondrías a esa emoción?"
+
+FRASES ÚTILES:
+- "Todas las emociones están bien. Lo que hacemos con ellas puede mejorar."
+- "Veo que estás enojado. Está bien. Estoy aquí contigo."
+
+ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      `;
+      break;
+      
+    case "planificador":
+      titulo = "Planificador semanal de crianza";
+      contenido = `
+PLANIFICADOR SEMANAL DE CRIANZA
+================================
+Semana del ___/___/___ al ___/___/___
+
+MIS OBJETIVOS DE CRIANZA ESTA SEMANA:
+1. _________________________________
+2. _________________________________
+3. _________________________________
+
+┌─────────┬────────────────────────┬─────┐
+│  DÍA    │  OBJETIVO DEL DÍA       │ ✅  │
+├─────────┼────────────────────────┼─────┤
+│ LUNES   │ _______________________ │ ☐  │
+├─────────┼────────────────────────┼─────┤
+│ MARTES  │ _______________________ │ ☐  │
+├─────────┼────────────────────────┼─────┤
+│ MIÉRCOLES│ _______________________ │ ☐  │
+├─────────┼────────────────────────┼─────┤
+│ JUEVES  │ _______________________ │ ☐  │
+├─────────┼────────────────────────┼─────┤
+│ VIERNES │ _______________________ │ ☐  │
+├─────────┼────────────────────────┼─────┤
+│ SÁBADO  │ _______________________ │ ☐  │
+├─────────┼────────────────────────┼─────┤
+│ DOMINGO │ _______________________ │ ☐  │
+└─────────┴────────────────────────┴─────┘
+
+RELEXIÓN SEMANAL:
+¿Qué funcionó? _______________________
+¿Qué fue difícil? ____________________
+¿Qué aprenderé para la próxima semana? _
+
+ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      `;
+      break;
+      
+    case "registro":
+      titulo = "Registro de rabietas";
+      contenido = `
+REGISTRO DE RABIETAS
+================================
+
+IDENTIFICAR PATRONES ES EL PRIMER PASO PARA PREVENIR.
+
+REGISTRO INDIVIDUAL:
+
+Fecha: ___/___/___
+Hora: ___:___
+Duración: ___ minutos
+Desencadenante: _______________________
+Intensidad (1-10): ___
+¿Qué funcionó? ________________________
+¿Qué NO funcionó? _____________________
+
+───────────────────────────────────────
+
+Fecha: ___/___/___
+Hora: ___:___
+Duración: ___ minutos
+Desencadenante: _______________________
+Intensidad (1-10): ___
+¿Qué funcionó? ________________________
+¿Qué NO funcionó? _____________________
+
+───────────────────────────────────────
+
+ANÁLISIS SEMANAL:
+
+¿Hay un patrón de horario? ____________
+¿Hay un patrón de lugar? ______________
+¿Hay un patrón de situación? __________
+
+ESTRATEGIAS PARA PREVENIR:
+□ Ajustar rutina de sueño
+□ Ofrecer opciones antes de la transición
+□ Validar emociones antes de que escale
+□ Usar temporizador visual
+
+ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      `;
+      break;
+      
+    case "limites":
+      titulo = "Checklist de límites por edad";
+      contenido = `
+CHECKLIST DE LÍMITES POR EDAD
+================================
+
+0-2 AÑOS:
+□ No dejar objetos peligrosos al alcance
+□ Cinturón de seguridad SIEMPRE
+□ No cruzar la calle sin adulto
+□ No pegar ni morder
+□ Rutina de sueño consistente
+
+3-5 AÑOS:
+□ Lavarse las manos antes de comer
+□ Recoger los juguetes después de jugar
+□ Pedir las cosas por favor
+□ Esperar turnos en juegos
+□ No interrumpir cuando otros hablan
+
+6-12 AÑOS:
+□ Tareas de la casa apropiadas para su edad
+□ Horario de tareas antes de pantallas
+□ Límite de pantallas (1-2 horas/día)
+□ Avisar si sale de casa
+□ Responsabilidad de sus pertenencias
+
+ADOLESCENTES:
+□ Horario de llegada acordado
+□ Compartir ubicación si es necesario
+□ Respetar zonas libres de pantallas (cena, dormitorio)
+□ Participar en decisiones familiares
+□ Consecuencias lógicas pactadas previamente
+
+REGLA DE ORO:
+"Los límites no son castigos, son protección."
+
+ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      `;
+      break;
+      
+    case "diario":
+      titulo = "Diario de reflexión parental";
+      contenido = `
+DIARIO DE REFLEXIÓN PARENTAL
+================================
+
+DÍA 1:
+Hoy me sentí: _________________________
+Mi hijo me enseñó: _____________________
+Algo que hice bien: ___________________
+Algo que mejorar: _____________________
+Mi gratitud: __________________________
+
+───────────────────────────────────────
+
+DÍA 2:
+Hoy me sentí: _________________________
+Mi hijo me enseñó: _____________________
+Algo que hice bien: ___________________
+Algo que mejorar: _____________________
+Mi gratitud: __________________________
+
+───────────────────────────────────────
+
+DÍA 3:
+Hoy me sentí: _________________________
+Mi hijo me enseñó: _____________________
+Algo que hice bien: ___________________
+Algo que mejorar: _____________________
+Mi gratitud: __________________________
+
+───────────────────────────────────────
+
+(Continúa con páginas para 30 días)
+
+REFLEXIÓN FINAL DEL MES:
+¿Qué aprendí sobre mí como padre/madre?
+
+ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      `;
+      break;
+      
+    case "mandamientos":
+      titulo = "Póster de los 10 mandamientos";
+      contenido = `
+LOS 10 MANDAMIENTOS DE LA CRIANZA POSITIVA
+================================
+
+1️⃣ CONECTA ANTES DE CORREGIR
+   El vínculo es la base. Un niño conectado escucha mejor.
+
+2️⃣ ESCUCHA SIN JUZGAR
+   Valida la emoción primero, luego aborda el comportamiento.
+
+3️⃣ PON LÍMITES FIRMES PERO AMABLES
+   No necesitas gritar para ser firme.
+
+4️⃣ VALIDA TODAS LAS EMOCIONES
+   Ninguna emoción es mala, solo algunas acciones.
+
+5️⃣ NO PEGUES, NO GRITES
+   La violencia genera más violencia.
+
+6️⃣ SÉ EL EJEMPLO QUE QUIERES VER
+   Los niños aprenden de lo que haces, no de lo que dices.
+
+7️⃣ CADA NIÑO TIENE SU RITMO
+   No compares. Respeta los tiempos de desarrollo.
+
+8️⃣ EL JUEGO ES EL MEJOR APRENDIZAJE
+   A través del juego se conecta y se enseña.
+
+9️⃣ EL ERROR ES OPORTUNIDAD
+   No castigues, enseña.
+
+🔟 CUIDATE PARA PODER CUIDAR
+   El autocuidado no es egoísmo.
+
+"PRIMERO CONECTO, LUEGO CORRIJO"
+
+ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      `;
+      break;
+      
+    case "semaforo":
+      titulo = "Semáforo de emociones";
+      contenido = `
+SEMÁFORO DE EMOCIONES
+================================
+
+CÓMO ARMARLO:
+1. Recorta los 3 círculos (rojo, amarillo, verde)
+2. Pega rojo arriba, amarillo medio, verde abajo
+3. Coloca la flecha móvil en el centro
+
+🔴 ROJO: ¡PARA!
+   → Respira profundo 3 veces
+   → Detente, no actúes impulsivamente
+   → "Estoy enojado, necesito calmar mi cuerpo"
+
+🟡 AMARILLO: PIENSA
+   → Nombra la emoción (¿es enojo, tristeza, miedo?)
+   → Piensa en opciones
+   → "¿Qué puedo hacer para sentirme mejor?"
+
+🟢 VERDE: ACTÚA
+   → Elige la mejor opción
+   → Pide ayuda si la necesitas
+   → "Ya estoy calmado, puedo resolver el problema"
+
+PREMIAR EL AUTOCONTROL:
+Cuando el niño logre pasar de rojo a verde por sí solo:
+"¡Lo lograste! Te regulaste solo. Estoy muy orgulloso."
+
+ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      `;
+      break;
+      
+    default:
+      titulo = "Herramienta Platino";
+      contenido = "Contenido no disponible";
+  }
+  
+  // Crear y descargar el archivo
+  const blob = new Blob([contenido], { type: "text/plain" });
   const link = document.createElement("a");
-  link.download = `herramienta_${id}.pdf`;
-  link.href = `data:application/octet-stream,${encodeURIComponent("Contenido del PDF - Herramienta " + id)}`;
+  link.href = URL.createObjectURL(blob);
+  link.download = `${id}.txt`;
+  document.body.appendChild(link);
   link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(link.href);
+  
+  alert(`📥 "${titulo}" descargada con éxito.`);
 }
 // =====================================================
 // INICIAR APLICACIÓN
