@@ -4154,7 +4154,7 @@ function mostrarHerramientasPlatino() {
 }
 
 // =====================================================
-// DESCARGA DE HERRAMIENTAS PLATINO (PDF REAL)
+// DESCARGA DE HERRAMIENTAS PLATINO (PDF con contenido real)
 // =====================================================
 
 function descargarHerramientaPDF(id) {
@@ -4163,39 +4163,30 @@ function descargarHerramientaPDF(id) {
   
   switch(id) {
     case "consecuencias":
-      titulo = "Tabla de consecuencias lógicas";
+      titulo = "Tabla_de_consecuencias_logicas";
       contenidoHTML = `
-        <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto;">
+        <div style="font-family: Arial, sans-serif; padding: 30px; max-width: 800px; margin: 0 auto;">
           <h1 style="color: #2e7d32; text-align: center;">📋 Tabla de consecuencias lógicas</h1>
           <p style="text-align: center; color: #666;">Guía para aplicar consecuencias relacionadas con el acto, sin castigar.</p>
           <hr>
-          
           <h2>¿Qué es una consecuencia lógica?</h2>
           <p>Es una consecuencia que está <strong>DIRECTAMENTE RELACIONADA</strong> con el acto. No es un castigo arbitrario.</p>
-          
           <h2>Diferencia clave</h2>
           <table style="width:100%; border-collapse: collapse;">
             <tr style="background: #f0f0f0;"><th style="border:1px solid #ddd; padding:8px;">CASTIGO</th><th style="border:1px solid #ddd; padding:8px;">CONSECUENCIA LÓGICA</th></tr>
             <tr><td style="border:1px solid #ddd; padding:8px;">"No ordenaste → sin tele 3 días" (no relacionado)</td><td style="border:1px solid #ddd; padding:8px;">"Ensuciaste → limpias" (relacionado)</td></tr>
           </table>
-          
           <h2>Ejemplos prácticos</h2>
-          <table style="width:100%; border-collapse: collapse;">
-            <tr style="background: #2e7d32; color: white;"><th style="border:1px solid #ddd; padding:8px;">Comportamiento</th><th style="border:1px solid #ddd; padding:8px;">Consecuencia lógica</th></tr>
-            <tr><td style="border:1px solid #ddd; padding:8px;">Tira la comida al suelo</td><td style="border:1px solid #ddd; padding:8px;">Recoge la comida</td></tr>
-            <tr style="background:#f9f9f9;"><td style="border:1px solid #ddd; padding:8px;">No guarda los juguetes</td><td style="border:1px solid #ddd; padding:8px;">Pierde acceso a ellos 1 hora</td></tr>
-            <tr><td style="border:1px solid #ddd; padding:8px;">Golpea a un hermano</td><td style="border:1px solid #ddd; padding:8px;">Reparar el daño (pedir disculpas)</td></tr>
-            <tr style="background:#f9f9f9;"><td style="border:1px solid #ddd; padding:8px;">Llega tarde sin avisar</td><td style="border:1px solid #ddd; padding:8px;">Pagar el tiempo perdido con tarea extra</td></tr>
-            <tr><td style="border:1px solid #ddd; padding:8px;">No hace la tarea</td><td style="border:1px solid #ddd; padding:8px;">Terminarla antes de jugar</td></tr>
-          </table>
-          
-          <h2>Pasos para aplicar</h2>
-          <ol><li><strong>CALMA:</strong> Respira antes de actuar</li><li><strong>EXPLICA:</strong> "Cuando haces X, entonces pasa Y"</li><li><strong>EJECUTA:</strong> Sin gritos, sin negociación</li><li><strong>REFLEXIONA:</strong> "¿Qué aprendiste?"</li></ol>
-          
+          <ul>
+            <li><strong>Tira la comida al suelo</strong> → Recoge la comida</li>
+            <li><strong>No guarda los juguetes</strong> → Pierde acceso a ellos 1 hora</li>
+            <li><strong>Golpea a un hermano</strong> → Reparar el daño (pedir disculpas)</li>
+            <li><strong>Llega tarde sin avisar</strong> → Pagar el tiempo perdido con tarea extra</li>
+            <li><strong>No hace la tarea</strong> → Terminarla antes de jugar</li>
+          </ul>
           <h2>Frases útiles</h2>
           <p><em>"No es un castigo, es lo que toca hacer cuando pasa esto."</em></p>
           <p><em>"Tú decides: ¿recoges ahora o pierdes los juguetes 1 hora?"</em></p>
-          
           <hr>
           <p style="text-align: center; font-size: 12px; color: #999;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
         </div>
@@ -4203,181 +4194,224 @@ function descargarHerramientaPDF(id) {
       break;
       
     case "stickers":
-      titulo = "Calendario de stickers";
+      titulo = "Calendario_de_stickers";
       contenidoHTML = `
-        <div style="font-family: Arial, sans-serif; padding: 20px;">
+        <div style="font-family: Arial, sans-serif; padding: 30px;">
           <h1 style="color: #2e7d32; text-align: center;">📅 Calendario de stickers</h1>
           <p style="text-align: center;">Control de esfínteres - Mes de _______________</p>
           <hr>
           <table style="width:100%; border-collapse: collapse; text-align: center;">
             <tr style="background: #2e7d32; color: white;"><th style="padding:10px;">LUN</th><th style="padding:10px;">MAR</th><th style="padding:10px;">MIÉ</th><th style="padding:10px;">JUE</th><th style="padding:10px;">VIE</th><th style="padding:10px;">SÁB</th><th style="padding:10px;">DOM</th></tr>
-            ${Array(5).fill(`<tr>${Array(7).fill('<td style="border:1px solid #ddd; height:60px; vertical-align:top; padding:5px;">☐</td>').join('')}</tr>`).join('')}
-          </table>
+            <tr><td style="border:1px solid #ddd; height:60px;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td></tr>
+            <tr><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td></tr>
+            <tr><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td><td style="border:1px solid #ddd;">☐</td></tr>
+           </table>
           <h2>Instrucciones</h2>
-          <ol><li>Cada vez que use el baño, pega un sticker</li><li>Al final del día, celebra el logro</li><li>Nunca castigues los accidentes</li></ol>
-          <h2>Señales de que está listo</h2>
-          <p>□ Se mantiene seco 2 horas □ Le molesta el pañal sucio □ Puede subirse/bajarse los pantalones</p>
-          <hr><p style="text-align:center; font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+          <p>1. Cada vez que use el baño, pega un sticker<br>2. Al final del día, celebra el logro<br>3. Nunca castigues los accidentes</p>
+          <hr>
+          <p style="text-align:center;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
         </div>
       `;
       break;
       
     case "ruleta":
-      titulo = "Ruleta de emociones";
+      titulo = "Ruleta_de_emociones";
       contenidoHTML = `
-        <div style="font-family: Arial, sans-serif; padding: 20px; text-align: center;">
+        <div style="font-family: Arial, sans-serif; padding: 30px; text-align: center;">
           <h1 style="color: #2e7d32;">🎨 Ruleta de emociones</h1>
-          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 20px 0;">
-            <div style="background: #FFD700; padding: 15px; border-radius: 50%; width: 80px; height: 80px; display: inline-block;">ALEGRÍA</div>
-            <div style="background: #4A90E2; color:white; padding: 15px; border-radius: 50%; width: 80px; height: 80px;">TRISTEZA</div>
-            <div style="background: #E74C3C; color:white; padding: 15px; border-radius: 50%; width: 80px; height: 80px;">ENOJO</div>
-            <div style="background: #9B59B6; color:white; padding: 15px; border-radius: 50%; width: 80px; height: 80px;">MIEDO</div>
-            <div style="background: #2ECC71; color:white; padding: 15px; border-radius: 50%; width: 80px; height: 80px;">CALMA</div>
-            <div style="background: #F39C12; color:white; padding: 15px; border-radius: 50%; width: 80px; height: 80px;">SORPRESA</div>
+          <div style="margin: 20px 0;">
+            <span style="background: #FFD700; padding: 15px; border-radius: 50%; display: inline-block; width: 80px;">ALEGRÍA</span>
+            <span style="background: #4A90E2; color:white; padding: 15px; border-radius: 50%; display: inline-block; width: 80px;">TRISTEZA</span>
+            <span style="background: #E74C3C; color:white; padding: 15px; border-radius: 50%; display: inline-block; width: 80px;">ENOJO</span>
+            <span style="background: #9B59B6; color:white; padding: 15px; border-radius: 50%; display: inline-block; width: 80px;">MIEDO</span>
+            <span style="background: #2ECC71; color:white; padding: 15px; border-radius: 50%; display: inline-block; width: 80px;">CALMA</span>
+            <span style="background: #F39C12; color:white; padding: 15px; border-radius: 50%; display: inline-block; width: 80px;">SORPRESA</span>
           </div>
           <h2>Cómo usarla</h2>
-          <p>Cada mañana: "¿Cómo te sientes hoy?"<br>Después de una rabieta: "¿Qué sentiste?"<br>Antes de dormir: "¿Cómo fue tu día?"</p>
-          <h2>Frases útiles</h2>
-          <p><em>"Todas las emociones están bien. Lo que hacemos con ellas puede mejorar."</em></p>
-          <hr><p style="font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+          <p>Cada mañana: "¿Cómo te sientes hoy?"<br>Después de una rabieta: "¿Qué sentiste?"</p>
+          <hr>
+          <p>👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
         </div>
       `;
       break;
       
     case "planificador":
-      titulo = "Planificador semanal";
+      titulo = "Planificador_semanal";
       contenidoHTML = `
-        <div style="font-family: Arial, sans-serif; padding: 20px;">
+        <div style="font-family: Arial, sans-serif; padding: 30px;">
           <h1 style="color: #2e7d32; text-align: center;">📅 Planificador semanal de crianza</h1>
           <p style="text-align: center;">Semana del ___/___/___ al ___/___/___</p>
           <hr>
           <h2>Mis objetivos de crianza esta semana:</h2>
-          <ol><li>_________________________</li><li>_________________________</li><li>_________________________</li></ol>
-          <table style="width:100%; border-collapse: collapse;">
-            <tr style="background: #2e7d32; color: white;"><th style="padding:8px;">DÍA</th><th style="padding:8px;">OBJETIVO</th><th style="padding:8px;">✅</th></tr>
-            ${["LUNES","MARTES","MIÉRCOLES","JUEVES","VIERNES","SÁBADO","DOMINGO"].map(d => `<tr><td style="border:1px solid #ddd; padding:8px;">${d}</td><td style="border:1px solid #ddd; padding:8px;">_______________</td><td style="border:1px solid #ddd; padding:8px; text-align:center;">☐</td></tr>`).join('')}
-          </table>
+          <p>1. _________________________</p>
+          <p>2. _________________________</p>
+          <p>3. _________________________</p>
           <h2>Reflexión semanal</h2>
-          <p>¿Qué funcionó? _________________<br>¿Qué fue difícil? _________________<br>¿Qué aprenderé? _________________</p>
-          <hr><p style="text-align:center; font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+          <p>¿Qué funcionó? _________________</p>
+          <p>¿Qué fue difícil? _________________</p>
+          <p>¿Qué aprenderé? _________________</p>
+          <hr>
+          <p>👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
         </div>
       `;
       break;
       
     case "registro":
-      titulo = "Registro de rabietas";
+      titulo = "Registro_de_rabietas";
       contenidoHTML = `
-        <div style="font-family: Arial, sans-serif; padding: 20px;">
+        <div style="font-family: Arial, sans-serif; padding: 30px;">
           <h1 style="color: #2e7d32; text-align: center;">📝 Registro de rabietas</h1>
           <p>Identificar patrones es el primer paso para prevenir.</p>
           <hr>
-          ${Array(3).fill(`
-            <h2>Registro #___</h2>
-            <p><strong>Fecha:</strong> ___/___/___ &nbsp;&nbsp; <strong>Hora:</strong> ___:___ &nbsp;&nbsp; <strong>Duración:</strong> ___ minutos</p>
-            <p><strong>Desencadenante:</strong> _________________________</p>
-            <p><strong>Intensidad (1-10):</strong> ___</p>
-            <p><strong>¿Qué funcionó?</strong> _________________________</p>
-            <p><strong>¿Qué NO funcionó?</strong> _________________________</p>
-            <hr>
-          `).join('')}
-          <h2>Análisis semanal</h2>
+          <h2>Registro #1</h2>
+          <p><strong>Fecha:</strong> ___/___/___ &nbsp;&nbsp; <strong>Hora:</strong> ___:___ &nbsp;&nbsp; <strong>Duración:</strong> ___ minutos</p>
+          <p><strong>Desencadenante:</strong> _________________________</p>
+          <p><strong>¿Qué funcionó?</strong> _________________________</p>
+          <hr>
+          <h2>Registro #2</h2>
+          <p><strong>Fecha:</strong> ___/___/___ &nbsp;&nbsp; <strong>Hora:</strong> ___:___ &nbsp;&nbsp; <strong>Duración:</strong> ___ minutos</p>
+          <p><strong>Desencadenante:</strong> _________________________</p>
+          <p><strong>¿Qué funcionó?</strong> _________________________</p>
+          <hr>
+          <h2>Análisis</h2>
           <p>¿Hay un patrón de horario/lugar/situación? _________________</p>
-          <hr><p style="text-align:center; font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+          <hr>
+          <p>👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
         </div>
       `;
       break;
       
     case "limites":
-      titulo = "Checklist de límites";
+      titulo = "Checklist_de_limites";
       contenidoHTML = `
-        <div style="font-family: Arial, sans-serif; padding: 20px;">
+        <div style="font-family: Arial, sans-serif; padding: 30px;">
           <h1 style="color: #2e7d32; text-align: center;">✅ Checklist de límites por edad</h1>
           <h2>0-2 años</h2>
-          <p>☐ No dejar objetos peligrosos ☐ Cinturón SIEMPRE ☐ No cruzar sin adulto ☐ No pegar/morder</p>
+          <p>☐ No dejar objetos peligrosos al alcance<br>☐ Cinturón de seguridad SIEMPRE<br>☐ No cruzar la calle sin adulto<br>☐ No pegar ni morder</p>
           <h2>3-5 años</h2>
-          <p>☐ Lavarse manos antes de comer ☐ Recoger juguetes ☐ Pedir por favor ☐ Esperar turnos</p>
+          <p>☐ Lavarse las manos antes de comer<br>☐ Recoger los juguetes después de jugar<br>☐ Pedir las cosas por favor<br>☐ Esperar turnos en juegos</p>
           <h2>6-12 años</h2>
-          <p>☐ Tareas de casa ☐ Horario tareas antes pantallas ☐ Límite 1-2h pantallas ☐ Avisar si sale</p>
+          <p>☐ Tareas de la casa apropiadas<br>☐ Horario de tareas antes de pantallas<br>☐ Límite de pantallas (1-2 horas/día)<br>☐ Avisar si sale de casa</p>
           <h2>Adolescentes</h2>
-          <p>☐ Horario de llegada ☐ Compartir ubicación ☐ Zonas libres de pantallas ☐ Participar decisiones</p>
-          <h2>Regla de oro</h2>
-          <p><em>"Los límites no son castigos, son protección."</em></p>
-          <hr><p style="text-align:center; font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+          <p>☐ Horario de llegada acordado<br>☐ Compartir ubicación si es necesario<br>☐ Respetar zonas libres de pantallas<br>☐ Participar en decisiones familiares</p>
+          <hr>
+          <p>👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
         </div>
       `;
       break;
       
     case "diario":
-      titulo = "Diario de reflexión";
+      titulo = "Diario_de_reflexion";
       contenidoHTML = `
-        <div style="font-family: Arial, sans-serif; padding: 20px;">
+        <div style="font-family: Arial, sans-serif; padding: 30px;">
           <h1 style="color: #2e7d32; text-align: center;">📓 Diario de reflexión parental</h1>
-          ${Array(7).fill(`
-            <hr>
-            <h2>Día ___</h2>
-            <p><strong>Hoy me sentí:</strong> _________________</p>
-            <p><strong>Mi hijo me enseñó:</strong> _________________</p>
-            <p><strong>Algo que hice bien:</strong> _________________</p>
-            <p><strong>Algo que mejorar:</strong> _________________</p>
-            <p><strong>Mi gratitud:</strong> _________________</p>
-          `).join('')}
-          <hr><p style="text-align:center; font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+          <hr>
+          <h2>Día 1</h2>
+          <p><strong>Hoy me sentí:</strong> _________________</p>
+          <p><strong>Mi hijo me enseñó:</strong> _________________</p>
+          <p><strong>Algo que hice bien:</strong> _________________</p>
+          <p><strong>Mi gratitud:</strong> _________________</p>
+          <hr>
+          <h2>Día 2</h2>
+          <p><strong>Hoy me sentí:</strong> _________________</p>
+          <p><strong>Mi hijo me enseñó:</strong> _________________</p>
+          <p><strong>Algo que hice bien:</strong> _________________</p>
+          <p><strong>Mi gratitud:</strong> _________________</p>
+          <hr>
+          <p>👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
         </div>
       `;
       break;
       
     case "mandamientos":
-      titulo = "Póster 10 mandamientos";
+      titulo = "Poster_10_mandamientos";
       contenidoHTML = `
-        <div style="font-family: Arial, sans-serif; padding: 20px; background: #fef9e8;">
+        <div style="font-family: Arial, sans-serif; padding: 30px; background: #fef9e8;">
           <h1 style="color: #2e7d32; text-align: center;">📜 Los 10 mandamientos de la crianza positiva</h1>
-          <ol><li><strong>CONECTA ANTES DE CORREGIR</strong> - El vínculo es la base</li><li><strong>ESCUCHA SIN JUZGAR</strong> - Valida la emoción primero</li><li><strong>PON LÍMITES FIRMES PERO AMABLES</strong> - No necesitas gritar</li><li><strong>VALIDA TODAS LAS EMOCIONES</strong> - Ninguna emoción es mala</li><li><strong>NO PEGUES, NO GRITES</strong> - La violencia genera violencia</li><li><strong>SÉ EL EJEMPLO</strong> - Los niños aprenden de lo que haces</li><li><strong>CADA NIÑO TIENE SU RITMO</strong> - No compares</li><li><strong>EL JUEGO ES APRENDIZAJE</strong> - Conecta y enseña</li><li><strong>EL ERROR ES OPORTUNIDAD</strong> - No castigues, enseña</li><li><strong>CUIDATE PARA CUIDAR</strong> - El autocuidado no es egoísmo</li></ol>
+          <ol>
+            <li><strong>🔗 CONECTA ANTES DE CORREGIR</strong> - El vínculo es la base</li>
+            <li><strong>👂 ESCUCHA SIN JUZGAR</strong> - Valida la emoción primero</li>
+            <li><strong>🧱 PON LÍMITES FIRMES PERO AMABLES</strong> - No necesitas gritar</li>
+            <li><strong>💖 VALIDA TODAS LAS EMOCIONES</strong> - Ninguna emoción es mala</li>
+            <li><strong>🤐 NO PEGUES, NO GRITES</strong> - La violencia genera violencia</li>
+            <li><strong>👑 SÉ EL EJEMPLO</strong> - Los niños aprenden de lo que haces</li>
+            <li><strong>🐢 CADA NIÑO TIENE SU RITMO</strong> - No compares</li>
+            <li><strong>🎮 EL JUEGO ES APRENDIZAJE</strong> - Conecta y enseña</li>
+            <li><strong>🌟 EL ERROR ES OPORTUNIDAD</strong> - No castigues, enseña</li>
+            <li><strong>🧘 CUIDATE PARA CUIDAR</strong> - El autocuidado no es egoísmo</li>
+          </ol>
           <p style="text-align:center; margin-top:20px;"><strong>"Primero conecto, luego corrijo"</strong></p>
-          <hr><p style="text-align:center; font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+          <hr>
+          <p>👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
         </div>
       `;
       break;
       
     case "semaforo":
-      titulo = "Semáforo de emociones";
+      titulo = "Semaforo_de_emociones";
       contenidoHTML = `
-        <div style="font-family: Arial, sans-serif; padding: 20px; text-align: center;">
+        <div style="font-family: Arial, sans-serif; padding: 30px; text-align: center;">
           <h1 style="color: #2e7d32;">🚦 Semáforo de emociones</h1>
-          <div style="background: #E74C3C; color: white; padding: 20px; margin: 10px; border-radius: 20px;"><strong>🔴 ROJO: ¡PARA!</strong><br>Respira profundo 3 veces<br>"Estoy enojado, necesito calmar mi cuerpo"</div>
-          <div style="background: #F39C12; color: white; padding: 20px; margin: 10px; border-radius: 20px;"><strong>🟡 AMARILLO: PIENSA</strong><br>Nombra la emoción<br>"¿Qué puedo hacer para sentirme mejor?"</div>
-          <div style="background: #2ECC71; color: white; padding: 20px; margin: 10px; border-radius: 20px;"><strong>🟢 VERDE: ACTÚA</strong><br>Elige la mejor opción<br>"Ya estoy calmado, puedo resolver"</div>
-          <hr><p style="font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+          <div style="background: #E74C3C; color: white; padding: 20px; margin: 10px; border-radius: 20px;">
+            <strong>🔴 ROJO: ¡PARA!</strong><br>Respira profundo 3 veces<br>"Estoy enojado, necesito calmar mi cuerpo"
+          </div>
+          <div style="background: #F39C12; color: white; padding: 20px; margin: 10px; border-radius: 20px;">
+            <strong>🟡 AMARILLO: PIENSA</strong><br>Nombra la emoción<br>"¿Qué puedo hacer para sentirme mejor?"
+          </div>
+          <div style="background: #2ECC71; color: white; padding: 20px; margin: 10px; border-radius: 20px;">
+            <strong>🟢 VERDE: ACTÚA</strong><br>Elige la mejor opción<br>"Ya estoy calmado, puedo resolver"
+          </div>
+          <hr>
+          <p>👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
         </div>
       `;
       break;
       
     default:
-      titulo = "Herramienta Platino";
-      contenidoHTML = "<p>Contenido no disponible</p>";
+      titulo = "Herramienta_Platino";
+      contenidoHTML = `<p>Contenido no disponible</p>`;
   }
   
-  // Crear un elemento temporal para generar el PDF
-  const element = document.createElement("div");
-  element.innerHTML = contenidoHTML;
-  element.style.position = "absolute";
-  element.style.left = "-9999px";
-  element.style.top = "-9999px";
-  document.body.appendChild(element);
+  // Crear un iframe oculto para generar el PDF sin afectar la página
+  const iframe = document.createElement('iframe');
+  iframe.style.position = 'absolute';
+  iframe.style.left = '-9999px';
+  iframe.style.top = '-9999px';
+  document.body.appendChild(iframe);
   
-  // Usar html2pdf para generar el PDF
-  html2pdf().set({
-    margin: [0.5, 0.5, 0.5, 0.5],
-    filename: `${id}.pdf`,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, letterRendering: true },
-    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-  }).from(element).save().then(() => {
-    document.body.removeChild(element);
-    alert(`📥 "${titulo}" descargada correctamente en PDF.`);
-  }).catch(() => {
-    document.body.removeChild(element);
-    alert("❌ Error al generar el PDF. Intenta de nuevo.");
-  });
+  const doc = iframe.contentWindow.document;
+  doc.open();
+  doc.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>${titulo}</title>
+      <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        h1 { color: #2e7d32; text-align: center; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        .text-center { text-align: center; }
+        hr { margin: 20px 0; }
+      </style>
+    </head>
+    <body>
+      ${contenidoHTML}
+    </body>
+    </html>
+  `);
+  doc.close();
+  
+  // Esperar a que el iframe cargue y luego imprimir/guardar como PDF
+  setTimeout(() => {
+    iframe.contentWindow.print();
+    
+    // Opcional: Cerrar el iframe después de un tiempo
+    setTimeout(() => {
+      document.body.removeChild(iframe);
+    }, 1000);
+  }, 500);
 }
 // =====================================================
 // INICIAR APLICACIÓN
