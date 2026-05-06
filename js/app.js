@@ -4877,7 +4877,10 @@ function descargarHerramientaPDF(id) {
           <style>
             * { margin: 0; padding: 0; box-sizing: border-box; }
             body { font-family: 'Segoe UI', Arial, sans-serif; background: #fef9e8; padding: 40px; }
-            .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+            .container{max-width:900px;margin:0 auto;background:white;box-shadow:0 10px 30px rgba(0,0,0,0.1);}
+            .header-fijo{background:linear-gradient(135deg,#2e7d32,#1a4d1a);color:white;padding:25px;text-align:center;border-radius:20px 20px 0 0;}
+            .content{padding:30px;}
+            .footer-dinamico{text-align:center;padding:20px;background:#f5f5f5;border-top:1px solid #ddd;border-radius:0 0 20px 20px;}
             .header { background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 25px; text-align: center; }
             .header h1 { font-size: 28px; margin-bottom: 10px; }
             .header p { opacity: 0.9; }
@@ -4909,12 +4912,18 @@ function descargarHerramientaPDF(id) {
             .tablero table { width: 100%; color: white; }
             .tablero td { padding: 10px; text-align: center; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; border-top: 1px solid #ddd; }
-              @media print{@page{margin-top:2.5cm;margin-bottom:1.5cm;}body{margin:0;padding:0;}.container{display:table;width:100%;}.header{display:table-header-group;background:linear-gradient(135deg,#2e7d32,#1a4d1a);color:white;padding:20px;text-align:center;}.content{display:table-row-group;padding:20px;}.footer{display:table-footer-group;}}
+            @media print{
+  @page{margin-top:2.5cm;margin-bottom:1.5cm;}
+  body{margin:0;padding:0;}
+  .header-fijo{position:fixed;top:0;left:0;right:0;margin-top:-2.2cm;background:linear-gradient(135deg,#2e7d32,#1a4d1a);color:white;padding:20px;text-align:center;z-index:1000;}
+  .content{margin-top:0;padding-top:2.8cm;}
+  .footer-dinamico{position:relative;}
+}
           </style>
         </head>
         <body>
           <div class="container">
-            <div class="header">
+            <div class="header-fijo">
               <div class="badge">👑 PLAN PLATINO - HERRAMIENTA EXCLUSIVA</div>
               <h1>🚦 Semáforo de emociones</h1>
               <p>Enseña a los niños a identificar, nombrar y regular sus emociones</p>
@@ -5042,11 +5051,38 @@ function descargarHerramientaPDF(id) {
                 <strong>💡 Recuerda:</strong> "El enojo es una señal de que algo no está bien. Vamos a descubrir qué es y cómo solucionarlo juntos."
               </div>
             </div>
-            <div class="footer">
+            <div class="footer-dinamico">
               <p>👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
               <p>© 2025 Criar con Conciencia - Todos los derechos reservados</p>
             </div>
           </div>
+          <script>
+          function ajustarPie() {
+            if (window.matchMedia('print').matches) return;
+            var container = document.querySelector('.container');
+            var footer = document.querySelector('.footer-dinamico');
+            if (!container || !footer) return;
+            
+            var alturaContainer = container.offsetHeight;
+            var alturaVentana = window.innerHeight;
+            
+            if (alturaContainer < alturaVentana - 100) {
+              footer.style.position = 'fixed';
+              footer.style.bottom = '0';
+              footer.style.left = '0';
+              footer.style.right = '0';
+              footer.style.maxWidth = '900px';
+              footer.style.margin = '0 auto';
+              footer.style.borderRadius = '0';
+            } else {
+              footer.style.position = 'relative';
+              footer.style.bottom = 'auto';
+              footer.style.borderRadius = '0 0 20px 20px';
+            }
+          }
+          window.addEventListener('load', ajustarPie);
+          window.addEventListener('resize', ajustarPie);
+          </script>          
         </body>
         </html>
       `;
