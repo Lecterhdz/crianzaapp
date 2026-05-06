@@ -2374,7 +2374,7 @@ function mostrarPantallaPlanes() {
           <div style="position:absolute; top:-10px; right:10px; background:#ff9800; color:#333; padding:4px 12px; border-radius:20px; font-size:0.7rem; font-weight:bold;">🔥 MÁS POPULAR</div>
           <div style="font-size:2rem;">🌟</div>
           <h3 style="color:white;">Pro</h3>
-          <div style="font-size:0.8rem; text-decoration:line-through; opacity:0.7;">$189</div>
+          <div style="font-size:0.8rem; text-decoration:line-through; opacity:0.7;">$199</div>
           <div style="font-size:2rem; font-weight:bold;">$59</div>
           <div style="font-size:0.7rem;">MXN / año</div>
           <div style="background:#ff9800; color:#333; display:inline-block; padding:2px 12px; border-radius:20px; margin-top:0.5rem; font-weight:bold;">70% DESCUENTO</div>
