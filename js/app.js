@@ -24,7 +24,7 @@ let cursoEstado = {
 
 // Estado de licencia
 let licencia = {
-  tipo: "demo",     // "demo" o "pro"
+  tipo: "demo",     // "demo", "basico", "pro", "platino"
   activa: true,
   expira: null,
   email: null
@@ -182,13 +182,15 @@ async function activarProConCodigo(codigo, email) {
 
 // Verificar si el usuario puede acceder a un día específico
 function puedeAccederADia(dia) {
-  if (licencia.tipo === "pro") return true;
-  return dia <= 7;
+  if (licencia.tipo === "pro") return true;  // Pro tiene todo
+  if (licencia.tipo === "basico") return true; // Básico también tiene todo
+  if (licencia.tipo === "platino") return true; // Platino también tiene todo
+  return dia <= 3;  // Demo: solo días 1-3
 }
 
 
 // =====================================================
-// PANEL ADMIN (generar códigos)
+// PANEL ADMIN (generar códigos por plan)
 // =====================================================
 
 async function mostrarPanelAdmin() {
@@ -199,53 +201,114 @@ async function mostrarPanelAdmin() {
     return;
   }
   
+  // Obtener códigos de Firestore
   const codigosSnapshot = await db.collection("codigos").get();
-  let listaCodigos = "";
+  
+  // Separar códigos por plan
+  const codigosPorPlan = {
+    basico: [],
+    pro: [],
+    platino: []
+  };
+  
   codigosSnapshot.forEach(doc => {
     const data = doc.data();
-    listaCodigos += `
-      <tr>
-        <td style="border:1px solid #ddd; padding:8px; font-family:monospace;">${data.codigo}</td>
-        <td style="border:1px solid #ddd; padding:8px;">${data.usado ? '✅ Usado' : '🟢 Disponible'}</td>
-        <td style="border:1px solid #ddd; padding:8px;">${data.usadoPor || '—'}</td>
-        <td style="border:1px solid #ddd; padding:8px;">${new Date(data.expira).toLocaleDateString()}</td>
-      </tr>
-    `;
+    const plan = data.plan || "pro"; // por defecto pro si no tiene plan
+    if (codigosPorPlan[plan]) {
+      codigosPorPlan[plan].push({ id: doc.id, ...data });
+    } else {
+      codigosPorPlan["pro"].push({ id: doc.id, ...data });
+    }
   });
+  
+  // Función para generar tabla HTML de un plan
+  function generarTablaPlan(plan, codigos, nombrePlan, color) {
+    if (codigos.length === 0) {
+      return `
+        <div style="margin-bottom: 2rem;">
+          <h3 style="color: ${color};">${nombrePlan}</h3>
+          <p style="color: #666;">No hay códigos generados para este plan.</p>
+        </div>
+      `;
+    }
+    
+    let tablaHtml = `
+      <div style="margin-bottom: 2rem;">
+        <h3 style="color: ${color}; border-bottom: 2px solid ${color}; display: inline-block; padding-bottom: 5px;">${nombrePlan}</h3>
+        <table style="width:100%; border-collapse:collapse; margin-top: 1rem;">
+          <tr style="background: ${color}; color: white;">
+            <th style="border:1px solid #ddd; padding:8px;">Código</th>
+            <th style="border:1px solid #ddd; padding:8px;">Precio</th>
+            <th style="border:1px solid #ddd; padding:8px;">Estado</th>
+            <th style="border:1px solid #ddd; padding:8px;">Usado por</th>
+            <th style="border:1px solid #ddd; padding:8px;">Expira</th>
+          </tr>
+    `;
+    
+    for (const item of codigos) {
+      tablaHtml += `
+        <tr>
+          <td style="border:1px solid #ddd; padding:8px; font-family:monospace;">${item.codigo}</td>
+          <td style="border:1px solid #ddd; padding:8px;">$${item.precio || (item.plan === "basico" ? 189 : item.plan === "platino" ? 299 : 59)} MXN</td>
+          <td style="border:1px solid #ddd; padding:8px;">${item.usado ? '✅ Usado' : '🟢 Disponible'}</td>
+          <td style="border:1px solid #ddd; padding:8px;">${item.usadoPor || '—'}</td>
+          <td style="border:1px solid #ddd; padding:8px;">${new Date(item.expira).toLocaleDateString()}</td>
+        </tr>
+      `;
+    }
+    
+    tablaHtml += `</table></div>`;
+    return tablaHtml;
+  }
   
   const html = `
     <div class="card">
-      <h2>🔧 Panel Admin</h2>
-      <button id="btnGenerarCodigo" class="juego">➕ Generar código (1 año)</button>
-      <div style="margin-top:1rem; overflow-x:auto;">
-        <table style="width:100%; border-collapse:collapse;">
-          <tr style="background:#4CAF50; color:white;">
-            <th>Código</th><th>Estado</th><th>Usado por</th><th>Expira</th>
-          </tr>
-          ${listaCodigos || '<tr><td colspan="4">No hay códigos</td></tr>'}
-        </table>
+      <h2>🔧 Panel de Administración</h2>
+      <p>Genera códigos de licencia para cada plan. Los precios son referenciales.</p>
+      
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0;">
+        <button id="btnGenerarBasico" class="juego" style="background: #2196F3;">➕ Generar código BÁSICO ($189 MXN)</button>
+        <button id="btnGenerarPro" class="juego" style="background: #4CAF50;">➕ Generar código PRO ⭐ ($59 MXN)</button>
+        <button id="btnGenerarPlatino" class="juego" style="background: #9C27B0;">➕ Generar código PLATINO 👑 ($299 MXN)</button>
       </div>
-      <button id="btnVolverAdmin" class="juego">Volver</button>
+      
+      <hr style="margin: 1rem 0; border-color: #ddd;">
+      
+      <div id="codigosContainer">
+        ${generarTablaPlan("basico", codigosPorPlan.basico, "📘 PLAN BÁSICO - $189 MXN/año", "#2196F3")}
+        ${generarTablaPlan("pro", codigosPorPlan.pro, "⭐ PLAN PRO - $59 MXN/año (70% DESCUENTO)", "#4CAF50")}
+        ${generarTablaPlan("platino", codigosPorPlan.platino, "👑 PLAN PLATINO - $299 MXN/año", "#9C27B0")}
+      </div>
+      
+      <button id="btnVolverAdmin" class="juego" style="margin-top: 1rem;">← Volver al curso</button>
     </div>
   `;
   
   document.getElementById("contenido").innerHTML = html;
   
-  document.getElementById("btnGenerarCodigo")?.addEventListener("click", async () => {
+  // Función genérica para generar código de un plan
+  async function generarCodigoPlan(plan, precio, colorNombre) {
     const codigo = "CRIANZA-" + Math.random().toString(36).substring(2, 10).toUpperCase();
     const expira = new Date();
     expira.setFullYear(expira.getFullYear() + 1);
     
     await db.collection("codigos").doc(codigo).set({
       codigo: codigo,
+      plan: plan,
+      precio: precio,
       usado: false,
       expira: expira.toISOString(),
       creado: new Date().toISOString()
     });
     
-    alert(`✅ Código generado:\n\n${codigo}\n\nCópialo y envíalo al usuario.`);
-    mostrarPanelAdmin();
-  });
+    alert(`✅ Código ${colorNombre} generado:\n\n${codigo}\n💰 Precio: $${precio} MXN/año\n\nCópialo y envíalo al usuario.`);
+    mostrarPanelAdmin(); // Recargar panel
+  }
+  
+  // Eventos para cada botón
+  document.getElementById("btnGenerarBasico")?.addEventListener("click", () => generarCodigoPlan("basico", 189, "BÁSICO"));
+  document.getElementById("btnGenerarPro")?.addEventListener("click", () => generarCodigoPlan("pro", 59, "PRO"));
+  document.getElementById("btnGenerarPlatino")?.addEventListener("click", () => generarCodigoPlan("platino", 299, "PLATINO"));
   
   document.getElementById("btnVolverAdmin")?.addEventListener("click", mostrarPantallaPrincipal);
 }
@@ -328,7 +391,7 @@ function mostrarOfertaPro() {
 // SISTEMA DE LICENCIA SIMPLIFICADO - UNA SOLA VARIABLE
 // =====================================================
 
-// Activar licencia usando email + código
+// Activar licencia usando email + código (soporta todos los planes)
 async function activarLicenciaPorEmail(codigo, email) {
   if (!email || !codigo) {
     return { valido: false, mensaje: "❌ Ingresa email y código" };
@@ -358,27 +421,54 @@ async function activarLicenciaPorEmail(codigo, email) {
       return { valido: false, mensaje: "❌ Código expirado" };
     }
     
+    // Obtener el tipo de plan del código (básico, pro, platino)
+    // Si no tiene, por defecto es "pro"
+    const tipoPlan = codigoData.plan || "pro";
+    
+    // Validar que el plan sea válido
+    const planesValidos = ["basico", "pro", "platino"];
+    if (!planesValidos.includes(tipoPlan)) {
+      return { valido: false, mensaje: "❌ Tipo de plan inválido. Contacta con soporte." };
+    }
+    
     // Marcar código como usado
     await docCodigo.ref.update({
       usado: true,
       usadoPor: email,
-      usadoEn: new Date().toISOString()
+      usadoEn: new Date().toISOString(),
+      planUsado: tipoPlan
     });
     
-    // Activar licencia
+    // Activar licencia según el plan
     const expira = new Date();
     expira.setFullYear(expira.getFullYear() + 1);
     
+    // Configurar licencia según el tipo de plan
+    let nombrePlanMostrar = "";
+    let mensajeExito = "";
+    
+    if (tipoPlan === "basico") {
+      nombrePlanMostrar = "Básico";
+      mensajeExito = "✅ ¡Plan Básico activado! Disfruta de los 33 días del curso.";
+    } else if (tipoPlan === "pro") {
+      nombrePlanMostrar = "Pro ⭐";
+      mensajeExito = "✅ ¡Plan Pro activado! Disfruta del simulador y todas las funciones.";
+    } else if (tipoPlan === "platino") {
+      nombrePlanMostrar = "Platino 👑";
+      mensajeExito = "✅ ¡Plan Platino activado! Disfruta de todas las herramientas y beneficios exclusivos.";
+    }
+    
     licencia = {
-      tipo: "pro",
+      tipo: tipoPlan,
       activa: true,
       expira: expira.toISOString(),
       email: email
     };
     
-    // ✅ UNIFICADO: Solo usamos "emailPro" para todo
+    // Guardar en localStorage (unificado)
     localStorage.setItem("emailPro", email);
-    localStorage.setItem("licenciaPro", JSON.stringify({
+    localStorage.setItem("emailLicenciaActiva", email);
+    localStorage.setItem("licenciaCrianza", JSON.stringify({
       tipo: licencia.tipo,
       expira: licencia.expira,
       email: licencia.email
@@ -386,14 +476,20 @@ async function activarLicenciaPorEmail(codigo, email) {
     
     // Guardar en Firestore
     await db.collection("licencias").doc(email).set({
-      tipo: "pro",
+      tipo: tipoPlan,
       expira: expira.toISOString(),
       email: email,
       activadoEn: new Date().toISOString(),
-      codigoUsado: codigo.toUpperCase()
+      codigoUsado: codigo.toUpperCase(),
+      plan: tipoPlan
     });
     
-    return { valido: true, mensaje: "✅ ¡Licencia Pro activada! Puedes cerrar y volver a entrar sin código." };
+    return { 
+      valido: true, 
+      mensaje: mensajeExito,
+      plan: tipoPlan,
+      nombrePlan: nombrePlanMostrar
+    };
     
   } catch (error) {
     console.error("Error activando licencia:", error);
@@ -401,9 +497,12 @@ async function activarLicenciaPorEmail(codigo, email) {
   }
 }
 
-// Recuperar licencia automáticamente (se llama al iniciar la app)
+// =====================================================
+// RECUPERAR LICENCIA AUTOMÁTICAMENTE (soporta todos los planes)
+// =====================================================
+
 async function recuperarLicenciaAutomatica() {
-  // ✅ Buscar el email guardado con la variable UNIFICADA
+  // Buscar el email guardado con la variable UNIFICADA
   const email = localStorage.getItem("emailPro");
   
   if (!email) {
@@ -417,31 +516,97 @@ async function recuperarLicenciaAutomatica() {
     
     if (doc.exists) {
       const data = doc.data();
-      if (data.tipo === "pro" && new Date(data.expira) > new Date()) {
+      const tipoPlan = data.tipo || "demo";
+      const planesValidos = ["basico", "pro", "platino"];
+      
+      // Verificar si el plan es válido y no ha expirado
+      if (planesValidos.includes(tipoPlan) && new Date(data.expira) > new Date()) {
+        // Configurar licencia según el plan
         licencia = {
-          tipo: "pro",
+          tipo: tipoPlan,
           activa: true,
           expira: data.expira,
           email: email
         };
-        // ✅ Actualizar localStorage (por si acaso)
-        localStorage.setItem("licenciaPro", JSON.stringify({
+        
+        // Guardar en localStorage
+        localStorage.setItem("licenciaCrianza", JSON.stringify({
           tipo: licencia.tipo,
           expira: licencia.expira,
           email: licencia.email
         }));
-        console.log("✅ Licencia Pro recuperada para:", email);
+        
+        // Mensaje según el plan
+        let mensajePlan = "";
+        if (tipoPlan === "basico") mensajePlan = "Básico";
+        if (tipoPlan === "pro") mensajePlan = "Pro ⭐";
+        if (tipoPlan === "platino") mensajePlan = "Platino 👑";
+        
+        console.log(`✅ Licencia ${mensajePlan} recuperada para:`, email);
         return true;
-      } else {
+        
+      } else if (planesValidos.includes(tipoPlan) && new Date(data.expira) <= new Date()) {
+        // Licencia expirada
         console.log("⚠️ Licencia expirada para:", email);
         localStorage.removeItem("emailPro");
-        localStorage.removeItem("licenciaPro");
+        localStorage.removeItem("licenciaCrianza");
+        localStorage.removeItem("emailLicenciaActiva");
+        
+        // Mostrar notificación de expiración
+        mostrarNotificacion("⚠️ Tu licencia ha expirado. Contacta para renovar.");
+        
+      } else {
+        console.log("📧 No se encontró licencia activa para:", email);
       }
     } else {
-      console.log("📧 No se encontró licencia para:", email);
+      console.log("📧 No se encontró documento de licencia para:", email);
     }
   } catch (error) {
     console.log("Error recuperando licencia:", error);
+  }
+  return false;
+}
+
+// Cargar licencia desde Firestore usando el email guardado
+async function cargarLicenciaPorEmail() {
+  const emailGuardado = localStorage.getItem("emailLicenciaActiva") || localStorage.getItem("emailPro");
+  
+  if (!emailGuardado) return false;
+  
+  try {
+    const docRef = db.collection("licencias").doc(emailGuardado);
+    const doc = await docRef.get();
+    
+    if (doc.exists) {
+      const data = doc.data();
+      const tipoPlan = data.tipo || "demo";
+      const planesValidos = ["basico", "pro", "platino"];
+      
+      if (planesValidos.includes(tipoPlan) && new Date(data.expira) > new Date()) {
+        licencia = {
+          tipo: tipoPlan,
+          activa: true,
+          expira: data.expira,
+          email: data.email
+        };
+        
+        localStorage.setItem("licenciaCrianza", JSON.stringify({
+          tipo: licencia.tipo,
+          expira: licencia.expira,
+          email: licencia.email
+        }));
+        localStorage.setItem("emailPro", emailGuardado);
+        
+        return true;
+      } else if (planesValidos.includes(tipoPlan) && new Date(data.expira) <= new Date()) {
+        // Licencia expirada
+        localStorage.removeItem("emailLicenciaActiva");
+        localStorage.removeItem("emailPro");
+        localStorage.removeItem("licenciaCrianza");
+      }
+    }
+  } catch (error) {
+    console.log("Error cargando licencia:", error);
   }
   return false;
 }
@@ -2245,6 +2410,113 @@ function mostrarModal(titulo, contenido) {
   modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
 }
 
+// =====================================================
+// PANTALLA DE PLANES (BÁSICO, PRO, PLATINO)
+// =====================================================
+
+function mostrarPantallaPlanes() {
+  const emailActual = localStorage.getItem("emailPro") || "";
+  
+  const html = `
+    <div class="card" style="text-align:center; max-width:900px; margin:0 auto;">
+      <h2>🎯 Elige el plan que mejor se adapte a ti</h2>
+      <p>Compara y elige. El plan Pro es el más popular con <strong>70% de descuento</strong>.</p>
+      
+      <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin:2rem 0;">
+        
+        <!-- PLAN BÁSICO -->
+        <div style="flex:1; min-width:200px; background:#f5f5f5; border-radius:1rem; padding:1.5rem; text-align:center;">
+          <div style="font-size:2rem;">📘</div>
+          <h3>Básico</h3>
+          <div style="font-size:1.5rem; font-weight:bold;">$189</div>
+          <div style="font-size:0.7rem;">MXN / año</div>
+          <hr style="margin:1rem 0;">
+          <ul style="text-align:left; font-size:0.8rem; list-style:none; padding-left:0;">
+            <li>✅ 33 días del curso</li>
+            <li>❌ Sin simulador</li>
+            <li>❌ Sin medallas</li>
+            <li>❌ Sin herramientas</li>
+          </ul>
+          <button class="btn-plan" data-plan="basico" data-precio="189" class="btn-dia" style="background:#2196F3; color:white; border:none; padding:0.5rem 1rem; border-radius:2rem; cursor:pointer; width:100%;">Elegir Básico</button>
+        </div>
+        
+        <!-- PLAN PRO (DESTACADO) -->
+        <div style="flex:1; min-width:220px; background:linear-gradient(135deg, #4CAF50, #2e7d32); color:white; border-radius:1rem; padding:1.5rem; text-align:center; position:relative; transform:scale(1.02); box-shadow:0 10px 25px rgba(0,0,0,0.2);">
+          <div style="position:absolute; top:-10px; right:10px; background:#ff9800; color:#333; padding:4px 12px; border-radius:20px; font-size:0.7rem; font-weight:bold;">🔥 MÁS POPULAR</div>
+          <div style="font-size:2rem;">🌟</div>
+          <h3 style="color:white;">Pro</h3>
+          <div style="font-size:0.8rem; text-decoration:line-through; opacity:0.7;">$189</div>
+          <div style="font-size:2rem; font-weight:bold;">$59</div>
+          <div style="font-size:0.7rem;">MXN / año</div>
+          <div style="background:#ff9800; color:#333; display:inline-block; padding:2px 12px; border-radius:20px; margin-top:0.5rem; font-weight:bold;">70% DESCUENTO</div>
+          <hr style="margin:1rem 0; border-color:rgba(255,255,255,0.3);">
+          <ul style="text-align:left; font-size:0.8rem; list-style:none; padding-left:0;">
+            <li>✅ 33 días del curso</li>
+            <li>✅ Simulador de escenarios</li>
+            <li>✅ Medallas y gamificación</li>
+            <li>✅ Estadísticas de progreso</li>
+            <li>✅ Sincronización entre dispositivos</li>
+          </ul>
+          <button class="btn-plan" data-plan="pro" data-precio="59" style="background:#ff9800; color:#333; border:none; padding:0.8rem 1rem; border-radius:2rem; font-weight:bold; cursor:pointer; width:100%;">🔥 Elegir Pro</button>
+        </div>
+        
+        <!-- PLAN PLATINO -->
+        <div style="flex:1; min-width:200px; background:#f5f5f5; border-radius:1rem; padding:1.5rem; text-align:center;">
+          <div style="font-size:2rem;">👑</div>
+          <h3>Platino</h3>
+          <div style="font-size:1.5rem; font-weight:bold;">$299</div>
+          <div style="font-size:0.7rem;">MXN / año</div>
+          <hr style="margin:1rem 0;">
+          <ul style="text-align:left; font-size:0.8rem; list-style:none; padding-left:0;">
+            <li>✅ Todo lo del Pro</li>
+            <li>✅ 9 herramientas descargables</li>
+            <li>✅ Actividades de refuerzo</li>
+            <li>✅ 1 sesión Q&A al mes</li>
+          </ul>
+          <button class="btn-plan" data-plan="platino" data-precio="299" style="background:#9C27B0; color:white; border:none; padding:0.5rem 1rem; border-radius:2rem; cursor:pointer; width:100%;">Elegir Platino</button>
+        </div>
+        
+      </div>
+      
+      <div style="margin-top:1rem;">
+        <p style="font-size:0.7rem;">⚡ Los precios de Básico y Platino son regulares. El plan Pro tiene 70% de descuento por tiempo limitado.</p>
+        <button id="btnVolverPlanes" class="juego" style="background:#ccc;">← Volver al curso</button>
+      </div>
+    </div>
+  `;
+  
+  document.getElementById("contenido").innerHTML = html;
+  
+  // Eventos para botones de planes
+  document.querySelectorAll(".btn-plan").forEach(btn => {
+    btn.onclick = () => {
+      const plan = btn.getAttribute("data-plan");
+      const precio = btn.getAttribute("data-precio");
+      const email = prompt("📧 Ingresa tu correo electrónico para recibir el código de activación:");
+      
+      if (!email || !email.includes("@")) {
+        alert("❌ Ingresa un email válido");
+        return;
+      }
+      
+      // Guardar selección para cuando se active el código
+      localStorage.setItem("planSeleccionado", plan);
+      localStorage.setItem("precioSeleccionado", precio);
+      localStorage.setItem("emailComprador", email);
+      
+      // Abrir WhatsApp con mensaje personalizado según el plan
+      let mensaje = "";
+      if (plan === "basico") mensaje = `Hola, quiero comprar el plan Básico del curso de crianza ($${precio} MXN). Mi correo es: ${email}`;
+      if (plan === "pro") mensaje = `Hola, quiero comprar el plan Pro con 70% de descuento ($${precio} MXN). Mi correo es: ${email}`;
+      if (plan === "platino") mensaje = `Hola, quiero comprar el plan Platino del curso de crianza ($${precio} MXN). Mi correo es: ${email}`;
+      
+      window.open(`https://wa.me/524641177116?text=${encodeURIComponent(mensaje)}`, "_blank");
+    };
+  });
+  
+  document.getElementById("btnVolverPlanes")?.addEventListener("click", mostrarPantallaPrincipal);
+}
+
 // --- FUNCIONES DE PANTALLAS ---
 
 // =====================================================
@@ -2252,10 +2524,11 @@ function mostrarModal(titulo, contenido) {
 // =====================================================
 
 function mostrarSimulador() {
-  if (licencia.tipo !== "pro") {
-    mostrarOfertaPro();
+  if (licencia.tipo !== "pro" && licencia.tipo !== "platino") {
+    alert("🔒 El simulador solo está disponible en los planes Pro y Platino. Actualiza tu plan para acceder.");
+    mostrarPantallaPlanes();
     return;
-  }  
+  }
   // Banco de escenarios organizados por edad
   const escenariosPorEdad = {
     "0-2 años": [
@@ -3220,7 +3493,9 @@ function mostrarPantallaPrincipal() {
     licencia.expira = temp.expira;
     licencia.email = temp.email;
     
-    if (licencia.tipo === "pro" && licencia.expira && new Date(licencia.expira) < new Date()) {
+    // Verificar expiración solo para planes de pago
+    if ((licencia.tipo === "basico" || licencia.tipo === "pro" || licencia.tipo === "platino") && 
+        licencia.expira && new Date(licencia.expira) < new Date()) {
       licencia.tipo = "demo";
       localStorage.removeItem("licenciaCrianza");
       localStorage.removeItem("emailLicenciaActiva");
@@ -3229,135 +3504,182 @@ function mostrarPantallaPrincipal() {
   
   // Si hay email guardado, intentar sincronizar con Firestore (para otros dispositivos)
   const emailGuardado = localStorage.getItem("emailLicenciaActiva");
-  if (emailGuardado && licencia.tipo !== "pro") {
+  if (emailGuardado && (licencia.tipo === "demo")) {
     cargarLicenciaPorEmail();
   }
+  
+  // =====================================================
+  // CONFIGURACIÓN SEGÚN EL TIPO DE PLAN
+  // =====================================================
+  
   const DIAS_TOTALES = 33;
-  const DIAS_VISIBLES = licencia.tipo === "pro" ? 33 : 7;
+  let DIAS_VISIBLES = 3;  // Demo: solo 3 días
+  let nombrePlan = "";
+  let colorPlan = "";
+  let mensajePlan = "";
+  
+  if (licencia.tipo === "demo") {
+    DIAS_VISIBLES = 3;
+    nombrePlan = "DEMO (3 días)";
+    colorPlan = "#ff9800";
+    mensajePlan = '🔓 Modo demo: días 1-3 gratis. <button id="btnUpgradeDesdeBanner" class="btn-dia" style="background:#ff9800;">⬆️ Ver planes disponibles</button>';
+  }
+  else if (licencia.tipo === "basico") {
+    DIAS_VISIBLES = 33;
+    nombrePlan = "BÁSICO";
+    colorPlan = "#2196F3";
+    mensajePlan = '📘 Plan Básico activo. <button id="btnUpgradeDesdeBanner" class="btn-dia" style="background:#ff9800;">⬆️ Mejorar a Pro o Platino</button>';
+  }
+  else if (licencia.tipo === "pro") {
+    DIAS_VISIBLES = 33;
+    nombrePlan = "PRO ⭐";
+    colorPlan = "#4CAF50";
+    mensajePlan = '🌟 Plan Pro activo. Disfruta del simulador y todas las funciones.';
+  }
+  else if (licencia.tipo === "platino") {
+    DIAS_VISIBLES = 33;
+    nombrePlan = "PLATINO 👑";
+    colorPlan = "#9C27B0";
+    mensajePlan = '👑 Plan Platino activo. Tienes acceso a todas las herramientas descargables.';
+  }
+  
   const completados = cursoEstado.completados.length;
-  const progreso = Math.round((completados / (licencia.tipo === "pro" ? 33 : 7)) * 100);
+  const progreso = Math.round((completados / DIAS_VISIBLES) * 100);
   
-  let html = mostrarBannerDemo();
+  // =====================================================
+  // GENERAR HTML
+  // =====================================================
   
-  html += `
+  let html = `
     <div class="card">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-        <h2>🗺️ Curso de crianza - ${licencia.tipo === "pro" ? "33 días" : "7 días demo"}</h2>
-        <div>
-          <button id="btnSimulador" class="juego" style="background:#9C27B0;">🎭 Simulador</button>
-          <button id="btnEstadisticas" class="juego" style="background:#2196F3;">📊 Stats</button>
-          <button id="btnPlanificador" class="juego" style="background:#FF9800;">📅 Plan</button>
-          <button id="btnConfig" class="juego" style="background:#607D8B;">⚙️ Config</button>
-          <button id="btnCerrarSesion" class="juego" style="background:#f44336;">🚪 Cerrar sesión</button>
-        </div>
+        <h2>🗺️ Curso de crianza - 33 días</h2>
+        <span style="background:${colorPlan}; color:white; padding:4px 12px; border-radius:20px; font-size:0.8rem;">
+          ${nombrePlan}
+        </span>
       </div>
       <div class="progreso-bar"><div class="progreso-fill" style="width:${progreso}%;">${progreso}%</div></div>
       <p>🔥 Racha: ${cursoEstado.racha} días | ✅ Completados: ${completados}/${DIAS_VISIBLES}</p>
       ${cursoEstado.estiloCrianza ? `<p>🎭 Tu estilo: ${cursoEstado.estiloCrianza}</p>` : '<p>📝 Completa el Día 1 para conocer tu estilo.</p>'}
-      ${licencia.tipo === "demo" ? '<p style="color:#ff9800;">🔓 Modo demo: días 1-7 gratis. <button id="btnUpgradeDesdeBanner" class="btn-dia" style="background:#ff9800;">⬆️ Pro por $59 MXN/año</button></p>' : ''}
+      <p>${mensajePlan}</p>
     </div>
   `;
   
-  // Generar módulos (solo mostrar días accesibles)
-  const MODULOS = licencia.tipo === "pro" ? 5 : 1;
-  const DIAS_POR_MODULO = 7;
-  const modNombres = licencia.tipo === "pro" 
-    ? ["📘 MÓDULO 1: Fundamentos (Días 1-7)", "📙 MÓDULO 2: Habilidades prácticas (Días 8-14)", "📒 MÓDULO 3: Situaciones específicas (Días 15-21)", "📕 MÓDULO 4: Maestría parental (Días 22-28)", "📗 MÓDULO 5: Temas avanzados (Días 29-33)"]
-    : ["📘 MÓDULO 1: Fundamentos (Días 1-7) - Acceso demo"];
+  // =====================================================
+  // MOSTRAR DÍAS DEL CURSO (según el plan)
+  // =====================================================
   
-  for (let modulo = 0; modulo < MODULOS; modulo++) {
-    const inicio = modulo * DIAS_POR_MODULO + 1;
-    let fin = Math.min(inicio + DIAS_POR_MODULO - 1, DIAS_VISIBLES);
-    if (licencia.tipo === "demo") fin = Math.min(fin, 7);
+  for (let dia = 1; dia <= DIAS_VISIBLES; dia++) {
+    const completado = cursoEstado.completados.includes(dia);
+    const bloqueado = dia > cursoEstado.diaActual && !completado;
     
-    html += `<div class="card"><h3>${modNombres[modulo]}</h3><div class="grid-2">`;
-    for (let dia = inicio; dia <= fin; dia++) {
-      const completado = cursoEstado.completados.includes(dia);
-      const bloqueado = dia > cursoEstado.diaActual && !completado;
-      const diaBloqueadoPorLicencia = licencia.tipo === "demo" && dia > 7;
-      
-      html += `
-        <div class="dia-card ${bloqueado || diaBloqueadoPorLicencia ? 'bloqueado' : ''}">
-          ${completado ? '✅' : (bloqueado || diaBloqueadoPorLicencia ? '🔒' : '📖')} 
-          <strong>Día ${dia}</strong>: ${lecciones[dia]?.titulo || `Tema ${dia}`}
-          ${diaBloqueadoPorLicencia ? '<br><small>🔓 Actualiza a Pro ($59 MXN/año)</small>' : (bloqueado ? '<br><small>🔓 Completa el día anterior</small>' : (completado ? '<br><small>✔ Completado</small>' : '<br><button class="btn-dia" data-dia="'+dia+'">Ver lección</button>'))}
-        </div>
-      `;
+    let textoBloqueo = "";
+    if (dia > DIAS_VISIBLES) {
+      textoBloqueo = '<br><small>🔓 Actualiza tu plan para más días</small>';
+    } else if (bloqueado) {
+      textoBloqueo = '<br><small>🔓 Completa el día anterior</small>';
+    } else if (completado) {
+      textoBloqueo = '<br><small>✔ Completado</small>';
     }
-    html += `</div></div>`;
+    
+    html += `
+      <div class="dia-card ${bloqueado ? 'bloqueado' : ''}" style="margin-bottom:0.5rem;">
+        ${completado ? '✅' : (bloqueado ? '🔒' : '📖')} 
+        <strong>Día ${dia}</strong>: ${lecciones[dia]?.titulo || `Tema ${dia}`}
+        ${!bloqueado && !completado ? `<br><button class="btn-dia" data-dia="${dia}">Ver lección</button>` : textoBloqueo}
+      </div>
+    `;
   }
   
-  // Si es demo, mostrar bloqueo de módulos 2-5 con mensaje de upgrade
-  if (licencia.tipo === "demo") {
-    for (let modulo = 1; modulo < 5; modulo++) {
-      const modNombresBloqueados = ["📙 MÓDULO 2: Habilidades prácticas (Días 8-14)", "📒 MÓDULO 3: Situaciones específicas (Días 15-21)", "📕 MÓDULO 4: Maestría parental (Días 22-28)", "📗 MÓDULO 5: Temas avanzados (Días 29-33)"];
-      html += `
-        <div class="card" style="opacity:0.6; filter:grayscale(0.3);">
-          <h3>${modNombresBloqueados[modulo-1]}</h3>
-          <div style="text-align:center; padding:2rem;">
-            <span style="font-size:3rem;">🔒</span>
-            <p>Módulo bloqueado en modo Demo</p>
-            <button id="btnUpgradeModulo${modulo}" class="juego" style="background:#ff9800;">⬆️ Actualizar a Pro por $59 MXN/año</button>
-          </div>
-        </div>
-      `;
-    }
-    // Agregar eventos para los botones de upgrade
-    setTimeout(() => {
-      for (let i = 1; i <= 4; i++) {
-        const btn = document.getElementById(`btnUpgradeModulo${i}`);
-        if (btn) btn.onclick = mostrarOfertaPro;
-      }
-    }, 100);
+  // =====================================================
+  // SECCIÓN DE UPGRADE PARA DEMO Y BÁSICO
+  // =====================================================
+  
+  if (licencia.tipo === "demo" || licencia.tipo === "basico") {
+    html += `
+      <div class="card" style="text-align:center; background:#fff3e0;">
+        <span style="font-size:3rem;">🚀</span>
+        <h3>¿Quieres más?</h3>
+        <p>Actualiza a Pro o Platino para acceder a:</p>
+        <ul style="text-align:left; max-width:300px; margin:0 auto;">
+          <li>✅ Simulador de escenarios (15+ situaciones)</li>
+          <li>✅ Medallas y gamificación</li>
+          <li>✅ Estadísticas detalladas</li>
+          <li>✅ Sincronización entre dispositivos</li>
+          ${licencia.tipo === "basico" ? '<li>✅ Días 4 al 33 completos</li>' : ''}
+          ${licencia.tipo === "pro" ? '<li>✅ Herramientas descargables</li>' : ''}
+        </ul>
+        <button id="btnUpgradeBloqueado" class="juego" style="background:#ff9800; margin-top:1rem;">⬆️ Ver planes disponibles</button>
+      </div>
+    `;
   }
   
   document.getElementById("contenido").innerHTML = html;
+  
+  // =====================================================
+  // EVENTOS DE LOS BOTONES
+  // =====================================================
   
   document.querySelectorAll(".btn-dia").forEach(btn => {
     btn.onclick = () => {
       const dia = parseInt(btn.getAttribute("data-dia"));
       if (!puedeAccederADia(dia)) {
-        mostrarOfertaPro();
+        mostrarPantallaPlanes();
         return;
       }
       mostrarLeccion(dia);
     };
   });
   
-  // Eventos botones principales
+  // Botón Simulador (solo para Pro y Platino)
   document.getElementById("btnSimulador")?.addEventListener("click", () => {
-    if (licencia.tipo !== "pro") {
-      mostrarOfertaPro();
+    if (licencia.tipo !== "pro" && licencia.tipo !== "platino") {
+      alert("🔒 El simulador solo está disponible en los planes Pro y Platino.");
+      mostrarPantallaPlanes();
       return;
     }
     mostrarSimulador();
   });
   
-  document.getElementById("btnUpgradePro")?.addEventListener("click", mostrarOfertaPro);
-  document.getElementById("btnUpgradeDesdeBanner")?.addEventListener("click", mostrarOfertaPro);
-  
+  // Botón Estadísticas (solo para Pro y Platino)
   document.getElementById("btnEstadisticas")?.addEventListener("click", () => {
-    if (licencia.tipo !== "pro") {
-      mostrarOfertaPro();
+    if (licencia.tipo !== "pro" && licencia.tipo !== "platino") {
+      alert("📊 Las estadísticas solo están disponibles en los planes Pro y Platino.");
+      mostrarPantallaPlanes();
       return;
     }
     mostrarEstadisticas();
   });
   
+  // Botón Planificador (solo para Pro y Platino)
   document.getElementById("btnPlanificador")?.addEventListener("click", () => {
-    if (licencia.tipo !== "pro") {
-      mostrarOfertaPro();
+    if (licencia.tipo !== "pro" && licencia.tipo !== "platino") {
+      alert("📅 El planificador solo está disponible en los planes Pro y Platino.");
+      mostrarPantallaPlanes();
       return;
     }
     mostrarPlanificador();
   });
+  
+  // Botón Upgrade desde banner
+  document.getElementById("btnUpgradeDesdeBanner")?.addEventListener("click", mostrarPantallaPlanes);
+  document.getElementById("btnUpgradeBloqueado")?.addEventListener("click", mostrarPantallaPlanes);
+  
+  // Cerrar sesión
   document.getElementById("btnCerrarSesion")?.addEventListener("click", () => {
-    localStorage.removeItem("emailPro");
-    localStorage.removeItem("licenciaPro");
-    location.reload();
-  });  
+    if (confirm("¿Cerrar sesión? Perderás el acceso a tu plan en este dispositivo.")) {
+      localStorage.removeItem("emailPro");
+      localStorage.removeItem("licenciaPro");
+      localStorage.removeItem("licenciaCrianza");
+      localStorage.removeItem("emailLicenciaActiva");
+      licencia.tipo = "demo";
+      location.reload();
+    }
+  });
+  
+  // Configuración
   document.getElementById("btnConfig")?.addEventListener("click", mostrarConfiguracion);
- 
+  
   asignarEventosNavegacion();
 }
 
