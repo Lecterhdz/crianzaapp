@@ -4154,387 +4154,230 @@ function mostrarHerramientasPlatino() {
 }
 
 // =====================================================
-// DESCARGA DE HERRAMIENTAS PLATINO (PDF reales)
+// DESCARGA DE HERRAMIENTAS PLATINO (PDF REAL)
 // =====================================================
 
 function descargarHerramientaPDF(id) {
   let titulo = "";
-  let contenido = "";
+  let contenidoHTML = "";
   
   switch(id) {
     case "consecuencias":
       titulo = "Tabla de consecuencias lógicas";
-      contenido = `
-TABLA DE CONSECUENCIAS LÓGICAS
-================================
-
-¿Qué es una consecuencia lógica?
-Es una consecuencia que está DIRECTAMENTE RELACIONADA con el acto. No es un castigo arbitrario.
-
-DIFERENCIA CLAVE:
-- CASTIGO: "No ordenaste → sin tele 3 días" (no relacionado)
-- CONSECUENCIA LÓGICA: "EnsUCiaste → limpias" (relacionado)
-
-EJEMPLOS PRÁCTICOS:
-
-| Comportamiento | Consecuencia lógica | Castigo (evitar) |
-|----------------|---------------------|------------------|
-| Tira la comida al suelo | Recoge la comida | Sin postre |
-| No guarda los juguetes | Pierde acceso a ellos 1 hora | Sin tele |
-| Golpea a un hermano | Reparar el daño (pedir disculpas, dibujo) | Castigo físico |
-| Llega tarde sin avisar | Pagar el tiempo perdido con tarea extra | Quitar celular 1 mes |
-| No hace la tarea | Terminarla antes de jugar | Gritar |
-
-PASOS PARA APLICAR UNA CONSECUENCIA LÓGICA:
-
-1. CALMA: Respira antes de actuar
-2. EXPLICA: "Cuando haces X, entonces pasa Y"
-3. EJECUTA: Sin gritos, sin negociación
-4. REFLEXIONA: "¿Qué aprendiste? ¿Qué harías diferente?"
-
-FRASES ÚTILES:
-- "No es un castigo, es lo que toca hacer cuando pasa esto."
-- "Tú decides: ¿recoges ahora o pierdes los juguetes 1 hora?"
-
-ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      contenidoHTML = `
+        <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto;">
+          <h1 style="color: #2e7d32; text-align: center;">📋 Tabla de consecuencias lógicas</h1>
+          <p style="text-align: center; color: #666;">Guía para aplicar consecuencias relacionadas con el acto, sin castigar.</p>
+          <hr>
+          
+          <h2>¿Qué es una consecuencia lógica?</h2>
+          <p>Es una consecuencia que está <strong>DIRECTAMENTE RELACIONADA</strong> con el acto. No es un castigo arbitrario.</p>
+          
+          <h2>Diferencia clave</h2>
+          <table style="width:100%; border-collapse: collapse;">
+            <tr style="background: #f0f0f0;"><th style="border:1px solid #ddd; padding:8px;">CASTIGO</th><th style="border:1px solid #ddd; padding:8px;">CONSECUENCIA LÓGICA</th></tr>
+            <tr><td style="border:1px solid #ddd; padding:8px;">"No ordenaste → sin tele 3 días" (no relacionado)</td><td style="border:1px solid #ddd; padding:8px;">"Ensuciaste → limpias" (relacionado)</td></tr>
+          </table>
+          
+          <h2>Ejemplos prácticos</h2>
+          <table style="width:100%; border-collapse: collapse;">
+            <tr style="background: #2e7d32; color: white;"><th style="border:1px solid #ddd; padding:8px;">Comportamiento</th><th style="border:1px solid #ddd; padding:8px;">Consecuencia lógica</th></tr>
+            <tr><td style="border:1px solid #ddd; padding:8px;">Tira la comida al suelo</td><td style="border:1px solid #ddd; padding:8px;">Recoge la comida</td></tr>
+            <tr style="background:#f9f9f9;"><td style="border:1px solid #ddd; padding:8px;">No guarda los juguetes</td><td style="border:1px solid #ddd; padding:8px;">Pierde acceso a ellos 1 hora</td></tr>
+            <tr><td style="border:1px solid #ddd; padding:8px;">Golpea a un hermano</td><td style="border:1px solid #ddd; padding:8px;">Reparar el daño (pedir disculpas)</td></tr>
+            <tr style="background:#f9f9f9;"><td style="border:1px solid #ddd; padding:8px;">Llega tarde sin avisar</td><td style="border:1px solid #ddd; padding:8px;">Pagar el tiempo perdido con tarea extra</td></tr>
+            <tr><td style="border:1px solid #ddd; padding:8px;">No hace la tarea</td><td style="border:1px solid #ddd; padding:8px;">Terminarla antes de jugar</td></tr>
+          </table>
+          
+          <h2>Pasos para aplicar</h2>
+          <ol><li><strong>CALMA:</strong> Respira antes de actuar</li><li><strong>EXPLICA:</strong> "Cuando haces X, entonces pasa Y"</li><li><strong>EJECUTA:</strong> Sin gritos, sin negociación</li><li><strong>REFLEXIONA:</strong> "¿Qué aprendiste?"</li></ol>
+          
+          <h2>Frases útiles</h2>
+          <p><em>"No es un castigo, es lo que toca hacer cuando pasa esto."</em></p>
+          <p><em>"Tú decides: ¿recoges ahora o pierdes los juguetes 1 hora?"</em></p>
+          
+          <hr>
+          <p style="text-align: center; font-size: 12px; color: #999;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+        </div>
       `;
       break;
       
     case "stickers":
-      titulo = "Calendario de stickers - Control de esfínteres";
-      contenido = `
-CALENDARIO DE STICKERS
-CONTROL DE ESFÍNTERES
-================================
-
-INSTRUCCIONES:
-1. Imprime este calendario
-2. Cada vez que tu hijo use el baño, pega un sticker
-3. Al final del día, celebra los logros
-
-CALENDARIO DEL MES: _______________
-
-  LUN │ MAR │ MIÉ │ JUE │ VIE │ SÁB │ DOM
-─────┼─────┼─────┼─────┼─────┼─────┼─────
-  ☐   │  ☐  │  ☐  │  ☐  │  ☐  │  ☐  │  ☐
-  ☐   │  ☐  │  ☐  │  ☐  │  ☐  │  ☐  │  ☐
-  ☐   │  ☐  │  ☐  │  ☐  │  ☐  │  ☐  │  ☐
-  ☐   │  ☐  │  ☐  │  ☐  │  ☐  │  ☐  │  ☐
-  ☐   │  ☐  │  ☐  │  ☐  │  ☐  │  ☐  │  ☐
-
-SEÑALES DE QUE ESTÁ LISTO:
-□ Se mantiene seco 2 horas seguidas
-□ Le molesta el pañal sucio
-□ Puede subirse y bajarse los pantalones
-□ Muestra interés por el baño
-
-RECOMENDACIONES:
-- Nunca castigar los accidentes
-- Usar refuerzo positivo ("¡Lo lograste!")
-- Tener paciencia (retrocesos son normales)
-
-ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      titulo = "Calendario de stickers";
+      contenidoHTML = `
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h1 style="color: #2e7d32; text-align: center;">📅 Calendario de stickers</h1>
+          <p style="text-align: center;">Control de esfínteres - Mes de _______________</p>
+          <hr>
+          <table style="width:100%; border-collapse: collapse; text-align: center;">
+            <tr style="background: #2e7d32; color: white;"><th style="padding:10px;">LUN</th><th style="padding:10px;">MAR</th><th style="padding:10px;">MIÉ</th><th style="padding:10px;">JUE</th><th style="padding:10px;">VIE</th><th style="padding:10px;">SÁB</th><th style="padding:10px;">DOM</th></tr>
+            ${Array(5).fill(`<tr>${Array(7).fill('<td style="border:1px solid #ddd; height:60px; vertical-align:top; padding:5px;">☐</td>').join('')}</tr>`).join('')}
+          </table>
+          <h2>Instrucciones</h2>
+          <ol><li>Cada vez que use el baño, pega un sticker</li><li>Al final del día, celebra el logro</li><li>Nunca castigues los accidentes</li></ol>
+          <h2>Señales de que está listo</h2>
+          <p>□ Se mantiene seco 2 horas □ Le molesta el pañal sucio □ Puede subirse/bajarse los pantalones</p>
+          <hr><p style="text-align:center; font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+        </div>
       `;
       break;
       
     case "ruleta":
       titulo = "Ruleta de emociones";
-      contenido = `
-RULETA DE EMOCIONES
-================================
-
-CÓMO ARMARLA:
-1. Recorta el círculo principal
-2. Recorta la flecha
-3. Une con un encuadre (clip o broche)
-
-EMOCIONES INCLUIDAS:
-┌─────────┐ ┌─────────┐ ┌─────────┐
-│ ALEGRÍA │ │ TRISTEZA│ │  ENOJO  │
-│ 🟡      │ │ 🔵      │ │ 🔴      │
-└─────────┘ └─────────┘ └─────────┘
-┌─────────┐ ┌─────────┐ ┌─────────┐
-│  MIEDO  │ │  CALMA  │ │SORPRESA │
-│ 🟣      │ │ 🟢      │ │ 🟠      │
-└─────────┘ └─────────┘ └─────────┘
-
-CÓMO USARLA:
-1. Cada mañana: "¿Cómo te sientes hoy?"
-2. Después de una rabieta: "¿Qué sentiste?"
-3. Antes de dormir: "¿Cómo fue tu día?"
-
-PREGUNTAS GUÍA:
-- "¿Dónde sientes esa emoción en tu cuerpo?"
-- "¿Qué color le pondrías a esa emoción?"
-
-FRASES ÚTILES:
-- "Todas las emociones están bien. Lo que hacemos con ellas puede mejorar."
-- "Veo que estás enojado. Está bien. Estoy aquí contigo."
-
-ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      contenidoHTML = `
+        <div style="font-family: Arial, sans-serif; padding: 20px; text-align: center;">
+          <h1 style="color: #2e7d32;">🎨 Ruleta de emociones</h1>
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 20px 0;">
+            <div style="background: #FFD700; padding: 15px; border-radius: 50%; width: 80px; height: 80px; display: inline-block;">ALEGRÍA</div>
+            <div style="background: #4A90E2; color:white; padding: 15px; border-radius: 50%; width: 80px; height: 80px;">TRISTEZA</div>
+            <div style="background: #E74C3C; color:white; padding: 15px; border-radius: 50%; width: 80px; height: 80px;">ENOJO</div>
+            <div style="background: #9B59B6; color:white; padding: 15px; border-radius: 50%; width: 80px; height: 80px;">MIEDO</div>
+            <div style="background: #2ECC71; color:white; padding: 15px; border-radius: 50%; width: 80px; height: 80px;">CALMA</div>
+            <div style="background: #F39C12; color:white; padding: 15px; border-radius: 50%; width: 80px; height: 80px;">SORPRESA</div>
+          </div>
+          <h2>Cómo usarla</h2>
+          <p>Cada mañana: "¿Cómo te sientes hoy?"<br>Después de una rabieta: "¿Qué sentiste?"<br>Antes de dormir: "¿Cómo fue tu día?"</p>
+          <h2>Frases útiles</h2>
+          <p><em>"Todas las emociones están bien. Lo que hacemos con ellas puede mejorar."</em></p>
+          <hr><p style="font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+        </div>
       `;
       break;
       
     case "planificador":
-      titulo = "Planificador semanal de crianza";
-      contenido = `
-PLANIFICADOR SEMANAL DE CRIANZA
-================================
-Semana del ___/___/___ al ___/___/___
-
-MIS OBJETIVOS DE CRIANZA ESTA SEMANA:
-1. _________________________________
-2. _________________________________
-3. _________________________________
-
-┌─────────┬────────────────────────┬─────┐
-│  DÍA    │  OBJETIVO DEL DÍA       │ ✅  │
-├─────────┼────────────────────────┼─────┤
-│ LUNES   │ _______________________ │ ☐  │
-├─────────┼────────────────────────┼─────┤
-│ MARTES  │ _______________________ │ ☐  │
-├─────────┼────────────────────────┼─────┤
-│ MIÉRCOLES│ _______________________ │ ☐  │
-├─────────┼────────────────────────┼─────┤
-│ JUEVES  │ _______________________ │ ☐  │
-├─────────┼────────────────────────┼─────┤
-│ VIERNES │ _______________________ │ ☐  │
-├─────────┼────────────────────────┼─────┤
-│ SÁBADO  │ _______________________ │ ☐  │
-├─────────┼────────────────────────┼─────┤
-│ DOMINGO │ _______________________ │ ☐  │
-└─────────┴────────────────────────┴─────┘
-
-RELEXIÓN SEMANAL:
-¿Qué funcionó? _______________________
-¿Qué fue difícil? ____________________
-¿Qué aprenderé para la próxima semana? _
-
-ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      titulo = "Planificador semanal";
+      contenidoHTML = `
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h1 style="color: #2e7d32; text-align: center;">📅 Planificador semanal de crianza</h1>
+          <p style="text-align: center;">Semana del ___/___/___ al ___/___/___</p>
+          <hr>
+          <h2>Mis objetivos de crianza esta semana:</h2>
+          <ol><li>_________________________</li><li>_________________________</li><li>_________________________</li></ol>
+          <table style="width:100%; border-collapse: collapse;">
+            <tr style="background: #2e7d32; color: white;"><th style="padding:8px;">DÍA</th><th style="padding:8px;">OBJETIVO</th><th style="padding:8px;">✅</th></tr>
+            ${["LUNES","MARTES","MIÉRCOLES","JUEVES","VIERNES","SÁBADO","DOMINGO"].map(d => `<tr><td style="border:1px solid #ddd; padding:8px;">${d}</td><td style="border:1px solid #ddd; padding:8px;">_______________</td><td style="border:1px solid #ddd; padding:8px; text-align:center;">☐</td></tr>`).join('')}
+          </table>
+          <h2>Reflexión semanal</h2>
+          <p>¿Qué funcionó? _________________<br>¿Qué fue difícil? _________________<br>¿Qué aprenderé? _________________</p>
+          <hr><p style="text-align:center; font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+        </div>
       `;
       break;
       
     case "registro":
       titulo = "Registro de rabietas";
-      contenido = `
-REGISTRO DE RABIETAS
-================================
-
-IDENTIFICAR PATRONES ES EL PRIMER PASO PARA PREVENIR.
-
-REGISTRO INDIVIDUAL:
-
-Fecha: ___/___/___
-Hora: ___:___
-Duración: ___ minutos
-Desencadenante: _______________________
-Intensidad (1-10): ___
-¿Qué funcionó? ________________________
-¿Qué NO funcionó? _____________________
-
-───────────────────────────────────────
-
-Fecha: ___/___/___
-Hora: ___:___
-Duración: ___ minutos
-Desencadenante: _______________________
-Intensidad (1-10): ___
-¿Qué funcionó? ________________________
-¿Qué NO funcionó? _____________________
-
-───────────────────────────────────────
-
-ANÁLISIS SEMANAL:
-
-¿Hay un patrón de horario? ____________
-¿Hay un patrón de lugar? ______________
-¿Hay un patrón de situación? __________
-
-ESTRATEGIAS PARA PREVENIR:
-□ Ajustar rutina de sueño
-□ Ofrecer opciones antes de la transición
-□ Validar emociones antes de que escale
-□ Usar temporizador visual
-
-ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      contenidoHTML = `
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h1 style="color: #2e7d32; text-align: center;">📝 Registro de rabietas</h1>
+          <p>Identificar patrones es el primer paso para prevenir.</p>
+          <hr>
+          ${Array(3).fill(`
+            <h2>Registro #___</h2>
+            <p><strong>Fecha:</strong> ___/___/___ &nbsp;&nbsp; <strong>Hora:</strong> ___:___ &nbsp;&nbsp; <strong>Duración:</strong> ___ minutos</p>
+            <p><strong>Desencadenante:</strong> _________________________</p>
+            <p><strong>Intensidad (1-10):</strong> ___</p>
+            <p><strong>¿Qué funcionó?</strong> _________________________</p>
+            <p><strong>¿Qué NO funcionó?</strong> _________________________</p>
+            <hr>
+          `).join('')}
+          <h2>Análisis semanal</h2>
+          <p>¿Hay un patrón de horario/lugar/situación? _________________</p>
+          <hr><p style="text-align:center; font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+        </div>
       `;
       break;
       
     case "limites":
-      titulo = "Checklist de límites por edad";
-      contenido = `
-CHECKLIST DE LÍMITES POR EDAD
-================================
-
-0-2 AÑOS:
-□ No dejar objetos peligrosos al alcance
-□ Cinturón de seguridad SIEMPRE
-□ No cruzar la calle sin adulto
-□ No pegar ni morder
-□ Rutina de sueño consistente
-
-3-5 AÑOS:
-□ Lavarse las manos antes de comer
-□ Recoger los juguetes después de jugar
-□ Pedir las cosas por favor
-□ Esperar turnos en juegos
-□ No interrumpir cuando otros hablan
-
-6-12 AÑOS:
-□ Tareas de la casa apropiadas para su edad
-□ Horario de tareas antes de pantallas
-□ Límite de pantallas (1-2 horas/día)
-□ Avisar si sale de casa
-□ Responsabilidad de sus pertenencias
-
-ADOLESCENTES:
-□ Horario de llegada acordado
-□ Compartir ubicación si es necesario
-□ Respetar zonas libres de pantallas (cena, dormitorio)
-□ Participar en decisiones familiares
-□ Consecuencias lógicas pactadas previamente
-
-REGLA DE ORO:
-"Los límites no son castigos, son protección."
-
-ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      titulo = "Checklist de límites";
+      contenidoHTML = `
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h1 style="color: #2e7d32; text-align: center;">✅ Checklist de límites por edad</h1>
+          <h2>0-2 años</h2>
+          <p>☐ No dejar objetos peligrosos ☐ Cinturón SIEMPRE ☐ No cruzar sin adulto ☐ No pegar/morder</p>
+          <h2>3-5 años</h2>
+          <p>☐ Lavarse manos antes de comer ☐ Recoger juguetes ☐ Pedir por favor ☐ Esperar turnos</p>
+          <h2>6-12 años</h2>
+          <p>☐ Tareas de casa ☐ Horario tareas antes pantallas ☐ Límite 1-2h pantallas ☐ Avisar si sale</p>
+          <h2>Adolescentes</h2>
+          <p>☐ Horario de llegada ☐ Compartir ubicación ☐ Zonas libres de pantallas ☐ Participar decisiones</p>
+          <h2>Regla de oro</h2>
+          <p><em>"Los límites no son castigos, son protección."</em></p>
+          <hr><p style="text-align:center; font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+        </div>
       `;
       break;
       
     case "diario":
-      titulo = "Diario de reflexión parental";
-      contenido = `
-DIARIO DE REFLEXIÓN PARENTAL
-================================
-
-DÍA 1:
-Hoy me sentí: _________________________
-Mi hijo me enseñó: _____________________
-Algo que hice bien: ___________________
-Algo que mejorar: _____________________
-Mi gratitud: __________________________
-
-───────────────────────────────────────
-
-DÍA 2:
-Hoy me sentí: _________________________
-Mi hijo me enseñó: _____________________
-Algo que hice bien: ___________________
-Algo que mejorar: _____________________
-Mi gratitud: __________________________
-
-───────────────────────────────────────
-
-DÍA 3:
-Hoy me sentí: _________________________
-Mi hijo me enseñó: _____________________
-Algo que hice bien: ___________________
-Algo que mejorar: _____________________
-Mi gratitud: __________________________
-
-───────────────────────────────────────
-
-(Continúa con páginas para 30 días)
-
-REFLEXIÓN FINAL DEL MES:
-¿Qué aprendí sobre mí como padre/madre?
-
-ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      titulo = "Diario de reflexión";
+      contenidoHTML = `
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h1 style="color: #2e7d32; text-align: center;">📓 Diario de reflexión parental</h1>
+          ${Array(7).fill(`
+            <hr>
+            <h2>Día ___</h2>
+            <p><strong>Hoy me sentí:</strong> _________________</p>
+            <p><strong>Mi hijo me enseñó:</strong> _________________</p>
+            <p><strong>Algo que hice bien:</strong> _________________</p>
+            <p><strong>Algo que mejorar:</strong> _________________</p>
+            <p><strong>Mi gratitud:</strong> _________________</p>
+          `).join('')}
+          <hr><p style="text-align:center; font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+        </div>
       `;
       break;
       
     case "mandamientos":
-      titulo = "Póster de los 10 mandamientos";
-      contenido = `
-LOS 10 MANDAMIENTOS DE LA CRIANZA POSITIVA
-================================
-
-1️⃣ CONECTA ANTES DE CORREGIR
-   El vínculo es la base. Un niño conectado escucha mejor.
-
-2️⃣ ESCUCHA SIN JUZGAR
-   Valida la emoción primero, luego aborda el comportamiento.
-
-3️⃣ PON LÍMITES FIRMES PERO AMABLES
-   No necesitas gritar para ser firme.
-
-4️⃣ VALIDA TODAS LAS EMOCIONES
-   Ninguna emoción es mala, solo algunas acciones.
-
-5️⃣ NO PEGUES, NO GRITES
-   La violencia genera más violencia.
-
-6️⃣ SÉ EL EJEMPLO QUE QUIERES VER
-   Los niños aprenden de lo que haces, no de lo que dices.
-
-7️⃣ CADA NIÑO TIENE SU RITMO
-   No compares. Respeta los tiempos de desarrollo.
-
-8️⃣ EL JUEGO ES EL MEJOR APRENDIZAJE
-   A través del juego se conecta y se enseña.
-
-9️⃣ EL ERROR ES OPORTUNIDAD
-   No castigues, enseña.
-
-🔟 CUIDATE PARA PODER CUIDAR
-   El autocuidado no es egoísmo.
-
-"PRIMERO CONECTO, LUEGO CORRIJO"
-
-ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      titulo = "Póster 10 mandamientos";
+      contenidoHTML = `
+        <div style="font-family: Arial, sans-serif; padding: 20px; background: #fef9e8;">
+          <h1 style="color: #2e7d32; text-align: center;">📜 Los 10 mandamientos de la crianza positiva</h1>
+          <ol><li><strong>CONECTA ANTES DE CORREGIR</strong> - El vínculo es la base</li><li><strong>ESCUCHA SIN JUZGAR</strong> - Valida la emoción primero</li><li><strong>PON LÍMITES FIRMES PERO AMABLES</strong> - No necesitas gritar</li><li><strong>VALIDA TODAS LAS EMOCIONES</strong> - Ninguna emoción es mala</li><li><strong>NO PEGUES, NO GRITES</strong> - La violencia genera violencia</li><li><strong>SÉ EL EJEMPLO</strong> - Los niños aprenden de lo que haces</li><li><strong>CADA NIÑO TIENE SU RITMO</strong> - No compares</li><li><strong>EL JUEGO ES APRENDIZAJE</strong> - Conecta y enseña</li><li><strong>EL ERROR ES OPORTUNIDAD</strong> - No castigues, enseña</li><li><strong>CUIDATE PARA CUIDAR</strong> - El autocuidado no es egoísmo</li></ol>
+          <p style="text-align:center; margin-top:20px;"><strong>"Primero conecto, luego corrijo"</strong></p>
+          <hr><p style="text-align:center; font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+        </div>
       `;
       break;
       
     case "semaforo":
       titulo = "Semáforo de emociones";
-      contenido = `
-SEMÁFORO DE EMOCIONES
-================================
-
-CÓMO ARMARLO:
-1. Recorta los 3 círculos (rojo, amarillo, verde)
-2. Pega rojo arriba, amarillo medio, verde abajo
-3. Coloca la flecha móvil en el centro
-
-🔴 ROJO: ¡PARA!
-   → Respira profundo 3 veces
-   → Detente, no actúes impulsivamente
-   → "Estoy enojado, necesito calmar mi cuerpo"
-
-🟡 AMARILLO: PIENSA
-   → Nombra la emoción (¿es enojo, tristeza, miedo?)
-   → Piensa en opciones
-   → "¿Qué puedo hacer para sentirme mejor?"
-
-🟢 VERDE: ACTÚA
-   → Elige la mejor opción
-   → Pide ayuda si la necesitas
-   → "Ya estoy calmado, puedo resolver el problema"
-
-PREMIAR EL AUTOCONTROL:
-Cuando el niño logre pasar de rojo a verde por sí solo:
-"¡Lo lograste! Te regulaste solo. Estoy muy orgulloso."
-
-ℹ️ Herramienta exclusiva del plan Platino - Criar con Conciencia
+      contenidoHTML = `
+        <div style="font-family: Arial, sans-serif; padding: 20px; text-align: center;">
+          <h1 style="color: #2e7d32;">🚦 Semáforo de emociones</h1>
+          <div style="background: #E74C3C; color: white; padding: 20px; margin: 10px; border-radius: 20px;"><strong>🔴 ROJO: ¡PARA!</strong><br>Respira profundo 3 veces<br>"Estoy enojado, necesito calmar mi cuerpo"</div>
+          <div style="background: #F39C12; color: white; padding: 20px; margin: 10px; border-radius: 20px;"><strong>🟡 AMARILLO: PIENSA</strong><br>Nombra la emoción<br>"¿Qué puedo hacer para sentirme mejor?"</div>
+          <div style="background: #2ECC71; color: white; padding: 20px; margin: 10px; border-radius: 20px;"><strong>🟢 VERDE: ACTÚA</strong><br>Elige la mejor opción<br>"Ya estoy calmado, puedo resolver"</div>
+          <hr><p style="font-size:12px;">👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+        </div>
       `;
       break;
       
     default:
       titulo = "Herramienta Platino";
-      contenido = "Contenido no disponible";
+      contenidoHTML = "<p>Contenido no disponible</p>";
   }
   
-  // Crear y descargar el archivo
-  const blob = new Blob([contenido], { type: "text/plain" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = `${id}.txt`;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(link.href);
+  // Crear un elemento temporal para generar el PDF
+  const element = document.createElement("div");
+  element.innerHTML = contenidoHTML;
+  element.style.position = "absolute";
+  element.style.left = "-9999px";
+  element.style.top = "-9999px";
+  document.body.appendChild(element);
   
-  alert(`📥 "${titulo}" descargada con éxito.`);
+  // Usar html2pdf para generar el PDF
+  html2pdf().set({
+    margin: [0.5, 0.5, 0.5, 0.5],
+    filename: `${id}.pdf`,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, letterRendering: true },
+    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+  }).from(element).save().then(() => {
+    document.body.removeChild(element);
+    alert(`📥 "${titulo}" descargada correctamente en PDF.`);
+  }).catch(() => {
+    document.body.removeChild(element);
+    alert("❌ Error al generar el PDF. Intenta de nuevo.");
+  });
 }
 // =====================================================
 // INICIAR APLICACIÓN
