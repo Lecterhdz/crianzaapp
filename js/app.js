@@ -4162,6 +4162,9 @@ function descargarHerramientaPDF(id) {
   let contenidoHTML = "";
   
   switch(id) {
+    // =====================================================
+    // HERRAMIENTA 1: TABLA DE CONSECUENCIAS LÓGICAS
+    // =====================================================
     case "consecuencias":
       titulo = "Tabla_de_consecuencias_logicas";
       contenidoHTML = `
@@ -4249,7 +4252,10 @@ function descargarHerramientaPDF(id) {
         </html>
       `;
       break;
-      
+
+    // =====================================================
+    // HERRAMIENTA 2: CALENDARIO DE STICKERS
+    // =====================================================
     case "stickers":
       titulo = "Calendario_de_stickers";
       contenidoHTML = `
@@ -4333,7 +4339,10 @@ function descargarHerramientaPDF(id) {
         </html>
       `;
       break;
-      
+
+    // =====================================================
+    // HERRAMIENTA 3: RULETA DE EMOCIONES
+    // =====================================================
     case "ruleta":
       titulo = "Ruleta_de_emociones";
       contenidoHTML = `
@@ -4427,7 +4436,10 @@ function descargarHerramientaPDF(id) {
         </html>
       `;
       break;
-      
+
+    // =====================================================
+    // HERRAMIENTA 4: PLANIFICADOR SEMANAL
+    // =====================================================
     case "planificador":
       titulo = "Planificador_semanal";
       contenidoHTML = `
@@ -4445,7 +4457,6 @@ function descargarHerramientaPDF(id) {
             .content { padding: 30px; }
             h2 { color: #2e7d32; margin: 25px 0 15px 0; border-left: 4px solid #ff9800; padding-left: 15px; }
             .objetivos { background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 20px 0; }
-            .objetivos input { width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 5px; }
             .tabla-semana { width: 100%; border-collapse: collapse; margin: 20px 0; }
             .tabla-semana th { background: #2e7d32; color: white; padding: 12px; }
             .tabla-semana td { border: 1px solid #ddd; padding: 12px; vertical-align: top; }
@@ -4503,17 +4514,455 @@ function descargarHerramientaPDF(id) {
         </html>
       `;
       break;
-      
-    // Continuación: Los demás casos siguen la misma estructura...
-    // Por brevedad, aquí irían los casos restantes (registro, limites, diario, mandamientos, semaforo)
-    // con el mismo nivel de detalle y diseño profesional.
-    
+
+    // =====================================================
+    // HERRAMIENTA 5: REGISTRO DE RABIETAS
+    // =====================================================
+    case "registro":
+      titulo = "Registro_de_rabietas";
+      contenidoHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <title>Registro de rabietas</title>
+          <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { font-family: 'Segoe UI', Arial, sans-serif; background: #fef9e8; padding: 40px; }
+            .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+            .header { background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 30px; text-align: center; }
+            .header h1 { font-size: 28px; margin-bottom: 10px; }
+            .content { padding: 30px; }
+            h2 { color: #2e7d32; margin: 25px 0 15px 0; border-left: 4px solid #ff9800; padding-left: 15px; }
+            .registro-card { background: #f9f9f9; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #ff9800; }
+            .analisis { background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 20px 0; }
+            .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
+            .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <div class="badge">👑 PLAN PLATINO - HERRAMIENTA EXCLUSIVA</div>
+              <h1>📝 Registro de rabietas</h1>
+              <p>Identificar patrones es el primer paso para prevenir</p>
+            </div>
+            <div class="content">
+              <div class="registro-card">
+                <h2>📋 Registro #1</h2>
+                <p><strong>📅 Fecha:</strong> ___/___/___ &nbsp;&nbsp; <strong>⏰ Hora:</strong> ___:___ &nbsp;&nbsp; <strong>⏱️ Duración:</strong> ___ minutos</p>
+                <p><strong>🎯 Desencadenante:</strong> _________________________________________</p>
+                <p><strong>📊 Intensidad (1-10):</strong> ___</p>
+                <p><strong>✅ ¿Qué funcionó?</strong> _________________________________________</p>
+                <p><strong>❌ ¿Qué NO funcionó?</strong> _________________________________________</p>
+              </div>
+              
+              <div class="registro-card">
+                <h2>📋 Registro #2</h2>
+                <p><strong>📅 Fecha:</strong> ___/___/___ &nbsp;&nbsp; <strong>⏰ Hora:</strong> ___:___ &nbsp;&nbsp; <strong>⏱️ Duración:</strong> ___ minutos</p>
+                <p><strong>🎯 Desencadenante:</strong> _________________________________________</p>
+                <p><strong>📊 Intensidad (1-10):</strong> ___</p>
+                <p><strong>✅ ¿Qué funcionó?</strong> _________________________________________</p>
+                <p><strong>❌ ¿Qué NO funcionó?</strong> _________________________________________</p>
+              </div>
+              
+              <div class="registro-card">
+                <h2>📋 Registro #3</h2>
+                <p><strong>📅 Fecha:</strong> ___/___/___ &nbsp;&nbsp; <strong>⏰ Hora:</strong> ___:___ &nbsp;&nbsp; <strong>⏱️ Duración:</strong> ___ minutos</p>
+                <p><strong>🎯 Desencadenante:</strong> _________________________________________</p>
+                <p><strong>📊 Intensidad (1-10):</strong> ___</p>
+                <p><strong>✅ ¿Qué funcionó?</strong> _________________________________________</p>
+                <p><strong>❌ ¿Qué NO funcionó?</strong> _________________________________________</p>
+              </div>
+              
+              <div class="analisis">
+                <h2>📊 Análisis semanal</h2>
+                <p><strong>¿Hay un patrón de horario?</strong> _________________________________</p>
+                <p><strong>¿Hay un patrón de lugar?</strong> _________________________________</p>
+                <p><strong>¿Hay un patrón de situación?</strong> _________________________________</p>
+                <p><strong>¿Qué desencadenantes se repiten?</strong> _________________________________</p>
+                <p><strong>Estrategias a implementar la próxima semana:</strong> _________________________________</p>
+              </div>
+              
+              <h2>💡 Estrategias para prevenir rabietas</h2>
+              <ul>
+                <li>✅ Asegurar rutinas consistentes de sueño y alimentación</li>
+                <li>✅ Ofrecer opciones limitadas antes de las transiciones</li>
+                <li>✅ Validar emociones antes de que escalen</li>
+                <li>✅ Usar temporizador visual para avisar cambios</li>
+                <li>✅ Crear un "rincón de calma" con cojines y objetos tranquilizantes</li>
+              </ul>
+            </div>
+            <div class="footer">
+              <p>👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+              <p>© 2025 Criar con Conciencia - Todos los derechos reservados</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `;
+      break;
+
+    // =====================================================
+    // HERRAMIENTA 6: CHECKLIST DE LÍMITES
+    // =====================================================
+    case "limites":
+      titulo = "Checklist_de_limites";
+      contenidoHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <title>Checklist de límites por edad</title>
+          <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { font-family: 'Segoe UI', Arial, sans-serif; background: #fef9e8; padding: 40px; }
+            .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+            .header { background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 30px; text-align: center; }
+            .header h1 { font-size: 28px; margin-bottom: 10px; }
+            .content { padding: 30px; }
+            h2 { color: #2e7d32; margin: 25px 0 15px 0; border-left: 4px solid #ff9800; padding-left: 15px; }
+            .edad-section { background: #f9f9f9; padding: 20px; border-radius: 10px; margin: 20px 0; }
+            .checklist { list-style: none; }
+            .checklist li { margin: 10px 0; }
+            .checklist li:before { content: "☐ "; font-size: 16px; margin-right: 8px; }
+            .frase-final { background: #e8f5e9; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0; }
+            .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
+            .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <div class="badge">👑 PLAN PLATINO - HERRAMIENTA EXCLUSIVA</div>
+              <h1>✅ Checklist de límites por edad</h1>
+              <p>Asegura los límites esenciales según la edad de tu hijo</p>
+            </div>
+            <div class="content">
+              <div class="edad-section">
+                <h2>🍼 0-2 años</h2>
+                <ul class="checklist">
+                  <li>No dejar objetos peligrosos al alcance (enchufes, cuchillos, medicinas)</li>
+                  <li>Cinturón de seguridad SIEMPRE en el coche</li>
+                  <li>No cruzar la calle sin la mano de un adulto</li>
+                  <li>No pegar ni morder</li>
+                  <li>Rutina de sueño consistente</li>
+                  <li>Supervisión constante en áreas de riesgo (escaleras, albercas)</li>
+                </ul>
+              </div>
+              
+              <div class="edad-section">
+                <h2>🧸 3-5 años</h2>
+                <ul class="checklist">
+                  <li>Lavarse las manos antes de comer y después de ir al baño</li>
+                  <li>Recoger los juguetes después de jugar</li>
+                  <li>Pedir las cosas por favor</li>
+                  <li>Esperar turnos en juegos y conversaciones</li>
+                  <li>No interrumpir cuando otros hablan</li>
+                  <li>Usar palabras, no golpes, para expresar enojo</li>
+                </ul>
+              </div>
+              
+              <div class="edad-section">
+                <h2>📚 6-12 años</h2>
+                <ul class="checklist">
+                  <li>Tareas de la casa apropiadas para su edad (tender cama, poner mesa)</li>
+                  <li>Horario de tareas antes de pantallas</li>
+                  <li>Límite de pantallas (1-2 horas/día, contenido supervisado)</li>
+                  <li>Avisar si sale de casa y con quién</li>
+                  <li>Responsabilidad de sus pertenencias (mochila, útiles)</li>
+                  <li>Cumplir con horarios de comida y sueño</li>
+                </ul>
+              </div>
+              
+              <div class="edad-section">
+                <h2>🌟 Adolescentes (13+ años)</h2>
+                <ul class="checklist">
+                  <li>Horario de llegada acordado en familia</li>
+                  <li>Compartir ubicación si es necesario (por seguridad)</li>
+                  <li>Respetar zonas libres de pantallas (cena, dormitorio)</li>
+                  <li>Participar en decisiones familiares</li>
+                  <li>Consecuencias lógicas pactadas previamente</li>
+                  <li>Comunicación abierta sin juicios</li>
+                </ul>
+              </div>
+              
+              <div class="frase-final">
+                <p><strong>🔑 REGLA DE ORO</strong></p>
+                <p>"Los límites no son castigos, son protección. Dichos con calma y consistencia, crean seguridad."</p>
+              </div>
+            </div>
+            <div class="footer">
+              <p>👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+              <p>© 2025 Criar con Conciencia - Todos los derechos reservados</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `;
+      break;
+
+    // =====================================================
+    // HERRAMIENTA 7: DIARIO DE REFLEXIÓN PARENTAL
+    // =====================================================
+    case "diario":
+      titulo = "Diario_de_reflexion";
+      contenidoHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <title>Diario de reflexión parental</title>
+          <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { font-family: 'Segoe UI', Arial, sans-serif; background: #fef9e8; padding: 40px; }
+            .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+            .header { background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 30px; text-align: center; }
+            .header h1 { font-size: 28px; margin-bottom: 10px; }
+            .content { padding: 30px; }
+            h2 { color: #2e7d32; margin: 25px 0 15px 0; border-left: 4px solid #ff9800; padding-left: 15px; }
+            .diario-entry { background: #f9f9f9; padding: 20px; border-radius: 10px; margin: 20px 0; }
+            .frase { background: #fff3e0; padding: 20px; border-radius: 10px; text-align: center; font-style: italic; margin: 20px 0; }
+            .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
+            .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <div class="badge">👑 PLAN PLATINO - HERRAMIENTA EXCLUSIVA</div>
+              <h1>📓 Diario de reflexión parental</h1>
+              <p>Registra tus aprendizajes y emociones como padre/madre</p>
+            </div>
+            <div class="content">
+              <div class="diario-entry">
+                <h2>📅 Día 1 - Fecha: ___/___/___</h2>
+                <p><strong>🌸 Hoy me sentí:</strong> _________________________________</p>
+                <p><strong>👶 Mi hijo me enseñó:</strong> _________________________________</p>
+                <p><strong>✅ Algo que hice bien:</strong> _________________________________</p>
+                <p><strong>🔄 Algo que mejorar:</strong> _________________________________</p>
+                <p><strong>🙏 Mi gratitud del día:</strong> _________________________________</p>
+              </div>
+              
+              <div class="diario-entry">
+                <h2>📅 Día 2 - Fecha: ___/___/___</h2>
+                <p><strong>🌸 Hoy me sentí:</strong> _________________________________</p>
+                <p><strong>👶 Mi hijo me enseñó:</strong> _________________________________</p>
+                <p><strong>✅ Algo que hice bien:</strong> _________________________________</p>
+                <p><strong>🔄 Algo que mejorar:</strong> _________________________________</p>
+                <p><strong>🙏 Mi gratitud del día:</strong> _________________________________</p>
+              </div>
+              
+              <div class="diario-entry">
+                <h2>📅 Día 3 - Fecha: ___/___/___</h2>
+                <p><strong>🌸 Hoy me sentí:</strong> _________________________________</p>
+                <p><strong>👶 Mi hijo me enseñó:</strong> _________________________________</p>
+                <p><strong>✅ Algo que hice bien:</strong> _________________________________</p>
+                <p><strong>🔄 Algo que mejorar:</strong> _________________________________</p>
+                <p><strong>🙏 Mi gratitud del día:</strong> _________________________________</p>
+              </div>
+              
+              <div class="diario-entry">
+                <h2>📅 Día 4 - Fecha: ___/___/___</h2>
+                <p><strong>🌸 Hoy me sentí:</strong> _________________________________</p>
+                <p><strong>👶 Mi hijo me enseñó:</strong> _________________________________</p>
+                <p><strong>✅ Algo que hice bien:</strong> _________________________________</p>
+                <p><strong>🔄 Algo que mejorar:</strong> _________________________________</p>
+                <p><strong>🙏 Mi gratitud del día:</strong> _________________________________</p>
+              </div>
+              
+              <div class="diario-entry">
+                <h2>📅 Día 5 - Fecha: ___/___/___</h2>
+                <p><strong>🌸 Hoy me sentí:</strong> _________________________________</p>
+                <p><strong>👶 Mi hijo me enseñó:</strong> _________________________________</p>
+                <p><strong>✅ Algo que hice bien:</strong> _________________________________</p>
+                <p><strong>🔄 Algo que mejorar:</strong> _________________________________</p>
+                <p><strong>🙏 Mi gratitud del día:</strong> _________________________________</p>
+              </div>
+              
+              <div class="frase">
+                "El autocuidado no es egoísmo. Registrar tus emociones te ayuda a ser mejor padre/madre."
+              </div>
+            </div>
+            <div class="footer">
+              <p>👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+              <p>© 2025 Criar con Conciencia - Todos los derechos reservados</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `;
+      break;
+
+    // =====================================================
+    // HERRAMIENTA 8: PÓSTER DE LOS 10 MANDAMIENTOS
+    // =====================================================
+    case "mandamientos":
+      titulo = "Poster_10_mandamientos";
+      contenidoHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <title>Póster 10 mandamientos</title>
+          <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { font-family: 'Segoe UI', Arial, sans-serif; background: #fef9e8; padding: 40px; }
+            .container { max-width: 800px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+            .header { background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 30px; text-align: center; }
+            .header h1 { font-size: 28px; margin-bottom: 10px; }
+            .content { padding: 30px; }
+            .mandamientos { list-style: none; padding: 0; }
+            .mandamientos li { margin: 15px 0; padding: 10px; background: #f9f9f9; border-radius: 10px; border-left: 4px solid #ff9800; }
+            .numero { display: inline-block; background: #2e7d32; color: white; width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 30px; margin-right: 12px; font-weight: bold; }
+            .frase-final { text-align: center; margin: 30px 0; padding: 20px; background: #e8f5e9; border-radius: 10px; font-size: 18px; font-style: italic; }
+            .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
+            .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <div class="badge">👑 PLAN PLATINO - HERRAMIENTA EXCLUSIVA</div>
+              <h1>📜 Los 10 mandamientos de la crianza positiva</h1>
+              <p>Para colocar en la nevera o en la pared como recordatorio diario</p>
+            </div>
+            <div class="content">
+              <ul class="mandamientos">
+                <li><span class="numero">1</span> <strong>🔗 CONECTA ANTES DE CORREGIR</strong> - El vínculo es la base. Un niño conectado escucha mejor.</li>
+                <li><span class="numero">2</span> <strong>👂 ESCUCHA SIN JUZGAR</strong> - Valida la emoción primero, luego aborda el comportamiento.</li>
+                <li><span class="numero">3</span> <strong>🧱 PON LÍMITES FIRMES PERO AMABLES</strong> - No necesitas gritar para ser firme.</li>
+                <li><span class="numero">4</span> <strong>💖 VALIDA TODAS LAS EMOCIONES</strong> - Ninguna emoción es mala, solo algunas acciones.</li>
+                <li><span class="numero">5</span> <strong>🤐 NO PEGUES, NO GRITES</strong> - La violencia genera más violencia y daña el vínculo.</li>
+                <li><span class="numero">6</span> <strong>👑 SÉ EL EJEMPLO QUE QUIERES VER</strong> - Los niños aprenden de lo que haces, no de lo que dices.</li>
+                <li><span class="numero">7</span> <strong>🐢 CADA NIÑO TIENE SU RITMO</strong> - No compares. Respeta los tiempos de desarrollo.</li>
+                <li><span class="numero">8</span> <strong>🎮 EL JUEGO ES EL MEJOR APRENDIZAJE</strong> - A través del juego se conecta y se enseña.</li>
+                <li><span class="numero">9</span> <strong>🌟 EL ERROR ES OPORTUNIDAD</strong> - No castigues, enseña. El error bien manejado construye resiliencia.</li>
+                <li><span class="numero">10</span> <strong>🧘 CUIDATE PARA PODER CUIDAR</strong> - El autocuidado no es egoísmo, es la base.</li>
+              </ul>
+              
+              <div class="frase-final">
+                <strong>"Primero conecto, luego corrijo"</strong>
+              </div>
+            </div>
+            <div class="footer">
+              <p>👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+              <p>© 2025 Criar con Conciencia - Todos los derechos reservados</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `;
+      break;
+
+    // =====================================================
+    // HERRAMIENTA 9: SEMÁFORO DE EMOCIONES
+    // =====================================================
+    case "semaforo":
+      titulo = "Semaforo_de_emociones";
+      contenidoHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <title>Semáforo de emociones</title>
+          <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { font-family: 'Segoe UI', Arial, sans-serif; background: #fef9e8; padding: 40px; }
+            .container { max-width: 800px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+            .header { background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 30px; text-align: center; }
+            .header h1 { font-size: 28px; margin-bottom: 10px; }
+            .content { padding: 30px; }
+            .semaforo { text-align: center; margin: 30px 0; }
+            .rojo { background: #E74C3C; color: white; padding: 20px; border-radius: 20px; margin: 15px 0; }
+            .amarillo { background: #F39C12; color: white; padding: 20px; border-radius: 20px; margin: 15px 0; }
+            .verde { background: #2ECC71; color: white; padding: 20px; border-radius: 20px; margin: 15px 0; }
+            .emoji { font-size: 48px; margin-bottom: 10px; }
+            .instrucciones { background: #f0f0f0; padding: 20px; border-radius: 10px; margin: 20px 0; }
+            .frase { background: #fff3e0; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #ff9800; }
+            .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
+            .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <div class="badge">👑 PLAN PLATINO - HERRAMIENTA EXCLUSIVA</div>
+              <h1>🚦 Semáforo de emociones</h1>
+              <p>Enseña a los niños a identificar la intensidad de sus emociones</p>
+            </div>
+            <div class="content">
+              <div class="semaforo">
+                <div class="rojo">
+                  <div class="emoji">🔴</div>
+                  <h2>ROJO: ¡PARA!</h2>
+                  <p>Respira profundo 3 veces<br>Detente, no actúes impulsivamente<br>"Estoy enojado, necesito calmar mi cuerpo"</p>
+                </div>
+                
+                <div class="amarillo">
+                  <div class="emoji">🟡</div>
+                  <h2>AMARILLO: PIENSA</h2>
+                  <p>Nombra la emoción<br>¿Es enojo, tristeza, miedo o frustración?<br>"¿Qué puedo hacer para sentirme mejor?"</p>
+                </div>
+                
+                <div class="verde">
+                  <div class="emoji">🟢</div>
+                  <h2>VERDE: ACTÚA</h2>
+                  <p>Elige la mejor opción<br>Pide ayuda si la necesitas<br>"Ya estoy calmado, puedo resolver el problema"</p>
+                </div>
+              </div>
+              
+              <h2>🔧 Cómo armar tu semáforo</h2>
+              <div class="instrucciones">
+                <ol>
+                  <li>Recorta los 3 círculos (rojo, amarillo, verde) de la plantilla descargable</li>
+                  <li>Pégalos en orden: rojo arriba, amarillo medio, verde abajo</li>
+                  <li>Coloca una flecha móvil en el centro (puede ser un broche o clip)</li>
+                  <li>Pon el semáforo en un lugar visible donde el niño pueda verlo</li>
+                </ol>
+              </div>
+              
+              <h2>🎯 Cómo usar el semáforo</h2>
+              <div class="instrucciones">
+                <p><strong>Cuando el niño esté enojado:</strong> "Estás en ROJO. Vamos a respirar juntos hasta que pase a AMARILLO."</p>
+                <p><strong>Cuando se esté calmando:</strong> "Ahora estás en AMARILLO. ¿Qué puedes hacer para sentirte mejor?"</p>
+                <p><strong>Cuando esté tranquilo:</strong> "¡Llegaste a VERDE! ¿Cómo te sientes ahora?"</p>
+              </div>
+              
+              <h2>💬 Frases para motivar el autocontrol</h2>
+              <div class="frase">"Lograste pasar de ROJO a VERDE tú solo. ¡Eso es difícil y lo lograste!"</div>
+              <div class="frase">"Respira conmigo. 1, 2, 3... ¿Ves cómo cambia el color de tu semáforo?"</div>
+              <div class="frase">"El enojo es una señal de que algo no está bien. Vamos a descubrir qué es."</div>
+              
+              <h2>⭐ PREMIA EL AUTOCONTROL</h2>
+              <div class="instrucciones">
+                <p>Cuando el niño logre pasar de ROJO a VERDE por sí solo:</p>
+                <p><strong>"¡Lo lograste! Te regulaste solo. Estoy muy orgulloso/a de ti."</strong></p>
+                <p>Puedes ofrecer un sticker como recompensa (no material, sino simbólico).</p>
+              </div>
+            </div>
+            <div class="footer">
+              <p>👑 Herramienta exclusiva del plan Platino - Criar con Conciencia</p>
+              <p>© 2025 Criar con Conciencia - Todos los derechos reservados</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `;
+      break;
+
     default:
       titulo = "Herramienta_Platino";
-      contenidoHTML = `<p>Contenido no disponible</p>`;
+      contenidoHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head><meta charset="UTF-8"><title>Herramienta Platino</title></head>
+        <body><p>Contenido no disponible</p></body>
+        </html>
+      `;
   }
   
-  // Crear un iframe oculto para generar el PDF
+  // Crear iframe para generar PDF
   const iframe = document.createElement('iframe');
   iframe.style.position = 'absolute';
   iframe.style.left = '-9999px';
