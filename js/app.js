@@ -4191,6 +4191,7 @@ function descargarHerramientaPDF(id) {
             .frase { background: #fff3e0; padding: 15px; border-radius: 10px; margin: 15px 0; font-style: italic; border-left: 4px solid #ff9800; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; color: #666; border-top: 1px solid #ddd; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
+            @media print { .header { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 15px; text-align: center; } .content { margin-top: 120px; } .page-break { page-break-before: always; } }
           </style>
         </head>
         <body>
@@ -4282,6 +4283,7 @@ function descargarHerramientaPDF(id) {
             .tip { background: #fff3e0; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #ff9800; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
+            @media print { .header { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 15px; text-align: center; } .content { margin-top: 120px; } .page-break { page-break-before: always; } }
           </style>
         </head>
         <body>
@@ -4375,6 +4377,7 @@ function descargarHerramientaPDF(id) {
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
             .como-usar { background: #f0f0f0; padding: 20px; border-radius: 10px; margin: 20px 0; }
+            @media print { .header { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 15px; text-align: center; } .content { margin-top: 120px; } .page-break { page-break-before: always; } }
           </style>
         </head>
         <body>
@@ -4464,6 +4467,7 @@ function descargarHerramientaPDF(id) {
             .frase { background: #f0f0f0; padding: 15px; border-radius: 10px; margin: 15px 0; font-style: italic; text-align: center; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
+            @media print { .header { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 15px; text-align: center; } .content { margin-top: 120px; } .page-break { page-break-before: always; } }
           </style>
         </head>
         <body>
@@ -4538,6 +4542,7 @@ function descargarHerramientaPDF(id) {
             .analisis { background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 20px 0; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
+            @media print { .header { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 15px; text-align: center; } .content { margin-top: 120px; } .page-break { page-break-before: always; } }
           </style>
         </head>
         <body>
@@ -4629,6 +4634,7 @@ function descargarHerramientaPDF(id) {
             .frase-final { background: #e8f5e9; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
+            @media print { .header { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 15px; text-align: center; } .content { margin-top: 120px; } .page-break { page-break-before: always; } }
           </style>
         </head>
         <body>
@@ -4725,6 +4731,7 @@ function descargarHerramientaPDF(id) {
             .frase { background: #fff3e0; padding: 20px; border-radius: 10px; text-align: center; font-style: italic; margin: 20px 0; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
+            @media print { .header { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 15px; text-align: center; } .content { margin-top: 120px; } .page-break { page-break-before: always; } }
           </style>
         </head>
         <body>
@@ -4818,6 +4825,7 @@ function descargarHerramientaPDF(id) {
             .frase-final { text-align: center; margin: 30px 0; padding: 20px; background: #e8f5e9; border-radius: 10px; font-size: 18px; font-style: italic; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
+            @media print { .header { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 15px; text-align: center; } .content { margin-top: 120px; } .page-break { page-break-before: always; } }
           </style>
         </head>
         <body>
@@ -4869,19 +4877,39 @@ function descargarHerramientaPDF(id) {
           <style>
             * { margin: 0; padding: 0; box-sizing: border-box; }
             body { font-family: 'Segoe UI', Arial, sans-serif; background: #fef9e8; padding: 40px; }
-            .container { max-width: 800px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
-            .header { background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 30px; text-align: center; }
+            .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+            .header { background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 25px; text-align: center; }
             .header h1 { font-size: 28px; margin-bottom: 10px; }
-            .content { padding: 30px; }
-            .semaforo { text-align: center; margin: 30px 0; }
-            .rojo { background: #E74C3C; color: white; padding: 20px; border-radius: 20px; margin: 15px 0; }
-            .amarillo { background: #F39C12; color: white; padding: 20px; border-radius: 20px; margin: 15px 0; }
-            .verde { background: #2ECC71; color: white; padding: 20px; border-radius: 20px; margin: 15px 0; }
-            .emoji { font-size: 48px; margin-bottom: 10px; }
-            .instrucciones { background: #f0f0f0; padding: 20px; border-radius: 10px; margin: 20px 0; }
-            .frase { background: #fff3e0; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #ff9800; }
-            .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
+            .header p { opacity: 0.9; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
+            .content { padding: 30px; }
+            
+            /* SEMÁFORO MEJORADO */
+            .semaforo-container { background: #1a1a2e; border-radius: 30px; padding: 20px; margin: 20px 0; }
+            .luz { display: flex; align-items: center; gap: 20px; margin: 15px 0; padding: 15px; border-radius: 15px; transition: all 0.3s; }
+            .luz-rojo { background: rgba(231, 76, 60, 0.2); border-left: 5px solid #E74C3C; }
+            .luz-amarillo { background: rgba(243, 156, 18, 0.2); border-left: 5px solid #F39C12; }
+            .luz-verde { background: rgba(46, 204, 113, 0.2); border-left: 5px solid #2ECC71; }
+            .circulo { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; }
+            .circulo-rojo { background: #E74C3C; box-shadow: 0 0 15px #E74C3C; }
+            .circulo-amarillo { background: #F39C12; box-shadow: 0 0 15px #F39C12; }
+            .circulo-verde { background: #2ECC71; box-shadow: 0 0 15px #2ECC71; }
+            .texto-luz { flex: 1; }
+            .texto-luz h3 { margin-bottom: 5px; }
+            .texto-luz p { margin: 3px 0; font-size: 14px; }
+            
+            h2 { color: #2e7d32; margin: 30px 0 15px 0; border-left: 4px solid #ff9800; padding-left: 15px; }
+            .pasos { background: #f0f0f0; padding: 20px; border-radius: 15px; margin: 20px 0; }
+            .paso { display: flex; align-items: center; gap: 15px; margin: 15px 0; }
+            .paso-numero { background: #2e7d32; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+            .actividades { display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0; }
+            .actividad { background: #e8f5e9; padding: 15px; border-radius: 15px; flex: 1; min-width: 200px; text-align: center; }
+            .frase { background: #fff3e0; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #ff9800; font-style: italic; }
+            .tablero { background: #1a1a2e; color: white; padding: 20px; border-radius: 15px; text-align: center; margin: 20px 0; }
+            .tablero table { width: 100%; color: white; }
+            .tablero td { padding: 10px; text-align: center; }
+            .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; border-top: 1px solid #ddd; }
+            @media print { .header { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #2e7d32, #1a4d1a); color: white; padding: 15px; text-align: center; } .content { margin-top: 120px; } .page-break { page-break-before: always; } }
           </style>
         </head>
         <body>
@@ -4889,56 +4917,129 @@ function descargarHerramientaPDF(id) {
             <div class="header">
               <div class="badge">👑 PLAN PLATINO - HERRAMIENTA EXCLUSIVA</div>
               <h1>🚦 Semáforo de emociones</h1>
-              <p>Enseña a los niños a identificar la intensidad de sus emociones</p>
+              <p>Enseña a los niños a identificar, nombrar y regular sus emociones</p>
             </div>
             <div class="content">
-              <div class="semaforo">
-                <div class="rojo">
-                  <div class="emoji">🔴</div>
-                  <h2>ROJO: ¡PARA!</h2>
-                  <p>Respira profundo 3 veces<br>Detente, no actúes impulsivamente<br>"Estoy enojado, necesito calmar mi cuerpo"</p>
+              
+              <!-- SEMÁFORO MEJORADO -->
+              <div class="semaforo-container">
+                <div class="luz luz-rojo">
+                  <div class="circulo circulo-rojo">🔴</div>
+                  <div class="texto-luz">
+                    <h3>🔴 ROJO: ¡PARA!</h3>
+                    <p>Respira profundo 3 veces</p>
+                    <p>Detente, no actúes impulsivamente</p>
+                    <p><strong>Frases:</strong> "Estoy enojado, necesito calmar mi cuerpo" | "Voy a respirar antes de hablar"</p>
+                  </div>
                 </div>
                 
-                <div class="amarillo">
-                  <div class="emoji">🟡</div>
-                  <h2>AMARILLO: PIENSA</h2>
-                  <p>Nombra la emoción<br>¿Es enojo, tristeza, miedo o frustración?<br>"¿Qué puedo hacer para sentirme mejor?"</p>
+                <div class="luz luz-amarillo">
+                  <div class="circulo circulo-amarillo">🟡</div>
+                  <div class="texto-luz">
+                    <h3>🟡 AMARILLO: PIENSA</h3>
+                    <p>Nombra la emoción: ¿es enojo, tristeza, miedo o frustración?</p>
+                    <p>Identifica la causa: ¿qué pasó justo antes?</p>
+                    <p><strong>Frases:</strong> "¿Qué puedo hacer para sentirme mejor?" | "¿Necesito ayuda?"</p>
+                  </div>
                 </div>
                 
-                <div class="verde">
-                  <div class="emoji">🟢</div>
-                  <h2>VERDE: ACTÚA</h2>
-                  <p>Elige la mejor opción<br>Pide ayuda si la necesitas<br>"Ya estoy calmado, puedo resolver el problema"</p>
+                <div class="luz luz-verde">
+                  <div class="circulo circulo-verde">🟢</div>
+                  <div class="texto-luz">
+                    <h3>🟢 VERDE: ACTÚA</h3>
+                    <p>Elige la mejor opción</p>
+                    <p>Pide ayuda si la necesitas</p>
+                    <p><strong>Frases:</strong> "Ya estoy calmado, puedo resolver" | "Encontré una solución"</p>
+                  </div>
                 </div>
               </div>
               
-              <h2>🔧 Cómo armar tu semáforo</h2>
-              <div class="instrucciones">
-                <ol>
-                  <li>Recorta los 3 círculos (rojo, amarillo, verde) de la plantilla descargable</li>
-                  <li>Pégalos en orden: rojo arriba, amarillo medio, verde abajo</li>
-                  <li>Coloca una flecha móvil en el centro (puede ser un broche o clip)</li>
-                  <li>Pon el semáforo en un lugar visible donde el niño pueda verlo</li>
-                </ol>
+              <!-- TABLERO DE SEGUIMIENTO SEMANAL -->
+              <div class="tablero">
+                <h3 style="margin-bottom: 15px;">📊 Tablero de seguimiento</h3>
+                <p style="margin-bottom: 10px;">Marca cuántas veces lograste cambiar de color esta semana</p>
+                <table>
+                  <tr><th>DÍA</th><th>🔴 → 🟡</th><th>🟡 → 🟢</th><th>🎯 LOGRO</th></tr>
+                  <tr><td>LUN</td><td>___ veces</td><td>___ veces</td><td>☐</td></tr>
+                  <tr><td>MAR</td><td>___ veces</td><td>___ veces</td><td>☐</td></tr>
+                  <tr><td>MIÉ</td><td>___ veces</td><td>___ veces</td><td>☐</td></tr>
+                  <tr><td>JUE</td><td>___ veces</td><td>___ veces</td><td>☐</td></tr>
+                  <tr><td>VIE</td><td>___ veces</td><td>___ veces</td><td>☐</td></tr>
+                  <tr><td>SÁB</td><td>___ veces</td><td>___ veces</td><td>☐</td></tr>
+                  <tr><td>DOM</td><td>___ veces</td><td>___ veces</td><td>☐</td></tr>
+                </table>
+                <p style="margin-top: 10px; font-size: 12px;">🎯 Objetivo semanal: _____ logros</p>
               </div>
               
-              <h2>🎯 Cómo usar el semáforo</h2>
-              <div class="instrucciones">
-                <p><strong>Cuando el niño esté enojado:</strong> "Estás en ROJO. Vamos a respirar juntos hasta que pase a AMARILLO."</p>
-                <p><strong>Cuando se esté calmando:</strong> "Ahora estás en AMARILLO. ¿Qué puedes hacer para sentirte mejor?"</p>
-                <p><strong>Cuando esté tranquilo:</strong> "¡Llegaste a VERDE! ¿Cómo te sientes ahora?"</p>
+              <h2>🎯 Actividades para cada color</h2>
+              <div class="actividades">
+                <div class="actividad">
+                  <span style="font-size: 30px;">🔴</span>
+                  <h3>En ROJO</h3>
+                  <p>• Respira como un globo</p>
+                  <p>• Aprieta algo suave</p>
+                  <p>• Salta 10 veces</p>
+                  <p>• Toma agua fría</p>
+                </div>
+                <div class="actividad">
+                  <span style="font-size: 30px;">🟡</span>
+                  <h3>En AMARILLO</h3>
+                  <p>• Nombra la emoción</p>
+                  <p>• Dibuja cómo te sientes</p>
+                  <p>• Cuenta hasta 20</p>
+                  <p>• Piensa en soluciones</p>
+                </div>
+                <div class="actividad">
+                  <span style="font-size: 30px;">🟢</span>
+                  <h3>En VERDE</h3>
+                  <p>• Elige una solución</p>
+                  <p>• Pide disculpas si es necesario</p>
+                  <p>• Celebra tu logro</p>
+                  <p>• Sigue adelante</p>
+                </div>
               </div>
               
-              <h2>💬 Frases para motivar el autocontrol</h2>
-              <div class="frase">"Lograste pasar de ROJO a VERDE tú solo. ¡Eso es difícil y lo lograste!"</div>
-              <div class="frase">"Respira conmigo. 1, 2, 3... ¿Ves cómo cambia el color de tu semáforo?"</div>
-              <div class="frase">"El enojo es una señal de que algo no está bien. Vamos a descubrir qué es."</div>
+              <h2>📋 Cómo armar tu semáforo</h2>
+              <div class="pasos">
+                <div class="paso"><div class="paso-numero">1</div> <span>Imprime esta hoja y la plantilla de círculos (descarga aparte)</span></div>
+                <div class="paso"><div class="paso-numero">2</div> <span>Recorta los 3 círculos (rojo, amarillo, verde)</span></div>
+                <div class="paso"><div class="paso-numero">3</div> <span>Pégalos en orden: rojo arriba, amarillo medio, verde abajo</span></div>
+                <div class="paso"><div class="paso-numero">4</div> <span>Coloca una flecha móvil en el centro (con un broche o encuadre)</span></div>
+                <div class="paso"><div class="paso-numero">5</div> <span>Pon el semáforo en un lugar visible donde el niño pueda verlo</span></div>
+              </div>
               
-              <h2>⭐ PREMIA EL AUTOCONTROL</h2>
-              <div class="instrucciones">
-                <p>Cuando el niño logre pasar de ROJO a VERDE por sí solo:</p>
-                <p><strong>"¡Lo lograste! Te regulaste solo. Estoy muy orgulloso/a de ti."</strong></p>
-                <p>Puedes ofrecer un sticker como recompensa (no material, sino simbólico).</p>
+              <h2>💬 Cómo usar el semáforo paso a paso</h2>
+              <div class="pasos">
+                <p><strong>Cuando el niño esté enojado (ROJO):</strong><br>
+                "Estás en ROJO. Vamos a respirar juntos hasta que pase a AMARILLO. Cuenta conmigo: inhala 1,2,3... exhala 1,2,3..."</p>
+                
+                <p><strong>Cuando se esté calmando (AMARILLO):</strong><br>
+                "Ahora estás en AMARILLO. ¿Qué puedes hacer para sentirte mejor? ¿Quieres un abrazo? ¿Prefieres dibujar tu enojo?"</p>
+                
+                <p><strong>Cuando esté totalmente tranquilo (VERDE):</strong><br>
+                "¡Llegaste a VERDE! ¿Cómo te sientes ahora? ¿Qué aprendiste hoy?"</p>
+              </div>
+              
+              <h2>⭐ Premia el autocontrol</h2>
+              <div class="frase">
+                <strong>Cuando el niño logre pasar de ROJO a VERDE por sí solo:</strong><br>
+                "¡Lo lograste! Te regulaste solo. Estoy muy orgulloso/a de ti. Mereces un sticker en tu tabla de logros."
+              </div>
+              
+              <h2>🎨 Plantilla recortable del semáforo</h2>
+              <div style="text-align: center; margin: 20px 0;">
+                <div style="display: inline-block; text-align: center;">
+                  <div style="background: #E74C3C; width: 80px; height: 80px; border-radius: 50%; margin: 5px auto; line-height: 80px; font-size: 40px;">🔴</div>
+                  <p>Corta aquí<br>👇</p>
+                  <div style="background: #F39C12; width: 80px; height: 80px; border-radius: 50%; margin: 5px auto; line-height: 80px; font-size: 40px;">🟡</div>
+                  <p>Corta aquí<br>👇</p>
+                  <div style="background: #2ECC71; width: 80px; height: 80px; border-radius: 50%; margin: 5px auto; line-height: 80px; font-size: 40px;">🟢</div>
+                  <p style="margin-top: 10px;">Flecha móvil: ▶</p>
+                </div>
+              </div>
+              
+              <div class="frase">
+                <strong>💡 Recuerda:</strong> "El enojo es una señal de que algo no está bien. Vamos a descubrir qué es y cómo solucionarlo juntos."
               </div>
             </div>
             <div class="footer">
