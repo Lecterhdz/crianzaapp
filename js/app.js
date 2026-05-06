@@ -4191,7 +4191,7 @@ function descargarHerramientaPDF(id) {
             .frase { background: #fff3e0; padding: 15px; border-radius: 10px; margin: 15px 0; font-style: italic; border-left: 4px solid #ff9800; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; color: #666; border-top: 1px solid #ddd; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
-               @media print { @page { margin-top: 2.2cm; } .header { position: fixed; top: 0; left: 0; right: 0; margin-top: -2cm; } .content { margin-top: 0.5cm; } body { margin: 0; padding: 0; } }
+           @media print { @page { margin-top: 2cm; margin-bottom: 1.5cm; } .header { display: table-header-group; } .footer { display: table-footer-group; } .content { display: table-row-group; } body { margin: 0; padding: 0; } }
           </style>
         </head>
         <body>
@@ -4283,7 +4283,7 @@ function descargarHerramientaPDF(id) {
             .tip { background: #fff3e0; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #ff9800; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
-                @media print { @page { margin-top: 2.2cm; } .header { position: fixed; top: 0; left: 0; right: 0; margin-top: -2cm; } .content { margin-top: 0.5cm; } body { margin: 0; padding: 0; } }
+            @media print { @page { margin-top: 2cm; margin-bottom: 1.5cm; } .header { display: table-header-group; } .footer { display: table-footer-group; } .content { display: table-row-group; } body { margin: 0; padding: 0; } }
           </style>
         </head>
         <body>
@@ -4377,7 +4377,7 @@ function descargarHerramientaPDF(id) {
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
             .como-usar { background: #f0f0f0; padding: 20px; border-radius: 10px; margin: 20px 0; }
-                @media print { @page { margin-top: 2.2cm; } .header { position: fixed; top: 0; left: 0; right: 0; margin-top: -2cm; } .content { margin-top: 0.5cm; } body { margin: 0; padding: 0; } }
+            @media print { @page { margin-top: 2cm; margin-bottom: 1.5cm; } .header { display: table-header-group; } .footer { display: table-footer-group; } .content { display: table-row-group; } body { margin: 0; padding: 0; } }
           </style>
         </head>
         <body>
@@ -4467,7 +4467,7 @@ function descargarHerramientaPDF(id) {
             .frase { background: #f0f0f0; padding: 15px; border-radius: 10px; margin: 15px 0; font-style: italic; text-align: center; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
-                @media print { @page { margin-top: 2.2cm; } .header { position: fixed; top: 0; left: 0; right: 0; margin-top: -2cm; } .content { margin-top: 0.5cm; } body { margin: 0; padding: 0; } }
+            @media print { @page { margin-top: 2cm; margin-bottom: 1.5cm; } .header { display: table-header-group; } .footer { display: table-footer-group; } .content { display: table-row-group; } body { margin: 0; padding: 0; } }
           </style>
         </head>
         <body>
@@ -4542,7 +4542,7 @@ function descargarHerramientaPDF(id) {
             .analisis { background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 20px 0; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
-                @media print { @page { margin-top: 2.2cm; } .header { position: fixed; top: 0; left: 0; right: 0; margin-top: -2cm; } .content { margin-top: 0.5cm; } body { margin: 0; padding: 0; } }
+            @media print { @page { margin-top: 2cm; margin-bottom: 1.5cm; } .header { display: table-header-group; } .footer { display: table-footer-group; } .content { display: table-row-group; } body { margin: 0; padding: 0; } }
           </style>
         </head>
         <body>
@@ -4634,7 +4634,7 @@ function descargarHerramientaPDF(id) {
             .frase-final { background: #e8f5e9; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
-                @media print { @page { margin-top: 2.2cm; } .header { position: fixed; top: 0; left: 0; right: 0; margin-top: -2cm; } .content { margin-top: 0.5cm; } body { margin: 0; padding: 0; } }
+            @media print { @page { margin-top: 2cm; margin-bottom: 1.5cm; } .header { display: table-header-group; } .footer { display: table-footer-group; } .content { display: table-row-group; } body { margin: 0; padding: 0; } }
           </style>
         </head>
         <body>
@@ -4731,7 +4731,7 @@ function descargarHerramientaPDF(id) {
             .frase { background: #fff3e0; padding: 20px; border-radius: 10px; text-align: center; font-style: italic; margin: 20px 0; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
-                @media print { @page { margin-top: 2.2cm; } .header { position: fixed; top: 0; left: 0; right: 0; margin-top: -2cm; } .content { margin-top: 0.5cm; } body { margin: 0; padding: 0; } }
+            @media print { @page { margin-top: 2cm; margin-bottom: 1.5cm; } .header { display: table-header-group; } .footer { display: table-footer-group; } .content { display: table-row-group; } body { margin: 0; padding: 0; } }
           </style>
         </head>
         <body>
@@ -4825,7 +4825,7 @@ function descargarHerramientaPDF(id) {
             .frase-final { text-align: center; margin: 30px 0; padding: 20px; background: #e8f5e9; border-radius: 10px; font-size: 18px; font-style: italic; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; }
             .badge { display: inline-block; background: #9C27B0; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; }
-                @media print { @page { margin-top: 2.2cm; } .header { position: fixed; top: 0; left: 0; right: 0; margin-top: -2cm; } .content { margin-top: 0.5cm; } body { margin: 0; padding: 0; } }
+            @media print { @page { margin-top: 2cm; margin-bottom: 1.5cm; } .header { display: table-header-group; } .footer { display: table-footer-group; } .content { display: table-row-group; } body { margin: 0; padding: 0; } }
           </style>
         </head>
         <body>
@@ -4909,7 +4909,7 @@ function descargarHerramientaPDF(id) {
             .tablero table { width: 100%; color: white; }
             .tablero td { padding: 10px; text-align: center; }
             .footer { text-align: center; padding: 20px; background: #f5f5f5; font-size: 11px; border-top: 1px solid #ddd; }
-                @media print { @page { margin-top: 2.2cm; } .header { position: fixed; top: 0; left: 0; right: 0; margin-top: -2cm; } .content { margin-top: 0.5cm; } body { margin: 0; padding: 0; } }
+            @media print { @page { margin-top: 2cm; margin-bottom: 1.5cm; } .header { display: table-header-group; } .footer { display: table-footer-group; } .content { display: table-row-group; } body { margin: 0; padding: 0; } }
           </style>
         </head>
         <body>
